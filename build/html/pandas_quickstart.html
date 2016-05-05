@@ -1,42 +1,146 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>2. Pandas_QuickStart &mdash; GISpark 0.1 文档</title>
-    
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
-    <link rel="top" title="GISpark 0.1 文档" href="index.html" />
-    <link rel="prev" title="1. 《Data Master》" href="pystart_databasic.html" />
-   
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Pandas_QuickStart &mdash; GISpark 0.1 文档</title>
+  
 
-  </head>
-  <body role="document">  
+  
+  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Pandas_QuickStart</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/pandas_quickstart.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   
 <style>
@@ -171,7 +275,7 @@ div.nboutput  > :nth-child(2).stderr {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="section" id="Pandas_QuickStart">
-<h1>2. Pandas_QuickStart<a class="headerlink" href="#Pandas_QuickStart" title="永久链接至标题">¶</a></h1>
+<h1>Pandas_QuickStart<a class="headerlink" href="#Pandas_QuickStart" title="永久链接至标题">¶</a></h1>
 <div class="line-block">
 <div class="line">Origin from <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/">http://pandas.pydata.org/pandas-docs/stable/</a></div>
 <div class="line">by
@@ -179,7 +283,7 @@ div.nboutput  > :nth-child(2).stderr {
 2016-04.</div>
 </div>
 <div class="section" id="6.1-Object-Creation">
-<h2>2.1. 6.1 Object Creation<a class="headerlink" href="#6.1-Object-Creation" title="永久链接至标题">¶</a></h2>
+<h2>6.1 Object Creation<a class="headerlink" href="#6.1-Object-Creation" title="永久链接至标题">¶</a></h2>
 <p>Creating a Series by passing a list of values, letting pandas create a
 default integer index:</p>
 <div class="nbinput container">
@@ -422,7 +526,7 @@ dtype: object
 <p>If you’re using IPython, tab completion for column names (as well as
 public attributes) is automatically enabled. Here’s a subset of the
 attributes that will be completed:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="n">df2</span><span class="o">.&lt;</span><span class="n">TAB</span><span class="o">&gt;</span>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="n">df2</span><span class="o">.&lt;</span><span class="n">TAB</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <div class="nbinput container">
@@ -454,7 +558,7 @@ completed. E is there as well; the rest of the attributes have been
 truncated for brevity.</p>
 </div>
 <div class="section" id="6.2-Viewing-Data">
-<h2>2.2. 6.2 Viewing Data<a class="headerlink" href="#6.2-Viewing-Data" title="永久链接至标题">¶</a></h2>
+<h2>6.2 Viewing Data<a class="headerlink" href="#6.2-Viewing-Data" title="永久链接至标题">¶</a></h2>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [14]:
@@ -930,7 +1034,7 @@ truncated for brevity.</p>
 </div>
 </div>
 <div class="section" id="6.3-Selection">
-<h2>2.3. 6.3 Selection<a class="headerlink" href="#6.3-Selection" title="永久链接至标题">¶</a></h2>
+<h2>6.3 Selection<a class="headerlink" href="#6.3-Selection" title="永久链接至标题">¶</a></h2>
 <p>Getting</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -1065,7 +1169,7 @@ Freq: D, Name: A, dtype: float64
 </div></div>
 </div>
 <div class="section" id="6.3.2-Selection-by-Label">
-<h3>2.3.1. 6.3.2 Selection by Label<a class="headerlink" href="#6.3.2-Selection-by-Label" title="永久链接至标题">¶</a></h3>
+<h3>6.3.2 Selection by Label<a class="headerlink" href="#6.3.2-Selection-by-Label" title="永久链接至标题">¶</a></h3>
 <p>For getting a cross section using a label</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -1265,7 +1369,7 @@ Name: 2013-01-02 00:00:00, dtype: float64
 </div>
 </div>
 <div class="section" id="6.3.3-Selection-by-Position">
-<h3>2.3.2. 6.3.3 Selection by Position<a class="headerlink" href="#6.3.3-Selection-by-Position" title="永久链接至标题">¶</a></h3>
+<h3>6.3.3 Selection by Position<a class="headerlink" href="#6.3.3-Selection-by-Position" title="永久链接至标题">¶</a></h3>
 <p>See more in Selection by Position Select via the position of the passed
 integers</p>
 <div class="nbinput container">
@@ -1532,7 +1636,7 @@ style</p>
 </div>
 </div>
 <div class="section" id="6.3.4-Boolean-Indexing">
-<h3>2.3.3. 6.3.4 Boolean Indexing<a class="headerlink" href="#6.3.4-Boolean-Indexing" title="永久链接至标题">¶</a></h3>
+<h3>6.3.4 Boolean Indexing<a class="headerlink" href="#6.3.4-Boolean-Indexing" title="永久链接至标题">¶</a></h3>
 <p>Using a single column’s values to select data.</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -1663,7 +1767,7 @@ style</p>
 </div></div>
 </div>
 <div class="section" id="Using-the-isin()-method-for-filtering:">
-<h4>2.3.3.1. Using the isin() method for filtering:<a class="headerlink" href="#Using-the-isin()-method-for-filtering:" title="永久链接至标题">¶</a></h4>
+<h4>Using the isin() method for filtering:<a class="headerlink" href="#Using-the-isin()-method-for-filtering:" title="永久链接至标题">¶</a></h4>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [43]:
@@ -1818,7 +1922,7 @@ style</p>
 </div>
 </div>
 <div class="section" id="6.3.5-Setting">
-<h3>2.3.4. 6.3.5 Setting<a class="headerlink" href="#6.3.5-Setting" title="永久链接至标题">¶</a></h3>
+<h3>6.3.5 Setting<a class="headerlink" href="#6.3.5-Setting" title="永久链接至标题">¶</a></h3>
 <p>Setting a new column automatically aligns the data by the indexes</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -2054,72 +2158,63 @@ Freq: D, dtype: int64
 </div>
 
 
+           </div>
           </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">內容目录</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">2. Pandas_QuickStart</a><ul>
-<li><a class="reference internal" href="#6.1-Object-Creation">2.1. 6.1 Object Creation</a></li>
-<li><a class="reference internal" href="#6.2-Viewing-Data">2.2. 6.2 Viewing Data</a></li>
-<li><a class="reference internal" href="#6.3-Selection">2.3. 6.3 Selection</a><ul>
-<li><a class="reference internal" href="#6.3.2-Selection-by-Label">2.3.1. 6.3.2 Selection by Label</a></li>
-<li><a class="reference internal" href="#6.3.3-Selection-by-Position">2.3.2. 6.3.3 Selection by Position</a></li>
-<li><a class="reference internal" href="#6.3.4-Boolean-Indexing">2.3.3. 6.3.4 Boolean Indexing</a><ul>
-<li><a class="reference internal" href="#Using-the-isin()-method-for-filtering:">2.3.3.1. Using the isin() method for filtering:</a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#6.3.5-Setting">2.3.4. 6.3.5 Setting</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="pystart_databasic.html" title="上一章">1. 《Data Master》</a></li>
-  </ul></li>
-</ul>
-</div>
-  <div role="note" aria-label="source link">
-    <h3>本页</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/pandas_quickstart.txt"
-            rel="nofollow">显示源代码</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>快速搜索</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="转向" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2016, openthings.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
-      
-      |
-      <a href="_sources/pandas_quickstart.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
-    
-  </body>
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>

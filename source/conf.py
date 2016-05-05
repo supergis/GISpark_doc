@@ -30,11 +30,26 @@ import os
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.viewcode',
-    'nbsphinx',
-    'sphinx.ext.autodoc',
-#    'rst2pdf.pdfbuilder'
+        'sphinx.ext.viewcode',
+        'nbsphinx',
+        'sphinx.ext.autodoc','sphinx.ext.intersphinx', 
+        'sphinx.ext.doctest', 'sphinx.ext.extlinks',
+        'sphinx.ext.autosummary',
+        'sphinx.ext.mathjax',
+        'numpydoc',
+
+        # Optional
+        'sphinx.ext.graphviz',
+    
+        # 'rst2pdf.pdfbuilder'
 ]
+
+# Exclude build directory and Jupyter backup files:
+exclude_patterns = ['build', '**.ipynb_checkpoints']
+
+import numpydoc
+extensions += ['numpydoc']
+numpydoc_show_class_members = False
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -47,7 +62,21 @@ source_parsers = {
 }
 source_suffix = ['.rst', '.md']
 #Support Markdown
+
 #==================
+# -- These set defaults that can be overridden through notebook metadata --
+
+# See http://nbsphinx.readthedocs.org/en/latest/allow-errors.html
+# and http://nbsphinx.readthedocs.org/en/latest/timeout.html for more details.
+
+# If True, the build process is continued even if an exception occurs:
+#nbsphinx_allow_errors = True
+
+# Controls when a cell will time out (defaults to 30; use -1 for no timeout):
+#nbsphinx_timeout = 60
+
+# Default Pygments lexer for syntax highlighting in code cells
+nbsphinx_codecell_lexer = 'ipython3'
 
 # The encoding of source files.
 source_encoding = 'utf-8-sig'
@@ -57,8 +86,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'GISpark'
-copyright = '2016, openthings'
-author = 'openthings'
+copyright = '2016, http://www.supermap.com,http://www.supermap.com.cn'
+author = 'SuperMap'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -101,8 +130,21 @@ exclude_patterns = []
 # output. They are ignored by default.
 #show_authors = False
 
+on_rtd = os.environ.get('READTHEDOCS', None) == 'True'
+
+if not on_rtd:  # only import and set the theme if we're building docs locally
+    try:
+        import sphinx_rtd_theme
+    except ImportError:
+        html_theme = 'default'
+        html_theme_path = []
+    else:
+        html_theme = 'sphinx_rtd_theme'
+        html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
+        
 # The name of the Pygments (syntax highlighting) style to use.
-pygments_style = 'sphinx'
+# pygments_style = 'sphinx'
+highlight_language = 'python'
 
 # A list of ignored prefixes for module index sorting.
 #modindex_common_prefix = []
@@ -117,7 +159,7 @@ todo_include_todos = False
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'alabaster'
+#html_theme = 'alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the

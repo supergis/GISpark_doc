@@ -1,43 +1,146 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 
-<html xmlns="http://www.w3.org/1999/xhtml" lang="zh_CN">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    
-    <title>1. 《Data Master》 &mdash; GISpark 0.1 文档</title>
-    
-    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    
-    <script type="text/javascript">
-      var DOCUMENTATION_OPTIONS = {
-        URL_ROOT:    './',
-        VERSION:     '0.1',
-        COLLAPSE_INDEX: false,
-        FILE_SUFFIX: '.html',
-        HAS_SOURCE:  true
-      };
-    </script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/translations.js"></script>
-    <link rel="top" title="GISpark 0.1 文档" href="index.html" />
-    <link rel="next" title="2. Pandas_QuickStart" href="pandas_quickstart.html" />
-    <link rel="prev" title="欢迎了解GISpark!" href="index.html" />
-   
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>基础篇—Python快速入门 &mdash; GISpark 0.1 文档</title>
+  
 
-  </head>
-  <body role="document">  
+  
+  
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
-          <div class="body" role="main">
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="index.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>基础篇—Python快速入门</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/pystart_databasic.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
             
   
 <style>
@@ -171,16 +274,17 @@ div.nboutput  > :nth-child(2).stderr {
 
 .ansi-bold { font-weight: bold; }
 </style>
-<div class="section" id="《Data-Master》">
-<h1>1. 《Data Master》<a class="headerlink" href="#《Data-Master》" title="永久链接至标题">¶</a></h1>
-<blockquote>
-<div></div></blockquote>
 <div class="section" id="基础篇—Python快速入门">
-<h2>1.1. 基础篇—Python快速入门<a class="headerlink" href="#基础篇—Python快速入门" title="永久链接至标题">¶</a></h2>
-<blockquote>
-<div></div></blockquote>
+<h1>基础篇—Python快速入门<a class="headerlink" href="#基础篇—Python快速入门" title="永久链接至标题">¶</a></h1>
+<p>by
+<a class="reference external" href="http://my.oschina.net/u/2306127/blog?catalog=3420733">openthings&#64;163.com</a>,
+2016-04.</p>
+<div class="section" id="（一）列表、词典、元组及其遍历。">
+<h2>（一）列表、词典、元组及其遍历。<a class="headerlink" href="#（一）列表、词典、元组及其遍历。" title="永久链接至标题">¶</a></h2>
+<div class="section" id="Array，数组由一系列数据组成。在Python中有list、dictionary、Tuple等多种实现。">
+<h3>Array，数组由一系列数据组成。在Python中有list、dictionary、Tuple等多种实现。<a class="headerlink" href="#Array，数组由一系列数据组成。在Python中有list、dictionary、Tuple等多种实现。" title="永久链接至标题">¶</a></h3>
 <div class="section" id="List，使用[a,b,c,...]方式声明。">
-<h3>1.1.1. List，使用[a,b,c,...]方式声明。<a class="headerlink" href="#List，使用[a,b,c,...]方式声明。" title="永久链接至标题">¶</a></h3>
+<h4>List，使用[a,b,c,...]方式声明。<a class="headerlink" href="#List，使用[a,b,c,...]方式声明。" title="永久链接至标题">¶</a></h4>
 <p>列表是基础的数据结构。</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -298,8 +402,7 @@ blue
 4
 </pre></div></div>
 </div>
-<div class="section" id="创建一个矩阵。">
-<h4>1.1.1.1. 创建一个矩阵。<a class="headerlink" href="#创建一个矩阵。" title="永久链接至标题">¶</a></h4>
+<p>** 创建一个矩阵。**</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [63]:
@@ -322,9 +425,7 @@ for row in olist:
 [31, 32, 33]
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="生成一个数据序列。在做数值检验时很有用。">
-<h4>1.1.1.2. 生成一个数据序列。在做数值检验时很有用。<a class="headerlink" href="#生成一个数据序列。在做数值检验时很有用。" title="永久链接至标题">¶</a></h4>
+<p>** 生成一个数据序列。在做数值检验时很有用。**</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [43]:
@@ -348,9 +449,7 @@ for row in olist:
 4
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="生成一个数据序列：range(开始值，结束值，步长)">
-<h4>1.1.1.3. 生成一个数据序列：range(开始值，结束值，步长)<a class="headerlink" href="#生成一个数据序列：range(开始值，结束值，步长)" title="永久链接至标题">¶</a></h4>
+<p>** 生成一个数据序列：range(开始值，结束值，步长)**</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [27]:
@@ -372,8 +471,7 @@ for row in olist:
 9
 </pre></div></div>
 </div>
-<div class="section" id="String-as-a-list-of-char.-字符串是字符数组。">
-<h5>1.1.1.3.1. String as a list of char. 字符串是字符数组。<a class="headerlink" href="#String-as-a-list-of-char.-字符串是字符数组。" title="永久链接至标题">¶</a></h5>
+<p>** String as a list of char. 字符串是字符数组。**</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [7]:
@@ -402,11 +500,8 @@ for obj in range(len(name)):
 </pre></div></div>
 </div>
 </div>
-</div>
-</div>
-</div>
 <div class="section" id="Dictionary，词典，｛key:value,...｝">
-<h2>1.2. Dictionary，词典，｛key:value,...｝<a class="headerlink" href="#Dictionary，词典，｛key:value,...｝" title="永久链接至标题">¶</a></h2>
+<h4>Dictionary，词典，｛key:value,...｝<a class="headerlink" href="#Dictionary，词典，｛key:value,...｝" title="永久链接至标题">¶</a></h4>
 <p>词典数据就是一系列k:v值对的集合。</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -520,6 +615,7 @@ job pythoner
 name BeginMan
 </pre></div></div>
 </div>
+<p>** Json的简单演示，将dict转为典型的json字符串表示。**</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [72]:
@@ -541,6 +637,7 @@ print(repr(j))
 &#39;{&#34;age&#34;: 22, &#34;job&#34;: &#34;pythoner&#34;, &#34;name&#34;: &#34;BeginMan&#34;}&#39;
 </pre></div></div>
 </div>
+<p>** 从JSON字符串载入一个dict对象。**</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [53]:
@@ -564,7 +661,7 @@ Type of d:  &lt;class &#39;dict&#39;&gt;
 </div>
 </div>
 <div class="section" id="tuple，(obj1,obj2,...)，元组">
-<h2>1.3. tuple，(obj1,obj2,...)，元组<a class="headerlink" href="#tuple，(obj1,obj2,...)，元组" title="永久链接至标题">¶</a></h2>
+<h4>tuple，(obj1,obj2,...)，元组<a class="headerlink" href="#tuple，(obj1,obj2,...)，元组" title="永久链接至标题">¶</a></h4>
 <p>一个元组可包含多种类型的对象，不可修改。</p>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -596,6 +693,7 @@ Type of d:  &lt;class &#39;dict&#39;&gt;
 </pre></div>
 </div>
 </div>
+<p>** 元组的赋值和取值。**</p>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [56]:
@@ -626,8 +724,11 @@ Type of d:  &lt;class &#39;dict&#39;&gt;
 </pre></div>
 </div>
 </div>
+</div>
+</div>
+</div>
 <div class="section" id="一个字典、元组构成的复合列表对象。">
-<h3>1.3.1. 一个字典、元组构成的复合列表对象。<a class="headerlink" href="#一个字典、元组构成的复合列表对象。" title="永久链接至标题">¶</a></h3>
+<h2>一个字典、元组构成的复合列表对象。<a class="headerlink" href="#一个字典、元组构成的复合列表对象。" title="永久链接至标题">¶</a></h2>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [67]:
@@ -649,90 +750,69 @@ ao
 </pre></div>
 </div>
 </div>
-<div class="section" id="访问这个符合对象的值。">
-<h4>1.3.1.1. 访问这个符合对象的值。<a class="headerlink" href="#访问这个符合对象的值。" title="永久链接至标题">¶</a></h4>
+<p>** 访问这个符合对象的值。**</p>
 len(ao),ao[0]["k1"],ao[1][0],ao[1][1]<p>从上面可以看出，python的数据结构是非常灵活的，是数据探索和分析、处理的利器。</p>
 </div>
 </div>
-</div>
-</div>
 
 
+           </div>
           </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">內容目录</a></h3>
-  <ul>
-<li><a class="reference internal" href="#">1. 《Data Master》</a><ul>
-<li><a class="reference internal" href="#基础篇—Python快速入门">1.1. 基础篇—Python快速入门</a><ul>
-<li><a class="reference internal" href="#List，使用[a,b,c,...]方式声明。">1.1.1. List，使用[a,b,c,...]方式声明。</a><ul>
-<li><a class="reference internal" href="#创建一个矩阵。">1.1.1.1. 创建一个矩阵。</a></li>
-<li><a class="reference internal" href="#生成一个数据序列。在做数值检验时很有用。">1.1.1.2. 生成一个数据序列。在做数值检验时很有用。</a></li>
-<li><a class="reference internal" href="#生成一个数据序列：range(开始值，结束值，步长)">1.1.1.3. 生成一个数据序列：range(开始值，结束值，步长)</a><ul>
-<li><a class="reference internal" href="#String-as-a-list-of-char.-字符串是字符数组。">1.1.1.3.1. String as a list of char. 字符串是字符数组。</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-<li><a class="reference internal" href="#Dictionary，词典，｛key:value,...｝">1.2. Dictionary，词典，｛key:value,...｝</a></li>
-<li><a class="reference internal" href="#tuple，(obj1,obj2,...)，元组">1.3. tuple，(obj1,obj2,...)，元组</a><ul>
-<li><a class="reference internal" href="#一个字典、元组构成的复合列表对象。">1.3.1. 一个字典、元组构成的复合列表对象。</a><ul>
-<li><a class="reference internal" href="#访问这个符合对象的值。">1.3.1.1. 访问这个符合对象的值。</a></li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="上一章">欢迎了解GISpark!</a></li>
-      <li>Next: <a href="pandas_quickstart.html" title="下一章">2. Pandas_QuickStart</a></li>
-  </ul></li>
-</ul>
-</div>
-  <div role="note" aria-label="source link">
-    <h3>本页</h3>
-    <ul class="this-page-menu">
-      <li><a href="_sources/pystart_databasic.txt"
-            rel="nofollow">显示源代码</a></li>
-    </ul>
-   </div>
-<div id="searchbox" style="display: none" role="search">
-  <h3>快速搜索</h3>
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
-      <input type="submit" value="转向" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
-    </form>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &copy;2016, openthings.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.4.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.7</a>
-      
-      |
-      <a href="_sources/pystart_databasic.txt"
-          rel="nofollow">Page source</a>
-    </div>
 
-    
+    </section>
 
-    
-  </body>
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+      <script type="text/javascript" src="_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
 </html>
