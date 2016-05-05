@@ -2,53 +2,234 @@
    sphinx-quickstart on Mon Apr 25 21:19:05 2016.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
-
+===================================
 欢迎了解GISpark!
 ===================================
 
-Contents:
+主要内容:
 
-1、运行环境
--------------
+------------------
+前言
+------------------
 
-1.1 Docker和Mesos
-^^^^^^^^^^^^^^^^^^^^^^
 
-1.2 Python和Jupyter
+------------------
+简介
+------------------
+
+GISpark是什么？
+^^^^^^^^^^^^^^
+
+GISpark体系架构
+^^^^^^^^^^^^^^
+    
+GISpark实施路线图]
+^^^^^^^^^^^^^^^^^^
+
+可持续的信息基础设施
+^^^^^^^^^^^^^^^^^^^
+
+------------------
+云计算基础设施
+------------------
+
+OpenStack的安装
+^^^^^^^^^^^^^^^^
+    * 虚拟机镜像管理
+    * 弹性计算平台
+    * 集成管理控制台
+    
+虚拟存储系统
+^^^^^^^^^^^^^^^
+    * HDFS
+    * Ceph
+    * MongoDB
+
+Docker计算容器系统
+^^^^^^^^^^^^^^^^^^
+    * Docker Engine
+    * Docker Machine
+    * Docker Compose
+    * Docker Registry
+    * Docker Swarm
+
+Mesos与运维
+^^^^^^^^^^^^
+    * Chronos
+
+-------------------------
+分布式计算与持续交付
+-------------------------
+
+Spark安装与配置
+^^^^^^^^^^^^^^^^^
+    * [部署架构](bu_shu_jia_gou.md)
+    * [主节点安装](zhu_jie_dian_an_zhuang.md)
+    * [从节点安装](cong_jie_dian_an_zhuang.md)
+    * [PySpark配置](pysparkpei_zhi.md)
+
+Anaconda科学计算环境
+^^^^^^^^^^^^^^^^^^^^
+Python和Jupyter安装
+    通过功能强大的Notebook进行远程数据分析。
+   * [安装Anaconda](an_zhuang_anaconda.md)
+   * [配置Jupyter Notebook](pei_zhi_jupyter_notebook.md)
+    [Python基础教程](doc/pystart_catalog.md)
+    [Jupyter魔法操作符](doc/jupyter_magics.md)
+    [Notebook资源大全](git_list.md)
+    [下载Git资源到本地](git_get.md)
+
+持续集成与交付系统
+^^^^^^^^^^^^
+    * [GitLab源代码托管与版本管理](gitlabyuan_dai_ma_tuo_guan_yu_ban_ben_guan_li.md)
+    * [Jenkins持续构建系统](jenkinschi_xu_gou_jian_xi_tong.md)
+    * [Maven软件构建仓库](mavenruan_jian_gou_jian_cang_ku.md)
+    * [企业级服务总线](qi_ye_ji_fu_wu_zong_xian.md)
+
+Python并行处理方法
+^^^^^^^^^^^^^^^^^^
+    * [快速并行处理方法]
+    * [调度到后台执行]
+    
+PySpark快速入门
+^^^^^^^^^^^^^^^^^^^
+    * [Spark 安装配置](doc/sparksetup.md)
+    * [Spark SQL使用](doc/pysparksql.md)
+
+------------------------------------
+地理空间信息服务平台
+------------------------------------
+应用服务系统搭建
+^^^^^^^^^^^^^^^^^^^
+客户端应用及开发
+^^^^^^^^^^^^^^^^^^^
+
+---------------------------------------
+地理空间信息数据处理
+---------------------------------------
+
+地理空间数据格式
+^^^^^^^^^^^^^^^^^^
+    * [GeoJSON 规范](doc/geojson.md)
+    * [GeoJSON 编程](doc/pygeojson.md)
+    * [空间数据CSV格式](doc/geocsv.md)
+
+几何对象与地图绘制
+^^^^^^^^^^^^^^^^^^^^^
+    * [Matplotlib绘制地图](doc/mpl_basemap.md)
+    * [GeoPandas内存数据集](doc/geoagebra.md)
+    * [Shapely几何对象结构](doc/shapely.md)
+    * [Fiona几何计算操作](doc/fiona.md)
+
+GDAL库安装与使用
+^^^^^^^^^^^^^^^^^^^^^^^^
+    (doc/gdal-geometry.md)
+    GDAL的Geometry使用:http://nbviewer.jupyter.org/github/supergis/git_notebook/blob/master/gdal/gdal-geometry.ipynb
+
+GIScript安装与使用
+^^^^^^^^^^^^^^^^^^^^^^^^
+    (doc/giscript_quickstart.md)
+
+OpenStreetMap数据处理
 ^^^^^^^^^^^^^^^^^^^^^^^
-通过功能强大的Notebook进行远程数据分析。
+    * [OSM数据下载与结构分析](doc/osm-discovery.md)
+    * [Overpass在线API使用](doc/osm-overpass-node.md)
+    * [OSM流式转为行存储JSON](doc/osm-extract2json.md)
+    * [OSM构建Geometry](doc/osm-spark.md)
+    * PySpark中数据查询
 
-* Notebook
-* ReadTheDocs
+SRTM地形高程数据处理
+^^^^^^^^^^^^^^^^^^^^^^^
+    (doc/srtm_usgs.md)
 
-1.3 Spark分布式计算环境
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+影像数据处理与挖掘
+^^^^^^^^^^^^^^^^^^^^^^^
+    以TM影像处理为例。
 
-2、开放数据
-----------------
+-------------------------------------
+制图与可视化
+-------------------------------------
 
+静态制图与分块输出
+^^^^^^^^^^^^^^^^^^
+动态Web地图
+^^^^^^^^^^^^^^^^^^
+高级三维可视化
+^^^^^^^^^^^^^^^^^^
+
+----------------------------------------
+高级空间分析
+----------------------------------------
+地理选址与优化
+^^^^^^^^^^^^^^^^^^
+快速地理编码
+^^^^^^^^^^^^^^^^^^
+   
+-------------------------------------------
+地理空间网络
+-------------------------------------------
+地理网络分析
+^^^^^^^^^^^^^^^^^^
+社交网络分析
+^^^^^^^^^^^^^^^^^^
+复杂网络分析
+^^^^^^^^^^^^^^^^^^
+
+-------------------------------------------
+实时流处理
+-------------------------------------------
+框架与流程
+^^^^^^^^^^^^^^^^^^
+处理与存储
+^^^^^^^^^^^^^^^^^^
+算法与过滤
+^^^^^^^^^^^^^^^^^^
+   
+-------------------------------------------
+多维时空分析
+-------------------------------------------
+空间图谱
+^^^^^^^^^^^^^^^^^^
+时间序列
+^^^^^^^^^^^^^^^^^^
+时空演变
+^^^^^^^^^^^^^^^^^^
+
+-------------------------------------------
+机器学习框架
+-------------------------------------------
+TensorFlow
+^^^^^^^^^^^^^^^^^^
+Keras
+^^^^^^^^^^^^^^^^^^
+
+-------------------------------------------------
+模型构建与共享
+-------------------------------------------------
+科研的大数据基础设施
+^^^^^^^^^^^^^^^^^^
+基于云计算的协同研究
+^^^^^^^^^^^^^^^^^^
+可重用和可分享的模型
+^^^^^^^^^^^^^^^^^^
+数字化科研开放平台
+^^^^^^^^^^^^^^^^^^
+
+------
+附录
+------
+全球开放数据源大全
+^^^^^^^^^^^^^^^^^^
+(doc/opendatasource.md)
+  
 .. toctree::
    :maxdepth: 2
    :numbered:
    
-   helloworld
-   markit
    pystart_databasic
    pandas_quickstart 
-    
-* Datasource-OpenStreetMap-OSM/TM/SRTM
 
-3、入门教程
-----------------
-
-GDAL的Geometry使用:
-
-http://nbviewer.jupyter.org/github/supergis/git_notebook/blob/master/gdal/gdal-geometry.ipynb
-
-高级数据分析
-----------------------
-
-
+=======================
 Indices and tables
 =======================
 
