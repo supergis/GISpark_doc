@@ -45,7 +45,7 @@ extensions = [
 ]
 
 # Exclude build directory and Jupyter backup files:
-exclude_patterns = ['build', '**.ipynb_checkpoints']
+exclude_patterns = ['_build', '**.ipynb_checkpoints','*-checkpoint.ipynb']
 
 import numpydoc
 extensions += ['numpydoc']
@@ -113,7 +113,7 @@ language = 'zh_CN'
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
-exclude_patterns = []
+#exclude_patterns = []
 
 # The reST default role (used for this markup: `text`) to use for all
 # documents.
