@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>5. 地理空间信息数据处理 &mdash; GISpark 0.1 文档</title>
+  <title>4. 地理空间信息数据处理 &mdash; GISpark 0.1 文档</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="GISpark 0.1 文档" href="index.html"/>
-        <link rel="next" title="6. 地理制图与空间可视化" href="gispark_mapping.html"/>
-        <link rel="prev" title="4. 地理空间信息服务平台" href="gispark_saas.html"/> 
+        <link rel="next" title="5. 地理制图与空间可视化" href="gispark_mapping.html"/>
+        <link rel="prev" title="3. 地理空间信息服务平台" href="gispark_saas.html"/> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -87,25 +87,29 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="gispark_profile.html">1. GISpark简介</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gispark_cloud.html">2. 云计算基础设施</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gispark_paas.html">3. 分布式计算与持续交付</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gispark_saas.html">4. 地理空间信息服务平台</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">5. 地理空间信息数据处理</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#地理空间数据格式">5.1. 地理空间数据格式</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#几何对象与地图绘制">5.2. 几何对象与地图绘制</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#GDAL库安装与使用">5.3. GDAL库安装与使用</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#GIScript安装与使用">5.4. GIScript安装与使用</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#OSM开源地图数据处理">5.5. OSM开源地图数据处理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#SRTM地形高程数据处理">5.6. SRTM地形高程数据处理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#影像数据处理与挖掘">5.7. 影像数据处理与挖掘</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. 地理空间信息数据处理</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#地理空间数据格式">4.1. 地理空间数据格式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#几何对象与地图绘制">4.2. 几何对象与地图绘制</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#GDAL库安装与使用">4.3. GDAL库安装与使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#GIScript安装与使用">4.4. GIScript安装与使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#OSM开源地图数据处理">4.5. OSM开源地图数据处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#SRTM地形高程数据处理">4.6. SRTM地形高程数据处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#影像数据处理与挖掘">4.7. 影像数据处理与挖掘</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="gispark_mapping.html">6. 地理制图与空间可视化</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gispark_analyst.html">7. 高级空间分析</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gispark_network.html">8. 地理空间网络</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gispark_stream.html">9. 实时流处理</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gispark_dimension.html">10. 多维时空分析</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gispark_ml.html">11. 机器学习框架</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gispark_science.html">12. 模型构建与共享</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="jupyter/sphinx_quickstart.html">Sphinx快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pystart/pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="gispark_appendix.html">附录</a></li>
@@ -139,7 +143,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>5. 地理空间信息数据处理</li>
+    <li>4. 地理空间信息数据处理</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -286,55 +290,55 @@ div.nboutput  > :nth-child(2).stderr {
 .ansi-bold { font-weight: bold; }
 </style>
 <div class="section" id="地理空间信息数据处理">
-<h1>5. 地理空间信息数据处理<a class="headerlink" href="#地理空间信息数据处理" title="永久链接至标题">¶</a></h1>
+<h1>4. 地理空间信息数据处理<a class="headerlink" href="#地理空间信息数据处理" title="永久链接至标题">¶</a></h1>
 <div class="section" id="地理空间数据格式">
-<h2>5.1. 地理空间数据格式<a class="headerlink" href="#地理空间数据格式" title="永久链接至标题">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span>* [GeoJSON 规范](doc/geojson.md)
-* [GeoJSON 编程](doc/pygeojson.md)
-* [空间数据CSV格式](doc/geocsv.md)
-</pre></div>
-</div>
+<h2>4.1. 地理空间数据格式<a class="headerlink" href="#地理空间数据格式" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="geospatial/geojson/geojson.html"><span class="doc">GeoJSON 规范</span></a></li>
+<li><a class="reference internal" href="geospatial/geojson/pygeojson.html"><span class="doc">GeoJSON 编程</span></a></li>
+<li><a class="reference external" href="geospatial/geocsv.md">空间数据CSV格式</a></li>
+</ul>
 </div>
 <div class="section" id="几何对象与地图绘制">
-<h2>5.2. 几何对象与地图绘制<a class="headerlink" href="#几何对象与地图绘制" title="永久链接至标题">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="p">[</span><span class="n">Matplotlib绘制地图</span><span class="p">](</span><span class="n">doc</span><span class="o">/</span><span class="n">mpl_basemap</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
-<span class="o">*</span> <span class="p">[</span><span class="n">GeoPandas内存数据集</span><span class="p">](</span><span class="n">doc</span><span class="o">/</span><span class="n">geoagebra</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
-<span class="o">*</span> <span class="p">[</span><span class="n">Shapely几何对象结构</span><span class="p">](</span><span class="n">doc</span><span class="o">/</span><span class="n">shapely</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
-<span class="o">*</span> <span class="p">[</span><span class="n">Fiona几何计算操作</span><span class="p">](</span><span class="n">doc</span><span class="o">/</span><span class="n">fiona</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
-</pre></div>
-</div>
+<h2>4.2. 几何对象与地图绘制<a class="headerlink" href="#几何对象与地图绘制" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><a class="reference external" href="geospatial/mpl_basemap.md">Matplotlib绘制地图</a></li>
+<li><a class="reference external" href="geospatial/geoagebra.md">GeoPandas内存数据集</a></li>
+<li><a class="reference external" href="geospatial/shapely.md">Shapely几何对象结构</a></li>
+<li><a class="reference external" href="geospatial/fiona.md">Fiona几何计算操作</a></li>
+</ul>
 </div>
 <div class="section" id="GDAL库安装与使用">
-<h2>5.3. GDAL库安装与使用<a class="headerlink" href="#GDAL库安装与使用" title="永久链接至标题">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">doc</span><span class="o">/</span><span class="n">gdal</span><span class="o">-</span><span class="n">geometry</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
-<span class="n">GDAL的Geometry使用</span><span class="p">:</span><span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">nbviewer</span><span class="o">.</span><span class="n">jupyter</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">github</span><span class="o">/</span><span class="n">supergis</span><span class="o">/</span><span class="n">git_notebook</span><span class="o">/</span><span class="n">blob</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">gdal</span><span class="o">/</span><span class="n">gdal</span><span class="o">-</span><span class="n">geometry</span><span class="o">.</span><span class="n">ipynb</span>
-</pre></div>
+<h2>4.3. GDAL库安装与使用<a class="headerlink" href="#GDAL库安装与使用" title="永久链接至标题">¶</a></h2>
+<div class="line-block">
+<div class="line"><a class="reference external" href="geospatial/gdal-geometry.md">GDAL库安装与使用</a></div>
+<div class="line">GDAL的Geometry使用:<a class="reference external" href="http://nbviewer.jupyter.org/github/supergis/git_notebook/blob/master/gdal/gdal-geometry.ipynb">http://nbviewer.jupyter.org/github/supergis/git_notebook/blob/master/gdal/gdal-geometry.ipynb</a></div>
 </div>
 </div>
 <div class="section" id="GIScript安装与使用">
-<h2>5.4. GIScript安装与使用<a class="headerlink" href="#GIScript安装与使用" title="永久链接至标题">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">doc</span><span class="o">/</span><span class="n">giscript_quickstart</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
+<h2>4.4. GIScript安装与使用<a class="headerlink" href="#GIScript安装与使用" title="永久链接至标题">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">GIScript安装与使用</span><span class="p">](</span><span class="n">geospatial</span><span class="o">/</span><span class="n">giscript</span><span class="o">/</span><span class="n">giscript_quickstart</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="section" id="OSM开源地图数据处理">
-<h2>5.5. OSM开源地图数据处理<a class="headerlink" href="#OSM开源地图数据处理" title="永久链接至标题">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="p">[</span><span class="n">OSM数据下载与结构分析</span><span class="p">](</span><span class="n">doc</span><span class="o">/</span><span class="n">osm</span><span class="o">-</span><span class="n">discovery</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
-<span class="o">*</span> <span class="p">[</span><span class="n">Overpass在线API使用</span><span class="p">](</span><span class="n">doc</span><span class="o">/</span><span class="n">osm</span><span class="o">-</span><span class="n">overpass</span><span class="o">-</span><span class="n">node</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
-<span class="o">*</span> <span class="p">[</span><span class="n">OSM流式转为行存储JSON</span><span class="p">](</span><span class="n">doc</span><span class="o">/</span><span class="n">osm</span><span class="o">-</span><span class="n">extract2json</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
-<span class="o">*</span> <span class="p">[</span><span class="n">OSM构建Geometry</span><span class="p">](</span><span class="n">doc</span><span class="o">/</span><span class="n">osm</span><span class="o">-</span><span class="n">spark</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
-<span class="o">*</span> <span class="n">PySpark中数据查询</span>
-</pre></div>
-</div>
+<h2>4.5. OSM开源地图数据处理<a class="headerlink" href="#OSM开源地图数据处理" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="geospatial/openstreetmap/osm-discovery.html"><span class="doc">OSM数据下载与结构分析</span></a></li>
+<li><a class="reference internal" href="geospatial/openstreetmap/osm-overpass-node.html"><span class="doc">Overpass在线API使用</span></a></li>
+<li><a class="reference internal" href="geospatial/openstreetmap/osm-extract2json.html"><span class="doc">OSM流式转为行存储JSON</span></a></li>
+<li><a class="reference internal" href="geospatial/openstreetmap/osm-spark.html"><span class="doc">OSM构建Geometry</span></a></li>
+<li>PySpark中数据查询</li>
+</ul>
 </div>
 <div class="section" id="SRTM地形高程数据处理">
-<h2>5.6. SRTM地形高程数据处理<a class="headerlink" href="#SRTM地形高程数据处理" title="永久链接至标题">¶</a></h2>
-<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">doc</span><span class="o">/</span><span class="n">srtm_usgs</span><span class="o">.</span><span class="n">md</span><span class="p">)</span>
-</pre></div>
-</div>
+<h2>4.6. SRTM地形高程数据处理<a class="headerlink" href="#SRTM地形高程数据处理" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><a class="reference internal" href="geospatial/srtm/srtm_usgs.html"><span class="doc">SRTM地形高程数据处理</span></a></li>
+</ul>
 </div>
 <div class="section" id="影像数据处理与挖掘">
-<h2>5.7. 影像数据处理与挖掘<a class="headerlink" href="#影像数据处理与挖掘" title="永久链接至标题">¶</a></h2>
+<h2>4.7. 影像数据处理与挖掘<a class="headerlink" href="#影像数据处理与挖掘" title="永久链接至标题">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span></span>以TM影像处理为例。
 </pre></div>
 </div>
@@ -348,10 +352,10 @@ div.nboutput  > :nth-child(2).stderr {
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="gispark_mapping.html" class="btn btn-neutral float-right" title="6. 地理制图与空间可视化" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="gispark_mapping.html" class="btn btn-neutral float-right" title="5. 地理制图与空间可视化" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="gispark_saas.html" class="btn btn-neutral" title="4. 地理空间信息服务平台" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="gispark_saas.html" class="btn btn-neutral" title="3. 地理空间信息服务平台" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

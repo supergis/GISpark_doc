@@ -1,0 +1,1013 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>探索OSM的文件格式(Node对象)。 &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_cloud.html">云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../pystart/pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>探索OSM的文件格式(Node对象)。</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/geospatial/openstreetmap/osm-discovery.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>#!/usr/bin/python
+#coding=utf-8
+</pre></div>
+</div>
+</div>
+<div class="section" id="探索OSM的文件格式(Node对象)。">
+<h1>探索OSM的文件格式(Node对象)。<a class="headerlink" href="#探索OSM的文件格式(Node对象)。" title="永久链接至标题">¶</a></h1>
+<div class="section" id="在线获取OpenStreetMap区域地图数据，转为GeoPandas，并最终转为shp格式文件。">
+<h2>在线获取<a class="reference external" href="http://www.openstreetmap.org">OpenStreetMap</a>区域地图数据，转为GeoPandas，并最终转为shp格式文件。<a class="headerlink" href="#在线获取OpenStreetMap区域地图数据，转为GeoPandas，并最终转为shp格式文件。" title="永久链接至标题">¶</a></h2>
+<p>**_ by <a class="reference external" href="http://my.oschina.net/u/2306127/blog">openthings&#64;163.com</a>
+_**</p>
+<p>**
+OSM为xml格式，解析文件结构使用强大的requests数据下载包，网页和xml分析神器BeautifulSoup。**
+<a href="#id1"><span class="problematic" id="id2">**</span></a>注意：**由于BeautifulSoup将数据读到内存处理，因此不适合大数据量的处理。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from bs4 import BeautifulSoup as bs
+import requests as req
+from pprint import *
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="直接下载到内存。不推荐使用，因为如果网络中断，需要重新下载。">
+<h2>直接下载到内存。不推荐使用，因为如果网络中断，需要重新下载。<a class="headerlink" href="#直接下载到内存。不推荐使用，因为如果网络中断，需要重新下载。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>url = &quot;http://api.openstreetmap.org/api/0.6/map?bbox=11.54,48.14,11.543,48.145&quot;
+try:
+    r = req.get(url)
+    print(r)
+except Exception as ex:
+    print(&quot;Error:&quot;,ex)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="使用wget--c下载OSM数据，保存到本地文件，然后载入。">
+<h2>使用wget -c下载OSM数据，保存到本地文件，然后载入。<a class="headerlink" href="#使用wget--c下载OSM数据，保存到本地文件，然后载入。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>!wget -c -O osm_test.osm &quot;http://api.openstreetmap.org/api/0.6/map?bbox=11.54,48.14,11.543,48.145&quot;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+--2016-05-04 14:59:47--  http://api.openstreetmap.org/api/0.6/map?bbox=11.54,48.14,11.543,48.145
+正在解析主机 api.openstreetmap.org (api.openstreetmap.org)... 193.63.75.99, 193.63.75.100, 193.63.75.103, ...
+正在连接 api.openstreetmap.org (api.openstreetmap.org)|193.63.75.99|:80... 已连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 未指定 [text/xml]
+正在保存至: “osm_test.osm”
+
+osm_test.osm            [        &lt;=&gt;         ]   2.67M  87.2KB/s    in 39s
+
+2016-05-04 15:00:27 (71.0 KB/s) - “osm_test.osm” 已保存 [2799533]
+
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="查看文件列表。可到当前目录去查看内容，由于文件较大，不要在本页面直接打开。">
+<h2>查看文件列表。可到当前目录去查看内容，由于文件较大，不要在本页面直接打开。<a class="headerlink" href="#查看文件列表。可到当前目录去查看内容，由于文件较大，不要在本页面直接打开。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>!ls -l -h
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+总用量 2.8M
+-rw-rw-r-- 1 supermap supermap  24K 5月   4 15:02 osm-discovery.ipynb
+-rw-rw-r-- 1 supermap supermap 5.0K 4月  24 17:45 osm-overpass.ipynb
+-rw-rw-r-- 1 supermap supermap  15K 4月  23 08:23 osm-tag2json.ipynb
+-rw-rw-r-- 1 supermap supermap 2.7M 5月   4 15:00 osm_test.osm
+</pre></div></div>
+</div>
+<div class="section" id="直接读取本地文件，获得范围信息。">
+<h3>直接读取本地文件，获得范围信息。<a class="headerlink" href="#直接读取本地文件，获得范围信息。" title="永久链接至标题">¶</a></h3>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>#bsr = bs(atext,&quot;lxml&quot;)
+bsr = bs(open(&quot;osm_test.osm&quot;),&quot;lxml&quot;)
+
+mbr = bsr.find_all(&#39;bounds&#39;)
+print(mbr)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+[&lt;bounds maxlat=&#34;48.1450000&#34; maxlon=&#34;11.5430000&#34; minlat=&#34;48.1400000&#34; minlon=&#34;11.5400000&#34;&gt;&lt;/bounds&gt;]
+</pre></div></div>
+</div>
+<div class="section" id="获得osm文件中所有的node对象。">
+<h4>获得osm文件中所有的node对象。<a class="headerlink" href="#获得osm文件中所有的node对象。" title="永久链接至标题">¶</a></h4>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>nodelist = bsr.find_all(&#39;node&#39;)
+
+print(&quot;All Nodes:&quot;,len(nodelist),&quot;, list 0-5:&quot;)
+pprint(nodelist[0:5])
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+All Nodes: 1864 , list 0-5:
+[&lt;node changeset=&#34;34651972&#34; id=&#34;398692&#34; lat=&#34;48.1452196&#34; lon=&#34;11.5414971&#34; timestamp=&#34;2015-10-15T10:53:28Z&#34; uid=&#34;2290263&#34; user=&#34;soemisch&#34; version=&#34;20&#34; visible=&#34;true&#34;&gt;
+&lt;tag k=&#34;tmc&#34; v=&#34;DE:35375&#34;&gt;&lt;/tag&gt;
+&lt;/node&gt;,
+ &lt;node changeset=&#34;34904180&#34; id=&#34;1956100&#34; lat=&#34;48.1434822&#34; lon=&#34;11.5487963&#34; timestamp=&#34;2015-10-27T14:01:37Z&#34; uid=&#34;2385132&#34; user=&#34;MENTZ_TU&#34; version=&#34;43&#34; visible=&#34;true&#34;&gt;
+&lt;tag k=&#34;tmc&#34; v=&#34;DE:61453&#34;&gt;&lt;/tag&gt;
+&lt;tag k=&#34;TMC:cid_58:tabcd_1:Class&#34; v=&#34;Point&#34;&gt;&lt;/tag&gt;
+&lt;tag k=&#34;TMC:cid_58:tabcd_1:Direction&#34; v=&#34;positive&#34;&gt;&lt;/tag&gt;
+&lt;tag k=&#34;TMC:cid_58:tabcd_1:LCLversion&#34; v=&#34;9.00&#34;&gt;&lt;/tag&gt;
+&lt;tag k=&#34;TMC:cid_58:tabcd_1:LocationCode&#34; v=&#34;35356&#34;&gt;&lt;/tag&gt;
+&lt;tag k=&#34;TMC:cid_58:tabcd_1:NextLocationCode&#34; v=&#34;35357&#34;&gt;&lt;/tag&gt;
+&lt;tag k=&#34;TMC:cid_58:tabcd_1:PrevLocationCode&#34; v=&#34;35355&#34;&gt;&lt;/tag&gt;
+&lt;/node&gt;,
+ &lt;node changeset=&#34;10842011&#34; id=&#34;21565151&#34; lat=&#34;48.1414994&#34; lon=&#34;11.5522715&#34; timestamp=&#34;2012-03-01T20:37:08Z&#34; uid=&#34;342705&#34; user=&#34;KonB&#34; version=&#34;4&#34; visible=&#34;true&#34;&gt;&lt;/node&gt;,
+ &lt;node changeset=&#34;9695595&#34; id=&#34;21585828&#34; lat=&#34;48.1445431&#34; lon=&#34;11.5384205&#34; timestamp=&#34;2011-10-30T16:47:12Z&#34; uid=&#34;534662&#34; user=&#34;Q12&#34; version=&#34;17&#34; visible=&#34;true&#34;&gt;&lt;/node&gt;,
+ &lt;node changeset=&#34;9883923&#34; id=&#34;60300474&#34; lat=&#34;48.1406915&#34; lon=&#34;11.5502820&#34; timestamp=&#34;2011-11-20T13:24:04Z&#34; uid=&#34;64536&#34; user=&#34;Michael Forster&#34; version=&#34;4&#34; visible=&#34;true&#34;&gt;&lt;/node&gt;]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="查看node的数据结构。">
+<h4>查看node的数据结构。<a class="headerlink" href="#查看node的数据结构。" title="永久链接至标题">¶</a></h4>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>node = nodelist[0]
+print(node)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+&lt;node changeset=&#34;34651972&#34; id=&#34;398692&#34; lat=&#34;48.1452196&#34; lon=&#34;11.5414971&#34; timestamp=&#34;2015-10-15T10:53:28Z&#34; uid=&#34;2290263&#34; user=&#34;soemisch&#34; version=&#34;20&#34; visible=&#34;true&#34;&gt;
+&lt;tag k=&#34;tmc&#34; v=&#34;DE:35375&#34;&gt;&lt;/tag&gt;
+&lt;/node&gt;
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>node.attrs
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[15]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>{&#39;changeset&#39;: &#39;34651972&#39;,
+ &#39;id&#39;: &#39;398692&#39;,
+ &#39;lat&#39;: &#39;48.1452196&#39;,
+ &#39;lon&#39;: &#39;11.5414971&#39;,
+ &#39;timestamp&#39;: &#39;2015-10-15T10:53:28Z&#39;,
+ &#39;uid&#39;: &#39;2290263&#39;,
+ &#39;user&#39;: &#39;soemisch&#39;,
+ &#39;version&#39;: &#39;20&#39;,
+ &#39;visible&#39;: &#39;true&#39;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="解析Node的属性，以K:V存储的值。">
+<h4>解析Node的属性，以K:V存储的值。<a class="headerlink" href="#解析Node的属性，以K:V存储的值。" title="永久链接至标题">¶</a></h4>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>for (k,v) in node.attrs.items():
+    print(k,&quot;:&quot;,v)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+lon : 11.5414971
+user : soemisch
+timestamp : 2015-10-15T10:53:28Z
+id : 398692
+uid : 2290263
+version : 20
+visible : true
+changeset : 34651972
+lat : 48.1452196
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="将nodelist转换为Pandas.DataFrame，为了便于显示，只处理了5个node。">
+<h4>将nodelist转换为Pandas.DataFrame，为了便于显示，只处理了5个node。<a class="headerlink" href="#将nodelist转换为Pandas.DataFrame，为了便于显示，只处理了5个node。" title="永久链接至标题">¶</a></h4>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [17]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import pandas as pd
+nodelist2 = []
+for node in nodelist[0:10]:
+    nodelist2.append(node.attrs)
+#print(nodelist2)
+
+df = pd.DataFrame(nodelist2)
+df
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[17]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>changeset</th>
+      <th>id</th>
+      <th>lat</th>
+      <th>lon</th>
+      <th>timestamp</th>
+      <th>uid</th>
+      <th>user</th>
+      <th>version</th>
+      <th>visible</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>34651972</td>
+      <td>398692</td>
+      <td>48.1452196</td>
+      <td>11.5414971</td>
+      <td>2015-10-15T10:53:28Z</td>
+      <td>2290263</td>
+      <td>soemisch</td>
+      <td>20</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>34904180</td>
+      <td>1956100</td>
+      <td>48.1434822</td>
+      <td>11.5487963</td>
+      <td>2015-10-27T14:01:37Z</td>
+      <td>2385132</td>
+      <td>MENTZ_TU</td>
+      <td>43</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>10842011</td>
+      <td>21565151</td>
+      <td>48.1414994</td>
+      <td>11.5522715</td>
+      <td>2012-03-01T20:37:08Z</td>
+      <td>342705</td>
+      <td>KonB</td>
+      <td>4</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>9695595</td>
+      <td>21585828</td>
+      <td>48.1445431</td>
+      <td>11.5384205</td>
+      <td>2011-10-30T16:47:12Z</td>
+      <td>534662</td>
+      <td>Q12</td>
+      <td>17</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>9883923</td>
+      <td>60300474</td>
+      <td>48.1406915</td>
+      <td>11.5502820</td>
+      <td>2011-11-20T13:24:04Z</td>
+      <td>64536</td>
+      <td>Michael Forster</td>
+      <td>4</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>2434259</td>
+      <td>256554156</td>
+      <td>48.1431978</td>
+      <td>11.5197388</td>
+      <td>2009-09-10T10:34:54Z</td>
+      <td>127922</td>
+      <td>w3box</td>
+      <td>4</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>11085110</td>
+      <td>256554158</td>
+      <td>48.1432360</td>
+      <td>11.5170168</td>
+      <td>2012-03-24T14:42:27Z</td>
+      <td>342705</td>
+      <td>KonB</td>
+      <td>5</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>9505942</td>
+      <td>256554152</td>
+      <td>48.1420008</td>
+      <td>11.5383182</td>
+      <td>2011-10-08T19:22:24Z</td>
+      <td>334153</td>
+      <td>Alexander Roalter</td>
+      <td>4</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>30794039</td>
+      <td>1423405650</td>
+      <td>48.1398728</td>
+      <td>11.5447444</td>
+      <td>2015-05-04T23:26:30Z</td>
+      <td>354141</td>
+      <td>Anoniman</td>
+      <td>2</td>
+      <td>true</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>9212407</td>
+      <td>1423405651</td>
+      <td>48.1399051</td>
+      <td>11.5444005</td>
+      <td>2011-09-04T20:47:20Z</td>
+      <td>17085</td>
+      <td>cfaerber</td>
+      <td>1</td>
+      <td>true</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="将Pandas.DataFrame转为GeoPandas.DataFrame，点生成为GeoSeries。">
+<h4>将Pandas.DataFrame转为GeoPandas.DataFrame，点生成为GeoSeries。<a class="headerlink" href="#将Pandas.DataFrame转为GeoPandas.DataFrame，点生成为GeoSeries。" title="永久链接至标题">¶</a></h4>
+<p><strong>注意:</strong> 需要安装shapely和geopandas包。在anaconda先运行source activate
+GISpark，然后安装：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">c</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">conda</span><span class="o">.</span><span class="n">anaconda</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">fiona</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">c</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">conda</span><span class="o">.</span><span class="n">anaconda</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">gdal</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">c</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">conda</span><span class="o">.</span><span class="n">anaconda</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">geopandas</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">y</span> <span class="o">-</span><span class="n">c</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">conda</span><span class="o">.</span><span class="n">anaconda</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">geojson</span>
+</pre></div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [18]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from shapely.geometry import (Point, LinearRing, LineString, Polygon, MultiPoint)
+from geopandas import GeoSeries, GeoDataFrame
+from geopandas.base import GeoPandasBase
+
+def node2pandas(nodelist):
+    nodelist2 = []
+    for node in nodelist[0:10]:
+        nodelist2.append(node.attrs)
+    df = pd.DataFrame(nodelist2)
+    return df
+
+def pandas2geopandas(nodelist):
+    pass
+
+def node2geopandas(nodelist):
+    df = node2pandas(nodelist)
+
+    ps = []
+    ps0 = [1]
+    for index, row in df.iterrows():
+        #print(index,&#39;:&#39;,row[&#39;lat&#39;],&#39;-&#39;,row[&#39;lon&#39;])
+        ps0[0] = Point(float(row[&#39;lon&#39;]),float(row[&#39;lat&#39;]))
+        ps.append(ps0[0])
+
+    gs = GeoSeries(ps,crs={&#39;init&#39;: &#39;epsg:4326&#39;, &#39;no_defs&#39;: True})
+    geodf = GeoDataFrame({&#39;id&#39; : df[&quot;id&quot;],&#39;user&#39; : df[&quot;id&quot;],
+                        &#39;lon&#39; : df[&quot;lon&quot;],&#39;lat&#39; : df[&quot;lat&quot;],
+                        &#39;timestamp&#39; : df[&quot;timestamp&quot;],&#39;uid&#39; : df[&quot;uid&quot;],&#39;version&#39; : df[&quot;version&quot;],
+                        &#39;geometry&#39; : gs
+                        })
+    return geodf
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [19]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>gdf = node2geopandas(nodelist)
+gdf
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[19]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>id</th>
+      <th>lat</th>
+      <th>lon</th>
+      <th>timestamp</th>
+      <th>uid</th>
+      <th>user</th>
+      <th>version</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>POINT (11.5414971 48.1452196)</td>
+      <td>398692</td>
+      <td>48.1452196</td>
+      <td>11.5414971</td>
+      <td>2015-10-15T10:53:28Z</td>
+      <td>2290263</td>
+      <td>398692</td>
+      <td>20</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>POINT (11.5487963 48.1434822)</td>
+      <td>1956100</td>
+      <td>48.1434822</td>
+      <td>11.5487963</td>
+      <td>2015-10-27T14:01:37Z</td>
+      <td>2385132</td>
+      <td>1956100</td>
+      <td>43</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>POINT (11.5522715 48.1414994)</td>
+      <td>21565151</td>
+      <td>48.1414994</td>
+      <td>11.5522715</td>
+      <td>2012-03-01T20:37:08Z</td>
+      <td>342705</td>
+      <td>21565151</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>POINT (11.5384205 48.1445431)</td>
+      <td>21585828</td>
+      <td>48.1445431</td>
+      <td>11.5384205</td>
+      <td>2011-10-30T16:47:12Z</td>
+      <td>534662</td>
+      <td>21585828</td>
+      <td>17</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>POINT (11.550282 48.1406915)</td>
+      <td>60300474</td>
+      <td>48.1406915</td>
+      <td>11.5502820</td>
+      <td>2011-11-20T13:24:04Z</td>
+      <td>64536</td>
+      <td>60300474</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>POINT (11.5197388 48.1431978)</td>
+      <td>256554156</td>
+      <td>48.1431978</td>
+      <td>11.5197388</td>
+      <td>2009-09-10T10:34:54Z</td>
+      <td>127922</td>
+      <td>256554156</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>POINT (11.5170168 48.143236)</td>
+      <td>256554158</td>
+      <td>48.1432360</td>
+      <td>11.5170168</td>
+      <td>2012-03-24T14:42:27Z</td>
+      <td>342705</td>
+      <td>256554158</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>POINT (11.5383182 48.1420008)</td>
+      <td>256554152</td>
+      <td>48.1420008</td>
+      <td>11.5383182</td>
+      <td>2011-10-08T19:22:24Z</td>
+      <td>334153</td>
+      <td>256554152</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>POINT (11.5447444 48.1398728)</td>
+      <td>1423405650</td>
+      <td>48.1398728</td>
+      <td>11.5447444</td>
+      <td>2015-05-04T23:26:30Z</td>
+      <td>354141</td>
+      <td>1423405650</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>POINT (11.5444005 48.1399051)</td>
+      <td>1423405651</td>
+      <td>48.1399051</td>
+      <td>11.5444005</td>
+      <td>2011-09-04T20:47:20Z</td>
+      <td>17085</td>
+      <td>1423405651</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="保存为shape格式文件。">
+<h4>保存为shape格式文件。<a class="headerlink" href="#保存为shape格式文件。" title="永久链接至标题">¶</a></h4>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [20]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>filename = &quot;osm_test.shp&quot;
+gdf.to_file(filename)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="查看一下文件列表。">
+<h4>查看一下文件列表。<a class="headerlink" href="#查看一下文件列表。" title="永久链接至标题">¶</a></h4>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [21]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>!ls -l -h
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+总用量 2.8M
+-rw-rw-r-- 1 supermap supermap  25K 5月   4 15:17 osm-discovery.ipynb
+-rw-rw-r-- 1 supermap supermap 5.0K 4月  24 17:45 osm-overpass.ipynb
+-rw-rw-r-- 1 supermap supermap  15K 4月  23 08:23 osm-tag2json.ipynb
+-rw-rw-r-- 1 supermap supermap   10 5月   4 15:17 osm_test.cpg
+-rw-rw-r-- 1 supermap supermap 5.8K 5月   4 15:17 osm_test.dbf
+-rw-rw-r-- 1 supermap supermap 2.7M 5月   4 15:00 osm_test.osm
+-rw-rw-r-- 1 supermap supermap  380 5月   4 15:17 osm_test.shp
+-rw-rw-r-- 1 supermap supermap  180 5月   4 15:17 osm_test.shx
+</pre></div></div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

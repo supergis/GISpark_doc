@@ -1,0 +1,1560 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>IPython的魔法符号－Magics &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_cloud.html">云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>IPython的魔法符号－Magics</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/pystart/jupyter_magics.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="IPython的魔法符号－Magics">
+<h1>IPython的魔法符号－Magics<a class="headerlink" href="#IPython的魔法符号－Magics" title="永久链接至标题">¶</a></h1>
+<div class="section" id="openthings&#64;163.com">
+<h2><a class="reference external" href="http://my.oschina.net/u/2306127/blog?catalog=2527511">openthings&#64;163.com</a><a class="headerlink" href="#openthings@163.com" title="永久链接至标题">¶</a></h2>
+<div class="section" id="最新的Jupyter-Notebook可以混合执行Shell、Python以及Ruby、R等代码！">
+<h3>最新的Jupyter Notebook可以混合执行Shell、Python以及Ruby、R等代码！<a class="headerlink" href="#最新的Jupyter-Notebook可以混合执行Shell、Python以及Ruby、R等代码！" title="永久链接至标题">¶</a></h3>
+<p>这一功能将解释型语言的特点发挥到了极致，从而打破了传统语言<code class="docutils literal"><span class="pre">&quot;运行时&quot;</span></code>的边界。</p>
+<div class="line-block">
+<div class="line"><strong>IPython是一个非常好用Python控制台，极大地扩展了Python的能力。</strong></div>
+<div class="line">因为它不仅是一种语言的运行环境，而且是一个高效率的分析工具。</div>
+<div class="line">*
+之前任何语言和IDE都是相互独立的，导致工作时需要在不同的系统间切换和拷贝／粘贴数据。
+*
+Magic操作符可以在HTML页面中输入shell脚本以及Ruby等其它语言并混合执行，极大地提升了传统的“控制台”的生产效率。
+*
+Magics是一个单行的标签式“命令行”系统，指示后续的代码将如何、以及被何种解释器去处理。
+*
+Magisc与传统的shell脚本几乎没有什么区别，但是可以将多种指令混合在一起。</div>
+</div>
+<p>Magics 主要有两种语法:</p>
+<ul class="simple">
+<li>Line magics: 以 <code class="docutils literal"><span class="pre">%</span></code>
+字符开始，该行后面都为指令代码，参数用空格隔开，不需要加引号。</li>
+<li>Cell magics: 使用两个百分号 (<code class="docutils literal"><span class="pre">%%</span></code>)开始,
+后面的整个单元（Cell）都是指令代码。
+注意，<code class="docutils literal"><span class="pre">%%</span></code>魔法操作符只在Cell的第一行使用，而且不能嵌套、重复（一个Cell只有一个）。极个别的情况，可以堆叠，但是只用于个别情况。</li>
+</ul>
+</div>
+</div>
+<div class="section" id="输入-[%lsmagic]-可以获得Magic操作符的列表。">
+<h2>输入 [<code class="docutils literal"><span class="pre">%lsmagic</span></code>] 可以获得Magic操作符的列表。<a class="headerlink" href="#输入-[%lsmagic]-可以获得Magic操作符的列表。" title="永久链接至标题">¶</a></h2>
+<p>如下所示（在Jupyter Notebook环境下，按[<code class="docutils literal"><span class="pre">shift+enter</span></code>]可以运行。）：</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%lsmagic
+</pre></div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">**
+缺省情况下，<code class="docutils literal"><span class="pre">Automagic</span></code>开关打开，不需要输入<code class="docutils literal"><span class="pre">%</span></code>符号，将会自动识别。**</div>
+<div class="line">注意，这有可能与其它的操作引起冲突，需要注意避免。如果有混淆情况，加上<code class="docutils literal"><span class="pre">%</span></code>符号即可。</div>
+</div>
+<p>下面显示运行一段代码所消耗的时间。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [26]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>time print(&quot;hi&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+hi
+CPU times: user 0 ns, sys: 0 ns, total: 0 ns
+Wall time: 47.9 µs
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [27]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%time
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+CPU times: user 0 ns, sys: 0 ns, total: 0 ns
+Wall time: 4.77 µs
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="执行Shell脚本。">
+<h2>执行Shell脚本。<a class="headerlink" href="#执行Shell脚本。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>ls -l -h
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+总用量 340K
+-rw-rw-r-- 1 supermap supermap 266K  4月 29 09:29 jupyter_magics.ipynb
+-rw-rw-r-- 1 supermap supermap  58K  4月 27 12:38 pandas_quickstart.ipynb
+-rw-rw-r-- 1 supermap supermap  12K  4月 27 12:28 pystart_databasic.ipynb
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>!ls -l -h
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+总用量 340K
+-rw-rw-r-- 1 supermap supermap 266K  4月 29 09:29 jupyter_magics.ipynb
+-rw-rw-r-- 1 supermap supermap  58K  4月 27 12:38 pandas_quickstart.ipynb
+-rw-rw-r-- 1 supermap supermap  12K  4月 27 12:28 pystart_databasic.ipynb
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>files = !ls -l -h
+files
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[16]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>[&#39;总用量 348K&#39;,
+ &#39;-rw-rw-r-- 1 supermap supermap 276K  4月 29 09:31 jupyter_magics.ipynb&#39;,
+ &#39;-rw-rw-r-- 1 supermap supermap  58K  4月 27 12:38 pandas_quickstart.ipynb&#39;,
+ &#39;-rw-rw-r-- 1 supermap supermap  12K  4月 27 12:28 pystart_databasic.ipynb&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="执行多行shell脚本。">
+<h2>执行多行shell脚本。<a class="headerlink" href="#执行多行shell脚本。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [25]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%!
+ls -l
+pwd
+who
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[25]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>[&#39;总用量 344&#39;,
+ &#39;-rw-rw-r-- 1 supermap supermap 274868  4月 29 09:33 jupyter_magics.ipynb&#39;,
+ &#39;-rw-rw-r-- 1 supermap supermap  59280  4月 27 12:38 pandas_quickstart.ipynb&#39;,
+ &#39;-rw-rw-r-- 1 supermap supermap  11528  4月 27 12:28 pystart_databasic.ipynb&#39;,
+ &#39;/home/supermap/GISpark/git_notebook/pystart&#39;,
+ &#39;supermap :0           2016-04-28 20:39 (:0)&#39;,
+ &#39;supermap pts/0        2016-04-28 21:50 (:0)&#39;,
+ &#39;supermap pts/6        2016-04-28 22:22 (:0)&#39;]
+</pre></div>
+</div>
+</div>
+<div class="section" id="下面开始体验一下魔法操作符的威力。">
+<h3>下面开始体验一下魔法操作符的威力。<a class="headerlink" href="#下面开始体验一下魔法操作符的威力。" title="永久链接至标题">¶</a></h3>
+<p>载入matplotlib和numpy，后面的数值计算和绘图将会使用。</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="%timeit-魔法，计量代码的执行时间,-适用于单行和cell:">
+<h2><code class="docutils literal"><span class="pre">%timeit</span></code> 魔法，计量代码的执行时间, 适用于单行和cell:<a class="headerlink" href="#%timeit-魔法，计量代码的执行时间,-适用于单行和cell:" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [50]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%timeit np.linalg.eigvals(np.random.rand(100,100))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+The slowest run took 8.96 times longer than the fastest. This could mean that an intermediate result is being cached.
+100 loops, best of 3: 5.82 ms per loop
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%timeit a = np.random.rand(100, 100)
+np.linalg.eigvals(a)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+100 loops, best of 3: 6.07 ms per loop
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="%%capture-魔法，用于捕获stdout/err,-可以直接显示，也可以存到变量里备用:">
+<h2><code class="docutils literal"><span class="pre">%%capture</span></code> 魔法，用于捕获stdout/err, 可以直接显示，也可以存到变量里备用:<a class="headerlink" href="#%%capture-魔法，用于捕获stdout/err,-可以直接显示，也可以存到变量里备用:" title="永久链接至标题">¶</a></h2>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%capture capt
+from __future__ import print_function
+import sys
+print(&#39;Hello stdout&#39;)
+print(&#39;and stderr&#39;, file=sys.stderr)
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>capt.stdout, capt.stderr
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[5]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>(&#39;Hello stdout\n&#39;, &#39;and stderr\n&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [53]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>capt.show()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Hello stdout
+</pre></div></div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="stderr container">
+<div class="highlight"><pre>
+and stderr
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="%%writefile-魔法，将后续的语句写入文件中:">
+<h2><code class="docutils literal"><span class="pre">%%writefile</span></code> 魔法，将后续的语句写入文件中:<a class="headerlink" href="#%%writefile-魔法，将后续的语句写入文件中:" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%writefile foo.py
+print(&#39;Hello world&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Writing foo.py
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%run foo
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<blockquote>
+<div><div class="highlight"><pre>
+Hello world
+</pre></div></div></blockquote>
+<p>Magics 运行其它的解释器。</p>
+</div>
+</div>
+<hr class="docutils" />
+<p>执行时从stdin取得输入，就像你自己在键入一样。</p>
+</div>
+<div class="section" id="直接在%%script-行后传入指令即可使用。">
+<h2>直接在<code class="docutils literal"><span class="pre">%%script</span></code> 行后传入指令即可使用。<a class="headerlink" href="#直接在%%script-行后传入指令即可使用。" title="永久链接至标题">¶</a></h2>
+<p>后续的cell中的内容将按照指示符运行，子进程的信息通过stdout/err捕获和显示。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%script python
+import sys
+print(&#39;hello from Python %s&#39; % sys.version)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+hello from Python 3.5.1 |Anaconda 4.0.0 (64-bit)| (default, Dec  7 2015, 11:16:01)
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%script python3
+import sys
+print(&#39;hello from Python: %s&#39; % sys.version)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+hello from Python: 3.5.1 |Anaconda 4.0.0 (64-bit)| (default, Dec  7 2015, 11:16:01)
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+</pre></div></div>
+</div>
+<div class="line-block">
+<div class="line">IPython对通用的解释器创建了别名，可以直接使用, 譬如：bash, ruby, perl,
+etc.</div>
+<div class="line"><a href="#id3"><span class="problematic" id="id4">**</span></a>等价于这个操作符： <code class="docutils literal"><span class="pre">%%script</span> <span class="pre">&lt;name&gt;</span></code> **</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%ruby
+puts &quot;Hello from Ruby #{RUBY_VERSION}&quot;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Hello from Ruby 2.1.5
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%bash
+echo &quot;hello from $BASH&quot;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+hello from /bin/bash
+</pre></div></div>
+</div>
+<p>写一个脚本文件，名为 <code class="docutils literal"><span class="pre">lnum.py</span></code>, 然后执行：</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%writefile ./lnum.py
+print(&#39;my first line.&#39;)
+print(&quot;my second line.&quot;)
+print(&quot;Finished.&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Writing ./lnum.py
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [33]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%script python ./lnum.py
+#
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+my first line.
+my second line.
+Finished.
+</pre></div></div>
+</div>
+<p>可以直接从子进程中捕获stdout/err到Python变量中, 替代直接进入stdout/err。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%bash
+echo &quot;hi, stdout&quot;
+echo &quot;hello, stderr&quot; &gt;&amp;2
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+hi, stdout
+</pre></div></div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="stderr container">
+<div class="highlight"><pre>
+hello, stderr
+</pre></div></div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%bash --out output --err error
+echo &quot;hi, stdout&quot;
+echo &quot;hello, stderr&quot; &gt;&amp;2
+</pre></div>
+</div>
+</div>
+<p>可以直接访问变量名了。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [17]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>print(error)
+print(output)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+hello, stderr
+
+hi, stdout
+
+</pre></div></div>
+</div>
+<div class="line-block">
+<div class="line">只需添加 <strong>``&#8211;bg``</strong> ，即可让脚本在后台运行。</div>
+<div class="line">在此情况下, 输出将被丢弃，除非使用 <code class="docutils literal"><span class="pre">--out/err</span></code> 捕获输出。</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [34]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%ruby --bg --out ruby_lines
+for n in 1...10
+    sleep 1
+    puts &quot;line #{n}&quot;
+    STDOUT.flush
+end
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Starting job # 2 in a separate thread.
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="当后台线程保存输出时，有一个stdout/err-pipes,-而不是输出的文本形式。">
+<h2>当后台线程保存输出时，有一个stdout/err <em>pipes</em>, 而不是输出的文本形式。<a class="headerlink" href="#当后台线程保存输出时，有一个stdout/err-pipes,-而不是输出的文本形式。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [35]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>ruby_lines
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[35]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;_io.BufferedReader name=52&gt;
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [36]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>print(ruby_lines.read())
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+b&#39;line 1\nline 2\nline 3\nline 4\nline 5\nline 6\nline 7\nline 8\nline 9\n&#39;
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="Cython-Magic-函数扩展">
+<h1>Cython Magic 函数扩展<a class="headerlink" href="#Cython-Magic-函数扩展" title="永久链接至标题">¶</a></h1>
+<p>IPtyhon 包含 <code class="docutils literal"><span class="pre">cythonmagic</span></code>
+extension，提供了几个与Cython代码工作的魔法函数。使用 <code class="docutils literal"><span class="pre">%load_ext</span></code>
+载入，如下:</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [37]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%load_ext cythonmagic
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="stderr container">
+<div class="highlight"><pre>
+/home/supermap/anaconda3/envs/GISpark/lib/python3.5/site-packages/IPython/extensions/cythonmagic.py:21: UserWarning: The Cython magic has been moved to the Cython package
+  warnings.warn(&#34;&#34;&#34;The Cython magic has been moved to the Cython package&#34;&#34;&#34;)
+</pre></div></div>
+</div>
+<p>** <code class="docutils literal"><span class="pre">%%cython_pyximport</span></code>**
+magic函数允许你在Cell中使用任意的Cython代码。Cython代码被写入<code class="docutils literal"><span class="pre">.pyx</span></code>
+文件，保存在当前工作目录，然后使用<code class="docutils literal"><span class="pre">pyximport</span></code>
+引用进来。需要指定一个模块的名称，所有的符号将被自动import。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [38]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%cython_pyximport foo
+def f(x):
+    return 4.0*x
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="stderr container">
+<div class="highlight"><pre>
+ERROR: Cell magic `%%cython_pyximport` not found.
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>f(10)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[6]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>40.0
+</pre></div>
+</div>
+</div>
+<p><code class="docutils literal"><span class="pre">%cython</span></code> magic类似于 <code class="docutils literal"><span class="pre">%%cython_pyximport</span></code> magic,
+但不需要指定一个模块名称. <code class="docutils literal"><span class="pre">%%cython</span></code> magic 使用
+<code class="docutils literal"><span class="pre">~/.cython/magic</span></code>目录中的临时文件来管理模块，所有符号会被自动引用。</p>
+<p>下面是一个使用Cython的例子，Black-Scholes options pricing algorithm:</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [39]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%cython
+cimport cython
+from libc.math cimport exp, sqrt, pow, log, erf
+
+@cython.cdivision(True)
+cdef double std_norm_cdf(double x) nogil:
+    return 0.5*(1+erf(x/sqrt(2.0)))
+
+@cython.cdivision(True)
+def black_scholes(double s, double k, double t, double v,
+                 double rf, double div, double cp):
+    &quot;&quot;&quot;Price an option using the Black-Scholes model.
+
+    s : initial stock price
+    k : strike price
+    t : expiration time
+    v : volatility
+    rf : risk-free rate
+    div : dividend
+    cp : +1/-1 for call/put
+    &quot;&quot;&quot;
+    cdef double d1, d2, optprice
+    with nogil:
+        d1 = (log(s/k)+(rf-div+0.5*pow(v,2))*t)/(v*sqrt(t))
+        d2 = d1 - v*sqrt(t)
+        optprice = cp*s*exp(-div*t)*std_norm_cdf(cp*d1) - \
+            cp*k*exp(-rf*t)*std_norm_cdf(cp*d2)
+    return optprice
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="stderr container">
+<div class="highlight"><pre>
+ERROR: Cell magic `%%cython` not found.
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [40]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>black_scholes(100.0, 100.0, 1.0, 0.3, 0.03, 0.0, -1)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-40-ae31cbfa5fba&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>black_scholes<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">100.0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">100.0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">1.0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">0.3</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">0.03</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">0.0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>: name &#39;black_scholes&#39; is not defined
+</pre></div></div>
+</div>
+<div class="section" id="测量一下运行时间。">
+<h2>测量一下运行时间。<a class="headerlink" href="#测量一下运行时间。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [45]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>#%timeit black_scholes(100.0, 100.0, 1.0, 0.3, 0.03, 0.0, -1)
+</pre></div>
+</div>
+</div>
+<p>Cython 允许使用额外的库与你的扩展进行链接，采用 <code class="docutils literal"><span class="pre">-l</span></code> 选项 (或者
+<code class="docutils literal"><span class="pre">--lib</span></code>)。 注意，该选项可以使用多次，libraries, such as
+<code class="docutils literal"><span class="pre">-lm</span> <span class="pre">-llib2</span> <span class="pre">--lib</span> <span class="pre">lib3</span></code>. 这里是使用 system math library的例子:</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%cython -lm
+from libc.math cimport sin
+print &#39;sin(1)=&#39;, sin(1)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+sin(1)= 0.841470984808
+</pre></div></div>
+</div>
+<p>同样，可以使用 <code class="docutils literal"><span class="pre">-I/--include</span></code> 来指定包含头文件的目录, 以及使用
+<code class="docutils literal"><span class="pre">-c/--compile-args</span></code> 编译选项，以及 <code class="docutils literal"><span class="pre">extra_compile_args</span></code> of the
+distutils <code class="docutils literal"><span class="pre">Extension</span></code> class. 请参考 <a class="reference external" href="http://docs.cython.org/src/tutorial/clibraries.html">the Cython docs on C library
+usage</a>
+获得更详细的说明。</p>
+</div>
+</div>
+<div class="section" id="Rmagic-函数扩展">
+<h1>Rmagic 函数扩展<a class="headerlink" href="#Rmagic-函数扩展" title="永久链接至标题">¶</a></h1>
+<div class="line-block">
+<div class="line">IPython 通过 <code class="docutils literal"><span class="pre">rmagic</span></code>
+扩展来调用R模块，是通过rpy2来实现的(安装：<code class="docutils literal"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">rpy2</span></code>)。</div>
+<div class="line">rpy2的文档：<a class="reference external" href="http://rpy2.readthedocs.io/en/version_2.7.x/">http://rpy2.readthedocs.io/en/version_2.7.x/</a> ####
+首先使用 <code class="docutils literal"><span class="pre">%load_ext</span></code> 载入该模块:
+<strong>注意：新的rpy2已改动，不能运行</strong>。参考：<a class="reference external" href="http://rpy2.readthedocs.io/en/version_2.7.x/interactive.html?highlight=rmagic">http://rpy2.readthedocs.io/en/version_2.7.x/interactive.html?highlight=rmagic</a></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [58]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%reload_ext rmagic
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="stderr container">
+<div class="highlight"><pre>
+/home/supermap/anaconda3/envs/GISpark/lib/python3.5/site-packages/IPython/extensions/rmagic.py:11: UserWarning: The rmagic extension in IPython has moved to `rpy2.ipython`, please see `rpy2` documentation.
+  warnings.warn(&#34;The rmagic extension in IPython has moved to &#34;
+</pre></div></div>
+</div>
+<p>典型的用法是使用R来计算numpy的Array的统计指标。我们试一下简单线性模型，输出scatterplot。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [62]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%matplotlib inline
+import numpy as np
+import matplotlib.pyplot as plt
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [63]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>X = np.array([0,1,2,3,4])
+Y = np.array([3,5,4,6,7])
+plt.scatter(X, Y)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[63]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.collections.PathCollection at 0x7f9760cdd208&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_jupyter_magics_70_1.png" src="../_images/pystart_jupyter_magics_70_1.png" />
+</div>
+</div>
+<p>首先把变量赋给 R, 拟合模型并返回结果。 %Rpush 拷贝 rpy2中的变量. %R 对
+rpy2
+中的字符串求值，然后返回结果。在这里是线性模型的协方差－coefficients。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [64]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%Rpush X Y
+%R lm(Y~X)$coef
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="stderr container">
+<div class="highlight"><pre>
+ERROR: Line magic function `%Rpush` not found.
+ERROR: Line magic function `%R` not found.
+</pre></div></div>
+</div>
+<p>%R可以返回多个值。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [65]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%R resid(lm(Y~X)); coef(lm(X~Y))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="stderr container">
+<div class="highlight"><pre>
+ERROR: Line magic function `%R` not found.
+</pre></div></div>
+</div>
+<p>可以将 %R 结果传回 python objects.
+返回值是一个“；”隔开的多行表达式，<em>coef(lm(X~Y))</em>.</p>
+<div class="line-block">
+<div class="line">拉取R的其它变量, 采用 %Rpull 和 %Rget. 在 R code 执行后，在 rpy2
+namespace 有变量需要获取。</div>
+<div class="line">主要区别是： (%Rget)返回值, 而(%Rpull)从 self.shell.user_ns
+拉取。想象一下，我们计算得到变量 &#8220;a&#8221; 在rpy2&#8217;s namespace. 使用 %R
+magic, 我们得到结果并存储到 b。可以从 user_ns 使用
+%Rpull得到。返回的是同一个数据。</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>b = %R a=resid(lm(Y~X))
+%Rpull a
+print(a)
+assert id(b.data) == id(a.data)
+%R -o a
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+[-0.2  0.9 -1.   0.1  0.2]
+</pre></div></div>
+</div>
+<p>R的控制台stdout()被ipython捕获。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from __future__ import print_function
+v1 = %R plot(X,Y); print(summary(lm(Y~X))); vv=mean(X)*mean(Y)
+print(&#39;v1 is:&#39;, v1)
+v2 = %R mean(X)*mean(Y)
+print(&#39;v2 is:&#39;, v2)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="container">
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+
+<span></span>Call:
+lm(formula = Y ~ X)
+
+Residuals:
+   1    2    3    4    5
+-0.2  0.9 -1.0  0.1  0.2
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)   3.2000     0.6164   5.191   0.0139 *
+X             0.9000     0.2517   3.576   0.0374 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7958 on 3 degrees of freedom
+Multiple R-squared:   0.81, Adjusted R-squared:  0.7467
+F-statistic: 12.79 on 1 and 3 DF,  p-value: 0.03739
+
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_jupyter_magics_80_1.png" src="../_images/pystart_jupyter_magics_80_1.png" />
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+v1 is: [ 10.]
+v2 is: [ 10.]
+</pre></div></div>
+</div>
+<p>我们希望用R在cell级别。而且numpy最好不要转换，参考R: rnumpy (
+<a class="reference external" href="http://bitbucket.org/njs/rnumpy/wiki/API">http://bitbucket.org/njs/rnumpy/wiki/API</a> ) 。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%R -i X,Y -o XYcoef
+XYlm = lm(Y~X)
+XYcoef = coef(XYlm)
+print(summary(XYlm))
+par(mfrow=c(2,2))
+plot(XYlm)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="container">
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+
+<span></span>Call:
+lm(formula = Y ~ X)
+
+Residuals:
+   1    2    3    4    5
+-0.2  0.9 -1.0  0.1  0.2
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)   3.2000     0.6164   5.191   0.0139 *
+X             0.9000     0.2517   3.576   0.0374 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 0.7958 on 3 degrees of freedom
+Multiple R-squared:   0.81, Adjusted R-squared:  0.7467
+F-statistic: 12.79 on 1 and 3 DF,  p-value: 0.03739
+
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_jupyter_magics_83_1.png" src="../_images/pystart_jupyter_magics_83_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="octavemagic:-Octave-inside-IPython">
+<h1>octavemagic: Octave inside IPython<a class="headerlink" href="#octavemagic:-Octave-inside-IPython" title="永久链接至标题">¶</a></h1>
+<div class="line-block">
+<div class="line"><strong>``octavemagic``</strong> 提供与Octave交互的能力。依赖 <code class="docutils literal"><span class="pre">oct2py</span></code> 和
+<code class="docutils literal"><span class="pre">h5py</span></code> 软件包。</div>
+<div class="line">载入扩展包:</div>
+</div>
+%load_ext octavemagic<div class="line-block">
+<div class="line">载入这个扩展包，启用了三个magic functions: <code class="docutils literal"><span class="pre">%octave</span></code>,
+<code class="docutils literal"><span class="pre">%octave_push</span></code>, 和 <code class="docutils literal"><span class="pre">%octave_pull</span></code>。</div>
+<div class="line">第一个执行一行或多行Octave, 后面两个执行 Octave 和 Python 的变量交换。</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [110]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>x = %octave [1 2; 3 4];
+x
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[110]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>array([[ 1.,  2.],
+       [ 3.,  4.]])
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [111]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>a = [1, 2, 3]
+
+%octave_push a
+%octave a = a * 2;
+%octave_pull a
+a
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[111]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>array([[2, 4, 6]])
+</pre></div>
+</div>
+</div>
+<p><strong>``%%octave``</strong> : 多行 Octave 被执行。但与单行不同, 没有值被返回,
+我们使用<code class="docutils literal"><span class="pre">-i</span></code> 和 <code class="docutils literal"><span class="pre">-o</span></code> 指定输入和输出变量。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [116]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%octave -i x -o y
+y = x + 3;
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [117]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>y
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[117]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>array([[ 4.,  5.],
+       [ 6.,  7.]])
+</pre></div>
+</div>
+</div>
+<p>Plot输出自动被捕获和显示，使用 <code class="docutils literal"><span class="pre">-f</span></code> 参数选择输出的格式 (目前支持
+<code class="docutils literal"><span class="pre">png</span></code> 和 <code class="docutils literal"><span class="pre">svg</span></code>)。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [118]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%octave -f svg
+
+p = [12 -2.5 -8 -0.1 8];
+x = 0:0.01:1;
+
+polyout(p, &#39;x&#39;)
+plot(x, polyval(p, x));
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="container">
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>12*x^4 - 2.5*x^3 - 8*x^2 - 0.1*x^1 + 8
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img src="../_images/pystart_jupyter_magics_96_1.svg" /></div>
+</div>
+<p>使用 <code class="docutils literal"><span class="pre">-s</span></code> 参数调整大小:</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [119]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%octave -s 500,500
+
+# butterworth filter, order 2, cutoff pi/2 radians
+b = [0.292893218813452  0.585786437626905  0.292893218813452];
+a = [1  0  0.171572875253810];
+freqz(b, a, 32);
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_jupyter_magics_98_0.png" src="../_images/pystart_jupyter_magics_98_0.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [120]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%octave -s 600,200 -f png
+
+subplot(121);
+[x, y] = meshgrid(0:0.1:3);
+r = sin(x - 0.5).^2 + cos(y - 0.5).^2;
+surf(x, y, r);
+
+subplot(122);
+sombrero()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_jupyter_magics_99_0.png" src="../_images/pystart_jupyter_magics_99_0.png" />
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

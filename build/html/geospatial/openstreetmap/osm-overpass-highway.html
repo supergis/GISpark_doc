@@ -1,0 +1,476 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_cloud.html">云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../pystart/pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/geospatial/openstreetmap/osm-overpass-highway.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import overpy
+
+api = overpy.Overpass()
+
+# fetch all ways and nodes
+result = api.query(&quot;&quot;&quot;
+    way(50.746,7.154,50.748,7.157) [&quot;highway&quot;];
+    (._;&gt;;);
+    out body;
+    &quot;&quot;&quot;)
+
+for way in result.ways:
+    print(&quot;Name: %s&quot; % way.tags.get(&quot;name&quot;, &quot;n/a&quot;))
+    print(&quot;  Highway: %s&quot; % way.tags.get(&quot;highway&quot;, &quot;n/a&quot;))
+    print(&quot;  Nodes:&quot;)
+    for node in way.nodes:
+        print(&quot;    Lat: %f, Lon: %f&quot; % (node.lat, node.lon))
+
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Name: Rhedenstraße
+  Highway: residential
+  Nodes:
+    Lat: 50.746874, Lon: 7.156307
+    Lat: 50.746598, Lon: 7.156237
+    Lat: 50.746477, Lon: 7.156199
+    Lat: 50.746360, Lon: 7.156124
+    Lat: 50.746263, Lon: 7.156023
+    Lat: 50.746194, Lon: 7.155926
+    Lat: 50.746139, Lon: 7.155843
+Name: Von-Ketteler-Straße
+  Highway: residential
+  Nodes:
+    Lat: 50.746905, Lon: 7.155786
+    Lat: 50.747222, Lon: 7.155621
+Name: Mutter-Barat-Straße
+  Highway: residential
+  Nodes:
+    Lat: 50.747989, Lon: 7.156302
+    Lat: 50.747934, Lon: 7.156229
+    Lat: 50.747695, Lon: 7.155421
+    Lat: 50.747605, Lon: 7.155159
+    Lat: 50.747241, Lon: 7.154310
+    Lat: 50.746939, Lon: 7.153634
+Name: Stegerwaldstraße
+  Highway: residential
+  Nodes:
+    Lat: 50.747853, Lon: 7.153685
+    Lat: 50.747666, Lon: 7.154022
+    Lat: 50.747673, Lon: 7.154122
+    Lat: 50.747939, Lon: 7.154603
+    Lat: 50.748182, Lon: 7.155178
+    Lat: 50.748339, Lon: 7.155634
+Name: Alte Schulstraße
+  Highway: residential
+  Nodes:
+    Lat: 50.747537, Lon: 7.158000
+    Lat: 50.747546, Lon: 7.157832
+    Lat: 50.747554, Lon: 7.157667
+    Lat: 50.747582, Lon: 7.157470
+    Lat: 50.747622, Lon: 7.157322
+    Lat: 50.747672, Lon: 7.157152
+    Lat: 50.747726, Lon: 7.157008
+    Lat: 50.747882, Lon: 7.156751
+    Lat: 50.748061, Lon: 7.156421
+    Lat: 50.748199, Lon: 7.156150
+    Lat: 50.748297, Lon: 7.155955
+    Lat: 50.748414, Lon: 7.155740
+    Lat: 50.748831, Lon: 7.155019
+    Lat: 50.749084, Lon: 7.154566
+    Lat: 50.749212, Lon: 7.154345
+    Lat: 50.749498, Lon: 7.153908
+    Lat: 50.749600, Lon: 7.153742
+    Lat: 50.749795, Lon: 7.153459
+    Lat: 50.749855, Lon: 7.153377
+    Lat: 50.750228, Lon: 7.152833
+Name: n/a
+  Highway: service
+  Nodes:
+    Lat: 50.746113, Lon: 7.155056
+    Lat: 50.745970, Lon: 7.154603
+Name: Mutter-Barat-Straße
+  Highway: footway
+  Nodes:
+    Lat: 50.748061, Lon: 7.156421
+    Lat: 50.747989, Lon: 7.156302
+Name: Von-Ketteler-Straße
+  Highway: residential
+  Nodes:
+    Lat: 50.747335, Lon: 7.152963
+    Lat: 50.746939, Lon: 7.153634
+    Lat: 50.746657, Lon: 7.154135
+    Lat: 50.746585, Lon: 7.154273
+    Lat: 50.746562, Lon: 7.154380
+    Lat: 50.746560, Lon: 7.154508
+    Lat: 50.746581, Lon: 7.154655
+    Lat: 50.746868, Lon: 7.155638
+    Lat: 50.746905, Lon: 7.155786
+    Lat: 50.746912, Lon: 7.155892
+    Lat: 50.746902, Lon: 7.156003
+    Lat: 50.746874, Lon: 7.156307
+    Lat: 50.746809, Lon: 7.156921
+    Lat: 50.746751, Lon: 7.157490
+Name: Von-Ketteler-Straße
+  Highway: service
+  Nodes:
+    Lat: 50.746562, Lon: 7.154380
+    Lat: 50.746207, Lon: 7.154436
+    Lat: 50.745970, Lon: 7.154603
+    Lat: 50.745895, Lon: 7.154570
+    Lat: 50.745810, Lon: 7.154439
+</pre></div></div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

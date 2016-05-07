@@ -1,0 +1,884 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OGR-Geometry and Projection &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_cloud.html">云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../pystart/pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>OGR-Geometry and Projection</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/geospatial/gdal/gdal-geometry.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>#!/usr/bin/python
+#coding=GB2312
+</pre></div>
+</div>
+</div>
+<div class="section" id="OGR-Geometry-and-Projection">
+<h1>OGR-Geometry and Projection<a class="headerlink" href="#OGR-Geometry-and-Projection" title="永久链接至标题">¶</a></h1>
+<div class="section" id="几何对象与地图投影的使用。">
+<h2>几何对象与地图投影的使用。<a class="headerlink" href="#几何对象与地图投影的使用。" title="永久链接至标题">¶</a></h2>
+<div class="line-block">
+<div class="line">by
+<a class="reference external" href="http://my.oschina.net/u/2306127/blog?catalog=3420733">openthings&#64;163.com</a>,
+2016-04-25.</div>
+<div class="line">#### OGR矢量库：简单的矢量数据读写，是GDAL的一部分。 #### 相关模块:
+Numeric：高速的数组处理，对栅格数据尤其重要 NumPy：下一代的Numeric
+更强大的gis库 <a class="reference external" href="http://www.gispython.org/">http://www.gispython.org/</a></div>
+</div>
+</div>
+<div class="section" id="导入库">
+<h2>导入库<a class="headerlink" href="#导入库" title="永久链接至标题">¶</a></h2>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [47]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from osgeo import gdal, gdalconst
+from osgeo.gdalconst import *
+import gdal, gdalconst
+
+from osgeo import ogr
+</pre></div>
+</div>
+</div>
+<div class="section" id="建立新的几何对象">
+<h3>建立新的几何对象<a class="headerlink" href="#建立新的几何对象" title="永久链接至标题">¶</a></h3>
+<p>建立空的geometry对象：ogr.Geometry，定义各种不同的geometry使用的方法是不一样的(point,
+line, polygon, etc)。</p>
+</div>
+</div>
+<div class="section" id="新建点对象－point">
+<h2>新建点对象－point<a class="headerlink" href="#新建点对象－point" title="永久链接至标题">¶</a></h2>
+<p>使用方法AddPoint( , , [])。其中的z坐标一般是省略的，默认值是0.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>point = ogr.Geometry(ogr.wkbPoint)
+point.AddPoint(10,20)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[8]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;osgeo.ogr.Geometry; proxy of &lt;Swig Object of type &#39;OGRGeometryShadow *&#39; at 0x7f2d0812d240&gt; &gt;
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>#help(point)
+str(point)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[11]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&#39;POINT (10 20 0)&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="新建线对象－line">
+<h2>新建线对象－line<a class="headerlink" href="#新建线对象－line" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>使用AddPoint(, , [])添加点。</li>
+<li>使用SetPoint(, , , [])更改点的坐标。</li>
+</ul>
+<p>例如下面这段代码，更改了0号点的坐标：</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>line = ogr.Geometry(ogr.wkbLineString)
+line.AddPoint(10,10)
+line.AddPoint(20,20)
+line.SetPoint(0,30,30)   #(10,10) -&gt; (30,30)
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>str(line)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[15]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&#39;LINESTRING (30 30 0,20 20 0)&#39;
+</pre></div>
+</div>
+</div>
+<p>统计所有点的数目</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>print(line.GetPointCount())
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+2
+</pre></div></div>
+</div>
+<p>读取0号点的x坐标和y坐标</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [17]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>print(line.GetX(0))
+print(line.GetY(0))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+30.0
+30.0
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="新建多边形-polygon">
+<h2>新建多边形-polygon<a class="headerlink" href="#新建多边形-polygon" title="永久链接至标题">¶</a></h2>
+<div class="line-block">
+<div class="line">首先要新建环(ring)，然后把环添加到多边形对象中。</div>
+<div class="line">如何创建一个ring？先新建一个ring对象，然后向里面逐个添加点。</div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [18]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>ring = ogr.Geometry(ogr.wkbLinearRing)
+ring.AddPoint(0,0)
+ring.AddPoint(100,0)
+ring.AddPoint(100,100)
+ring.AddPoint(0,100)
+</pre></div>
+</div>
+</div>
+<p>结束的时候，用CloseRings关闭ring，或者将最后一个点的坐标设定为与第一个点相同。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [19]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>ring.CloseRings()
+
+#ring.AddPoint(0,0)
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [20]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>str(ring)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[20]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&#39;LINEARRING (0 0 0,100 0 0,100 100 0,0 100 0,0 0 0)&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="下面举一个例子，创建一个方框。">
+<h2>下面举一个例子，创建一个方框。<a class="headerlink" href="#下面举一个例子，创建一个方框。" title="永久链接至标题">¶</a></h2>
+<p>这是个polygon对象，又例外两层ring构成。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [22]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>outring = ogr.Geometry(ogr.wkbLinearRing)
+outring.AddPoint(0,0)
+outring.AddPoint(100,0)
+outring.AddPoint(100,100)
+outring.AddPoint(0,100)
+outring.AddPoint(0,0)
+
+inring = ogr.Geometry(ogr.wkbLinearRing)
+inring = ogr.Geometry(ogr.wkbLinearRing)
+inring.AddPoint(25,25)
+inring.AddPoint(75,25)
+inring.AddPoint(75,75)
+inring.AddPoint(25,75)
+inring.CloseRings()
+
+polygon = ogr.Geometry(ogr.wkbPolygon)
+polygon.AddGeometry(outring)
+polygon.AddGeometry(inring)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[22]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>0
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [23]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>str(polygon)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[23]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&#39;POLYGON ((0 0 0,100 0 0,100 100 0,0 100 0,0 0 0),(25 25 0,75 25 0,75 75 0,25 75 0,25 25 0))&#39;
+</pre></div>
+</div>
+</div>
+<p>**
+<em>最后三句话比较重要，就是先建立一个polygon对象，然后添加外层ring和内层ring。</em>
+**</p>
+<p>下面这句话可以帮你数数，polygon能有几个ring。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [24]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>print(polygon.GetGeometryCount())
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+2
+</pre></div></div>
+</div>
+<p>从polygon中读取ring，index的顺序和创建polygon时添加ring的顺序相同。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [25]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>outring = polygon.GetGeometryRef(0)
+inring = polygon.GetGeometryRef(1)
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [28]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>print(&quot;OutRing: &quot;,str(outring))
+print(&quot;InRing: &quot;,str(inring))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+OutRing:  LINEARRING (0 0 0,100 0 0,100 100 0,0 100 0,0 0 0)
+InRing:  LINEARRING (25 25 0,75 25 0,75 75 0,25 75 0,25 25 0)
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="创建复合几何形状－multi-geometry">
+<h2>创建复合几何形状－multi geometry<a class="headerlink" href="#创建复合几何形状－multi-geometry" title="永久链接至标题">¶</a></h2>
+<p>例如：MultiPoint, MultiLineString,
+MultiPolygon。用AddGeometry把普通的几何形状加到复合几何形状中。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [30]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>multipoint = ogr.Geometry(ogr.wkbMultiPoint)
+point = ogr.Geometry(ogr.wkbPoint)
+
+point.AddPoint(10,10)
+multipoint.AddGeometry(point)
+
+point.AddPoint(20,20)
+multipoint.AddGeometry(point)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[30]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>0
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [31]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>str(multipoint)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[31]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&#39;MULTIPOINT (10 10 0,20 20 0)&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="读取MultiGeometry中的Geometry">
+<h2>读取MultiGeometry中的Geometry<a class="headerlink" href="#读取MultiGeometry中的Geometry" title="永久链接至标题">¶</a></h2>
+<p>方法和从Polygon中读取ring是一样的，可以说Polygon是一种内置的MultiGeometry。</p>
+<ul class="simple">
+<li>不要删除一个已存在的Feature的Geometry，会把python搞崩溃的。</li>
+<li>只能删除脚本运行期间创建的Geometry，比方说手工创建出来的，或者调用其他函数自动创建的。就算这个Geometry已经用来创建别的Feature，你还是可以删除它。</li>
+</ul>
+<p>例如：Polygon.Destroy()</p>
+</div>
+</div>
+<div class="section" id="关于投影－Projection">
+<h1>关于投影－Projection<a class="headerlink" href="#关于投影－Projection" title="永久链接至标题">¶</a></h1>
+<div class="line-block">
+<div class="line">使用SpatialReference对象。 * 多种多样的Projections，GDAL支持WKT,
+PROJ.4, ESPG, USGS, ESRI.prj</div>
+<div class="line">* 可以从layer和Geometry中读取Projections。</div>
+</div>
+<p>例如：</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>spatialRef = layer.GetSpatialRef()
+spatialRef = geom.GetSpatialReference()
+</pre></div>
+</div>
+</div>
+<p>投影信息一般存储在.prj文件中，如果没有这个文件，上述函数返回None。 ###
+建立一个新的Projection
+首先导入osr库，之后使用osr.SpatialReference()创建SpatialReference对象。
+用下列语句向SpatialReference对象导入投影信息。</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ImportFromWkt</span><span class="p">(</span><span class="o">&lt;</span><span class="n">wkt</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="n">ImportFromEPSG</span><span class="p">(</span><span class="o">&lt;</span><span class="n">epsg</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="n">ImportFromProj4</span><span class="p">(</span><span class="o">&lt;</span><span class="n">proj4</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="n">ImportFromESRI</span><span class="p">(</span><span class="o">&lt;</span><span class="n">proj_lines</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="n">ImportFromPCI</span><span class="p">(</span><span class="o">&lt;</span><span class="n">proj</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">units</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">parms</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="n">ImportFromUSGS</span><span class="p">(</span><span class="o">&lt;</span><span class="n">proj_code</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">zone</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="n">ImportFromXML</span><span class="p">(</span><span class="o">&lt;</span><span class="n">xml</span><span class="o">&gt;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="section" id="导出Projection">
+<h2>导出Projection<a class="headerlink" href="#导出Projection" title="永久链接至标题">¶</a></h2>
+<p>使用下面的语句可以导出为字符串</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ExportToWkt</span><span class="p">()</span>
+<span class="n">ExportToPrettyWkt</span><span class="p">()</span>
+<span class="n">ExportToProj4</span><span class="p">()</span>
+<span class="n">ExportToPCI</span><span class="p">()</span>
+<span class="n">ExportToUSGS</span><span class="p">()</span>
+<span class="n">ExportToXML</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>对一个几何形状Geometry进行投影变换，要先初始化两个Projection，然后创建一个CoordinateTransformation对象，用它来做变换。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [46]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from osgeo import osr
+
+sourceSR = osr.SpatialReference()
+sourceSR.ImportFromEPSG(32612) #UTM 12N WGS84
+
+targetSR = osr.SpatialReference()
+targetSR.ImportFromEPSG(4326) #Geo WGS84
+
+coordTrans = osr.CoordinateTransformation(sourceSR, targetSR)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="对几何对象进行投影变换">
+<h2>对几何对象进行投影变换<a class="headerlink" href="#对几何对象进行投影变换" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [41]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>print(&quot;Projection transform:&quot;)
+print(&quot;Before:&quot;, multipoint)
+
+#geom.Transform(coordTrans)
+multipoint.Transform(coordTrans)
+
+print(&quot;After :&quot;, multipoint)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Projection transform:
+Before: MULTIPOINT (-115.489778556511723 0.0 0,-115.489778556511723 0.0 0)
+After : MULTIPOINT (-115.489778556511723 0.0 0,-115.489778556511723 0.0 0)
+</pre></div></div>
+</div>
+<div class="line-block">
+<div class="line">据说，在windows里面跑不通(<a class="reference external" href="http://n2.nabble.com/PROJ-4-EPSG-28992-td2033665.html">http://n2.nabble.com/PROJ-4-EPSG-28992-td2033665.html</a>)</div>
+<div class="line">我在linux（Ubuntu15.04）里面没问题。 #### 另外还有几个要注意的地方：</div>
+</div>
+<ul class="simple">
+<li>要在适当的时候编辑Geometry，投影变换之后最好就不要再动了吧。</li>
+<li>对一个数据源DataSource里面的所有Geometry做投影变换，得一个一个来，用个循环吧。</li>
+</ul>
+</div>
+<div class="section" id="将投影参数写入.prj文件。">
+<h2>将投影参数写入.prj文件。<a class="headerlink" href="#将投影参数写入.prj文件。" title="永久链接至标题">¶</a></h2>
+<p>首先MorphToESRI()，转成字符串，然后开个文本文件往里面写就行了。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [45]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>targetSR.MorphToESRI()
+sr_wkt = targetSR.ExportToWkt()
+print(sr)
+
+file = open(&#39;test.prj&#39;, &#39;w&#39;)
+file.write(sr_wkt)
+file.close()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+GEOGCS[&#34;GCS_WGS_1984&#34;,DATUM[&#34;D_WGS_1984&#34;,SPHEROID[&#34;WGS_1984&#34;,6378137,298.257223563]],PRIMEM[&#34;Greenwich&#34;,0],UNIT[&#34;Degree&#34;,0.017453292519943295]]
+</pre></div></div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

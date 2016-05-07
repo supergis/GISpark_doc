@@ -1,0 +1,724 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The Blaze Ecosystem &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_cloud.html">云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>The Blaze Ecosystem</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/pystart/pystart_blaze.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="The-Blaze-Ecosystem">
+<h1>The Blaze Ecosystem<a class="headerlink" href="#The-Blaze-Ecosystem" title="永久链接至标题">¶</a></h1>
+<p><a class="reference external" href="http://blaze.pydata.org/">http://blaze.pydata.org/</a></p>
+<p>The Blaze ecosystem is a set of libraries that help users store,
+describe, query and process data. It is composed of the following core
+projects:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://blaze.readthedocs.io/en/latest/index.html">Blaze</a>: An
+interface to query data on different storage systems</li>
+<li>Dask: Parallel computing through task scheduling and blocked
+algorithms</li>
+<li>Datashape: A data description language</li>
+<li>DyND: A C++ library for dynamic, multidimensional arrays</li>
+<li>Odo: Data migration between different storage systems</li>
+</ul>
+<p><a href="#id1"><span class="problematic" id="id2">**</span></a>Github: <a href="#id3"><span class="problematic" id="id4">**</span></a><a class="reference external" href="https://github.com/blaze/blaze.git">https://github.com/blaze/blaze.git</a></p>
+<p><strong>Blog:</strong> * Balze: <a class="reference external" href="http://blaze.pydata.org/pages/talks/ep2015-blaze/">http://blaze.pydata.org/pages/talks/ep2015-blaze/</a> *
+Github Analyze with Dask:
+<a class="reference external" href="http://blaze.pydata.org/blog/2016/02/17/dask-distributed-1/">http://blaze.pydata.org/blog/2016/02/17/dask-distributed-1/</a></p>
+%%!
+cd ..
+source activate GISpark
+git clone https://github.com/blaze/blaze.git
+cd blaze
+python setup.py install<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [43]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from blaze import *
+#from blaze import compute
+#from blaze import data
+#from blaze.utils import example
+from blaze import examples
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [44]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>help(blaze)
+#help(examples)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Help on package blaze:
+
+NAME
+    blaze
+
+PACKAGE CONTENTS
+    _version
+    cached
+    compatibility
+    compute (package)
+    dispatch
+    expr (package)
+    index
+    interactive
+    mongo
+    partition
+    server (package)
+    sql
+    tests (package)
+    utils
+
+SUBMODULES
+    datetime
+    examples
+
+DATA
+    Broadcastable = (&lt;class &#39;blaze.expr.arithmetic.BinOp&#39;&gt;, &lt;class &#39;blaze....
+    Cheap = (&lt;class &#39;blaze.expr.collections.Head&#39;&gt;, &lt;class &#39;blaze.expr.exp...
+    Sequence = (&lt;class &#39;tuple&#39;&gt;, &lt;class &#39;list&#39;&gt;, &lt;class &#39;collections.abc.I...
+    abs = &lt;dispatched abs&gt;
+    absolute_import = _Feature((2, 5, 0, &#39;alpha&#39;, 1), (3, 0, 0, &#39;alpha&#39;, 0...
+    acos = &lt;dispatched acos&gt;
+    acosh = &lt;dispatched acosh&gt;
+    all = &lt;dispatched all&gt;
+    all_formats = frozenset({SerializationFormat(name=&#39;json&#39;, loads=&lt;funct...
+    any = &lt;dispatched any&gt;
+    api = &lt;flask.blueprints.Blueprint object&gt;
+    append = &lt;dispatched append&gt;
+    asin = &lt;dispatched asin&gt;
+    asinh = &lt;dispatched asinh&gt;
+    atan = &lt;dispatched atan&gt;
+    atan2 = &lt;dispatched atan2&gt;
+    atanh = &lt;dispatched atanh&gt;
+    by = &lt;dispatched by&gt;
+    ceil = &lt;dispatched ceil&gt;
+    compute = &lt;dispatched compute&gt;
+    compute_down = &lt;dispatched compute_down&gt;
+    compute_up = &lt;dispatched compute_up&gt;
+    convert = &lt;odo.core.NetworkDispatcher object&gt;
+    copysign = &lt;dispatched copysign&gt;
+    cos = &lt;dispatched cos&gt;
+    cosh = &lt;dispatched cosh&gt;
+    create_index = &lt;dispatched create_index&gt;
+    degrees = &lt;dispatched degrees&gt;
+    discover = &lt;dispatched discover&gt;
+    dispatch = functools.partial(&lt;function dispatch at 0x7fdaea...atched r...
+    division = _Feature((2, 2, 0, &#39;alpha&#39;, 2), (3, 0, 0, &#39;alpha&#39;, 0), 8192...
+    drop = &lt;dispatched drop&gt;
+    exp = &lt;dispatched exp&gt;
+    expm1 = &lt;dispatched expm1&gt;
+    floor = &lt;dispatched floor&gt;
+    fmod = &lt;dispatched fmod&gt;
+    greatest = &lt;dispatched greatest&gt;
+    hypot = &lt;dispatched hypot&gt;
+    i = 4
+    inf = inf
+    into = &lt;dispatched into&gt;
+    isnan = &lt;dispatched isnan&gt;
+    json_format = SerializationFormat(name=&#39;json&#39;, loads=&lt;function...x7fdb...
+    ldexp = &lt;dispatched ldexp&gt;
+    least = &lt;dispatched least&gt;
+    log = &lt;dispatched log&gt;
+    log10 = &lt;dispatched log10&gt;
+    log1p = &lt;dispatched log1p&gt;
+    max = &lt;dispatched max&gt;
+    mean = &lt;dispatched mean&gt;
+    min = &lt;dispatched min&gt;
+    msgpack_format = SerializationFormat(name=&#39;msgpack&#39;, loads=functo...x7...
+    nan = nan
+    optimize = &lt;dispatched optimize&gt;
+    pickle_format = SerializationFormat(name=&#39;pickle&#39;, loads=&lt;built-...s.p...
+    pre_compute = &lt;dispatched pre_compute&gt;
+    print_function = _Feature((2, 6, 0, &#39;alpha&#39;, 2), (3, 0, 0, &#39;alpha&#39;, 0)...
+    radians = &lt;dispatched radians&gt;
+    resource = &lt;odo.regex.RegexDispatcher object&gt;
+    rowfunc = &lt;dispatched rowfunc&gt;
+    shape = &lt;dispatched shape&gt;
+    sin = &lt;dispatched sin&gt;
+    sinh = &lt;dispatched sinh&gt;
+    sqrt = &lt;dispatched sqrt&gt;
+    std = &lt;dispatched std&gt;
+    sum = &lt;dispatched sum&gt;
+    tan = &lt;dispatched tan&gt;
+    tanh = &lt;dispatched tanh&gt;
+    to_html = &lt;dispatched to_html&gt;
+    trunc = &lt;dispatched trunc&gt;
+    var = &lt;dispatched var&gt;
+
+VERSION
+    0.9.1
+
+FILE
+    /home/supermap/anaconda3/envs/GISpark/lib/python3.5/site-packages/blaze/__init__.py
+
+
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [59]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>js = JSON(example(&#39;accounts.json&#39;))
+s = symbol(&#39;s&#39;, discover(js))
+compute(s.count(), js)
+
+#jss = JSONLines(example(&#39;accounts-streaming.json&#39;))
+#compute(s.count(), jss)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[59]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>5
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [56]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>t = Data([(1, &#39;Alice&#39;, 100),
+        (2, &#39;Bob&#39;, -200),
+        (3, &#39;Charlie&#39;, 300),
+        (4, &#39;Denis&#39;, 400),
+        (5, &#39;Edith&#39;, -500)],
+        fields=[&#39;id&#39;, &#39;name&#39;, &#39;balance&#39;])
+#help(t)
+t
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[56]:
+</pre></div>
+</div>
+<div class="container">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>id</th>
+      <th>name</th>
+      <th>balance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1</td>
+      <td>Alice</td>
+      <td>100</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>2</td>
+      <td>Bob</td>
+      <td>-200</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>3</td>
+      <td>Charlie</td>
+      <td>300</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4</td>
+      <td>Denis</td>
+      <td>400</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5</td>
+      <td>Edith</td>
+      <td>-500</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [55]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>iris = Data(example(&#39;iris.csv&#39;))
+iris
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[55]:
+</pre></div>
+</div>
+<div class="container">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>sepal_length</th>
+      <th>sepal_width</th>
+      <th>petal_length</th>
+      <th>petal_width</th>
+      <th>species</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>5.1</td>
+      <td>3.5</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>4.9</td>
+      <td>3.0</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4.7</td>
+      <td>3.2</td>
+      <td>1.3</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4.6</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>5.0</td>
+      <td>3.6</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>5.4</td>
+      <td>3.9</td>
+      <td>1.7</td>
+      <td>0.4</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>4.6</td>
+      <td>3.4</td>
+      <td>1.4</td>
+      <td>0.3</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>5.0</td>
+      <td>3.4</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>4.4</td>
+      <td>2.9</td>
+      <td>1.4</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>4.9</td>
+      <td>3.1</td>
+      <td>1.5</td>
+      <td>0.1</td>
+      <td>Iris-setosa</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>5.4</td>
+      <td>3.7</td>
+      <td>1.5</td>
+      <td>0.2</td>
+      <td>Iris-setosa</td>
+    </tr>
+  </tbody>
+</table></div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

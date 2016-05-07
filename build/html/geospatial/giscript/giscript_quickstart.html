@@ -1,0 +1,657 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GIScript－开放地理空间信息处理与分析Python库 &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_cloud.html">云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../pystart/pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>GIScript－开放地理空间信息处理与分析Python库</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/geospatial/giscript/giscript_quickstart.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="GIScript－开放地理空间信息处理与分析Python库">
+<h1>GIScript－开放地理空间信息处理与分析Python库<a class="headerlink" href="#GIScript－开放地理空间信息处理与分析Python库" title="永久链接至标题">¶</a></h1>
+<div class="line-block">
+<div class="line"><strong>GIScript</strong>是一个开放的地理空间心处理与分析Python框架，GIS内核采用SuperMap
+UGC封装，集成多种开源软件，也可以使用其它的商业软件引擎。</div>
+<div class="line">_ by <a class="reference external" href="mailto:wangerqi&#37;&#52;&#48;supermap&#46;com">wangerqi<span>&#64;</span>supermap<span>&#46;</span>com</a>, 2016-05-03。_</div>
+</div>
+<div class="section" id="本文档介绍GIScript的安装和配置，并进行简单的运行测试，以确认安装的软件正常运行。">
+<h2>本文档介绍GIScript的安装和配置，并进行简单的运行测试，以确认安装的软件正常运行。<a class="headerlink" href="#本文档介绍GIScript的安装和配置，并进行简单的运行测试，以确认安装的软件正常运行。" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>本教程基于Anaconda3+python3.5.1科学计算环境，请参考：<a class="reference external" href="http://www.anaconda.org">http://www.anaconda.org</a>
+。</li>
+<li>本Notebook在Ubuntu
+14.04/15.10/16.04运行通过，在本地服务器和阿里云服务器都可以运行。</li>
+<li>可以在<a class="reference external" href="http://nbviewer.jupyter.org/github/supergis/git_notebook/blob/master/geospatial/giscript/giscript_quickstart.ipynb">NBViewer上直接访问和下载本文档</a>。</li>
+</ul>
+<div class="section" id="（一）安装与配置">
+<h3>（一）安装与配置<a class="headerlink" href="#（一）安装与配置" title="永久链接至标题">¶</a></h3>
+<p>GIScript的安装包括<strong>系统库的设置</strong>、<strong>UGC
+Runtime设置</strong>和<strong>Python库</strong>的设置，通过编写一个启动脚本，可以在给定环境下载入相应的运行库的路径。
+#### 1、下载GIScript支持库：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">supermap</span><span class="o">/</span><span class="n">GISpark</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">supergis</span><span class="o">/</span><span class="n">GIScriptLib</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="2、UGC系统库的版本适配。">
+<h2>2、UGC系统库的版本适配。<a class="headerlink" href="#2、UGC系统库的版本适配。" title="永久链接至标题">¶</a></h2>
+<p>由于GIScript的几个编译库版本较新，在默认使用系统老版本库时部分函数找不到会引起调用失败，因此需要将这几个的系统调用指向到GIScript编译使用的的新版本。在Ubuntu上，具体操作包括：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">GISpark</span><span class="o">/</span><span class="n">lib</span>
+<span class="n">mv</span> <span class="n">libstdc</span><span class="o">++.</span><span class="n">so</span> <span class="n">libstdc</span><span class="o">++.</span><span class="n">so</span><span class="o">.</span><span class="n">x</span>
+<span class="n">mv</span> <span class="n">libstdc</span><span class="o">++.</span><span class="n">so</span><span class="o">.</span><span class="mi">6</span> <span class="n">libstdc</span><span class="o">++.</span><span class="n">so</span><span class="o">.</span><span class="mf">6.</span><span class="n">x</span>
+<span class="n">mv</span> <span class="n">libsqlite3</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">0</span> <span class="n">libsqlite3</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">0.</span><span class="n">x</span>
+<span class="n">mv</span> <span class="n">libsqlite3</span><span class="o">.</span><span class="n">so</span> <span class="n">libsqlite3</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="n">x</span>
+<span class="n">mv</span> <span class="n">libgomp</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">1.0</span><span class="o">.</span><span class="mi">0</span> <span class="n">libgomp</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">1.0</span><span class="o">.</span><span class="mf">0.</span><span class="n">x</span>
+<span class="n">mv</span> <span class="n">libgomp</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mi">1</span> <span class="n">libgomp</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="mf">1.</span><span class="n">x</span>
+<span class="n">mv</span> <span class="n">libgomp</span><span class="o">.</span><span class="n">so</span> <span class="n">libgomp</span><span class="o">.</span><span class="n">so</span><span class="o">.</span><span class="n">x</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><em>可以运行GIScriptLib/lib-giscript-x86-linux64/下的setup-giscript.sh来自动处理(请根据自己的目录布局修改路径)。</em></li>
+<li><em>由于不同系统安装的软件和版本不同，如果还有其它的动态库冲突，可以使用ldd
+*.so来查看库的依赖关系，按照上述办法解决。</em></li>
+</ul>
+</div>
+<div class="section" id="3、安装Python的支持库。">
+<h2>3、安装Python的支持库。<a class="headerlink" href="#3、安装Python的支持库。" title="永久链接至标题">¶</a></h2>
+<div class="line-block">
+<div class="line">GIScript的Python封装库，默认存放在系统目录：/usr/lib/python3/dist-packages/PyUGC</div>
+<div class="line">使用Anaconda时，存在相应的env的目录下，如：[/home/supermap/Anaconda3]/envs/GISpark/lib/python3.5/site-packages</div>
+<div class="line">*
+<strong>安装方法一：链接。</strong>在[...]/python3.5/site-packages下建立PyUGC的软连接。注意，原文件不可删除，否则就找不到了。</div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ln</span> <span class="o">-</span><span class="n">s</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">supermap</span><span class="o">/</span><span class="n">GISpark</span><span class="o">/</span><span class="n">GIScriptLib</span><span class="o">/</span><span class="n">lib</span><span class="o">-</span><span class="n">giscript</span><span class="o">-</span><span class="n">x86</span><span class="o">-</span><span class="n">linux64</span><span class="o">/</span><span class="n">lib</span> <span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">GISpark</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">5</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">PyUGC</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first"><strong>安装方法二：复制。</strong>将lib-giscript-x86-linux64/lib（Python的UGC封装库）复制为Python下的site-packages/PyUGC目录，如下：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">supermap</span><span class="o">/</span><span class="n">GISpark</span><span class="o">/</span><span class="n">GIScriptLib</span>
+<span class="n">cp</span> <span class="o">-</span><span class="n">r</span> <span class="n">lib</span><span class="o">-</span><span class="n">giscript</span><span class="o">-</span><span class="n">x86</span><span class="o">-</span><span class="n">linux64</span><span class="o">/</span><span class="n">lib</span> <span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">GISpark</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python3</span><span class="o">.</span><span class="mi">5</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="o">/</span><span class="n">PyUGC</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="4、Jupyter启动之前，设置GIScript运行时-library-载入的路径:">
+<h2>4、Jupyter启动之前，设置GIScript运行时 library 载入的路径:<a class="headerlink" href="#4、Jupyter启动之前，设置GIScript运行时-library-载入的路径:" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li><strong>编写脚本，启动前设置GIScript的运行时动态库路径，内容如下：</strong></li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span>echo &quot;Config GIScript2016...&quot;
+
+# 使用GIScript2015的开发工程目录，配置示例：
+# export SUPERMAP_HOME=/home/supermap/GIScript/GIScript2015/Linux64-gcc4.9
+
+# 使用GIScriptLib运行时动态库，配置如下：
+export SUPERMAP_HOME=/home/supermap/GISpark/GIScriptLib/lib-giscript-x86-linux64
+export LD_LIBRARY_PATH=$SUPERMAP_HOME/Bin:$LD_LIBRARY_PATH
+echo &quot;Config: LD_LIBRARY_PATH＝&quot;$LD_LIBRARY_PATH
+</pre></div>
+</div>
+<ul class="simple">
+<li><strong>将上面的内容与Jupyter启动命令放到start.sh脚本中，如下:</strong></li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span></span>echo &quot;Activate conda enviroment GISpark ...&quot;
+source activate GISpark
+
+echo &quot;Config GIScript 2016 for Jupyter ...&quot;
+export SUPERMAP_HOME=/home/supermap/GISpark/GIScriptLib/lib-giscript-x86-linux64
+export LD_LIBRARY_PATH=$SUPERMAP_HOME/bin:/usr/lib/x86_64-linux-gnu/:$LD_LIBRARY_PATH
+echo &quot;Config: LD_LIBRARY_PATH=&quot;$LD_LIBRARY_PATH
+
+echo &quot;Start Jupyter notebook&quot;
+jupyter notebook
+</pre></div>
+</div>
+<ul>
+<li><p class="first"><strong>修改start.sh执行权限，运行Jupyter Notebook。</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">start</span><span class="o">.</span><span class="n">sh</span>
+<span class="o">./</span><span class="n">start</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<div class="line-block">
+<div class="line">默认配置下，将会自动打开浏览器，就可以开始使用Jupyter
+Notebook并调用GIScript的库了。</div>
+<div class="line">如果通过服务器使用，需要使用｀jupyter notebook
+&#8211;generate-config｀创建配置文件，然后进去修改参数，这里不再详述。</div>
+</div>
+<div class="section" id="（二）运行测试，导入一些数据。">
+<h3>（二）运行测试，导入一些数据。<a class="headerlink" href="#（二）运行测试，导入一些数据。" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="1、导入GIScript的Python库。">
+<h2>1、导入GIScript的Python库。<a class="headerlink" href="#1、导入GIScript的Python库。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from PyUGC import *
+from PyUGC.Stream import UGC
+from PyUGC.Base import OGDC
+from PyUGC import Engine
+from PyUGC import FileParser
+from PyUGC import DataExchange
+
+import datasource
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>#help(UGC)
+#help(OGDC)
+#help(datasource)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="3、设置测试数据目录。">
+<h2>3、设置测试数据目录。<a class="headerlink" href="#3、设置测试数据目录。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import os
+
+basepath = os.path.join(os.getcwd(),&quot;../data&quot;)
+print(&quot;Data path: &quot;, basepath)
+
+file1 = basepath + u&quot;/Shape/countries.shp&quot;
+print(&quot;Data file: &quot;, file1)
+
+file2 = basepath + u&quot;/Raster/astronaut(CMYK)_32.tif&quot;
+print(&quot;Data file: &quot;, file2)
+
+file3 = basepath + u&quot;/Grid/grid_Int32.grd&quot;
+print(&quot;Data file: &quot;, file3)
+
+datapath_out = basepath + u&quot;/GIScript_Test.udb&quot;
+print(&quot;Output UDB: &quot;,datapath_out)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Data path:  /home/supermap/GISpark/git_notebook/geospatial/giscript/../data
+Data file:  /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/Shape/countries.shp
+Data file:  /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/Raster/astronaut(CMYK)_32.tif
+Data file:  /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/Grid/grid_Int32.grd
+Output UDB:  /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/GIScript_Test.udb
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="4、导入数据的测试函数。">
+<h2>4、导入数据的测试函数。<a class="headerlink" href="#4、导入数据的测试函数。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>def Import_Test():
+    print(&quot;Export to UDB: &quot;,datapath_out)
+    ds = datasource.CreateDatasource(UGC.UDB,datapath_out)
+    datasource.ImportVector(file1,ds)
+    datasource.ImportRaster(file2,ds)
+    datasource.ImportGrid(file3,ds)
+    ds.Close()
+    del ds
+    print(&quot;Finished.&quot;)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="5、运行这个测试。">
+<h2>5、运行这个测试。<a class="headerlink" href="#5、运行这个测试。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>try:
+    Import_Test()
+except Exception as ex:
+    print(ex)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Export to UDB:  /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/GIScript_Test.udb
+创建数据源成功！！
+Import Vector:  /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/Shape/countries.shp
+数据导入成功:Import Vector /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/Shape/countries.shp
+Import Raster:  /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/Raster/astronaut(CMYK)_32.tif
+数据导入成功:Import Image /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/Raster/astronaut(CMYK)_32.tif
+Import Grid:  /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/Grid/grid_Int32.grd
+数据导入成功:Import Grid /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/Grid/grid_Int32.grd
+Finished.
+</pre></div></div>
+</div>
+<div class="section" id="（三）查看生成的数据源文件UDB。">
+<h3>（三）查看生成的数据源文件UDB。<a class="headerlink" href="#（三）查看生成的数据源文件UDB。" title="永久链接至标题">¶</a></h3>
+<div class="section" id="下面使用了IPython的Magic操作符-!，可以直接运行操作系统的Shell命令行。">
+<h4>下面使用了IPython的Magic操作符 !，可以直接运行操作系统的Shell命令行。<a class="headerlink" href="#下面使用了IPython的Magic操作符-!，可以直接运行操作系统的Shell命令行。" title="永久链接至标题">¶</a></h4>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [49]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>!ls -l -h ../data/GIScript_Test.*
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+-rw-rw-r-- 1 supermap supermap 5.6M 5月   4 09:46 ../data/GIScript_Test.udb
+-rw-r--r-- 1 supermap supermap  74K 5月   4 09:46 ../data/GIScript_Test.udd
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="删除生成的测试文件。注意，不要误删其它文件！">
+<h4>删除生成的测试文件。注意，不要误删其它文件！<a class="headerlink" href="#删除生成的测试文件。注意，不要误删其它文件！" title="永久链接至标题">¶</a></h4>
+<div class="line-block">
+<div class="line">如果重复运行上面的Import_Test()将会发现GIScript_Test.udb和GIScript_Test.udd文件会不断增大。</div>
+<div class="line">但是打开UDB文件却只有一份数据，为什么呢？ *
+<strong>因为UDB文件是增量存储的，不用的存储块需要使用SQLlite的存储空间紧缩处理才能回收。</strong></div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [46]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>!rm ../data/GIScript_Test.*
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="再次查看目录，文件是否存在。">
+<h2>再次查看目录，文件是否存在。<a class="headerlink" href="#再次查看目录，文件是否存在。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [41]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>!ls -l -h ../data/GIScript_Test.*
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+-rw-rw-r-- 1 supermap supermap  12M 5月   4 09:44 ../data/GIScript_Test.udb
+-rw-r--r-- 1 supermap supermap 122K 5月   4 09:44 ../data/GIScript_Test.udd
+</pre></div></div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

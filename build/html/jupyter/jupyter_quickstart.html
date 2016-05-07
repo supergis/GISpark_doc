@@ -1,0 +1,490 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>安装并启动jupyter &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_cloud.html">云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../pystart/pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>安装并启动jupyter</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/jupyter/jupyter_quickstart.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<p>&#8220;nbsphinx-toctree&#8221;: { &#8220;maxdepth&#8221;: 3, &#8220;numbered&#8221;: true }</p>
+<div class="section" id="安装并启动jupyter">
+<h1>安装并启动jupyter<a class="headerlink" href="#安装并启动jupyter" title="永久链接至标题">¶</a></h1>
+<div class="section" id="安装并启动jupyter">
+<h2>安装并启动jupyter<a class="headerlink" href="#安装并启动jupyter" title="永久链接至标题">¶</a></h2>
+<p>安装 Anaconda 后, 再安装 jupyter</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">jupyter</span>
+</pre></div>
+</div>
+<ul>
+<li><p class="first">设置环境</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">ipython</span> <span class="o">--</span><span class="n">ipython</span><span class="o">-</span><span class="nb">dir</span><span class="o">=</span> <span class="c1"># override the default IPYTHONDIR directory, ~/.ipython/ by default</span>
+<span class="n">ipython</span> <span class="n">profile</span> <span class="n">create</span> <span class="n">foo</span> <span class="c1"># create the profile foo</span>
+<span class="n">ipython</span> <span class="n">profile</span> <span class="n">locate</span> <span class="n">foo</span> <span class="c1"># find foo profile directory, IPYTHONDIR by default,</span>
+<span class="n">ipython</span> <span class="o">--</span><span class="n">profile</span><span class="o">=</span><span class="n">foo</span> <span class="c1"># start IPython using the new profile</span>
+</pre></div>
+</div>
+</li>
+</ul>
+<p>启动jupyter的几个命令, 启动后, 默认还将启动一个浏览器进入 notebook 环境
+ipython notebook # 启动 jupyter notebook服务器, 使用默认端口8080 ipython
+notebook &#8211;ip=0.0.0.0 &#8211;port=80 # 启动 jupyter notebook服务器, 指定端口
+ipython notebook &#8211;profile=foo # 使用 foo profile 启动 jupyter
+notebook服务器 ipython notebook &#8211;pylab inline # 启用 PyLab graphing
+support ipython notebook 是老版本的命令组合, 新版是jupyter
+notebook命令组合, 如果使用Anaconda的发布包,
+直接使用jupyter-notebook这个工具.</p>
+<p>更多jupyter使用信息, 见
+<a class="reference external" href="http://nbviewer.jupyter.org/github/ipython/ipython/blob/3.x/examples/Notebook/Notebook%20Basics.ipynb">http://nbviewer.jupyter.org/github/ipython/ipython/blob/3.x/examples/Notebook/Notebook%20Basics.ipynb</a></p>
+</div>
+</div>
+<div class="section" id="定制Jupyter">
+<h1>定制Jupyter<a class="headerlink" href="#定制Jupyter" title="永久链接至标题">¶</a></h1>
+<p>[root#]./jupyter-notebook &#8211;generate-config 将生成一个jupyter的配置文件,
+比如 /root/.jupyter/jupyter_notebook_config.py , 在其中可配置Notebook
+App的基本信息 文件名为: /root/.jupyter/jupyter_notebook_config.py</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">get_config</span><span class="p">()</span>
+<span class="n">c</span><span class="o">.</span><span class="n">IPKernelApp</span><span class="o">.</span><span class="n">pylab</span> <span class="o">=</span> <span class="s1">&#39;inline&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NoteBookApp</span><span class="o">.</span><span class="n">ip</span> <span class="o">=</span> <span class="s1">&#39;0.0.0.0&#39;</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">open_browser</span> <span class="o">=</span> <span class="bp">False</span>
+<span class="n">c</span><span class="o">.</span><span class="n">NotebookApp</span><span class="o">.</span><span class="n">port</span> <span class="o">=</span> <span class="mi">8880</span> <span class="c1"># or whatever you want</span>
+</pre></div>
+</div>
+<div class="section" id="为-notebook-的-cell增加line-number">
+<h2>为 notebook 的 cell增加line number<a class="headerlink" href="#为-notebook-的-cell增加line-number" title="永久链接至标题">¶</a></h2>
+<p>在 ~/.ipython/profile_foo/static/custom/custom.js 增加下面几行</p>
+<p>define([ &#8216;base/js/namespace&#8217;, &#8216;base/js/events&#8217; ], function(IPython,
+events) { events.on(&#8220;app_initialized.NotebookApp&#8221;, function () {
+require(&#8220;notebook/js/cell&#8221;).Cell.options_default.cm_config.lineNumbers
+= true; } ); } );</p>
+</div>
+<div class="section" id="更改jupyter的主题">
+<h2>更改jupyter的主题<a class="headerlink" href="#更改jupyter的主题" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/transcranial/jupyter-themer">https://github.com/transcranial/jupyter-themer</a> 更改命令 jupyter-themer
+-c monokai 访问远端的notebook server</p>
+<p>pip install jupyter-themer</p>
+</div>
+</div>
+<div class="section" id="Jupyter服务器">
+<h1>Jupyter服务器<a class="headerlink" href="#Jupyter服务器" title="永久链接至标题">¶</a></h1>
+<p>如果是在远端开启了notebook server, 在本机浏览器直接访问, 将不能打开,
+这应该是notebook server为安全考虑, 有意屏蔽非本机的访问. 当然,
+我们总不能一直通过x-windows到远端打开浏览器使用notebook吧.</p>
+<p>1.最简单的做法是,启动notebook sever时, 加上参数&#8211;ip=0.0.0.0, 即:
+./jupyter-notebook &#8211;port=7777 &#8211;ip=0.0.0.0
+2.另一个方法是:在本机使用ssh软件建立一个连接远端的ssh tunnel,
+本机浏览器通过ssh tunnel就可以访问远端的notebook server. 比如,
+我习惯使用putty, 方法是: putty-&gt; Connection &gt; SSH &gt; Tunnels Under Add
+new forwarded port:, enter the following information: Source port:
+local_port Destination: remote_host:remote_port Click Add.然后,
+使用这个配置ssh连接远端server. 访问远端的ipython</p>
+<p>jupyter是使用tab能进行代码补全, 但在浏览器中有时并不起作用,
+使用远端的ipython就没有这个问题,
+当然ipython在EDA(探索式数据分析)文档化方面比notebook弱多了,
+鱼和熊掌不能皆得. 我更喜欢ipython qtconsole方式. 连接远端ipython的步骤:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>远端开启ipython host, 命令为 ipython kernel -f ~/ipython-connect-info.json # 这是一个没有前端的ipython进程.
+将远端的kernel-1234.json 文件复制到本机, 修改其中的ip地址为远端真实的地址
+本机上使用putty为kernel-1234.json 文件中的5个port都开启ssh tunnel
+本机执行 ipython qtconsole --existing c:\kernel-connect-info.json
+</pre></div>
+</div>
+</div>
+<div class="section" id="与PySpark集成">
+<h1>与PySpark集成<a class="headerlink" href="#与PySpark集成" title="永久链接至标题">¶</a></h1>
+<p>IPython和普通的Python interpreter相比, 优点在于对交互性支持更好,
+所以PySpark只有在需要更好交互性的情形下, 才有集成IPython的必要, 显然只有
+pyspark shell 才需要集成IPython. Jupyter和PySpark shell集成方式有好几种,
+比如:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>先启动IPython, 然后调用pyspark\shell.py启动spark.
+启动IPython后, 我们可以手动调用pyspark\shell.py, 将调用脚本加到IPython profile目录中自动启动, 自动启动python程序. 调用pyspark\shell.py应放在文件 ~/.ipython/profile_foo/startup/00-pyspark-setup.py 中.
+00-pyspark-setup.py的写法可参考 https://github.com/harisekhon/pytools/blob/master/.ipython-notebook-pyspark.00-pyspark-setup.py
+
+采用IPython 这个高级 interpreter 来启动pyspark
+例子1, 在 spark master server 上以notebook的形式启动 pyspark shell.
+spark_master_node$ PYSPARK_DRIVER_PYTHON=/usr/python_anaconda/bin/ipython PYSPARK_DRIVER_PYTHON_OPTS=&quot;notebook --no-browser --ip=0.0.0.0 --port=7777&quot; pyspark --master spark://quickstart.cloudera:7077
+</pre></div>
+</div>
+<p>例子2, 在 spark master server 上以ipython kernel的形式启动 pyspark
+shell, 以便其他机器连入 spark_master_node$
+PYSPARK_DRIVER_PYTHON=/usr/python_anaconda/bin/ipython
+PYSPARK_DRIVER_PYTHON_OPTS=&#8221;kernel -f ~/ipython-connect-info.json&#8221;
+pyspark &#8211;master spark://quickstart.cloudera:7077</p>
+<p>例子3, 在 spark master server 上以notebook的形式启动 pyspark shell,
+并加载额外的package, 指定内存参数. spark_master_node$
+PYSPARK_DRIVER_PYTHON=ipython PYSPARK_DRIVER_PYTHON_OPTS=&#8221;notebook
+&#8211;no-browser &#8211;port=7777 &#8211;profile=foo&#8221; pyspark &#8211;packages
+com.databricks:spark-csv_2.10:1.1.0 &#8211;master
+spark://spark_master_hostname:7077 &#8211;executor-memory 6400M
+&#8211;driver-memory 6400M</p>
+<p>设置 PYSPARK_DRIVER_PYTHON 和 PYSPARK_DRIVER_PYTHON_OPTS
+环境变量后, 之后调用pyspark将采用这两个环境变量指定的Python
+解释器配置来运行python 版spark 应用.</p>
+<p>注意不应该export 这两个环境变量, 因为export后, 非shell的pyspark
+spark应用也将使用IPython运行, 容易造成滥用. 虽然我不推荐在Linux
+profile将 PYSPARK_DRIVER_PYTHON 设置为IPython, 但我推荐将
+PYSPARK_DRIVER_PYTHON 设置为 Anaconda的 python,
+因为这将省去安装额外科学计算包的麻烦, 当然,
+环境变量PYSPARK_DRIVER_PYTHON_OPTS不应该再带上notebook或kernel参数.</p>
+<p>最好在 spark-env.sh 增加下面4个参数,</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="c1"># worker和driver 的python版本应该是一致的, 否则spark会报错的, 当然driver可以设置为ipython.</span>
+<span class="n">export</span> <span class="n">PYSPARK_PYTHON</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python3</span>
+<span class="n">export</span> <span class="n">PYSPARK_DRIVER_PYTHON</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">ipython3</span>
+<span class="c1"># 为了简化提交pyspark 应用的提交,可以预先设置一个 PYSPARK_SUBMIT_ARGS 环境变量.</span>
+<span class="n">export</span> <span class="n">PYSPARK_SUBMIT_ARGS</span><span class="o">=</span><span class="s1">&#39;--master local[2]&#39;</span>
+<span class="n">export</span> <span class="n">PYSPARK_SUBMIT_ARGS</span><span class="o">=</span><span class="s1">&#39;--master yarn --deploy-mode client --num-executors 24 --executor-memory 10g --executor-cores 5&#39;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>参考文章</li>
+</ul>
+<ol class="arabic simple">
+<li><a class="reference external" href="http://www.tuicool.com/articles/rqIv6z">How-to: Use IPython Notebook with Apache
+Spark</a></li>
+<li><a class="reference external" href="How%20to%20Install%20PySpark%20and%20Integrate%20with%20IPython%20Notebook">http://blog.cloudera.com/blog/2014/08/how-to-use-ipython-notebook-with</a></li>
+<li><a class="reference external" href="http://www.tuicool.com/articles/VFn6j2Y">https://www.dataquest.io/blog/installing-pyspark/</a></li>
+<li><a class="reference external" href="http://ramhiser.com/2015/02/01/configuring-ipython-notebook-support-for-pyspark/">Configuring IPython Notebook Support for
+PySpark</a></li>
+<li><a class="reference external" href="http://blog.insightdatalabs.com/jupyter-on-apache-spark-step-by-step/">Using Jupyter on Apache Spark: Step-by-Step with a Terabyte of
+Reddit
+Data</a></li>
+<li><a class="reference external" href="http://www.cnblogs.com/wybert/p/5030697.html">如何自定义jupyter
+notebook的主题</a></li>
+<li><a class="reference external" href="https://stackoverflow.com/questions/20197471/how-to-display-line-numbers-in-ipython-notebook-code-cell-by-default/20197878">jupyter cell 增加 line
+number</a></li>
+<li><a class="reference external" href="http://www.kinelf.com/?p=169">Spark编程环境搭建(IPython)</a></li>
+<li><a class="reference external" href="https://linux.cn/article-6644-1.html">如何使用Docker快速配置数据科学开发环境(搭建Docker + Jupyter环境
+)</a></li>
+</ol>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

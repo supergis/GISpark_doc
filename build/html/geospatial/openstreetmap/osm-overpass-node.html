@@ -1,0 +1,563 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OSM-overpass服务接口使用，在线查询OpenStreetMap开放空间数据库。 &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_cloud.html">云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../pystart/pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>OSM-overpass服务接口使用，在线查询OpenStreetMap开放空间数据库。</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/geospatial/openstreetmap/osm-overpass-node.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>#!/usr/bin/python
+#coding=utf-8
+</pre></div>
+</div>
+</div>
+<div class="section" id="OSM-overpass服务接口使用，在线查询OpenStreetMap开放空间数据库。">
+<h1>OSM-overpass服务接口使用，在线查询<a class="reference external" href="http:www.openstreetmap.org">OpenStreetMap</a>开放空间数据库。<a class="headerlink" href="#OSM-overpass服务接口使用，在线查询OpenStreetMap开放空间数据库。" title="永久链接至标题">¶</a></h1>
+<div class="line-block">
+<div class="line">**_ by
+<a class="reference external" href="http://my.oschina.net/u/2306127/blog">openthings&#64;163.com</a>,
+2016-04-23. _**</div>
+<div class="line">&gt;#### overpy-使用overpass api接口的python
+library，这里将返回结果集保存为JSON格式。</div>
+<div class="line">* 安装：$ pip install overpy *
+文档：<a class="reference external" href="http://python-overpy.readthedocs.org/en/latest/example.html#basic-example">http://python-overpy.readthedocs.org/en/latest/example.html#basic-example</a></div>
+<div class="line">* 接口：<a class="reference external" href="http://wiki.openstreetmap.org/wiki/Overpass_API">http://wiki.openstreetmap.org/wiki/Overpass_API</a></div>
+<div class="line">本工具例程基于上述文档例程进行编写。</div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import os, sys, gc
+import time
+import json
+
+import overpy
+from pprint import *
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="调用overpass接口，获取result数据结果集。">
+<h1>调用overpass接口，获取result数据结果集。<a class="headerlink" href="#调用overpass接口，获取result数据结果集。" title="永久链接至标题">¶</a></h1>
+<ul class="simple">
+<li>由于通过网络返回，容易中断，而且是在内存中处理，不适合创建大的查询集。</li>
+</ul>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>#范围：纬度1，经度1，纬度2，经度2
+#返回：result
+def get_osm():
+    query = &quot;[out:json];node(50.745,7.17,50.75,7.18);out;&quot;
+    osm_op_api = overpy.Overpass()
+    result = osm_op_api.query(query)
+
+    print(&quot;Nodes: &quot;,len(result.nodes))
+    print(&quot;Ways: &quot;,len(result.ways))
+    print(&quot;Relations: &quot;,len(result.relations))
+    return result
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="在线获取osm数据.">
+<h1>在线获取osm数据.<a class="headerlink" href="#在线获取osm数据." title="永久链接至标题">¶</a></h1>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>result = get_osm()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Nodes:  2267
+Ways:  0
+Relations:  0
+</pre></div></div>
+</div>
+<div class="section" id="显示node的属性信息（仅显示前3个node的信息）。">
+<h2>显示node的属性信息（仅显示前3个node的信息）。<a class="headerlink" href="#显示node的属性信息（仅显示前3个node的信息）。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>nodeset = result.nodes[0:3]
+pprint(nodeset)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+[&lt;overpy.Node id=50878400 lat=50.7461788 lon=7.1742257&gt;,
+ &lt;overpy.Node id=50878401 lat=50.7476027 lon=7.1744795&gt;,
+ &lt;overpy.Node id=100792806 lat=50.7486483 lon=7.1714704&gt;]
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="遍历node的子集，该子集由上一步产生。">
+<h2>遍历node的子集，该子集由上一步产生。<a class="headerlink" href="#遍历node的子集，该子集由上一步产生。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>for n in nodeset:
+    print(n.id,n.lat,n.lon)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+50878400 50.7461788 7.1742257
+50878401 50.7476027 7.1744795
+100792806 50.7486483 7.1714704
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="将查询到的数据集合转换为json格式，写入json格式的文件.">
+<h1>将查询到的数据集合转换为json格式，写入json格式的文件.<a class="headerlink" href="#将查询到的数据集合转换为json格式，写入json格式的文件." title="永久链接至标题">¶</a></h1>
+<p>（_ 该格式可由Spark直接载入: SQLContext.read.json()_ ）。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>def node2json(node):
+    jsonNode=&quot;{\&quot;id\&quot;:\&quot;%s\&quot;, \&quot;lat\&quot;:\&quot;%s\&quot;, \&quot;lon\&quot;:\&quot;%s\&quot;}&quot;%(node.id,node.lat,node.lon)
+    return jsonNode
+
+def node2jsonfile(fname,nodeset):
+    fnode = open(fname,&quot;w+&quot;)
+    for n in nodeset:
+        jn = node2json(n) + &quot;\n&quot;
+        fnode.write(jn)
+    fnode.close()
+    print(&quot;Nodes:&quot;,len(nodeset),&quot;, Write to: &quot;,fname)
+</pre></div>
+</div>
+</div>
+<div class="section" id="执行json文件保存操作。">
+<h2>执行json文件保存操作。<a class="headerlink" href="#执行json文件保存操作。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>node2jsonfile(&quot;overpass.osm_node.json&quot;,result.nodes)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Nodes: 2267 , Write to:  overpass.osm_node.json
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="查看一下文件。">
+<h2>查看一下文件。<a class="headerlink" href="#查看一下文件。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>!ls -l -h
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+总用量 2.9M
+-rw-rw-r-- 1 supermap supermap  26K 5月   4 15:20 osm-discovery.ipynb
+-rw-rw-r-- 1 supermap supermap 5.6K 5月   4 15:27 osm-overpass.ipynb
+-rw-rw-r-- 1 supermap supermap  15K 4月  23 08:23 osm-tag2json.ipynb
+-rw-rw-r-- 1 supermap supermap   10 5月   4 15:17 osm_test.cpg
+-rw-rw-r-- 1 supermap supermap 5.8K 5月   4 15:17 osm_test.dbf
+-rw-rw-r-- 1 supermap supermap 2.7M 5月   4 15:00 osm_test.osm
+-rw-rw-r-- 1 supermap supermap  380 5月   4 15:17 osm_test.shp
+-rw-rw-r-- 1 supermap supermap  180 5月   4 15:17 osm_test.shx
+-rw-rw-r-- 1 supermap supermap 131K 5月   4 15:27 overpass.osm_node.json
+</pre></div></div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

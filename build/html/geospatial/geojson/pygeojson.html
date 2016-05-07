@@ -1,0 +1,906 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GeoJSON的python支持库。 &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_cloud.html">云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../pystart/pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>GeoJSON的python支持库。</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/geospatial/geojson/pygeojson.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="GeoJSON的python支持库。">
+<h1>GeoJSON的python支持库。<a class="headerlink" href="#GeoJSON的python支持库。" title="永久链接至标题">¶</a></h1>
+<div class="line-block">
+<div class="line"><a class="reference external" href="http://my.oschina.net/u/2306127/blog?catalog=3420733">openthings&#64;163.com</a>,
+2016-04.</div>
+<div class="line">* IETF标准项目：<a class="reference external" href="https://github.com/geojson">https://github.com/geojson</a></div>
+<div class="line">* PyPi支持库: <a class="reference external" href="https://pypi.python.org/pypi/geojson">https://pypi.python.org/pypi/geojson</a></div>
+<div class="line">* 其它的支持库包括：GeoPandas, Shaply, GDAL, GIScript</div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from pprint import *
+</pre></div>
+</div>
+</div>
+<div class="section" id="Installation">
+<h2>Installation<a class="headerlink" href="#Installation" title="永久链接至标题">¶</a></h2>
+<p>python-geojson is compatible with Python 2.6, 2.7, 3.2, 3.3, and 3.4. It
+is listed on PyPi as ‘geojson’. The recommended way to install is via
+pip:</p>
+<blockquote>
+<div>pip install geojson</div></blockquote>
+</div>
+<div class="section" id="GeoJSON-Objects">
+<h2>GeoJSON Objects<a class="headerlink" href="#GeoJSON-Objects" title="永久链接至标题">¶</a></h2>
+<p>This library implements all the GeoJSON Objects described in The GeoJSON
+Format Specification.</p>
+</div>
+<div class="section" id="Point">
+<h2>Point<a class="headerlink" href="#Point" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geojson import Point
+
+Point((-115.81, 37.24))  # doctest: +ELLIPSIS
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[4]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>{&quot;coordinates&quot;: [-115.81, 37.24], &quot;type&quot;: &quot;Point&quot;}
+</pre></div>
+</div>
+</div>
+<p>Visualize the result of the example above here. General information
+about Point can be found in Section 2.1.2 and Appendix A: Point within
+The GeoJSON Format Specification. ## MultiPoint</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geojson import MultiPoint
+
+MultiPoint([(-155.52, 19.61), (-156.22, 20.74), (-157.97, 21.46)])  # doctest: +ELLIPSIS
+#{&quot;coordinates&quot;: [[-155.5..., 19.6...], [-156.2..., 20.7...], [-157.9..., 21.4...]], &quot;type&quot;: &quot;MultiPoint&quot;}
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[5]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>{&quot;coordinates&quot;: [[-155.52, 19.61], [-156.22, 20.74], [-157.97, 21.46]], &quot;type&quot;: &quot;MultiPoint&quot;}
+</pre></div>
+</div>
+</div>
+<p>Visualize the result of the example above here. General information
+about MultiPoint can be found in Section 2.1.3 and Appendix A:
+MultiPoint within The GeoJSON Format Specification. ## LineString</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geojson import LineString
+
+lstring = LineString([(8.919, 44.4074), (8.923, 44.4075)])  # doctest: +ELLIPSIS
+#{&quot;coordinates&quot;: [[8.91..., 44.407...], [8.92..., 44.407...]], &quot;type&quot;: &quot;LineString&quot;}
+
+pprint(lstring)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+{&#34;coordinates&#34;: [[8.919, 44.4074], [8.923, 44.4075]], &#34;type&#34;: &#34;LineString&#34;}
+</pre></div></div>
+</div>
+<p>Visualize the result of the example above here. General information
+about LineString can be found in Section 2.1.4 and Appendix A:
+LineString within The GeoJSON Format Specification. ## MultiLineString</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geojson import MultiLineString
+
+mlstring = MultiLineString([
+[(3.75, 9.25), (-130.95, 1.52)],
+[(23.15, -34.25), (-1.35, -4.65), (3.45, 77.95)]
+])  # doctest: +ELLIPSIS
+#{&quot;coordinates&quot;: [[[3.7..., 9.2...], [-130.9..., 1.52...]], [[23.1..., -34.2...],
+#[-1.3..., -4.6...], [3.4..., 77.9...]]], &quot;type&quot;: &quot;MultiLineString&quot;}
+
+pprint(mlstring)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+{&#39;coordinates&#39;: [[(3.75, 9.25), (-130.95, 1.52)],
+                 [(23.15, -34.25), (-1.35, -4.65), (3.45, 77.95)]],
+ &#39;type&#39;: &#39;MultiLineString&#39;}
+</pre></div></div>
+</div>
+<p>Visualize the result of the example above here. General information
+about MultiLineString can be found in Section 2.1.5 and Appendix A:
+MultiLineString within The GeoJSON Format Specification. ## Polygon</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geojson import Polygon
+
+# no hole within polygon
+polya = Polygon([[(2.38, 57.322), (23.194, -20.28), (-120.43, 19.15), (2.38, 57.322)]])  # doctest: +ELLIPSIS
+#{&quot;coordinates&quot;: [[[2.3..., 57.32...], [23.19..., -20.2...], [-120.4..., 19.1...]]], &quot;type&quot;: &quot;Polygon&quot;}
+
+pprint(polya)
+
+# hole within polygon
+polyb = Polygon([
+[(2.38, 57.322), (23.194, -20.28), (-120.43, 19.15), (2.38, 57.322)],
+[(-5.21, 23.51), (15.21, -10.81), (-20.51, 1.51), (-5.21, 23.51)]
+])  # doctest: +ELLIPSIS
+#{&quot;coordinates&quot;: [[[2.3..., 57.32...], [23.19..., -20.2...], [-120.4..., 19.1...]],
+#[[-5.2..., 23.5...], [15.2..., -10.8...], [-20.5..., 1.5...], [-5.2..., 23.5...]]], &quot;type&quot;: &quot;Polygon&quot;}
+
+pprint(polyb)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+{&#39;coordinates&#39;: [[(2.38, 57.322),
+                  (23.194, -20.28),
+                  (-120.43, 19.15),
+                  (2.38, 57.322)]],
+ &#39;type&#39;: &#39;Polygon&#39;}
+{&#39;coordinates&#39;: [[(2.38, 57.322),
+                  (23.194, -20.28),
+                  (-120.43, 19.15),
+                  (2.38, 57.322)],
+                 [(-5.21, 23.51),
+                  (15.21, -10.81),
+                  (-20.51, 1.51),
+                  (-5.21, 23.51)]],
+ &#39;type&#39;: &#39;Polygon&#39;}
+</pre></div></div>
+</div>
+<p>Visualize the results of the example above here. General information
+about Polygon can be found in Section 2.1.6 and Appendix A: Polygon
+within The GeoJSON Format Specification. ## MultiPolygon</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [18]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geojson import MultiPolygon
+
+mp = MultiPolygon([
+([(3.78, 9.28), (-130.91, 1.52), (35.12, 72.234), (3.78, 9.28)],),
+([(23.18, -34.29), (-1.31, -4.61), (3.41, 77.91), (23.18, -34.29)],)
+])  # doctest: +ELLIPSIS
+
+#{&quot;coordinates&quot;: [[[[3.7..., 9.2...], [-130.9..., 1.5...], [35.1..., 72.23...]]],
+#[[[23.1..., -34.2...], [-1.3..., #-4.6...], [3.4..., 77.9...]]]], &quot;type&quot;: &quot;MultiPolygon&quot;}
+
+pprint(mp)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+{&#39;coordinates&#39;: [([(3.78, 9.28),
+                   (-130.91, 1.52),
+                   (35.12, 72.234),
+                   (3.78, 9.28)],),
+                 ([(23.18, -34.29),
+                   (-1.31, -4.61),
+                   (3.41, 77.91),
+                   (23.18, -34.29)],)],
+ &#39;type&#39;: &#39;MultiPolygon&#39;}
+</pre></div></div>
+</div>
+<p>Visualize the result of the example above here. General information
+about MultiPolygon can be found in Section 2.1.7 and Appendix A:
+MultiPolygon within The GeoJSON Format Specification. ##
+GeometryCollection</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [19]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geojson import GeometryCollection, Point, LineString
+
+my_point = Point((23.532, -63.12))
+
+my_line = LineString([(-152.62, 51.21), (5.21, 10.69)])
+
+gc = GeometryCollection([my_point, my_line])  # doctest: +ELLIPSIS
+#{&quot;geometries&quot;: [{&quot;coordinates&quot;: [23.53..., -63.1...], &quot;type&quot;: &quot;Point&quot;},
+#{&quot;coordinates&quot;: [[-152.6..., 51.2...], [5.2..., 10.6...]], &quot;type&quot;: &quot;LineString&quot;}], &quot;type&quot;: &quot;GeometryCollection&quot;}
+
+pprint(gc)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+{&#39;geometries&#39;: [{&#34;coordinates&#34;: [23.532, -63.12], &#34;type&#34;: &#34;Point&#34;},
+                {&#39;coordinates&#39;: [(-152.62, 51.21), (5.21, 10.69)],
+                 &#39;type&#39;: &#39;LineString&#39;}],
+ &#39;type&#39;: &#39;GeometryCollection&#39;}
+</pre></div></div>
+</div>
+<p>Visualize the result of the example above here. General information
+about GeometryCollection can be found in Section 2.1.8 and Appendix A:
+GeometryCollection within The GeoJSON Format Specification. ## Feature</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [20]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geojson import Feature, Point
+
+my_point = Point((-3.68, 40.41))
+
+f1 = Feature(geometry=my_point)  # doctest: +ELLIPSIS
+#{&quot;geometry&quot;: {&quot;coordinates&quot;: [-3.68..., 40.4...], &quot;type&quot;: &quot;Point&quot;}, &quot;properties&quot;: {}, &quot;type&quot;: &quot;Feature&quot;}
+pprint(f1)
+
+f2 = Feature(geometry=my_point, properties={&quot;country&quot;: &quot;Spain&quot;})  # doctest: +ELLIPSIS
+#{&quot;geometry&quot;: {&quot;coordinates&quot;: [-3.68..., 40.4...], &quot;type&quot;: &quot;Point&quot;}, &quot;properties&quot;: {&quot;country&quot;: &quot;Spain&quot;},
+#&quot;type&quot;: &quot;Feature&quot;}
+pprint(f2)
+
+f3 = Feature(geometry=my_point, id=27)  # doctest: +ELLIPSIS
+#{&quot;geometry&quot;: {&quot;coordinates&quot;: [-3.68..., 40.4...], &quot;type&quot;: &quot;Point&quot;}, &quot;id&quot;: 27, &quot;properties&quot;: {}, &quot;type&quot;: &quot;Feature&quot;}
+pprint(f3)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+{&#39;geometry&#39;: {&#34;coordinates&#34;: [-3.68, 40.41], &#34;type&#34;: &#34;Point&#34;},
+ &#39;properties&#39;: {},
+ &#39;type&#39;: &#39;Feature&#39;}
+{&#39;geometry&#39;: {&#34;coordinates&#34;: [-3.68, 40.41], &#34;type&#34;: &#34;Point&#34;},
+ &#39;properties&#39;: {&#39;country&#39;: &#39;Spain&#39;},
+ &#39;type&#39;: &#39;Feature&#39;}
+{&#39;geometry&#39;: {&#34;coordinates&#34;: [-3.68, 40.41], &#34;type&#34;: &#34;Point&#34;},
+ &#39;id&#39;: 27,
+ &#39;properties&#39;: {},
+ &#39;type&#39;: &#39;Feature&#39;}
+</pre></div></div>
+</div>
+<p>Visualize the results of the examples above here. General information
+about Feature can be found in Section 2.2 within The GeoJSON Format
+Specification. ## FeatureCollection</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [21]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geojson import Feature, Point, FeatureCollection
+
+my_feature = Feature(geometry=Point((1.6432, -19.123)))
+
+my_other_feature = Feature(geometry=Point((-80.234, -22.532)))
+
+fc = FeatureCollection([my_feature, my_other_feature])  # doctest: +ELLIPSIS
+#{&quot;features&quot;: [{&quot;geometry&quot;: {&quot;coordinates&quot;: [1.643..., -19.12...], &quot;type&quot;: &quot;Point&quot;}, &quot;properties&quot;: {}, &quot;type&quot;: #&quot;Feature&quot;}, {&quot;geometry&quot;: {&quot;coordinates&quot;: [-80.23..., -22.53...], &quot;type&quot;: &quot;Point&quot;}, &quot;properties&quot;: {}, &quot;type&quot;: #&quot;Feature&quot;}], &quot;type&quot;: &quot;FeatureCollection&quot;}
+
+pprint(fc)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+{&#39;features&#39;: [{&#39;geometry&#39;: {&#34;coordinates&#34;: [1.6432, -19.123], &#34;type&#34;: &#34;Point&#34;},
+               &#39;properties&#39;: {},
+               &#39;type&#39;: &#39;Feature&#39;},
+              {&#39;geometry&#39;: {&#34;coordinates&#34;: [-80.234, -22.532], &#34;type&#34;: &#34;Point&#34;},
+               &#39;properties&#39;: {},
+               &#39;type&#39;: &#39;Feature&#39;}],
+ &#39;type&#39;: &#39;FeatureCollection&#39;}
+</pre></div></div>
+</div>
+<p>Visualize the result of the example above here. General information
+about FeatureCollection can be found in Section 2.3 within The GeoJSON
+Format Specification. ## GeoJSON encoding/decoding</p>
+<p>All of the GeoJSON Objects implemented in this library can be encoded
+and decoded into raw GeoJSON with the geojson.dump, geojson.dumps,
+geojson.load, and geojson.loads functions.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [23]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import geojson
+
+my_point = geojson.Point((43.24, -1.532))
+
+pprint(my_point)  # doctest: +ELLIPSIS
+#{&quot;coordinates&quot;: [43.2..., -1.53...], &quot;type&quot;: &quot;Point&quot;}
+
+dump = geojson.dumps(my_point, sort_keys=True)
+
+pprint(dump)  # doctest: +ELLIPSIS
+#&#39;{&quot;coordinates&quot;: [43.2..., -1.53...], &quot;type&quot;: &quot;Point&quot;}&#39;
+
+gj = geojson.loads(dump)  # doctest: +ELLIPSIS
+#{&quot;coordinates&quot;: [43.2..., -1.53...], &quot;type&quot;: &quot;Point&quot;}
+pprint(gj)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+{&#34;coordinates&#34;: [43.24, -1.532], &#34;type&#34;: &#34;Point&#34;}
+&#39;{&#34;coordinates&#34;: [43.24, -1.532], &#34;type&#34;: &#34;Point&#34;}&#39;
+{&#34;coordinates&#34;: [43.24, -1.532], &#34;type&#34;: &#34;Point&#34;}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="Custom-classes">
+<h2>Custom classes<a class="headerlink" href="#Custom-classes" title="永久链接至标题">¶</a></h2>
+<p>This encoding/decoding functionality shown in the previous can be
+extended to custom classes using the interface described by the
+<strong>geo_interface</strong> Specification.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [24]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import geojson
+
+class MyPoint():
+     def __init__(self, x, y):
+         self.x = x
+         self.y = y
+
+     @property
+     def __geo_interface__(self):
+         return {&#39;type&#39;: &#39;Point&#39;, &#39;coordinates&#39;: (self.x, self.y)}
+
+point_instance = MyPoint(52.235, -19.234)
+
+geojson.dumps(point_instance, sort_keys=True)  # doctest: +ELLIPSIS
+#&#39;{&quot;coordinates&quot;: [52.23..., -19.23...], &quot;type&quot;: &quot;Point&quot;}&#39;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[24]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&#39;{&quot;coordinates&quot;: [52.235, -19.234], &quot;type&quot;: &quot;Point&quot;}&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Helpful-utilities">
+<h2>Helpful utilities<a class="headerlink" href="#Helpful-utilities" title="永久链接至标题">¶</a></h2>
+<div class="section" id="coords">
+<h3>coords<a class="headerlink" href="#coords" title="永久链接至标题">¶</a></h3>
+<p>geojson.utils.coords yields all coordinate tuples from a geometry or
+feature object.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [27]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import geojson
+
+my_line = LineString([(-152.62, 51.21), (5.21, 10.69)])
+
+my_feature = geojson.Feature(geometry=my_line)
+
+list(geojson.utils.coords(my_feature))  # doctest: +ELLIPSIS
+#[(-152.62..., 51.21...), (5.21..., 10.69...)]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[27]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>[(-152.62, 51.21), (5.21, 10.69)]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="map_coords">
+<h3>map_coords<a class="headerlink" href="#map_coords" title="永久链接至标题">¶</a></h3>
+<p>geojson.utils.map_coords maps a function over all coordinate tuples and
+returns a geometry of the same type. Useful for translating a geometry
+in space or flipping coordinate order.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [28]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import geojson
+
+new_point = geojson.utils.map_coords(lambda x: x/2, geojson.Point((-115.81, 37.24)))
+
+geojson.dumps(new_point, sort_keys=True)  # doctest: +ELLIPSIS
+#&#39;{&quot;coordinates&quot;: [-57.905..., 18.62...], &quot;type&quot;: &quot;Point&quot;}&#39;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[28]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&#39;{&quot;coordinates&quot;: [-57.905, 18.62], &quot;type&quot;: &quot;Point&quot;}&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="validation">
+<h3>validation<a class="headerlink" href="#validation" title="永久链接至标题">¶</a></h3>
+<p>geojson.is_valid provides validation of GeoJSON objects.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [29]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import geojson
+
+validation = geojson.is_valid(geojson.Point((-3.68,40.41,25.14)))
+print(validation[&#39;valid&#39;])
+#&#39;no&#39;
+
+print(validation[&#39;message&#39;])
+#&#39;the &quot;coordinates&quot; member must be a single position&#39;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+no
+the &#34;coordinates&#34; member must be a single position
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="generate_random">
+<h3>generate_random<a class="headerlink" href="#generate_random" title="永久链接至标题">¶</a></h3>
+<p>geojson.utils.generate_random yields a geometry type with random data</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [30]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import geojson
+
+geojson.utils.generate_random(&quot;LineString&quot;)  # doctest: +ELLIPSIS
+#{&quot;coordinates&quot;: [...], &quot;type&quot;: &quot;LineString&quot;}
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[30]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>{&quot;coordinates&quot;: [[-4.454240116119678, -85.11096594745686], [-102.67726268531537, -21.1641373701423], [-175.4525855417237, 53.518811905348855]], &quot;type&quot;: &quot;LineString&quot;}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Development">
+<h3>Development<a class="headerlink" href="#Development" title="永久链接至标题">¶</a></h3>
+<p>To build this project, run python setup.py build. To run the unit tests,
+run python setup.py test.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

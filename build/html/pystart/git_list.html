@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>IPython Notebook Tutorial and Skills open source... &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_cloud.html">云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>IPython Notebook Tutorial and Skills open source...</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/pystart/git_list.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="ipython-notebook-tutorial-and-skills-open-source">
+<span id="ipython-notebook-tutorial-and-skills-open-source"></span><h1>IPython Notebook Tutorial and Skills open source...<a class="headerlink" href="#ipython-notebook-tutorial-and-skills-open-source" title="永久链接至标题">¶</a></h1>
+<div class="section" id="by-openthings-163-com-2016-04">
+<span id="by-openthings-163-com-2016-04"></span><h2>by <a class="reference external" href="http://my.oschina.net/u/2306127/blog?catalog=3420733">openthings&#64;163.com</a>, 2016-04.<a class="headerlink" href="#by-openthings-163-com-2016-04" title="永久链接至标题">¶</a></h2>
+</div>
+<div class="section" id="pandas-tutorial-for-new-user">
+<span id="pandas-tutorial-for-new-user"></span><h2>Pandas tutorial for new user.<a class="headerlink" href="#pandas-tutorial-for-new-user" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://bitbucket.org/hrojas/learn-pandas.git">https://bitbucket.org/hrojas/learn-pandas.git</a></p>
+</div>
+<div class="section" id="echo-pandas-cookbook">
+<span id="echo-pandas-cookbook"></span><h2>echo Pandas Cookbook.<a class="headerlink" href="#echo-pandas-cookbook" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/jvns/pandas-cookbook.git">https://github.com/jvns/pandas-cookbook.git</a></p>
+</div>
+<div class="section" id="some-files-for-finance-analysis">
+<span id="some-files-for-finance-analysis"></span><h2>Some Files for Finance Analysis.<a class="headerlink" href="#some-files-for-finance-analysis" title="永久链接至标题">¶</a></h2>
+<p>[clone https://github.com/wy36101299/ipynb-file.git](clone https://github.com/wy36101299/ipynb-file.git)</p>
+</div>
+<div class="section" id="practical-data-analysis-with-python">
+<span id="practical-data-analysis-with-python"></span><h2>Practical data analysis with Python<a class="headerlink" href="#practical-data-analysis-with-python" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://leanpub.com/analyticshandbook">https://leanpub.com/analyticshandbook</a></p>
+</div>
+<div class="section" id="mining-the-social-web-2nd-edition">
+<span id="mining-the-social-web-2nd-edition"></span><h2>Mining-the-Social-Web-2nd-Edition<a class="headerlink" href="#mining-the-social-web-2nd-edition" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/ptwobrussell/Mining-the-Social-Web-2nd-Edition.git">https://github.com/ptwobrussell/Mining-the-Social-Web-2nd-Edition.git</a></p>
+</div>
+<div class="section" id="biolab">
+<span id="biolab"></span><h2>Biolab<a class="headerlink" href="#biolab" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/biolab/ipynb.git">https://github.com/biolab/ipynb.git</a></p>
+</div>
+<div class="section" id="build-a-flask-server-for-jupyter">
+<span id="build-a-flask-server-for-jupyter"></span><h2>Build a flask server for Jupyter.<a class="headerlink" href="#build-a-flask-server-for-jupyter" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/yhilpisch/ipynb-docker.git">https://github.com/yhilpisch/ipynb-docker.git</a></p>
+</div>
+<div class="section" id="ipython-notebooks-used-in-georgia-tech-s-cse-6040-computing-for-data-analysis">
+<span id="ipython-notebooks-used-in-georgia-tech-s-cse-6040-computing-for-data-analysis"></span><h2>IPython notebooks used in Georgia Tech&#8217;s CSE 6040: Computing for Data Analysis<a class="headerlink" href="#ipython-notebooks-used-in-georgia-tech-s-cse-6040-computing-for-data-analysis" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/rvuduc/cse6040-ipynbs.git">https://github.com/rvuduc/cse6040-ipynbs.git</a></p>
+</div>
+<div class="section" id="jupyter-notebook-tools-for-sphinx">
+<span id="jupyter-notebook-tools-for-sphinx"></span><h2>Jupyter Notebook Tools for Sphinx<a class="headerlink" href="#jupyter-notebook-tools-for-sphinx" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/spatialaudio/nbsphinx.git">https://github.com/spatialaudio/nbsphinx.git</a></p>
+</div>
+<div class="section" id="a-collection-of-notebooks-for-using-ipython-effectively">
+<span id="a-collection-of-notebooks-for-using-ipython-effectively"></span><h2>A collection of Notebooks for using IPython effectively<a class="headerlink" href="#a-collection-of-notebooks-for-using-ipython-effectively" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/odewahn/ipynb-examples.git">https://github.com/odewahn/ipynb-examples.git</a></p>
+</div>
+<div class="section" id="aka-bayesian-methods-for-hackers">
+<span id="aka-bayesian-methods-for-hackers"></span><h2>aka &#8220;Bayesian Methods for Hackers&#8221;<a class="headerlink" href="#aka-bayesian-methods-for-hackers" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers.git">https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers.git</a></p>
+</div>
+<div class="section" id="bokeh-tutorial-ipynb">
+<span id="bokeh-tutorial-ipynb"></span><h2>/bokeh-tutorial-ipynb<a class="headerlink" href="#bokeh-tutorial-ipynb" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/chdoig/bokeh-tutorial-ipynb.git">https://github.com/chdoig/bokeh-tutorial-ipynb.git</a></p>
+</div>
+<div class="section" id="collection-all-kinds-of-ipynb">
+<span id="collection-all-kinds-of-ipynb"></span><h2>collection all kinds of ipynb<a class="headerlink" href="#collection-all-kinds-of-ipynb" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/OpenBookProjects/ipynb.git">https://github.com/OpenBookProjects/ipynb.git</a></p>
+</div>
+<div class="section" id="just-a-shared-git-repo-for-social-graphs-interaction">
+<span id="just-a-shared-git-repo-for-social-graphs-interaction"></span><h2>Just a shared git repo for Social Graphs &amp; Interaction<a class="headerlink" href="#just-a-shared-git-repo-for-social-graphs-interaction" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/timmevandermeer/ipynb.git">https://github.com/timmevandermeer/ipynb.git</a></p>
+</div>
+<div class="section" id="neural-networks-training-jupyter-notebooks">
+<span id="neural-networks-training-jupyter-notebooks"></span><h2>Neural Networks Training Jupyter Notebooks<a class="headerlink" href="#neural-networks-training-jupyter-notebooks" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/tmeits/ipynb.git">https://github.com/tmeits/ipynb.git</a></p>
+</div>
+<div class="section" id="tensorflow-ipynb">
+<span id="tensorflow-ipynb"></span><h2>tensorflow-ipynb<a class="headerlink" href="#tensorflow-ipynb" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/fujun-liu/tensorflow-ipynb.git">https://github.com/fujun-liu/tensorflow-ipynb.git</a></p>
+</div>
+<div class="section" id="https-github-com-charlesjhlee-ml-ipynb-git">
+<span id="https-github-com-charlesjhlee-ml-ipynb-git"></span><h2>https://github.com/charlesjhlee/ml_ipynb.git<a class="headerlink" href="#https-github-com-charlesjhlee-ml-ipynb-git" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/charlesjhlee/ml_ipynb.git">https://github.com/charlesjhlee/ml_ipynb.git</a></p>
+</div>
+<div class="section" id="ipython-notebook-visuals">
+<span id="ipython-notebook-visuals"></span><h2>Ipython Notebook Visuals<a class="headerlink" href="#ipython-notebook-visuals" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/bangadennis/ipynb_visuals.git">https://github.com/bangadennis/ipynb_visuals.git</a></p>
+</div>
+<div class="section" id="canvas-widget-for-ipython-notebook-https-github-com-who8mylunch-ipynb-widget-canvas">
+<span id="canvas-widget-for-ipython-notebook-https-github-com-who8mylunch-ipynb-widget-canvas"></span><h2>Canvas Widget for IPython Notebook https://github.com/Who8MyLunch/ipynb_widget_canvas<a class="headerlink" href="#canvas-widget-for-ipython-notebook-https-github-com-who8mylunch-ipynb-widget-canvas" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/Who8MyLunch/ipynb_widget_canvas.git">https://github.com/Who8MyLunch/ipynb_widget_canvas.git</a></p>
+</div>
+<div class="section" id="copy-of-udacity-dl-course-ipynb-files-and-maybe-some-other-stuff">
+<span id="copy-of-udacity-dl-course-ipynb-files-and-maybe-some-other-stuff"></span><h2>Copy of Udacity DL course ipynb files, and maybe some other stuff<a class="headerlink" href="#copy-of-udacity-dl-course-ipynb-files-and-maybe-some-other-stuff" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/damienstanton/tensorflownotes.git">https://github.com/damienstanton/tensorflownotes.git</a></p>
+</div>
+<div class="section" id="this-is-an-ipynb-in-which-we-use-simple-logistic-regression-from-spark-mllib-to-train-a-sarcasm-detector-on-comments-from-reddit">
+<span id="this-is-an-ipynb-in-which-we-use-simple-logistic-regression-from-spark-mllib-to-train-a-sarcasm-detector-on-comments-from-reddit"></span><h2>This is an ipynb in which we use simple logistic regression from Spark MLlib to train a sarcasm detector on comments from reddit.<a class="headerlink" href="#this-is-an-ipynb-in-which-we-use-simple-logistic-regression-from-spark-mllib-to-train-a-sarcasm-detector-on-comments-from-reddit" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/FranekJemiolo/SarcasmDetector.git">https://github.com/FranekJemiolo/SarcasmDetector.git</a></p>
+</div>
+<div class="section" id="ipython-project">
+<span id="ipython-project"></span><h2>IPython project<a class="headerlink" href="#ipython-project" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/ipython/ipython.git">https://github.com/ipython/ipython.git</a></p>
+</div>
+<div class="section" id="topik-project">
+<span id="topik-project"></span><h2>Topik project<a class="headerlink" href="#topik-project" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/ContinuumIO/topik.git">https://github.com/ContinuumIO/topik.git</a></p>
+</div>
+<div class="section" id="scientific-python-lectures">
+<span id="scientific-python-lectures"></span><h2>scientific-python-lectures<a class="headerlink" href="#scientific-python-lectures" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/ContinuumIO/scientific-python-lectures.git">https://github.com/ContinuumIO/scientific-python-lectures.git</a></p>
+</div>
+<div class="section" id="continuum-work-from-xdata-january-2016-hackathon-with-u-s-census-bureau">
+<span id="continuum-work-from-xdata-january-2016-hackathon-with-u-s-census-bureau"></span><h2>Continuum work from XDATA January 2016 Hackathon with U. S. Census Bureau<a class="headerlink" href="#continuum-work-from-xdata-january-2016-hackathon-with-u-s-census-bureau" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/ContinuumIO/xdata-2016-census.git">https://github.com/ContinuumIO/xdata-2016-census.git</a></p>
+</div>
+<div class="section" id="analysis-on-each-image">
+<span id="analysis-on-each-image"></span><h2>Analysis on Each Image<a class="headerlink" href="#analysis-on-each-image" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="https://github.com/ContinuumIO/image-analyzer.git">https://github.com/ContinuumIO/image-analyzer.git</a></p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,2252 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1. Pandas_QuickStart &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../index.html"/>
+        <link rel="up" title="2. 云计算基础设施" href="../gispark_cloud.html"/>
+        <link rel="next" title="2. 分布式计算与持续交付" href="../gispark_paas.html"/>
+        <link rel="prev" title="2. 云计算基础设施" href="../gispark_cloud.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_prefix.html">前言</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../gispark_cloud.html">2. 云计算基础设施</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../gispark_cloud.html#OpenStack的安装">2.1. OpenStack的安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gispark_cloud.html#数据虚拟化存储系统">2.2. 数据虚拟化存储系统</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gispark_cloud.html#Docker计算容器系统">2.3. Docker计算容器系统</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../gispark_cloud.html#Mesos与运维">2.4. Mesos与运维</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../gispark_cloud.html#概述">2.4.1. 概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../gispark_cloud.html#安装与配置">2.4.2. 安装与配置</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="../gispark_cloud.html#Mesos管理">2.4.3. Mesos管理</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="../gispark_cloud.html#Chronos任务管理系统">2.4.3.1. Chronos任务管理系统</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/sphinx_quickstart.html">Sphinx快速入门</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+          <li><a href="../gispark_cloud.html">2. 云计算基础设施</a> &raquo;</li>
+      
+    <li>1. Pandas_QuickStart</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/pystart/pandas_quickstart.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="Pandas_QuickStart">
+<h1>1. Pandas_QuickStart<a class="headerlink" href="#Pandas_QuickStart" title="永久链接至标题">¶</a></h1>
+<div class="line-block">
+<div class="line">Origin from <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/">http://pandas.pydata.org/pandas-docs/stable/</a></div>
+<div class="line">by
+<a class="reference external" href="http://my.oschina.net/u/2306127/blog?catalog=3420733">openthings&#64;163.com</a>,
+2016-04.</div>
+</div>
+<div class="section" id="6.1-Object-Creation">
+<h2>1.1. 6.1 Object Creation<a class="headerlink" href="#6.1-Object-Creation" title="永久链接至标题">¶</a></h2>
+<p>Creating a Series by passing a list of values, letting pandas create a
+default integer index:</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+
+s = pd.Series([1,3,5,np.nan,6,8])
+s
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[1]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>0    1.0
+1    3.0
+2    5.0
+3    NaN
+4    6.0
+5    8.0
+dtype: float64
+</pre></div>
+</div>
+</div>
+<p>Creating a DataFrame by passing a numpy array, with a datetime index and
+labeled columns:</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>dates = pd.date_range(&#39;20130101&#39;, periods=6)
+dates
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[2]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>DatetimeIndex([&#39;2013-01-01&#39;, &#39;2013-01-02&#39;, &#39;2013-01-03&#39;, &#39;2013-01-04&#39;,
+               &#39;2013-01-05&#39;, &#39;2013-01-06&#39;],
+              dtype=&#39;datetime64[ns]&#39;, freq=&#39;D&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df = pd.DataFrame(np.random.randn(6,4), index=dates, columns=list(&#39;ABCD&#39;))
+
+df
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[7]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-01</th>
+      <td>-1.334013</td>
+      <td>-0.348297</td>
+      <td>0.388654</td>
+      <td>-0.225967</td>
+    </tr>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-0.139974</td>
+      <td>-1.347789</td>
+      <td>0.817077</td>
+      <td>0.192477</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.082739</td>
+      <td>-0.544105</td>
+      <td>-1.423883</td>
+      <td>-1.247367</td>
+    </tr>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.034788</td>
+      <td>-0.677221</td>
+      <td>0.120449</td>
+      <td>0.794341</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>0.428547</td>
+      <td>-0.610156</td>
+      <td>-0.950891</td>
+      <td>-0.058047</td>
+    </tr>
+    <tr>
+      <th>2013-01-06</th>
+      <td>0.125631</td>
+      <td>-0.116653</td>
+      <td>-0.544575</td>
+      <td>-1.578785</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Creating a DataFrame by passing a dict of objects that can be converted
+to series-like.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df2 = pd.DataFrame({ &#39;A&#39; : 1.,
+&#39;B&#39; : pd.Timestamp(&#39;20130102&#39;),
+&#39;C&#39; : pd.Series(1,index=list(range(4)),dtype=&#39;float32&#39;),
+&#39;D&#39; : np.array([3] * 4,dtype=&#39;int32&#39;),
+&#39;E&#39; : pd.Categorical([&quot;test&quot;,&quot;train&quot;,&quot;test&quot;,&quot;train&quot;]),
+&#39;F&#39; : &#39;foo&#39; })
+
+df2
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[8]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+      <th>F</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>test</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>train</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>test</td>
+      <td>foo</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1.0</td>
+      <td>2013-01-02</td>
+      <td>1.0</td>
+      <td>3</td>
+      <td>train</td>
+      <td>foo</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df2.dtypes
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[9]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>A           float64
+B    datetime64[ns]
+C           float32
+D             int32
+E          category
+F            object
+dtype: object
+</pre></div>
+</div>
+</div>
+<p>If you’re using IPython, tab completion for column names (as well as
+public attributes) is automatically enabled. Here’s a subset of the
+attributes that will be completed:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">13</span><span class="p">]:</span> <span class="n">df2</span><span class="o">.&lt;</span><span class="n">TAB</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df2.
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[11]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>0    1.0
+1    1.0
+2    1.0
+3    1.0
+Name: A, dtype: float64
+</pre></div>
+</div>
+</div>
+<p>As you can see, the columns A, B, C, and D are automatically tab
+completed. E is there as well; the rest of the attributes have been
+truncated for brevity.</p>
+</div>
+<div class="section" id="6.2-Viewing-Data">
+<h2>1.2. 6.2 Viewing Data<a class="headerlink" href="#6.2-Viewing-Data" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.head()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[14]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-01</th>
+      <td>-1.334013</td>
+      <td>-0.348297</td>
+      <td>0.388654</td>
+      <td>-0.225967</td>
+    </tr>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-0.139974</td>
+      <td>-1.347789</td>
+      <td>0.817077</td>
+      <td>0.192477</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.082739</td>
+      <td>-0.544105</td>
+      <td>-1.423883</td>
+      <td>-1.247367</td>
+    </tr>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.034788</td>
+      <td>-0.677221</td>
+      <td>0.120449</td>
+      <td>0.794341</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>0.428547</td>
+      <td>-0.610156</td>
+      <td>-0.950891</td>
+      <td>-0.058047</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.tail(3)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[15]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.034788</td>
+      <td>-0.677221</td>
+      <td>0.120449</td>
+      <td>0.794341</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>0.428547</td>
+      <td>-0.610156</td>
+      <td>-0.950891</td>
+      <td>-0.058047</td>
+    </tr>
+    <tr>
+      <th>2013-01-06</th>
+      <td>0.125631</td>
+      <td>-0.116653</td>
+      <td>-0.544575</td>
+      <td>-1.578785</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.index
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[16]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>DatetimeIndex([&#39;2013-01-01&#39;, &#39;2013-01-02&#39;, &#39;2013-01-03&#39;, &#39;2013-01-04&#39;,
+               &#39;2013-01-05&#39;, &#39;2013-01-06&#39;],
+              dtype=&#39;datetime64[ns]&#39;, freq=&#39;D&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [17]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.values
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[17]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>array([[-1.33401275, -0.34829657,  0.38865407, -0.22596701],
+       [-0.13997444, -1.34778853,  0.81707707,  0.19247685],
+       [-1.0827386 , -0.5441047 , -1.42388302, -1.24736743],
+       [ 0.03478847, -0.67722051,  0.12044917,  0.7943414 ],
+       [ 0.42854678, -0.61015602, -0.95089113, -0.0580473 ],
+       [ 0.12563068, -0.11665286, -0.54457518, -1.57878468]])
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [18]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.describe()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[18]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>count</th>
+      <td>6.000000</td>
+      <td>6.000000</td>
+      <td>6.000000</td>
+      <td>6.000000</td>
+    </tr>
+    <tr>
+      <th>mean</th>
+      <td>-0.327960</td>
+      <td>-0.607370</td>
+      <td>-0.265528</td>
+      <td>-0.353891</td>
+    </tr>
+    <tr>
+      <th>std</th>
+      <td>0.710887</td>
+      <td>0.415940</td>
+      <td>0.853035</td>
+      <td>0.896606</td>
+    </tr>
+    <tr>
+      <th>min</th>
+      <td>-1.334013</td>
+      <td>-1.347789</td>
+      <td>-1.423883</td>
+      <td>-1.578785</td>
+    </tr>
+    <tr>
+      <th>25%</th>
+      <td>-0.847048</td>
+      <td>-0.660454</td>
+      <td>-0.849312</td>
+      <td>-0.992017</td>
+    </tr>
+    <tr>
+      <th>50%</th>
+      <td>-0.052593</td>
+      <td>-0.577130</td>
+      <td>-0.212063</td>
+      <td>-0.142007</td>
+    </tr>
+    <tr>
+      <th>75%</th>
+      <td>0.102920</td>
+      <td>-0.397249</td>
+      <td>0.321603</td>
+      <td>0.129846</td>
+    </tr>
+    <tr>
+      <th>max</th>
+      <td>0.428547</td>
+      <td>-0.116653</td>
+      <td>0.817077</td>
+      <td>0.794341</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [19]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.T
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[19]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>2013-01-01 00:00:00</th>
+      <th>2013-01-02 00:00:00</th>
+      <th>2013-01-03 00:00:00</th>
+      <th>2013-01-04 00:00:00</th>
+      <th>2013-01-05 00:00:00</th>
+      <th>2013-01-06 00:00:00</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>A</th>
+      <td>-1.334013</td>
+      <td>-0.139974</td>
+      <td>-1.082739</td>
+      <td>0.034788</td>
+      <td>0.428547</td>
+      <td>0.125631</td>
+    </tr>
+    <tr>
+      <th>B</th>
+      <td>-0.348297</td>
+      <td>-1.347789</td>
+      <td>-0.544105</td>
+      <td>-0.677221</td>
+      <td>-0.610156</td>
+      <td>-0.116653</td>
+    </tr>
+    <tr>
+      <th>C</th>
+      <td>0.388654</td>
+      <td>0.817077</td>
+      <td>-1.423883</td>
+      <td>0.120449</td>
+      <td>-0.950891</td>
+      <td>-0.544575</td>
+    </tr>
+    <tr>
+      <th>D</th>
+      <td>-0.225967</td>
+      <td>0.192477</td>
+      <td>-1.247367</td>
+      <td>0.794341</td>
+      <td>-0.058047</td>
+      <td>-1.578785</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [20]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.sort_index(axis=1, ascending=False)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[20]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>D</th>
+      <th>C</th>
+      <th>B</th>
+      <th>A</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-01</th>
+      <td>-0.225967</td>
+      <td>0.388654</td>
+      <td>-0.348297</td>
+      <td>-1.334013</td>
+    </tr>
+    <tr>
+      <th>2013-01-02</th>
+      <td>0.192477</td>
+      <td>0.817077</td>
+      <td>-1.347789</td>
+      <td>-0.139974</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.247367</td>
+      <td>-1.423883</td>
+      <td>-0.544105</td>
+      <td>-1.082739</td>
+    </tr>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.794341</td>
+      <td>0.120449</td>
+      <td>-0.677221</td>
+      <td>0.034788</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>-0.058047</td>
+      <td>-0.950891</td>
+      <td>-0.610156</td>
+      <td>0.428547</td>
+    </tr>
+    <tr>
+      <th>2013-01-06</th>
+      <td>-1.578785</td>
+      <td>-0.544575</td>
+      <td>-0.116653</td>
+      <td>0.125631</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [21]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.sort_values(by=&#39;B&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[21]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-0.139974</td>
+      <td>-1.347789</td>
+      <td>0.817077</td>
+      <td>0.192477</td>
+    </tr>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.034788</td>
+      <td>-0.677221</td>
+      <td>0.120449</td>
+      <td>0.794341</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>0.428547</td>
+      <td>-0.610156</td>
+      <td>-0.950891</td>
+      <td>-0.058047</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.082739</td>
+      <td>-0.544105</td>
+      <td>-1.423883</td>
+      <td>-1.247367</td>
+    </tr>
+    <tr>
+      <th>2013-01-01</th>
+      <td>-1.334013</td>
+      <td>-0.348297</td>
+      <td>0.388654</td>
+      <td>-0.225967</td>
+    </tr>
+    <tr>
+      <th>2013-01-06</th>
+      <td>0.125631</td>
+      <td>-0.116653</td>
+      <td>-0.544575</td>
+      <td>-1.578785</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+<div class="section" id="6.3-Selection">
+<h2>1.3. 6.3 Selection<a class="headerlink" href="#6.3-Selection" title="永久链接至标题">¶</a></h2>
+<p>Getting</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [22]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df[&#39;A&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[22]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>2013-01-01   -1.334013
+2013-01-02   -0.139974
+2013-01-03   -1.082739
+2013-01-04    0.034788
+2013-01-05    0.428547
+2013-01-06    0.125631
+Freq: D, Name: A, dtype: float64
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [23]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df[0:3]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[23]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-01</th>
+      <td>-1.334013</td>
+      <td>-0.348297</td>
+      <td>0.388654</td>
+      <td>-0.225967</td>
+    </tr>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-0.139974</td>
+      <td>-1.347789</td>
+      <td>0.817077</td>
+      <td>0.192477</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.082739</td>
+      <td>-0.544105</td>
+      <td>-1.423883</td>
+      <td>-1.247367</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [24]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df[&#39;20130102&#39;:&#39;20130104&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[24]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-0.139974</td>
+      <td>-1.347789</td>
+      <td>0.817077</td>
+      <td>0.192477</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.082739</td>
+      <td>-0.544105</td>
+      <td>-1.423883</td>
+      <td>-1.247367</td>
+    </tr>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.034788</td>
+      <td>-0.677221</td>
+      <td>0.120449</td>
+      <td>0.794341</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="section" id="6.3.2-Selection-by-Label">
+<h3>1.3.1. 6.3.2 Selection by Label<a class="headerlink" href="#6.3.2-Selection-by-Label" title="永久链接至标题">¶</a></h3>
+<p>For getting a cross section using a label</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [25]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.loc[dates[0]]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[25]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>A   -1.334013
+B   -0.348297
+C    0.388654
+D   -0.225967
+Name: 2013-01-01 00:00:00, dtype: float64
+</pre></div>
+</div>
+</div>
+<p>Selecting on a multi-axis by label</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [26]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.loc[:,[&#39;A&#39;,&#39;B&#39;]]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[26]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-01</th>
+      <td>-1.334013</td>
+      <td>-0.348297</td>
+    </tr>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-0.139974</td>
+      <td>-1.347789</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.082739</td>
+      <td>-0.544105</td>
+    </tr>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.034788</td>
+      <td>-0.677221</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>0.428547</td>
+      <td>-0.610156</td>
+    </tr>
+    <tr>
+      <th>2013-01-06</th>
+      <td>0.125631</td>
+      <td>-0.116653</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Showing label slicing, both endpoints are included</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [27]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.loc[&#39;20130102&#39;:&#39;20130104&#39;,[&#39;A&#39;,&#39;B&#39;]]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[27]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-0.139974</td>
+      <td>-1.347789</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.082739</td>
+      <td>-0.544105</td>
+    </tr>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.034788</td>
+      <td>-0.677221</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Reduction in the dimensions of the returned object</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [30]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.loc[&#39;20130102&#39;,[&#39;A&#39;,&#39;B&#39;]]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[30]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>A   -0.139974
+B   -1.347789
+Name: 2013-01-02 00:00:00, dtype: float64
+</pre></div>
+</div>
+</div>
+<p>For getting a scalar value</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [31]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.loc[dates[0],&#39;A&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[31]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>-1.3340127475498547
+</pre></div>
+</div>
+</div>
+<p>For getting fast access to a scalar (equiv to the prior method)</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [32]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.at[dates[0],&#39;A&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[32]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>-1.3340127475498547
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="6.3.3-Selection-by-Position">
+<h3>1.3.2. 6.3.3 Selection by Position<a class="headerlink" href="#6.3.3-Selection-by-Position" title="永久链接至标题">¶</a></h3>
+<p>See more in Selection by Position Select via the position of the passed
+integers</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [33]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.iloc[3]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[33]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>A    0.034788
+B   -0.677221
+C    0.120449
+D    0.794341
+Name: 2013-01-04 00:00:00, dtype: float64
+</pre></div>
+</div>
+</div>
+<p>By integer slices, acting similar to numpy/python</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [34]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.iloc[3:5,0:2]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[34]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.034788</td>
+      <td>-0.677221</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>0.428547</td>
+      <td>-0.610156</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>By lists of integer position locations, similar to the numpy/python
+style</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [35]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.iloc[[1,2,4],[0,2]]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[35]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-0.139974</td>
+      <td>0.817077</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.082739</td>
+      <td>-1.423883</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>0.428547</td>
+      <td>-0.950891</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>For slicing rows explicitly</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [36]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.iloc[1:3,:]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[36]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-0.139974</td>
+      <td>-1.347789</td>
+      <td>0.817077</td>
+      <td>0.192477</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.082739</td>
+      <td>-0.544105</td>
+      <td>-1.423883</td>
+      <td>-1.247367</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>For slicing columns explicitly</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [37]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.iloc[:,1:3]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[37]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>B</th>
+      <th>C</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-01</th>
+      <td>-0.348297</td>
+      <td>0.388654</td>
+    </tr>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-1.347789</td>
+      <td>0.817077</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-0.544105</td>
+      <td>-1.423883</td>
+    </tr>
+    <tr>
+      <th>2013-01-04</th>
+      <td>-0.677221</td>
+      <td>0.120449</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>-0.610156</td>
+      <td>-0.950891</td>
+    </tr>
+    <tr>
+      <th>2013-01-06</th>
+      <td>-0.116653</td>
+      <td>-0.544575</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>For getting a value explicitly</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [39]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.iloc[1,1]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[39]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>-1.3477885295869219
+</pre></div>
+</div>
+</div>
+<p>For getting fast access to a scalar (equiv to the prior method)</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [40]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.iat[1,1]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[40]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>-1.3477885295869219
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="6.3.4-Boolean-Indexing">
+<h3>1.3.3. 6.3.4 Boolean Indexing<a class="headerlink" href="#6.3.4-Boolean-Indexing" title="永久链接至标题">¶</a></h3>
+<p>Using a single column’s values to select data.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [41]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df[df.A &gt; 0]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[41]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.034788</td>
+      <td>-0.677221</td>
+      <td>0.120449</td>
+      <td>0.794341</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>0.428547</td>
+      <td>-0.610156</td>
+      <td>-0.950891</td>
+      <td>-0.058047</td>
+    </tr>
+    <tr>
+      <th>2013-01-06</th>
+      <td>0.125631</td>
+      <td>-0.116653</td>
+      <td>-0.544575</td>
+      <td>-1.578785</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>A where operation for getting.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [42]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df[df &gt; 0]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[42]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-01</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.388654</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2013-01-02</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.817077</td>
+      <td>0.192477</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.034788</td>
+      <td>NaN</td>
+      <td>0.120449</td>
+      <td>0.794341</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>0.428547</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2013-01-06</th>
+      <td>0.125631</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="section" id="Using-the-isin()-method-for-filtering:">
+<h4>1.3.3.1. Using the isin() method for filtering:<a class="headerlink" href="#Using-the-isin()-method-for-filtering:" title="永久链接至标题">¶</a></h4>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [43]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df2 = df.copy()
+</pre></div>
+</div>
+</div>
+<p>添加一列。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [44]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df2[&#39;E&#39;] = [&#39;one&#39;, &#39;one&#39;,&#39;two&#39;,&#39;three&#39;,&#39;four&#39;,&#39;three&#39;]
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [45]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df2
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[45]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-01</th>
+      <td>-1.334013</td>
+      <td>-0.348297</td>
+      <td>0.388654</td>
+      <td>-0.225967</td>
+      <td>one</td>
+    </tr>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-0.139974</td>
+      <td>-1.347789</td>
+      <td>0.817077</td>
+      <td>0.192477</td>
+      <td>one</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.082739</td>
+      <td>-0.544105</td>
+      <td>-1.423883</td>
+      <td>-1.247367</td>
+      <td>two</td>
+    </tr>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.034788</td>
+      <td>-0.677221</td>
+      <td>0.120449</td>
+      <td>0.794341</td>
+      <td>three</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>0.428547</td>
+      <td>-0.610156</td>
+      <td>-0.950891</td>
+      <td>-0.058047</td>
+      <td>four</td>
+    </tr>
+    <tr>
+      <th>2013-01-06</th>
+      <td>0.125631</td>
+      <td>-0.116653</td>
+      <td>-0.544575</td>
+      <td>-1.578785</td>
+      <td>three</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [46]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df2[df2[&#39;E&#39;].isin([&#39;two&#39;,&#39;four&#39;])]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[46]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+      <th>E</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.082739</td>
+      <td>-0.544105</td>
+      <td>-1.423883</td>
+      <td>-1.247367</td>
+      <td>two</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>0.428547</td>
+      <td>-0.610156</td>
+      <td>-0.950891</td>
+      <td>-0.058047</td>
+      <td>four</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+<div class="section" id="6.3.5-Setting">
+<h3>1.3.4. 6.3.5 Setting<a class="headerlink" href="#6.3.5-Setting" title="永久链接至标题">¶</a></h3>
+<p>Setting a new column automatically aligns the data by the indexes</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [48]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>s1 = pd.Series([1,2,3,4,5,6], index=pd.date_range(&#39;20130102&#39;, periods=6))
+s1
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[48]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>2013-01-02    1
+2013-01-03    2
+2013-01-04    3
+2013-01-05    4
+2013-01-06    5
+2013-01-07    6
+Freq: D, dtype: int64
+</pre></div>
+</div>
+</div>
+<p>Setting values by position</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [49]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.iat[0,1] = 0
+</pre></div>
+</div>
+</div>
+<p>Setting by assigning with a numpy array</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [50]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df.loc[:,&#39;D&#39;] = np.array([5] * len(df))
+</pre></div>
+</div>
+</div>
+<p>The result of the prior setting operations</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [51]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[51]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-01</th>
+      <td>-1.334013</td>
+      <td>0.000000</td>
+      <td>0.388654</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-0.139974</td>
+      <td>-1.347789</td>
+      <td>0.817077</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.082739</td>
+      <td>-0.544105</td>
+      <td>-1.423883</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2013-01-04</th>
+      <td>0.034788</td>
+      <td>-0.677221</td>
+      <td>0.120449</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>0.428547</td>
+      <td>-0.610156</td>
+      <td>-0.950891</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>2013-01-06</th>
+      <td>0.125631</td>
+      <td>-0.116653</td>
+      <td>-0.544575</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>A where operation with setting.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [52]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df2 = df.copy()
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [53]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df2[df2 &gt; 0] = -df2
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [54]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>df2
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[54]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>A</th>
+      <th>B</th>
+      <th>C</th>
+      <th>D</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2013-01-01</th>
+      <td>-1.334013</td>
+      <td>0.000000</td>
+      <td>-0.388654</td>
+      <td>-5</td>
+    </tr>
+    <tr>
+      <th>2013-01-02</th>
+      <td>-0.139974</td>
+      <td>-1.347789</td>
+      <td>-0.817077</td>
+      <td>-5</td>
+    </tr>
+    <tr>
+      <th>2013-01-03</th>
+      <td>-1.082739</td>
+      <td>-0.544105</td>
+      <td>-1.423883</td>
+      <td>-5</td>
+    </tr>
+    <tr>
+      <th>2013-01-04</th>
+      <td>-0.034788</td>
+      <td>-0.677221</td>
+      <td>-0.120449</td>
+      <td>-5</td>
+    </tr>
+    <tr>
+      <th>2013-01-05</th>
+      <td>-0.428547</td>
+      <td>-0.610156</td>
+      <td>-0.950891</td>
+      <td>-5</td>
+    </tr>
+    <tr>
+      <th>2013-01-06</th>
+      <td>-0.125631</td>
+      <td>-0.116653</td>
+      <td>-0.544575</td>
+      <td>-5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../gispark_paas.html" class="btn btn-neutral float-right" title="2. 分布式计算与持续交付" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../gispark_cloud.html" class="btn btn-neutral" title="2. 云计算基础设施" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

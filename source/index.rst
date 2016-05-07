@@ -10,7 +10,6 @@
 .. image:: svg/blaze_med.png
    :align: center
 
-
 索引
 ~~~~~
 
@@ -36,6 +35,13 @@
    gispark_ml
    gispark_science
 
+
+.. toctree::
+   :maxdepth: 2
+   
+   jupyter/sphinx_quickstart.ipynb
+   pystart/pystart_databasic
+   
 .. toctree::
    :maxdepth: 1
    

@@ -39,7 +39,7 @@ extensions = [
         'numpydoc',
 
         # Optional
-        'sphinx.ext.graphviz',
+        #'sphinx.ext.graphviz',
     
         # 'rst2pdf.pdfbuilder'
 ]
@@ -77,6 +77,7 @@ source_suffix = ['.rst', '.md']
 
 # Default Pygments lexer for syntax highlighting in code cells
 nbsphinx_codecell_lexer = 'ipython3'
+#nbsphinx_codecell_lexer = 'python3'
 
 # The encoding of source files.
 source_encoding = 'utf-8-sig'
@@ -143,7 +144,7 @@ if not on_rtd:  # only import and set the theme if we're building docs locally
         html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
         
 # The name of the Pygments (syntax highlighting) style to use.
-# pygments_style = 'sphinx'
+#pygments_style = 'sphinx'
 highlight_language = 'python'
 
 # A list of ignored prefixes for module index sorting.
@@ -241,7 +242,7 @@ html_show_sphinx = False
 # Sphinx supports the following languages:
 #   'da', 'de', 'en', 'es', 'fi', 'fr', 'h', 'it', 'ja'
 #   'nl', 'no', 'pt', 'ro', 'r', 'sv', 'tr'
-#html_search_language = 'en'
+html_search_language = 'cn'
 
 # A dictionary with options for the search language support, empty by default.
 # Now only 'ja' uses this config value

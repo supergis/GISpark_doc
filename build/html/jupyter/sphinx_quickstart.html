@@ -1,0 +1,588 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Sphinx快速入门 &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../index.html"/>
+        <link rel="next" title="Python-列表、词典、元组及其遍历。" href="../pystart/pystart_databasic.html"/>
+        <link rel="prev" title="11. 模型构建与共享" href="../gispark_science.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Sphinx快速入门</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#Projects-using-Sphinx">Projects using Sphinx</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#缺省theme">缺省theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#缺省theme修改版">缺省theme修改版</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sphinxdoc-theme">sphinxdoc theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Builtin-theme">Builtin theme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#定制theme/站点集成">定制theme/站点集成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Homepages">Homepages</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Sphinx书籍">Sphinx书籍</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pystart/pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Sphinx快速入门</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/jupyter/sphinx_quickstart.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="Sphinx快速入门">
+<h1>Sphinx快速入门<a class="headerlink" href="#Sphinx快速入门" title="永久链接至标题">¶</a></h1>
+<p>Sphinx 令人可以轻松撰写出专业、优雅的文档, 由Georg
+Brandl在BSD许可证下创造。</p>
+<p>Sphinx采用<a class="reference external" href="http://docutils.sourceforge.net/rst.html">新结构化文本</a>编写文档，可以同时支持HTML、Markdown等流行的格式，并且通过<a class="reference external" href="http://nbsphinx.readthedocs.io">nbsphinx</a>插件可以支持Jupyter
+Notebook的.ipynb格式。</p>
+<p>Sphinx支持文档目录自动创建、搜索等功能，可以输出HTMl、PDF等多种格式，还可以通过<a class="reference external" href="http://github.com">Github</a>来协同编写版本化的文档，然后在<a class="reference external" href="http://ReadTheDocs.org">ReadTheDocs.org</a>在线共享生成的文档，或者通过<a class="reference external" href="https://github.com/rtfd/readthedocs.org">ReadTheDoc开源服务端软件</a>来搭建自己的文档系统。</p>
+<p>Python的文档采用Sphinx创建和管理，已支持<a class="reference external" href="http://docs.python.org/dev/">最新版Python</a>的文档生成,
+已经成为Python相关项目的首选文档工具，同时也对C/C++以及其它语言的工程有较好的支持。</p>
+<p>Sphnix具有下列特性，并已在Python官方文档中体现:</p>
+<ul class="simple">
+<li>丰富的输出格式: HTML (包括M$帮助), LaTeX (为PDF输出), manual
+pages(man), 纯文本</li>
+<li>完备的交叉引用: 语义化的标签,并对
+函式,类,引文,术语以及类似片段消息可以自动化链接</li>
+<li>明晰的分层结构: 轻松定义文档树,并自动化链接同级/父级/下级文章</li>
+<li>美观的自动索引: 可自动生成美观的模块索引</li>
+<li>精确的语法高亮: 基于 Pygments 自动生成语法高亮</li>
+<li>开放的扩展: 支持代码块的自动测试,自动包含Python 的模块自述文档,等等。</li>
+</ul>
+<p><a class="reference external" href="http://sphinx-docx.readthedocs.io/en/latest/intro.html">Sphinx中文版</a>是改进的中文版，使用了Sphinx-rtd-theme更易于阅读，增加了中文字符集的支持和PDF输出选项。
+*
+在这里查看<a class="reference external" href="http://sphinx-doc-zh.readthedocs.io/en/latest/tutorial.html">以前版本</a>，需要注意其中的变更，可能新版本的Sphinx中已经不再适用。</p>
+<div class="section" id="Projects-using-Sphinx">
+<h2>Projects using Sphinx<a class="headerlink" href="#Projects-using-Sphinx" title="永久链接至标题">¶</a></h2>
+<p>大量的软件项目使用了Sphinx文档系统，下面是其中一些比较有影响的项目。</p>
+<div class="section" id="缺省theme">
+<h3>缺省theme<a class="headerlink" href="#缺省theme" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li>APSW: <a class="reference external" href="http://apidoc.apsw.googlecode.com/hg/index.html">http://apidoc.apsw.googlecode.com/hg/index.html</a></li>
+<li>ASE: <a class="reference external" href="https://wiki.fysik.dtu.dk/ase/">https://wiki.fysik.dtu.dk/ase/</a></li>
+<li>boostmpi: <a class="reference external" href="http://documen.tician.de/boostmpi/">http://documen.tician.de/boostmpi/</a></li>
+<li>Calibre: <a class="reference external" href="http://calibre-ebook.com/user_manual/">http://calibre-ebook.com/user_manual/</a></li>
+<li>CodePy: <a class="reference external" href="http://documen.tician.de/codepy/">http://documen.tician.de/codepy/</a></li>
+<li>Cython: <a class="reference external" href="http://docs.cython.org/">http://docs.cython.org/</a></li>
+<li>C:raw-latex:<a href="#id1"><span class="problematic" id="id2">`</span></a>C`++ Python language binding project:
+<a class="reference external" href="http://language-binding.net/index.html">http://language-binding.net/index.html</a></li>
+<li>Cormoran: <a class="reference external" href="http://cormoran.nhopkg.org/docs/">http://cormoran.nhopkg.org/docs/</a></li>
+<li>Director: <a class="reference external" href="http://packages.python.org/director/">http://packages.python.org/director/</a></li>
+<li>Dirigible: <a class="reference external" href="http://www.projectdirigible.com/documentation/">http://www.projectdirigible.com/documentation/</a></li>
+<li>Elemental:
+<a class="reference external" href="http://elemental.googlecode.com/hg/doc/build/html/index.html">http://elemental.googlecode.com/hg/doc/build/html/index.html</a></li>
+<li>F2py: <a class="reference external" href="http://f2py.sourceforge.net/docs/">http://f2py.sourceforge.net/docs/</a></li>
+<li>GeoDjango: <a class="reference external" href="http://geodjango.org/docs/">http://geodjango.org/docs/</a></li>
+<li>Genomedata:
+<a class="reference external" href="http://noble.gs.washington.edu/proj/genomedata/doc/1.2.2/genomedata.html">http://noble.gs.washington.edu/proj/genomedata/doc/1.2.2/genomedata.html</a></li>
+<li>gevent: <a class="reference external" href="http://www.gevent.org/">http://www.gevent.org/</a></li>
+<li>Google Wave API:
+<a class="reference external" href="http://wave-robot-python-client.googlecode.com/svn/trunk/pydocs/index.html">http://wave-robot-python-client.googlecode.com/svn/trunk/pydocs/index.html</a></li>
+<li>GSL Shell: <a class="reference external" href="http://www.nongnu.org/gsl-shell/">http://www.nongnu.org/gsl-shell/</a></li>
+<li>Heapkeeper: <a class="reference external" href="http://heapkeeper.org/">http://heapkeeper.org/</a></li>
+<li>Hands-on Python Tutorial:
+<a class="reference external" href="http://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/">http://anh.cs.luc.edu/python/hands-on/3.1/handsonHtml/</a></li>
+<li>Hedge: <a class="reference external" href="http://documen.tician.de/hedge/">http://documen.tician.de/hedge/</a></li>
+<li>Kaa: <a class="reference external" href="http://doc.freevo.org/api/kaa/">http://doc.freevo.org/api/kaa/</a></li>
+<li>Leo: <a class="reference external" href="http://webpages.charter.net/edreamleo/front.html">http://webpages.charter.net/edreamleo/front.html</a></li>
+<li>Lino: <a class="reference external" href="http://lino.saffre-rumma.net/">http://lino.saffre-rumma.net/</a></li>
+<li>MeshPy: <a class="reference external" href="http://documen.tician.de/meshpy/">http://documen.tician.de/meshpy/</a></li>
+<li>mpmath: <a class="reference external" href="http://mpmath.googlecode.com/svn/trunk/doc/build/index.html">http://mpmath.googlecode.com/svn/trunk/doc/build/index.html</a></li>
+<li>OpenEXR: <a class="reference external" href="http://excamera.com/articles/26/doc/index.html">http://excamera.com/articles/26/doc/index.html</a></li>
+<li>OpenGDA: <a class="reference external" href="http://www.opengda.org/gdadoc/html/">http://www.opengda.org/gdadoc/html/</a></li>
+<li>openWNS: <a class="reference external" href="http://docs.openwns.org/">http://docs.openwns.org/</a></li>
+<li>Paste: <a class="reference external" href="http://pythonpaste.org/script/">http://pythonpaste.org/script/</a></li>
+<li>Paver: <a class="reference external" href="http://paver.github.com/paver/">http://paver.github.com/paver/</a></li>
+<li>Pyccuracy: <a class="reference external" href="https://github.com/heynemann/pyccuracy/wiki/">https://github.com/heynemann/pyccuracy/wiki/</a></li>
+<li>PyCuda: <a class="reference external" href="http://documen.tician.de/pycuda/">http://documen.tician.de/pycuda/</a></li>
+<li>Pyevolve: <a class="reference external" href="http://pyevolve.sourceforge.net/">http://pyevolve.sourceforge.net/</a></li>
+<li>Pylo: <a class="reference external" href="http://documen.tician.de/pylo/">http://documen.tician.de/pylo/</a></li>
+<li>PyMQI: <a class="reference external" href="http://packages.python.org/pymqi/">http://packages.python.org/pymqi/</a></li>
+<li>PyPubSub: <a class="reference external" href="http://pubsub.sourceforge.net/">http://pubsub.sourceforge.net/</a></li>
+<li>pyrticle: <a class="reference external" href="http://documen.tician.de/pyrticle/">http://documen.tician.de/pyrticle/</a></li>
+<li>Python: <a class="reference external" href="http://docs.python.org/">http://docs.python.org/</a></li>
+<li>python-apt: <a class="reference external" href="http://apt.alioth.debian.org/python-apt-doc/">http://apt.alioth.debian.org/python-apt-doc/</a></li>
+<li>PyUblas: <a class="reference external" href="http://documen.tician.de/pyublas/">http://documen.tician.de/pyublas/</a></li>
+<li>Quex: <a class="reference external" href="http://quex.sourceforge.net/doc/html/main.html">http://quex.sourceforge.net/doc/html/main.html</a></li>
+<li>Scapy: <a class="reference external" href="http://www.secdev.org/projects/scapy/doc/">http://www.secdev.org/projects/scapy/doc/</a></li>
+<li>Segway:
+<a class="reference external" href="http://noble.gs.washington.edu/proj/segway/doc/1.1.0/segway.html">http://noble.gs.washington.edu/proj/segway/doc/1.1.0/segway.html</a></li>
+<li>SimPy: <a class="reference external" href="http://simpy.sourceforge.net/SimPyDocs/index.html">http://simpy.sourceforge.net/SimPyDocs/index.html</a></li>
+<li>SymPy: <a class="reference external" href="http://docs.sympy.org/">http://docs.sympy.org/</a></li>
+<li>WTForms: <a class="reference external" href="http://wtforms.simplecodes.com/docs/">http://wtforms.simplecodes.com/docs/</a></li>
+<li>z3c: <a class="reference external" href="http://docs.carduner.net/z3c-tutorial/">http://docs.carduner.net/z3c-tutorial/</a></li>
+</ul>
+</div>
+<div class="section" id="缺省theme修改版">
+<h3>缺省theme修改版<a class="headerlink" href="#缺省theme修改版" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li>Advanced Generic Widgets:
+<a class="reference external" href="http://xoomer.virgilio.it/infinity77/AGW_Docs/index.html">http://xoomer.virgilio.it/infinity77/AGW_Docs/index.html</a></li>
+<li>Bazaar: <a class="reference external" href="http://doc.bazaar.canonical.com/en/">http://doc.bazaar.canonical.com/en/</a></li>
+<li>Chaco: <a class="reference external" href="http://code.enthought.com/projects/chaco/docs/html/">http://code.enthought.com/projects/chaco/docs/html/</a></li>
+<li>Djagios: <a class="reference external" href="http://djagios.org/">http://djagios.org/</a></li>
+<li>GetFEM++: <a class="reference external" href="http://home.gna.org/getfem/">http://home.gna.org/getfem/</a></li>
+<li>GPAW: <a class="reference external" href="https://wiki.fysik.dtu.dk/gpaw/">https://wiki.fysik.dtu.dk/gpaw/</a></li>
+<li>Grok: <a class="reference external" href="http://grok.zope.org/doc/current/">http://grok.zope.org/doc/current/</a></li>
+<li>IFM: <a class="reference external" href="http://fluffybunny.memebot.com/ifm-docs/index.html">http://fluffybunny.memebot.com/ifm-docs/index.html</a></li>
+<li>LEPL: <a class="reference external" href="http://www.acooke.org/lepl/">http://www.acooke.org/lepl/</a></li>
+<li>Mayavi:
+<a class="reference external" href="http://code.enthought.com/projects/mayavi/docs/development/html/mayavi">http://code.enthought.com/projects/mayavi/docs/development/html/mayavi</a></li>
+<li>NOC: <a class="reference external" href="http://redmine.nocproject.org/projects/noc">http://redmine.nocproject.org/projects/noc</a></li>
+<li>NumPy: <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/">http://docs.scipy.org/doc/numpy/reference/</a></li>
+<li>Peach^3: <a class="reference external" href="http://peach3.nl/doc/latest/userdoc/">http://peach3.nl/doc/latest/userdoc/</a></li>
+<li>PyLit: <a class="reference external" href="http://pylit.berlios.de/">http://pylit.berlios.de/</a></li>
+<li>Sage: <a class="reference external" href="http://sagemath.org/doc/">http://sagemath.org/doc/</a></li>
+<li>SciPy: <a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/">http://docs.scipy.org/doc/scipy/reference/</a></li>
+<li>simuPOP:
+<a class="reference external" href="http://simupop.sourceforge.net/manual_release/build/userGuide.html">http://simupop.sourceforge.net/manual_release/build/userGuide.html</a></li>
+<li>Sprox: <a class="reference external" href="http://sprox.org/">http://sprox.org/</a></li>
+<li>TurboGears: <a class="reference external" href="http://turbogears.org/2.0/docs/">http://turbogears.org/2.0/docs/</a></li>
+<li>Zentyal: <a class="reference external" href="http://doc.zentyal.org/">http://doc.zentyal.org/</a></li>
+<li>Zope: <a class="reference external" href="http://docs.zope.org/zope2/index.html">http://docs.zope.org/zope2/index.html</a></li>
+<li>zc.async: <a class="reference external" href="http://packages.python.org/zc.async/1.5.0/">http://packages.python.org/zc.async/1.5.0/</a></li>
+</ul>
+</div>
+<div class="section" id="sphinxdoc-theme">
+<h3>sphinxdoc theme<a class="headerlink" href="#sphinxdoc-theme" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li>Fityk: <a class="reference external" href="http://fityk.nieto.pl/">http://fityk.nieto.pl/</a></li>
+<li>MapServer: <a class="reference external" href="http://mapserver.org/">http://mapserver.org/</a></li>
+<li>Matplotlib: <a class="reference external" href="http://matplotlib.sourceforge.net/">http://matplotlib.sourceforge.net/</a></li>
+<li>Music21: <a class="reference external" href="http://mit.edu/music21/doc/html/contents.html">http://mit.edu/music21/doc/html/contents.html</a></li>
+<li>MyHDL: <a class="reference external" href="http://www.myhdl.org/doc/0.6/">http://www.myhdl.org/doc/0.6/</a></li>
+<li>NetworkX: <a class="reference external" href="http://networkx.lanl.gov/">http://networkx.lanl.gov/</a></li>
+<li>Pweave: <a class="reference external" href="http://mpastell.com/pweave/">http://mpastell.com/pweave/</a></li>
+<li>Pyre: <a class="reference external" href="http://docs.danse.us/pyre/sphinx/">http://docs.danse.us/pyre/sphinx/</a></li>
+<li>Pysparse: <a class="reference external" href="http://pysparse.sourceforge.net/">http://pysparse.sourceforge.net/</a></li>
+<li>PyTango:
+<a class="reference external" href="http://www.tango-controls.org/static/PyTango/latest/doc/html/index.html">http://www.tango-controls.org/static/PyTango/latest/doc/html/index.html</a></li>
+<li>Reteisi: <a class="reference external" href="http://www.reteisi.org/contents.html">http://www.reteisi.org/contents.html</a></li>
+<li>Satchmo: <a class="reference external" href="http://www.satchmoproject.com/docs/dev/">http://www.satchmoproject.com/docs/dev/</a></li>
+<li>Sphinx: <a class="reference external" href="http://sphinx.pocoo.org/">http://sphinx.pocoo.org/</a></li>
+<li>Sqlkit: <a class="reference external" href="http://sqlkit.argolinux.org/">http://sqlkit.argolinux.org/</a></li>
+<li>Tau:
+<a class="reference external" href="http://www.tango-controls.org/static/tau/latest/doc/html/index.html">http://www.tango-controls.org/static/tau/latest/doc/html/index.html</a></li>
+<li>Total Open Station: <a class="reference external" href="http://tops.berlios.de/">http://tops.berlios.de/</a></li>
+<li>WebFaction: <a class="reference external" href="http://docs.webfaction.com/">http://docs.webfaction.com/</a></li>
+</ul>
+</div>
+<div class="section" id="Builtin-theme">
+<h3>Builtin theme<a class="headerlink" href="#Builtin-theme" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li>C/C++ Development with Eclipse: <a class="reference external" href="http://eclipsebook.in/">http://eclipsebook.in/</a> (agogo)</li>
+<li>Distribute: <a class="reference external" href="http://packages.python.org/distribute/">http://packages.python.org/distribute/</a> (nature)</li>
+<li>Jinja: <a class="reference external" href="http://jinja.pocoo.org/">http://jinja.pocoo.org/</a> (scrolls)</li>
+<li>jsFiddle: <a class="reference external" href="http://doc.jsfiddle.net/">http://doc.jsfiddle.net/</a> (nature)</li>
+<li>pip: <a class="reference external" href="http://pip.openplans.org/">http://pip.openplans.org/</a> (nature)</li>
+<li>Programmieren mit PyGTK und Glade (German):
+<a class="reference external" href="http://www.florian-diesch.de/doc/python-und-glade/online/">http://www.florian-diesch.de/doc/python-und-glade/online/</a> (agogo)</li>
+<li>Spring Python:
+<a class="reference external" href="http://springpython.webfactional.com/current/sphinx/index.html">http://springpython.webfactional.com/current/sphinx/index.html</a>
+(nature)</li>
+<li>sqlparse:
+<a class="reference external" href="http://python-sqlparse.googlecode.com/svn/docs/api/index.html">http://python-sqlparse.googlecode.com/svn/docs/api/index.html</a> (agogo)</li>
+<li>Sylli: <a class="reference external" href="http://sylli.sourceforge.net/">http://sylli.sourceforge.net/</a> (nature)</li>
+<li>libLAS: <a class="reference external" href="http://liblas.org/">http://liblas.org/</a> (nature)</li>
+</ul>
+</div>
+<div class="section" id="定制theme/站点集成">
+<h3>定制theme/站点集成<a class="headerlink" href="#定制theme/站点集成" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li>Blender: <a class="reference external" href="http://www.blender.org/documentation/250PythonDoc/">http://www.blender.org/documentation/250PythonDoc/</a></li>
+<li>Blinker: <a class="reference external" href="http://discorporate.us/projects/Blinker/docs/">http://discorporate.us/projects/Blinker/docs/</a></li>
+<li>Classy: classy: <a class="reference external" href="http://classy.pocoo.org/">http://classy.pocoo.org/</a></li>
+<li>Django: <a class="reference external" href="http://docs.djangoproject.com/">http://docs.djangoproject.com/</a></li>
+<li>e-cidadania: <a class="reference external" href="http://e-cidadania.readthedocs.org/en/latest/">http://e-cidadania.readthedocs.org/en/latest/</a></li>
+<li>Flask: <a class="reference external" href="http://flask.pocoo.org/docs/">http://flask.pocoo.org/docs/</a></li>
+<li>Flask-OpenID: <a class="reference external" href="http://packages.python.org/Flask-OpenID/">http://packages.python.org/Flask-OpenID/</a></li>
+<li>Gameduino: <a class="reference external" href="http://excamera.com/sphinx/gameduino/">http://excamera.com/sphinx/gameduino/</a></li>
+<li>GeoServer: <a class="reference external" href="http://docs.geoserver.org/">http://docs.geoserver.org/</a></li>
+<li>Glashammer: <a class="reference external" href="http://glashammer.org/">http://glashammer.org/</a></li>
+<li>MirrorBrain: <a class="reference external" href="http://mirrorbrain.org/docs/">http://mirrorbrain.org/docs/</a></li>
+<li>nose: <a class="reference external" href="http://somethingaboutorange.com/mrl/projects/nose/">http://somethingaboutorange.com/mrl/projects/nose/</a></li>
+<li>ObjectListView: <a class="reference external" href="http://objectlistview.sourceforge.net/python">http://objectlistview.sourceforge.net/python</a></li>
+<li>Open ERP: <a class="reference external" href="http://doc.openerp.com/">http://doc.openerp.com/</a></li>
+<li>OpenLayers: <a class="reference external" href="http://docs.openlayers.org/">http://docs.openlayers.org/</a></li>
+<li>PyEphem: <a class="reference external" href="http://rhodesmill.org/pyephem/">http://rhodesmill.org/pyephem/</a></li>
+<li>German Plone 4.0 user manual:
+<a class="reference external" href="http://www.hasecke.com/plone-benutzerhandbuch/4.0/">http://www.hasecke.com/plone-benutzerhandbuch/4.0/</a></li>
+<li>Pylons: <a class="reference external" href="http://pylonshq.com/docs/en/0.9.7/">http://pylonshq.com/docs/en/0.9.7/</a></li>
+<li>PyMOTW: <a class="reference external" href="http://www.doughellmann.com/PyMOTW/">http://www.doughellmann.com/PyMOTW/</a></li>
+<li>pypol: <a class="reference external" href="http://pypol.altervista.org/">http://pypol.altervista.org/</a> (celery)</li>
+<li>qooxdoo: <a class="reference external" href="http://manual.qooxdoo.org/current">http://manual.qooxdoo.org/current</a></li>
+<li>Roundup: <a class="reference external" href="http://www.roundup-tracker.org/">http://www.roundup-tracker.org/</a></li>
+<li>Selenium: <a class="reference external" href="http://seleniumhq.org/docs/">http://seleniumhq.org/docs/</a></li>
+<li>Self: <a class="reference external" href="http://selflanguage.org/">http://selflanguage.org/</a></li>
+<li>Tablib: <a class="reference external" href="http://tablib.org/">http://tablib.org/</a></li>
+<li>SQLAlchemy: <a class="reference external" href="http://www.sqlalchemy.org/docs/">http://www.sqlalchemy.org/docs/</a></li>
+<li>tinyTiM: <a class="reference external" href="http://tinytim.sourceforge.net/docs/2.0/">http://tinytim.sourceforge.net/docs/2.0/</a></li>
+<li>tipfy: <a class="reference external" href="http://www.tipfy.org/docs/">http://www.tipfy.org/docs/</a></li>
+<li>Werkzeug: <a class="reference external" href="http://werkzeug.pocoo.org/docs/">http://werkzeug.pocoo.org/docs/</a></li>
+<li>WFront: <a class="reference external" href="http://discorporate.us/projects/WFront/">http://discorporate.us/projects/WFront/</a></li>
+</ul>
+</div>
+<div class="section" id="Homepages">
+<h3>Homepages<a class="headerlink" href="#Homepages" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li>Applied Mathematics at the Stellenbosch University:
+<a class="reference external" href="http://dip.sun.ac.za/">http://dip.sun.ac.za/</a></li>
+<li>A personal page: <a class="reference external" href="http://www.dehlia.in/">http://www.dehlia.in/</a></li>
+<li>Benoit Boissinot: <a class="reference external" href="http://bboissin.appspot.com/">http://bboissin.appspot.com/</a></li>
+<li>lunarsite: <a class="reference external" href="http://lunaryorn.de/">http://lunaryorn.de/</a></li>
+<li>Red Hot Chili Python: <a class="reference external" href="http://redhotchilipython.com/">http://redhotchilipython.com/</a></li>
+<li>The Wine Cellar Book: <a class="reference external" href="http://www.thewinecellarbook.com/doc/en/">http://www.thewinecellarbook.com/doc/en/</a></li>
+<li>VOR: <a class="reference external" href="http://www.vor-cycling.be/">http://www.vor-cycling.be/</a></li>
+</ul>
+</div>
+<div class="section" id="Sphinx书籍">
+<h3>Sphinx书籍<a class="headerlink" href="#Sphinx书籍" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li><a class="reference external" href="http://www.amazon.com/repoze-bfg-Web-Application-Framework-Version/dp/0615345379">The repoze.bfg Web Application
+Framework</a></li>
+<li><a class="reference external" href="http://theoretical-physics.net/">A Theoretical Physics Reference
+book</a></li>
+<li><a class="reference external" href="http://www.amazon.co.jp/dp/477414259X/">Simple and Steady Way of Learning for Software Engineering(in
+Japanese)</a></li>
+<li><a class="reference external" href="http://www.amazon.co.jp/dp/4048686291/">Expert Python Programming(Japanese
+translation)</a></li>
+<li><a class="reference external" href="http://www.amazon.co.jp/dp/4048689525/">Pomodoro Technique Illustrated(Japanese
+translation)</a></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../pystart/pystart_databasic.html" class="btn btn-neutral float-right" title="Python-列表、词典、元组及其遍历。" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../gispark_science.html" class="btn btn-neutral" title="11. 模型构建与共享" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

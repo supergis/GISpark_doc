@@ -1,0 +1,1988 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Visualizing Data with Pandas and Matplotlib &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_cloud.html">云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Visualizing Data with Pandas and Matplotlib</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/pystart/pandas_and_matplotlib.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="Visualizing-Data-with-Pandas-and-Matplotlib">
+<h1>Visualizing Data with Pandas and Matplotlib<a class="headerlink" href="#Visualizing-Data-with-Pandas-and-Matplotlib" title="永久链接至标题">¶</a></h1>
+<div class="section" id="David-Backus">
+<h2>David Backus<a class="headerlink" href="#David-Backus" title="永久链接至标题">¶</a></h2>
+<p>We illustrate three approaches to graphing data with Python&#8217;s Matplotlib
+package:</p>
+<ul class="simple">
+<li>Approach #1: Apply a <code class="docutils literal"><span class="pre">plot()</span></code> method to a dataframe</li>
+<li>Approach #2: Use the <code class="docutils literal"><span class="pre">plot(x,y)</span></code> function</li>
+<li>Approach #3: Create a figure object and apply methods to it</li>
+</ul>
+<p>The last one is the least intuitive but also the most useful. We work up
+to it gradually. This <a class="reference external" href="https://davebackus.gitbooks.io/test/content/graphs1.html">book
+chapter</a>
+covers the same material with more words and fewer pictures.</p>
+<p>This IPython notebook was created by Dave Backus for the NYU Stern
+course <a class="reference external" href="http://databootcamp.nyuecon.com/">Data Bootcamp</a>.</p>
+<div class="section" id="Preliminaries">
+<h3>Preliminaries<a class="headerlink" href="#Preliminaries" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="Jupyter">
+<h2>Jupyter<a class="headerlink" href="#Jupyter" title="永久链接至标题">¶</a></h2>
+<p>Look around, what do you see? Check out the <strong>menubar</strong> at the top:
+File, Edit, etc. Also the <strong>toolbar</strong> below it. Click on Help -&gt; User
+Interface Tour for a tour of the landscape.</p>
+<p>The <strong>cells</strong> below come in two forms. Those labeled Code (see the menu
+in the toolbar) are Python code. Those labeled Markdown are text.</p>
+</div>
+<div class="section" id="Markdown">
+<h2>Markdown<a class="headerlink" href="#Markdown" title="永久链接至标题">¶</a></h2>
+<p>Markdown is a user-friendly language for text formatting. You can see
+how it works by clicking on any of the Markdown cells and looking at the
+raw text that underlies it. In addition to just plain text, we&#8217;ll use
+three things a lot:</p>
+<ul class="simple">
+<li>Bold and italics. The raw text <code class="docutils literal"><span class="pre">**bold**</span></code> displays as <strong>bold</strong>. The
+raw text <code class="docutils literal"><span class="pre">*italics*</span></code> displays as <em>italics</em>.</li>
+<li>Bullet lists. If we want a list of items marked by bullets, we start
+with a blank line and mark each item with an asterisk on a new line.
+Double click on this cell for an example.</li>
+<li>Headings. We create section headings by putting a hash in front of
+the text. <code class="docutils literal"><span class="pre">#</span> <span class="pre">Heading</span></code> gives us a large heading. Two hashes a
+smaller heading, three hashes smaller still, up to four hashes. In
+this cell there&#8217;s a two-hash heading at the top.</li>
+</ul>
+<p><strong>Exercise.</strong> Click on the blank cell below. Note that it&#8217;s labeled
+Markdown in the menubar. Add a heading and some text. Execute the cell
+by either (i) clicking on the &#8220;run cell&#8221; button in the toolbar or (ii)
+clicking on &#8220;Cell&#8221; in the menubar and choosing Run.</p>
+</div>
+<div class="section" id="Import-packages">
+<h2>Import packages<a class="headerlink" href="#Import-packages" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [73]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import sys                             # system module
+import pandas as pd                    # data package
+import matplotlib as mpl               # graphics package
+import datetime as dt                  # date and time module
+
+# check versions (overkill, but why not?)
+print(&#39;Python version:&#39;, sys.version)
+print(&#39;Pandas version: &#39;, pd.__version__)
+print(&#39;Matplotlib version: &#39;, mpl.__version__)
+print(&#39;Today: &#39;, dt.date.today())
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Python version: 3.5.1 |Anaconda 2.4.1 (64-bit)| (default, Dec  7 2015, 11:16:01)
+[GCC 4.4.7 20120313 (Red Hat 4.4.7-1)]
+Pandas version:  0.17.1
+Matplotlib version:  1.5.0
+Today:  2016-01-13
+</pre></div></div>
+</div>
+<p><strong>Comment.</strong> When you run the code cell above, its output appears below
+it.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [74]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># This is an IPython command.  It puts plots here in the notebook, rather than  a separate window.
+%matplotlib inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Create-dataframes-to-play-with">
+<h2>Create dataframes to play with<a class="headerlink" href="#Create-dataframes-to-play-with" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>US GDP and consumption</li>
+<li>World Bank GDP per capita for several countries</li>
+<li>Fama-French equity returns</li>
+</ul>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [75]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># US GDP and consumption
+gdp  = [13271.1, 13773.5, 14234.2, 14613.8, 14873.7, 14830.4, 14418.7,
+        14783.8, 15020.6, 15369.2, 15710.3]
+pce  = [8867.6, 9208.2, 9531.8, 9821.7, 10041.6, 10007.2, 9847.0, 10036.3,
+        10263.5, 10449.7, 10699.7]
+year = list(range(2003,2014))        # use range for years 2003-2013
+
+# create dataframe from dictionary
+us = pd.DataFrame({&#39;gdp&#39;: gdp, &#39;pce&#39;: pce}, index=year)
+print(us.head(3))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+          gdp     pce
+2003  13271.1  8867.6
+2004  13773.5  9208.2
+2005  14234.2  9531.8
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [76]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># GDP per capita (World Bank data, 2013, thousands of USD)
+code    = [&#39;USA&#39;, &#39;FRA&#39;, &#39;JPN&#39;, &#39;CHN&#39;, &#39;IND&#39;, &#39;BRA&#39;, &#39;MEX&#39;]
+country = [&#39;United States&#39;, &#39;France&#39;, &#39;Japan&#39;, &#39;China&#39;, &#39;India&#39;,
+             &#39;Brazil&#39;, &#39;Mexico&#39;]
+gdppc   = [53.1, 36.9, 36.3, 11.9, 5.4, 15.0, 16.5]
+
+wbdf = pd.DataFrame({&#39;gdppc&#39;: gdppc, &#39;country&#39;: country}, index=code)
+wbdf
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[76]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>country</th>
+      <th>gdppc</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>USA</th>
+      <td>United States</td>
+      <td>53.1</td>
+    </tr>
+    <tr>
+      <th>FRA</th>
+      <td>France</td>
+      <td>36.9</td>
+    </tr>
+    <tr>
+      <th>JPN</th>
+      <td>Japan</td>
+      <td>36.3</td>
+    </tr>
+    <tr>
+      <th>CHN</th>
+      <td>China</td>
+      <td>11.9</td>
+    </tr>
+    <tr>
+      <th>IND</th>
+      <td>India</td>
+      <td>5.4</td>
+    </tr>
+    <tr>
+      <th>BRA</th>
+      <td>Brazil</td>
+      <td>15.0</td>
+    </tr>
+    <tr>
+      <th>MEX</th>
+      <td>Mexico</td>
+      <td>16.5</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Comment.</strong> In the previous cell, we used the <code class="docutils literal"><span class="pre">print()</span></code> function to
+produce output. Here we just put the name of the dataframe. The latter
+displays the dataframe &#8211; and formats it nicely &#8211; if it&#8217;s the last line
+in the cell.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [77]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># Fama-French
+import pandas_datareader.data as web
+
+# read annual data from website and rename variables
+ff = web.DataReader(&#39;F-F_Research_Data_factors&#39;, &#39;famafrench&#39;)[1]
+ff.columns = [&#39;xsm&#39;, &#39;smb&#39;, &#39;hml&#39;, &#39;rf&#39;]
+ff[&#39;rm&#39;] = ff[&#39;xsm&#39;] + ff[&#39;rf&#39;]
+ff = ff[[&#39;rm&#39;, &#39;rf&#39;]]     # extract rm and rf (return on market, riskfree rate, percent)
+ff.head(5)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[77]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>rm</th>
+      <th>rf</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2010</th>
+      <td>17.49</td>
+      <td>0.12</td>
+    </tr>
+    <tr>
+      <th>2011</th>
+      <td>0.48</td>
+      <td>0.04</td>
+    </tr>
+    <tr>
+      <th>2012</th>
+      <td>16.34</td>
+      <td>0.06</td>
+    </tr>
+    <tr>
+      <th>2013</th>
+      <td>35.21</td>
+      <td>0.02</td>
+    </tr>
+    <tr>
+      <th>2014</th>
+      <td>11.72</td>
+      <td>0.02</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p><strong>Comment.</strong> The warning in pink tells us that the Pandas DataReader
+will be spun off into a separate package in the near future.</p>
+<p><strong>Exercise.</strong> What kind of object is <code class="docutils literal"><span class="pre">wb</span></code>? How would you access its
+column and row labels? What are they?</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [78]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># This is an IPython command:  it puts plots here in the notebook, rather than a separate window.
+%matplotlib inline
+</pre></div>
+</div>
+</div>
+<div class="section" id="Digression:-Graphing-in-Excel">
+<h3>Digression: Graphing in Excel<a class="headerlink" href="#Digression:-Graphing-in-Excel" title="永久链接至标题">¶</a></h3>
+<p>Remind yourself that we need to choose:</p>
+<ul class="simple">
+<li>Data. Typically a block of cells in a spreadsheet.</li>
+<li>Chart type. Lines, bars, scatter, or something else.</li>
+<li>x and y variables. What is the x axis? What is y?</li>
+</ul>
+<p>We&#8217;ll see the same in Matplotlib.</p>
+</div>
+<div class="section" id="Approach-#1:-Apply-plot()-method-to-dataframe">
+<h3>Approach #1: Apply <code class="docutils literal"><span class="pre">plot()</span></code> method to dataframe<a class="headerlink" href="#Approach-#1:-Apply-plot()-method-to-dataframe" title="永久链接至标题">¶</a></h3>
+<p>Good simple approach, we use it a lot. It comes with some useful
+defaults:</p>
+<ul class="simple">
+<li>Data. The whole dataframe.</li>
+<li>Chart type. We have options for lines, bars, or other things.</li>
+<li><code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code> variables. By default, the <code class="docutils literal"><span class="pre">x</span></code> variable is the
+dataframe&#8217;s index and the <code class="docutils literal"><span class="pre">y</span></code> variables are all the columns of the
+dataframe.</li>
+</ul>
+<p>All of these things can be changed, but this is the starting point.</p>
+<p>Let&#8217;s do some examples, see how they work.</p>
+</div>
+</div>
+<div class="section" id="US-GDP-and-consumption">
+<h2>US GDP and consumption<a class="headerlink" href="#US-GDP-and-consumption" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [79]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># try this with US GDP
+us.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[79]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fdcd1a27470&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_19_1.png" src="../_images/pystart_pandas_and_matplotlib_19_1.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [80]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># do GDP alone
+us[&#39;gdp&#39;].plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[80]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fdcd25355f8&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_20_1.png" src="../_images/pystart_pandas_and_matplotlib_20_1.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [81]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># bar chart
+us.plot(kind=&#39;bar&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[81]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fdcd225f208&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_21_1.png" src="../_images/pystart_pandas_and_matplotlib_21_1.png" />
+</div>
+</div>
+<p><strong>Exercise.</strong> Show that we get the output from <code class="docutils literal"><span class="pre">us.plot.bar()</span></code>.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [82]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>us.plot
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[82]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;pandas.tools.plotting.FramePlotMethods object at 0x7fdcd1c72c50&gt;
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [83]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># scatter plot
+# we need to be explicit about the x and y variables: x = &#39;gdp&#39;, y = &#39;pce&#39;
+us.plot.scatter(&#39;gdp&#39;, &#39;pce&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[83]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fdcd1cc8fd0&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_24_1.png" src="../_images/pystart_pandas_and_matplotlib_24_1.png" />
+</div>
+</div>
+<p><strong>Comment.</strong> We can get help in IPython by adding a question mark after
+a function or method.</p>
+<p><strong>Exercise.</strong> How can you get help for <code class="docutils literal"><span class="pre">us.plot()</span></code>? Try it and see.</p>
+<p><strong>Exercise.</strong> Add each of these arguments/parameters to
+<code class="docutils literal"><span class="pre">us.plot()</span></code>in the code cell below and describe what they do:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">kind='area'</span></code></li>
+<li><code class="docutils literal"><span class="pre">subplots=True</span></code></li>
+<li><code class="docutils literal"><span class="pre">sharey=True</span></code></li>
+<li><code class="docutils literal"><span class="pre">figsize=(3,6)</span></code></li>
+<li><code class="docutils literal"><span class="pre">xlim=(0,16000)</span></code></li>
+</ul>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Fama-French-asset-returns">
+<h2>Fama-French asset returns<a class="headerlink" href="#Fama-French-asset-returns" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [84]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># now try a few things with the Fama-French data
+ff.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[84]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fdcd18ac4a8&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_28_1.png" src="../_images/pystart_pandas_and_matplotlib_28_1.png" />
+</div>
+</div>
+<p><strong>Exercise.</strong> We can dress up the plots using the arguments of the
+<code class="docutils literal"><span class="pre">plot()</span></code> function. Try adding, one at a time, the arguments
+<code class="docutils literal"><span class="pre">title='Fama-French</span> <span class="pre">returns'</span></code>, <code class="docutils literal"><span class="pre">grid=True</span></code>, and <code class="docutils literal"><span class="pre">legend=False</span></code>.
+What does the documentation say about them? What do they do?</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [85]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>ff.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[85]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fdcd188d278&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_30_1.png" src="../_images/pystart_pandas_and_matplotlib_30_1.png" />
+</div>
+</div>
+<p><strong>Exercise.</strong> What do each of the arguments do in the code below?</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [86]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>ff.plot(kind=&#39;hist&#39;, bins=20, subplots=True)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[86]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>array([&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fdcd180c630&gt;,
+       &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fdcd172c080&gt;], dtype=object)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_32_1.png" src="../_images/pystart_pandas_and_matplotlib_32_1.png" />
+</div>
+</div>
+<p><strong>Exercise.</strong> What do you see here? How do the returns differ?</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [87]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>ff.plot(kind=&#39;kde&#39;, subplots=True, sharex=True)    # smoothed histogram (&quot;kernel density estimate&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[87]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>array([&lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fdcd16aa400&gt;,
+       &lt;matplotlib.axes._subplots.AxesSubplot object at 0x7fdcd1599be0&gt;], dtype=object)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_34_1.png" src="../_images/pystart_pandas_and_matplotlib_34_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="World-Bank-data">
+<h2>World Bank data<a class="headerlink" href="#World-Bank-data" title="永久链接至标题">¶</a></h2>
+<p><strong>Exercise.</strong> Use the World Bank dataframe <code class="docutils literal"><span class="pre">wbdf</span></code> to create a bar
+chart of GDP per capita. <em>Bonus points:</em> Create a horizontal bar chart.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Approach-#2:-the-plot(x,y)-function">
+<h3>Approach #2: the <code class="docutils literal"><span class="pre">plot(x,y)</span></code> function<a class="headerlink" href="#Approach-#2:-the-plot(x,y)-function" title="永久链接至标题">¶</a></h3>
+<p>Here we plot variable <code class="docutils literal"><span class="pre">y</span></code> against variable <code class="docutils literal"><span class="pre">x</span></code>. This comes closest
+to what we would do in Excel: identify a dataset, a plot type, and the
+<code class="docutils literal"><span class="pre">x</span></code> and <code class="docutils literal"><span class="pre">y</span></code> variables, then press play.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [88]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># import pyplot module of Matplotlib
+import matplotlib.pyplot as plt
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [89]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>plt.plot(us.index, us[&#39;gdp&#39;])
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[89]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>[&lt;matplotlib.lines.Line2D at 0x7fdcd150d2b0&gt;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_40_1.png" src="../_images/pystart_pandas_and_matplotlib_40_1.png" />
+</div>
+</div>
+<p><strong>Exercise.</strong> What is the <code class="docutils literal"><span class="pre">x</span></code> variable here? The <code class="docutils literal"><span class="pre">y</span></code> variable?</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [90]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># we can do two lines together
+plt.plot(us.index, us[&#39;gdp&#39;])
+plt.plot(us.index, us[&#39;pce&#39;])
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[90]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>[&lt;matplotlib.lines.Line2D at 0x7fdcd1476550&gt;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_42_1.png" src="../_images/pystart_pandas_and_matplotlib_42_1.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [91]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># or a bar chart
+plt.bar(us.index, us[&#39;gdp&#39;], align=&#39;center&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[91]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;Container object of 11 artists&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_43_1.png" src="../_images/pystart_pandas_and_matplotlib_43_1.png" />
+</div>
+</div>
+<p><strong>Exercise.</strong> Experiment with</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">us</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">us</span><span class="p">[</span><span class="s1">&#39;gdp&#39;</span><span class="p">],</span>
+        <span class="n">align</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">,</span>
+        <span class="n">alpha</span><span class="o">=</span><span class="mf">0.65</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span>
+        <span class="n">edgecolor</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Play with the arguments one by one to see what they do. Or use
+<code class="docutils literal"><span class="pre">plt.bar?</span></code> to look them up. Add comments to remind yourself. <em>Bonus
+points:</em> Can you make this graph even uglier?</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [92]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># we can also add things to plots
+plt.plot(us.index, us[&#39;gdp&#39;])
+plt.plot(us.index, us[&#39;pce&#39;])
+
+plt.title(&#39;US GDP&#39;, fontsize=14, loc=&#39;left&#39;) # add title
+plt.ylabel(&#39;Billions of 2009 USD&#39;)           # y axis label
+plt.xlim(2002.5, 2013.5)                     # shrink x axis limits
+plt.tick_params(labelcolor=&#39;red&#39;)            # change tick labels to red
+plt.legend([&#39;GDP&#39;, &#39;Consumption&#39;])           # more descriptive variable names
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[92]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.legend.Legend at 0x7fdcd13d6f60&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_46_1.png" src="../_images/pystart_pandas_and_matplotlib_46_1.png" />
+</div>
+</div>
+<p><strong>Comment.</strong> All of these statements must be in the same cell for this
+to work.</p>
+<p><strong>Comment.</strong> This is overkill &#8211; it looks horrible &#8211; but it makes the
+point that we control everything in the plot. We recommend you do very
+little of this until you&#8217;re more comfortable with the basics.</p>
+<p><strong>Exercise.</strong> Add a <code class="docutils literal"><span class="pre">plt.ylim()</span></code> statement to make the <code class="docutils literal"><span class="pre">y</span></code> axis
+start at zero, as it did in the bar charts. <em>Bonus points:</em> Change the
+color to magenta and the linewidth to 2. <em>Hint:</em> Use <code class="docutils literal"><span class="pre">plt.ylim?</span></code> and
+<code class="docutils literal"><span class="pre">plt.plot?</span></code> to get the documentation.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<p><strong>Exercise.</strong> Create a line plot for the Fama-French dataframe <code class="docutils literal"><span class="pre">ff</span></code>
+that includes both returns. <em>Bonus points:</em> Add a title and label the y
+axis.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Approach-#3:-Create-figure-objects-and-apply-methods">
+<h3>Approach #3: Create figure objects and apply methods<a class="headerlink" href="#Approach-#3:-Create-figure-objects-and-apply-methods" title="永久链接至标题">¶</a></h3>
+<p>This approach is the most foreign to beginners, but now that we’re used
+to it we like it a lot. We either use it on its own, or adapt its
+functionality to the dataframe plot methods we saw in Approach #1. The
+idea is to generate an object – two objects, in fact – and apply methods
+to them to produce the various elements of a graph: the data, their
+axes, their labels, and so on.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [93]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># create fig and ax objects
+fig, ax = plt.subplots()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_54_0.png" src="../_images/pystart_pandas_and_matplotlib_54_0.png" />
+</div>
+</div>
+<p><strong>Exercise.</strong> What do we have here? What <code class="docutils literal"><span class="pre">type</span></code> are <code class="docutils literal"><span class="pre">fig</span></code> and
+<code class="docutils literal"><span class="pre">ax</span></code>?</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<p>We say <code class="docutils literal"><span class="pre">fig</span></code> is a <strong>figure object</strong> and <code class="docutils literal"><span class="pre">ax</span></code> is an <strong>axis object</strong>.
+This means:</p>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">fig</span></code> is a blank canvas for creating a figure.</li>
+<li><code class="docutils literal"><span class="pre">ax</span></code> is everything in it: axes, labels, lines or bars, and so on.</li>
+</ul>
+<p><strong>Exercise.</strong> Use tab completion to see what methods are available for
+<code class="docutils literal"><span class="pre">fig</span></code> and <code class="docutils literal"><span class="pre">ax</span></code>. What do you see? Do you feel like screaming?</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [94]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># let&#39;s try that again, this time with content
+# create objects
+fig, ax = plt.subplots()
+
+# add things by applying methods to ax
+ax.plot(us.index, us[&#39;gdp&#39;], linewidth=2, color=&#39;magenta&#39;)
+ax.set_title(&#39;US GDP&#39;, fontsize=14, loc=&#39;left&#39;)
+ax.set_ylabel(&#39;Billions of USD&#39;)
+ax.set_xticks([2004, 2008, 2012])
+ax.grid(True)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_60_0.png" src="../_images/pystart_pandas_and_matplotlib_60_0.png" />
+</div>
+</div>
+<p><strong>Comment.</strong> All of these statements must be in the same cell.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [95]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># a figure method: save figure as a pdf
+fig.savefig(&#39;us_gdp.pdf&#39;)
+</pre></div>
+</div>
+</div>
+<p><strong>Exercise.</strong> Use figure and axis objects to create a bar chart of
+variable <code class="docutils literal"><span class="pre">rm</span></code> in the <code class="docutils literal"><span class="pre">ff</span></code> dataframe.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="Multiple-subplots">
+<h2>Multiple subplots<a class="headerlink" href="#Multiple-subplots" title="永久链接至标题">¶</a></h2>
+<p>Same idea, but we create a multidimensional <code class="docutils literal"><span class="pre">ax</span></code> and apply methods to
+each component. Here we redo the plots of US GDP and consumption.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [96]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># this creates a 2-dimensional ax
+fig, ax = plt.subplots(nrows=2, ncols=1, sharex=True)
+print(&#39;Object ax has dimension&#39;, len(ax))
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Object ax has dimension 2
+</pre></div></div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_66_1.png" src="../_images/pystart_pandas_and_matplotlib_66_1.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [97]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># now add some content
+fig, ax = plt.subplots(nrows=2, ncols=1, sharex=True)
+
+ax[0].plot(us.index, us[&#39;gdp&#39;], color=&#39;green&#39;)   # first plot
+ax[1].plot(us.index, us[&#39;pce&#39;], color=&#39;red&#39;)     # second plot
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[97]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>[&lt;matplotlib.lines.Line2D at 0x7fdcd11854a8&gt;]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_67_1.png" src="../_images/pystart_pandas_and_matplotlib_67_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Approach-#1-revisited">
+<h2>Approach #1 revisited<a class="headerlink" href="#Approach-#1-revisited" title="永久链接至标题">¶</a></h2>
+<p>In Approach #1, we applied <code class="docutils literal"><span class="pre">plot()</span></code> and related methods to a
+dataframe. We also used arguments to fix up the graph, but that got
+complicated pretty quickly.</p>
+<p>Here we combine Approaches 1 and 3. If we check the documentation of
+<code class="docutils literal"><span class="pre">df.plot()</span></code> we see that it &#8220;returns&#8221; an axis object. We can assign it
+to a variable and then apply methods to make the figure more compelling.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [98]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># grab the axis
+ax = us.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_69_0.png" src="../_images/pystart_pandas_and_matplotlib_69_0.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [99]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># grab it and apply methods
+ax = us.plot()
+ax.set_title(&#39;US GDP and Consumption&#39;, fontsize=14, loc=&#39;left&#39;)
+ax.set_ylabel(&#39;Billions of 2013 USD&#39;)
+ax.legend(loc=&#39;center right&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[99]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.legend.Legend at 0x7fdcd11166d8&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_70_1.png" src="../_images/pystart_pandas_and_matplotlib_70_1.png" />
+</div>
+</div>
+<p><strong>Comment.</strong> If we want the figure object for this plot, we apply a
+method to the axis object <code class="docutils literal"><span class="pre">ax</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">ax</span><span class="o">.</span><span class="n">get_figure</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>That&#8217;s not something we&#8217;ll do often, but it completes the connection
+between Approaches #1 and #3.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Quick-review-of-the-bidding">
+<h3>Quick review of the bidding<a class="headerlink" href="#Quick-review-of-the-bidding" title="永久链接至标题">¶</a></h3>
+<p>Take a deep breath. We&#8217;ve covered a lot of ground, let&#8217;s take stock.</p>
+<p>We looked at three ways to use Matplotlib:</p>
+<ul class="simple">
+<li>Approach #1: apply plot method to dataframe</li>
+<li>Approach #2: use <code class="docutils literal"><span class="pre">plot(x,y)</span></code> function</li>
+<li>Approach #3: create <code class="docutils literal"><span class="pre">fig,</span> <span class="pre">ax</span></code> objects, apply plot methods to them</li>
+</ul>
+<p>Same result, different syntax. This is what each of them looks like
+applied to US GDP:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">us</span><span class="p">[</span><span class="s1">&#39;gdp&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>                   <span class="c1"># Approach #1</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">us</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">us</span><span class="p">[</span><span class="s1">&#39;gdp&#39;</span><span class="p">])</span>      <span class="c1"># Approach #2</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>           <span class="c1"># Approach #3</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">us</span><span class="o">.</span><span class="n">index</span><span class="p">,</span> <span class="n">us</span><span class="p">[</span><span class="s1">&#39;gdp&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Examples">
+<h3>Examples<a class="headerlink" href="#Examples" title="永久链接至标题">¶</a></h3>
+<p>We conclude with examples that take the data from the previous chapter
+and make better graphs with it.</p>
+</div>
+</div>
+<div class="section" id="Student-test-scores-(PISA)">
+<h2>Student test scores (PISA)<a class="headerlink" href="#Student-test-scores-(PISA)" title="永久链接至标题">¶</a></h2>
+<p>The international test scores often used to compare quality of education
+across countries.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [100]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># data input
+import pandas as pd
+url = &#39;http://dx.doi.org/10.1787/888932937035&#39;
+pisa = pd.read_excel(url,
+                     skiprows=18,     # skip the first 18 rows
+                     skipfooter=7,    # skip the last 7
+                     parse_cols=[0,1,9,13], # select columns
+                     index_col=0,     # set index = first column
+                     header=[0,1]     # set variable names
+                     )
+pisa = pisa.dropna()                          # drop blank lines
+pisa.columns = [&#39;Math&#39;, &#39;Reading&#39;, &#39;Science&#39;] # simplify variable names
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [101]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># simple plot
+pisa[&#39;Math&#39;].plot(kind=&#39;barh&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[101]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7fdcd103c4e0&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_77_1.png" src="../_images/pystart_pandas_and_matplotlib_77_1.png" />
+</div>
+</div>
+<p><strong>Comment.</strong> Yikes! That&#8217;s horrible! What can we do about it?</p>
+<p>Let&#8217;s make the figure taller. The <code class="docutils literal"><span class="pre">figsize</span></code> argument has the form
+<code class="docutils literal"><span class="pre">(width,</span> <span class="pre">height)</span></code>. The default is <code class="docutils literal"><span class="pre">(6,</span> <span class="pre">4)</span></code>. We want a tall figure,
+so we need to increase the height setting.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [102]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># make the plot taller
+ax = pisa[&#39;Math&#39;].plot(kind=&#39;barh&#39;, figsize=(4,13))  # note figsize
+ax.set_title(&#39;PISA Math Score&#39;, loc=&#39;left&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[102]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.text.Text at 0x7fdcd0e1b160&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_79_1.png" src="../_images/pystart_pandas_and_matplotlib_79_1.png" />
+</div>
+</div>
+<p><strong>Comment.</strong> What if we wanted to make the US bar red? This is
+ridiculously complicated, but we used our Google fu and found <a class="reference external" href="http://stackoverflow.com/questions/18973404/setting-different-bar-color-in-matplotlib-python">a
+solution</a>.
+Remember: The solution to many problems is Google fu + patience.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [103]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>ax = pisa[&#39;Math&#39;].plot(kind=&#39;barh&#39;, figsize=(4,13))
+ax.set_title(&#39;PISA Math Score&#39;, loc=&#39;left&#39;)
+ax.get_children()[38].set_color(&#39;r&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_81_0.png" src="../_images/pystart_pandas_and_matplotlib_81_0.png" />
+</div>
+</div>
+<p><strong>Exercise.</strong> Create the same graph for the Reading score.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="World-Bank-data">
+<h2>World Bank data<a class="headerlink" href="#World-Bank-data" title="永久链接至标题">¶</a></h2>
+<p>We&#8217;ll use World Bank data for GDP, GDP per capita, and life expectancy
+to produce a few graphs and illsutrate some methods we haven&#8217;t seen yet.</p>
+<ul class="simple">
+<li>Bar charts of GDP and GDP per capita</li>
+<li>Scatter plot (bubble plot) of life expectancy v GDP per capita</li>
+</ul>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [104]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># load packages (redundancy is ok)
+import pandas as pd                   # data management tools
+from pandas_datareader import data, wb # World Bank api
+import matplotlib.pyplot as plt       # plotting tools
+
+# variable list (GDP, GDP per capita, life expectancy)
+var = [&#39;NY.GDP.PCAP.PP.KD&#39;, &#39;NY.GDP.MKTP.PP.KD&#39;, &#39;SP.DYN.LE00.IN&#39;]
+# country list (ISO codes)
+iso = [&#39;USA&#39;, &#39;FRA&#39;, &#39;JPN&#39;, &#39;CHN&#39;, &#39;IND&#39;, &#39;BRA&#39;, &#39;MEX&#39;]
+year = 2013
+
+# get data from World Bank
+df = wb.download(indicator=var, country=iso, start=year, end=year)
+
+# massage data
+df = df.reset_index(level=&#39;year&#39;, drop=True)
+df.columns = [&#39;gdppc&#39;, &#39;gdp&#39;, &#39;life&#39;] # rename variables
+df[&#39;pop&#39;]  = df[&#39;gdp&#39;]/df[&#39;gdppc&#39;]    # population
+df[&#39;gdp&#39;] = df[&#39;gdp&#39;]/10**12          # convert to trillions
+df[&#39;gdppc&#39;] = df[&#39;gdppc&#39;]/10**3       # convert to thousands
+df[&#39;order&#39;] = [5, 3, 1, 4, 2, 6, 0]   # reorder countries
+df = df.sort_values(by=&#39;order&#39;, ascending=False)
+df
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[104]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>gdppc</th>
+      <th>gdp</th>
+      <th>life</th>
+      <th>pop</th>
+      <th>order</th>
+    </tr>
+    <tr>
+      <th>country</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Mexico</th>
+      <td>16.140664</td>
+      <td>1.997247</td>
+      <td>76.532659</td>
+      <td>1.237401e+08</td>
+      <td>6</td>
+    </tr>
+    <tr>
+      <th>Brazil</th>
+      <td>15.222320</td>
+      <td>3.109302</td>
+      <td>74.122439</td>
+      <td>2.042594e+08</td>
+      <td>5</td>
+    </tr>
+    <tr>
+      <th>India</th>
+      <td>5.131826</td>
+      <td>6.566166</td>
+      <td>67.660415</td>
+      <td>1.279499e+09</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>China</th>
+      <td>11.805087</td>
+      <td>16.023988</td>
+      <td>75.353024</td>
+      <td>1.357380e+09</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>Japan</th>
+      <td>35.614310</td>
+      <td>4.535077</td>
+      <td>83.331951</td>
+      <td>1.273386e+08</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>France</th>
+      <td>37.306283</td>
+      <td>2.459435</td>
+      <td>81.968293</td>
+      <td>6.592550e+07</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>United States</th>
+      <td>51.281583</td>
+      <td>16.230494</td>
+      <td>78.841463</td>
+      <td>3.164975e+08</td>
+      <td>0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [105]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># GDP bar chart
+ax = df[&#39;gdp&#39;].plot(kind=&#39;barh&#39;, alpha=0.5)
+ax.set_title(&#39;GDP&#39;, loc=&#39;left&#39;, fontsize=14)
+ax.set_xlabel(&#39;Trillions of US Dollars&#39;)
+ax.set_ylabel(&#39;&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[105]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.text.Text at 0x7fdcd132d208&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_86_1.png" src="../_images/pystart_pandas_and_matplotlib_86_1.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [106]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># ditto for GDP per capita (per person)
+ax = df[&#39;gdppc&#39;].plot(kind=&#39;barh&#39;, color=&#39;m&#39;, alpha=0.5)
+ax.set_title(&#39;GDP Per Capita&#39;, loc=&#39;left&#39;, fontsize=14)
+ax.set_xlabel(&#39;Thousands of US Dollars&#39;)
+ax.set_ylabel(&#39;&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[106]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.text.Text at 0x7fdcd0c35128&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_87_1.png" src="../_images/pystart_pandas_and_matplotlib_87_1.png" />
+</div>
+</div>
+<p>And just because it&#8217;s fun, here&#8217;s an example of Tufte-like axes from
+<a class="reference external" href="http://matplotlib.org/examples/ticks_and_spines/spines_demo_dropped.html">Matplotlib
+examples</a>.
+If you want to do this yourself, copy the last six line and prepare
+yourself to sink some time into it.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [107]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># ditto for GDP per capita (per person)
+ax = df[&#39;gdppc&#39;].plot(kind=&#39;barh&#39;, color=&#39;b&#39;, alpha=0.5)
+ax.set_title(&#39;GDP Per Capita&#39;, loc=&#39;left&#39;, fontsize=14)
+ax.set_xlabel(&#39;Thousands of US Dollars&#39;)
+ax.set_ylabel(&#39;&#39;)
+
+# Tufte-like axes
+ax.spines[&#39;left&#39;].set_position((&#39;outward&#39;, 10))
+ax.spines[&#39;bottom&#39;].set_position((&#39;outward&#39;, 10))
+ax.spines[&#39;right&#39;].set_visible(False)
+ax.spines[&#39;top&#39;].set_visible(False)
+ax.yaxis.set_ticks_position(&#39;left&#39;)
+ax.xaxis.set_ticks_position(&#39;bottom&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_89_0.png" src="../_images/pystart_pandas_and_matplotlib_89_0.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [108]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># scatterplot of life expectancy vs gdp per capita
+plt.scatter(df[&#39;gdppc&#39;], df[&#39;life&#39;],    # x,y variables
+            s=df[&#39;pop&#39;]/10**6,          # size of bubbles
+            alpha=0.5)
+plt.title(&#39;Life expectancy vs. GDP per capita&#39;, loc=&#39;left&#39;, fontsize=14)
+plt.xlabel(&#39;GDP Per Capita&#39;)
+plt.ylabel(&#39;Life Expectancy&#39;)
+plt.text(58, 66, &#39;Bubble size represents population&#39;, horizontalalignment=&#39;right&#39;,)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[108]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.text.Text at 0x7fdcd0c098d0&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_90_1.png" src="../_images/pystart_pandas_and_matplotlib_90_1.png" />
+</div>
+</div>
+<div class="section" id="Styles-(optional)">
+<h3>Styles (optional)<a class="headerlink" href="#Styles-(optional)" title="永久链接至标题">¶</a></h3>
+<p>Graph settings you might like.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [109]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>ax = df[&#39;gdp&#39;].plot(kind=&#39;barh&#39;, alpha=0.5)
+ax.set_title(&#39;GDP&#39;, loc=&#39;left&#39;, fontsize=14)
+ax.set_xlabel(&#39;Trillions of US Dollars&#39;)
+ax.set_ylabel(&#39;&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[109]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.text.Text at 0x7fdcd0bbdb00&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_92_1.png" src="../_images/pystart_pandas_and_matplotlib_92_1.png" />
+</div>
+</div>
+<p><strong>Exercise.</strong> Create the same graph with this statement at the top:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;fivethirtyeight&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>(Once we execute this statement, it stays executed.)</p>
+<p><strong>Comment.</strong> We can get a list of files from <code class="docutils literal"><span class="pre">plt.style.available</span></code>.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [110]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>plt.style.available
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[110]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>[&#39;seaborn-dark&#39;,
+ &#39;seaborn-notebook&#39;,
+ &#39;seaborn-poster&#39;,
+ &#39;seaborn-dark-palette&#39;,
+ &#39;classic&#39;,
+ &#39;seaborn-whitegrid&#39;,
+ &#39;seaborn-deep&#39;,
+ &#39;fivethirtyeight&#39;,
+ &#39;grayscale&#39;,
+ &#39;seaborn-muted&#39;,
+ &#39;seaborn-white&#39;,
+ &#39;seaborn-talk&#39;,
+ &#39;seaborn-paper&#39;,
+ &#39;seaborn-bright&#39;,
+ &#39;seaborn-pastel&#39;,
+ &#39;seaborn-darkgrid&#39;,
+ &#39;seaborn-ticks&#39;,
+ &#39;bmh&#39;,
+ &#39;seaborn-colorblind&#39;,
+ &#39;ggplot&#39;,
+ &#39;dark_background&#39;]
+</pre></div>
+</div>
+</div>
+<p><strong>Exercise.</strong> Try another one by editing the code beloe.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [111]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>plt.style.use(&#39;fivethirtyeight&#39;)
+ax = df[&#39;gdp&#39;].plot(kind=&#39;barh&#39;, alpha=0.5)
+ax.set_title(&#39;GDP&#39;, loc=&#39;left&#39;, fontsize=14)
+ax.set_xlabel(&#39;Trillions of US Dollars&#39;)
+ax.set_ylabel(&#39;&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[111]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.text.Text at 0x7fdcd0ae84a8&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_97_1.png" src="../_images/pystart_pandas_and_matplotlib_97_1.png" />
+</div>
+</div>
+<p><strong>Comment.</strong> For aficionados, the always tasteful <a class="reference external" href="http://xkcd.com/1235/">xkcd
+style</a>.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [112]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>plt.xkcd()
+ax = df[&#39;gdp&#39;].plot(kind=&#39;barh&#39;, alpha=0.5)
+ax.set_title(&#39;GDP&#39;, loc=&#39;left&#39;, fontsize=14)
+ax.set_xlabel(&#39;Trillions of US Dollars&#39;)
+ax.set_ylabel(&#39;&#39;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[112]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.text.Text at 0x7fdcd0a449e8&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="container">
+</div>
+<div class="stderr container">
+<div class="highlight"><pre>
+/home/matthewmckay/anaconda/lib/python3.5/site-packages/matplotlib/font_manager.py:1287: UserWarning: findfont: Font family [&#39;Humor Sans&#39;, &#39;Comic Sans MS&#39;] not found. Falling back to Bitstream Vera Sans
+  (prop.get_family(), self.defaultFamily[fontext]))
+</pre></div></div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../_images/pystart_pandas_and_matplotlib_99_2.png" src="../_images/pystart_pandas_and_matplotlib_99_2.png" />
+</div>
+</div>
+<p><strong>Comment.</strong> We reset the style with these two lines:</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [113]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>mpl.rcParams.update(mpl.rcParamsDefault)
+%matplotlib inline
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Where-does-that-leave-us?">
+<h3>Where does that leave us?<a class="headerlink" href="#Where-does-that-leave-us?" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li>We now have several ways to produce graphs.</li>
+<li>Next up: think about what we want to graph and why. The tools serve
+that higher purpose.</li>
+</ul>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

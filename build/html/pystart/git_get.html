@@ -1,0 +1,670 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Get Notebook from github.com and other source. &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_cloud.html">云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_paas.html">2. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_saas.html">3. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_process.html">4. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_analyst.html">6. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_network.html">7. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_stream.html">8. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_dimension.html">9. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_ml.html">10. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_science.html">11. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pystart_databasic.html">Python-列表、词典、元组及其遍历。</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>Get Notebook from github.com and other source.</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/pystart/git_get.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="Get-Notebook-from-github.com-and-other-source.">
+<h1>Get Notebook from github.com and other source.<a class="headerlink" href="#Get-Notebook-from-github.com-and-other-source." title="永久链接至标题">¶</a></h1>
+<p>by
+<a class="reference external" href="http://my.oschina.net/u/2306127/blog?catalog=3420733">openthings&#64;163.com</a>,
+2016-04.</p>
+<div class="section" id="通用的Notebook更新维护的工具。">
+<h2>通用的Notebook更新维护的工具。<a class="headerlink" href="#通用的Notebook更新维护的工具。" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>原始URL列表保存在文本文件git_list.txt中。</li>
+<li>git_list.txt转为git_list.md，在GitBook中使用。</li>
+<li>git_list.txt转为git_list.ipynb，在Jupyter中使用。</li>
+</ul>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from pprint import *
+</pre></div>
+</div>
+</div>
+<div class="section" id="URL地址列表读入字符串变量中。">
+<h3>URL地址列表读入字符串变量中。<a class="headerlink" href="#URL地址列表读入字符串变量中。" title="永久链接至标题">¶</a></h3>
+</div>
+<div class="section" id="注意，为了避免太长，只显示了前面指定个数的字符。">
+<h3>注意，为了避免太长，只显示了前面指定个数的字符。<a class="headerlink" href="#注意，为了避免太长，只显示了前面指定个数的字符。" title="永久链接至标题">¶</a></h3>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>url_str = open(&quot;git_list.txt&quot;).read()
+print(url_str[0:300] + &quot;\n\n......&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+# Get Notebook from github.com and other source:
+
+# Pandas tutorial for new user.
+https://bitbucket.org/hrojas/learn-pandas.git
+
+# echo Pandas Cookbook.
+https://github.com/jvns/pandas-cookbook.git
+
+# Some Files for Finance Analysis.
+clone https://github.com/wy36101299/ipynb-file.git
+
+# Practical dat
+
+......
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="分解字符串到名称和url。">
+<h3>分解字符串到名称和url。<a class="headerlink" href="#分解字符串到名称和url。" title="永久链接至标题">¶</a></h3>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>url_line = url_str.split(&quot;#&quot;)
+
+url_list = []
+for url in url_line:
+    url2 = url.strip().split(&quot;\n&quot;)
+    if len(url2)&gt;1:
+        uname = url2[0]
+        ugit = url2[1]
+        url_dict = {&quot;uname&quot;:uname,&quot;ugit&quot;:ugit}
+        url_list.append(url_dict)
+
+print(&quot;Total:&quot;,len(url_list))
+pprint(url_list[0:3])
+        #print(uname,&quot;\n&quot;,ugit)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Total: 26
+[{&#39;ugit&#39;: &#39;https://bitbucket.org/hrojas/learn-pandas.git&#39;,
+  &#39;uname&#39;: &#39;Pandas tutorial for new user.&#39;},
+ {&#39;ugit&#39;: &#39;https://github.com/jvns/pandas-cookbook.git&#39;,
+  &#39;uname&#39;: &#39;echo Pandas Cookbook.&#39;},
+ {&#39;ugit&#39;: &#39;clone https://github.com/wy36101299/ipynb-file.git&#39;,
+  &#39;uname&#39;: &#39;Some Files for Finance Analysis.&#39;}]
+</pre></div></div>
+</div>
+<div class="section" id="保存到Markdown文件。">
+<h4>保存到Markdown文件。<a class="headerlink" href="#保存到Markdown文件。" title="永久链接至标题">¶</a></h4>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>flist = open(&quot;git_list.md&quot;,&quot;w+&quot;)
+flist.write(
+&quot;&quot;&quot;
+## IPython Notebook Tutorial and Skills open source...
+##### by [openthings@163.com](http://my.oschina.net/u/2306127/blog?catalog=3420733), 2016-04.
+&quot;&quot;&quot;
+)
+for d in url_list:
+    flist.write(&quot;##### &quot; + d[&quot;uname&quot;] + &quot;\n&quot;)
+    flist.write(&quot;[&quot; + d[&quot;ugit&quot;] + &quot;]&quot; + &quot;(&quot; + d[&quot;ugit&quot;] + &quot;)\n&quot;)
+flist.close()
+print(&quot;Writed url list to file: url_list.md&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Writed url list to file: url_list.md
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="抓取git库中文件到本地。如果已经存在，则git-pull，否则git-clone.">
+<h4>抓取git库中文件到本地。如果已经存在，则git pull，否则git clone.<a class="headerlink" href="#抓取git库中文件到本地。如果已经存在，则git-pull，否则git-clone." title="永久链接至标题">¶</a></h4>
+<p>** 使用了IPython的！魔法操作符来执行shell操作。**</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import os
+import os.path
+
+index = 0
+for d in url_list:
+    index += 1
+    print(&quot;\n&quot;,index,&quot;:\t&quot;,d[&quot;uname&quot;],&quot;\n==&gt;&gt;\t&quot;,d[&quot;ugit&quot;])
+
+    git_path = os.path.split(d[&quot;ugit&quot;])
+    git_name = git_path[1].split(&quot;.&quot;)[0]
+    #print(git_name)
+
+    if os.path.exists(git_name):
+        print(&quot;\t Existed, git pull:&quot;,git_name,&quot; ...&quot;)
+        ! cd $git_name &amp;&amp; git pull
+    else:
+        print(&quot;Git clone ......&quot;)
+        ucmd = &quot;git clone &quot; + d[&quot;ugit&quot;]
+        #print(ucmd)
+        ! $ucmd
+print(&quot;Finished.&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+
+ 1 :     Pandas tutorial for new user.
+==&gt;&gt;       https://bitbucket.org/hrojas/learn-pandas.git
+         Existed, git pull: learn-pandas
+Already up-to-date.
+
+ 2 :     echo Pandas Cookbook.
+==&gt;&gt;       https://github.com/jvns/pandas-cookbook.git
+         Existed, git pull: pandas-cookbook
+Already up-to-date.
+
+ 3 :     Some Files for Finance Analysis.
+==&gt;&gt;       clone https://github.com/wy36101299/ipynb-file.git
+         Existed, git pull: ipynb-file
+Already up-to-date.
+
+ 4 :     Practical data analysis with Python
+==&gt;&gt;       https://leanpub.com/analyticshandbook
+Git clone ......
+正克隆到 &#39;analyticshandbook&#39;...
+fatal: repository &#39;https://leanpub.com/analyticshandbook/&#39; not found
+
+ 5 :     Mining-the-Social-Web-2nd-Edition
+==&gt;&gt;       https://github.com/ptwobrussell/Mining-the-Social-Web-2nd-Edition.git
+         Existed, git pull: Mining-the-Social-Web-2nd-Edition
+Already up-to-date.
+
+ 6 :     Biolab
+==&gt;&gt;       https://github.com/biolab/ipynb.git
+         Existed, git pull: ipynb
+Already up-to-date.
+
+ 7 :     Build a flask server for Jupyter.
+==&gt;&gt;       https://github.com/yhilpisch/ipynb-docker.git
+         Existed, git pull: ipynb-docker
+Already up-to-date.
+
+ 8 :     IPython notebooks used in Georgia Tech&#39;s CSE 6040: Computing for Data Analysis
+==&gt;&gt;       https://github.com/rvuduc/cse6040-ipynbs.git
+         Existed, git pull: cse6040-ipynbs
+Already up-to-date.
+
+ 9 :     Jupyter Notebook Tools for Sphinx
+==&gt;&gt;       https://github.com/spatialaudio/nbsphinx.git
+         Existed, git pull: nbsphinx
+Already up-to-date.
+
+ 10 :    A collection of Notebooks for using IPython effectively
+==&gt;&gt;       https://github.com/odewahn/ipynb-examples.git
+         Existed, git pull: ipynb-examples
+Already up-to-date.
+
+ 11 :    aka &#34;Bayesian Methods for Hackers&#34;
+==&gt;&gt;       https://github.com/CamDavidsonPilon/Probabilistic-Programming-and-Bayesian-Methods-for-Hackers.git
+         Existed, git pull: Probabilistic-Programming-and-Bayesian-Methods-for-Hackers
+Already up-to-date.
+
+ 12 :    /bokeh-tutorial-ipynb
+==&gt;&gt;       https://github.com/chdoig/bokeh-tutorial-ipynb.git
+Git clone ......
+正克隆到 &#39;bokeh-tutorial-ipynb&#39;...
+remote: Counting objects: 253, done.
+remote: Compressing objects: 100% (90/90), done.
+remote: Total 253 (delta 161), reused 253 (delta 161), pack-reused 0
+接收对象中: 100% (253/253), 49.82 MiB | 599.00 KiB/s, 完成.
+处理 delta 中: 100% (161/161), 完成.
+检查连接... 完成。
+
+ 13 :    collection all kinds of ipynb
+==&gt;&gt;       https://github.com/OpenBookProjects/ipynb.git
+         Existed, git pull: ipynb
+Already up-to-date.
+
+ 14 :    Just a shared git repo for Social Graphs &amp; Interaction
+==&gt;&gt;       https://github.com/timmevandermeer/ipynb.git
+         Existed, git pull: ipynb
+Already up-to-date.
+
+ 15 :    Neural Networks Training Jupyter Notebooks
+==&gt;&gt;       https://github.com/tmeits/ipynb.git
+         Existed, git pull: ipynb
+Already up-to-date.
+
+ 16 :    tensorflow-ipynb
+==&gt;&gt;       https://github.com/fujun-liu/tensorflow-ipynb.git
+         Existed, git pull: tensorflow-ipynb
+Already up-to-date.
+
+ 17 :    https://github.com/charlesjhlee/ml_ipynb.git
+==&gt;&gt;       https://github.com/charlesjhlee/ml_ipynb.git
+         Existed, git pull: ml_ipynb
+Already up-to-date.
+
+ 18 :    Ipython Notebook Visuals
+==&gt;&gt;       https://github.com/bangadennis/ipynb_visuals.git
+         Existed, git pull: ipynb_visuals
+Already up-to-date.
+
+ 19 :    Canvas Widget for IPython Notebook https://github.com/Who8MyLunch/ipynb_widget_canvas
+==&gt;&gt;       https://github.com/Who8MyLunch/ipynb_widget_canvas.git
+         Existed, git pull: ipynb_widget_canvas
+Already up-to-date.
+
+ 20 :    Copy of Udacity DL course ipynb files, and maybe some other stuff
+==&gt;&gt;       https://github.com/damienstanton/tensorflownotes.git
+         Existed, git pull: tensorflownotes
+Already up-to-date.
+
+ 21 :    This is an ipynb in which we use simple logistic regression from Spark MLlib to train a sarcasm detector on comments from reddit.
+==&gt;&gt;       https://github.com/FranekJemiolo/SarcasmDetector.git
+         Existed, git pull: SarcasmDetector
+Already up-to-date.
+
+ 22 :    IPython project
+==&gt;&gt;       https://github.com/ipython/ipython.git
+Git clone ......
+正克隆到 &#39;ipython&#39;...
+remote: Counting objects: 154141, done.
+remote: Compressing objects: 100% (37/37), done.
+error: RPC failed; curl 56 GnuTLS recv error (-9): A TLS packet with unexpected length was received.
+fatal: The remote end hung up unexpectedly
+fatal: 过早的文件结束符（EOF）
+fatal: index-pack failed
+
+ 23 :    Topik project
+==&gt;&gt;       https://github.com/ContinuumIO/topik.git
+         Existed, git pull: topik
+Already up-to-date.
+
+ 24 :    scientific-python-lectures
+==&gt;&gt;       https://github.com/ContinuumIO/scientific-python-lectures.git
+         Existed, git pull: scientific-python-lectures
+Already up-to-date.
+
+ 25 :    Continuum work from XDATA January 2016 Hackathon with U. S. Census Bureau
+==&gt;&gt;       https://github.com/ContinuumIO/xdata-2016-census.git
+         Existed, git pull: xdata-2016-census
+Already up-to-date.
+
+ 26 :    Analysis on Each Image
+==&gt;&gt;       https://github.com/ContinuumIO/image-analyzer.git
+         Existed, git pull: image-analyzer
+Already up-to-date.
+Finished.
+</pre></div></div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
