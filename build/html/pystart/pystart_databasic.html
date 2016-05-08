@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Python-列表、词典、元组及其遍历。 &mdash; GISpark 0.1 文档</title>
+  <title>4. Python数据操作 &mdash; GISpark 0.1 文档</title>
   
 
   
@@ -31,8 +31,8 @@
 
   
     <link rel="top" title="GISpark 0.1 文档" href="../index.html"/>
-        <link rel="next" title="附录" href="../gispark_appendix.html"/>
-        <link rel="prev" title="11. 模型构建与共享" href="../gispark_science.html"/> 
+        <link rel="up" title="附录" href="../gispark_appendix.html"/>
+        <link rel="prev" title="3. 安装并启动jupyter" href="../jupyter/jupyter_quickstart.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -86,31 +86,34 @@
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../gispark_profile.html">1. GISpark简介</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gispark_cloud.html">云计算基础设施</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gispark_paas.html">2. 分布式计算与持续交付</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gispark_saas.html">3. 地理空间信息服务平台</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gispark_process.html">4. 地理空间信息数据处理</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gispark_mapping.html">5. 地理制图与空间可视化</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gispark_analyst.html">6. 高级空间分析</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gispark_network.html">7. 地理空间网络</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gispark_stream.html">8. 实时流处理</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gispark_dimension.html">9. 多维时空分析</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gispark_ml.html">10. 机器学习框架</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../gispark_science.html">11. 模型构建与共享</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_science.html">12. 模型构建与共享</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Python-列表、词典、元组及其遍历。</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#List，使用[a,b,c,...]方式声明。">List，使用[a,b,c,...]方式声明。</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#Dictionary，词典，｛key:value,...｝">Dictionary，词典，｛key:value,...｝</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tuple，(obj1,obj2,...)，元组">tuple，(obj1,obj2,...)，元组</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#一个字典、元组构成的复合列表对象。">一个字典、元组构成的复合列表对象。</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../gispark_appendix.html">附录</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../opendatasource.html">1. 全球开放数据源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/sphinx_quickstart.html">2. Sphinx快速入门</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../jupyter/jupyter_quickstart.html">3. Jupyter快速入门</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. Python数据列表</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#List，使用[a,b,c,...]方式声明。">4.1. List，使用[a,b,c,...]方式声明。</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Dictionary，词典，｛key:value,...｝">4.2. Dictionary，词典，｛key:value,...｝</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tuple，(obj1,obj2,...)，元组">4.3. tuple，(obj1,obj2,...)，元组</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#一个字典、元组构成的复合列表对象。">4.3.1. 一个字典、元组构成的复合列表对象。</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../gispark_appendix.html">附录</a></li>
+</li>
 </ul>
 
             
@@ -141,7 +144,9 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../index.html">Docs</a> &raquo;</li>
       
-    <li>Python-列表、词典、元组及其遍历。</li>
+          <li><a href="../gispark_appendix.html">附录</a> &raquo;</li>
+      
+    <li>4. Python数据操作</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -287,14 +292,14 @@ div.nboutput  > :nth-child(2).stderr {
 
 .ansi-bold { font-weight: bold; }
 </style>
-<div class="section" id="Python-列表、词典、元组及其遍历。">
-<h1>Python-列表、词典、元组及其遍历。<a class="headerlink" href="#Python-列表、词典、元组及其遍历。" title="永久链接至标题">¶</a></h1>
-<p>数组结构由一系列数据组成。在Python中有list、dictionary、Tuple等多种实现。</p>
+<div class="section" id="Python数据操作">
+<h1>4. Python数据操作<a class="headerlink" href="#Python数据操作" title="永久链接至标题">¶</a></h1>
+<p>在Python中有list、dictionary、Tuple等多种类似于数组的数据结构实现，可以帮助快速操作数据。</p>
 <p>by
 <a class="reference external" href="http://my.oschina.net/u/2306127/blog?catalog=3420733">openthings&#64;163.com</a>,
 2016-04.</p>
 <div class="section" id="List，使用[a,b,c,...]方式声明。">
-<h2>List，使用[a,b,c,...]方式声明。<a class="headerlink" href="#List，使用[a,b,c,...]方式声明。" title="永久链接至标题">¶</a></h2>
+<h2>4.1. List，使用[a,b,c,...]方式声明。<a class="headerlink" href="#List，使用[a,b,c,...]方式声明。" title="永久链接至标题">¶</a></h2>
 <p>列表是基础的数据结构。</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -511,7 +516,7 @@ for obj in range(len(name)):
 </div>
 </div>
 <div class="section" id="Dictionary，词典，｛key:value,...｝">
-<h2>Dictionary，词典，｛key:value,...｝<a class="headerlink" href="#Dictionary，词典，｛key:value,...｝" title="永久链接至标题">¶</a></h2>
+<h2>4.2. Dictionary，词典，｛key:value,...｝<a class="headerlink" href="#Dictionary，词典，｛key:value,...｝" title="永久链接至标题">¶</a></h2>
 <p>词典数据就是一系列k:v值对的集合。</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -671,7 +676,7 @@ Type of d:  &lt;class &#39;dict&#39;&gt;
 </div>
 </div>
 <div class="section" id="tuple，(obj1,obj2,...)，元组">
-<h2>tuple，(obj1,obj2,...)，元组<a class="headerlink" href="#tuple，(obj1,obj2,...)，元组" title="永久链接至标题">¶</a></h2>
+<h2>4.3. tuple，(obj1,obj2,...)，元组<a class="headerlink" href="#tuple，(obj1,obj2,...)，元组" title="永久链接至标题">¶</a></h2>
 <p>一个元组可包含多种类型的对象，不可修改。</p>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -735,7 +740,7 @@ Type of d:  &lt;class &#39;dict&#39;&gt;
 </div>
 </div>
 <div class="section" id="一个字典、元组构成的复合列表对象。">
-<h3>一个字典、元组构成的复合列表对象。<a class="headerlink" href="#一个字典、元组构成的复合列表对象。" title="永久链接至标题">¶</a></h3>
+<h3>4.3.1. 一个字典、元组构成的复合列表对象。<a class="headerlink" href="#一个字典、元组构成的复合列表对象。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [67]:
@@ -770,10 +775,8 @@ len(ao),ao[0]["k1"],ao[1][0],ao[1][1]<p>从上面可以看出，python的数据�
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../gispark_appendix.html" class="btn btn-neutral float-right" title="附录" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="../gispark_science.html" class="btn btn-neutral" title="11. 模型构建与共享" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="../jupyter/jupyter_quickstart.html" class="btn btn-neutral" title="3. 安装并启动jupyter" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

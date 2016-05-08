@@ -44,12 +44,7 @@
   },
   {
    "cell_type": "markdown",
-   "metadata": {
-    "nbsphinx-toctree": {
-     "maxdepth": 2,
-     "numbered": true
-    }
-   },
+   "metadata": {},
    "source": [
     "## A sub-toctree\n",
     "\n",

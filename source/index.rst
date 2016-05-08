@@ -35,17 +35,11 @@
    gispark_ml
    gispark_science
 
-
 .. toctree::
    :maxdepth: 2
    
-   jupyter/sphinx_quickstart.ipynb
-   pystart/pystart_databasic
-   
-.. toctree::
-   :maxdepth: 1
-   
-   gispark_appendix
+   gispark_appendix   
+
    
 =======================
 Indices and tables
