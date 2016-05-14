@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>3. 安装并启动jupyter &mdash; GISpark 0.1 文档</title>
+  <title>安装并启动jupyter &mdash; GISpark 0.1 文档</title>
   
 
   
@@ -103,15 +103,15 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../gispark_appendix.html">附录</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../opendatasource.html">1. 全球开放数据源</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sphinx_quickstart.html">2. Sphinx快速入门</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3. Jupyter快速入门</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#安装并启动jupyter">3.1. 安装并启动jupyter</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#定制Jupyter">3.2. 定制Jupyter</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#为-notebook-的-cell增加line-number">3.2.1. 为 notebook 的 cell增加line number</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#更改jupyter的主题">3.2.2. 更改jupyter的主题</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Jupyter快速入门</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#安装并启动jupyter">安装并启动jupyter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#定制Jupyter">定制Jupyter</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#为-notebook-的-cell增加line-number">为 notebook 的 cell增加line number</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#更改jupyter的主题">更改jupyter的主题</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#Jupyter服务器">3.3. Jupyter服务器</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#与PySpark集成">3.4. 与PySpark集成</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Jupyter服务器">Jupyter服务器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#与PySpark集成">与PySpark集成</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../pystart/pystart_databasic.html">4. Python数据列表</a></li>
@@ -149,7 +149,7 @@
       
           <li><a href="../gispark_appendix.html">附录</a> &raquo;</li>
       
-    <li>3. 安装并启动jupyter</li>
+    <li>安装并启动jupyter</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -297,9 +297,9 @@ div.nboutput  > :nth-child(2).stderr {
 </style>
 <p>&#8220;nbsphinx-toctree&#8221;: { &#8220;maxdepth&#8221;: 3, &#8220;numbered&#8221;: true }</p>
 <div class="section" id="安装并启动jupyter">
-<h1>3.1. 安装并启动jupyter<a class="headerlink" href="#安装并启动jupyter" title="永久链接至标题">¶</a></h1>
+<h1>安装并启动jupyter<a class="headerlink" href="#安装并启动jupyter" title="永久链接至标题">¶</a></h1>
 <div class="section" id="安装并启动jupyter">
-<h2>3.1. 安装并启动jupyter<a class="headerlink" href="#安装并启动jupyter" title="永久链接至标题">¶</a></h2>
+<h2>安装并启动jupyter<a class="headerlink" href="#安装并启动jupyter" title="永久链接至标题">¶</a></h2>
 <p>安装 Anaconda 后, 再安装 jupyter</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">jupyter</span>
 </pre></div>
@@ -326,7 +326,7 @@ notebook命令组合, 如果使用Anaconda的发布包,
 <a class="reference external" href="http://nbviewer.jupyter.org/github/ipython/ipython/blob/3.x/examples/Notebook/Notebook%20Basics.ipynb">http://nbviewer.jupyter.org/github/ipython/ipython/blob/3.x/examples/Notebook/Notebook%20Basics.ipynb</a></p>
 </div>
 <div class="section" id="定制Jupyter">
-<h2>3.2. 定制Jupyter<a class="headerlink" href="#定制Jupyter" title="永久链接至标题">¶</a></h2>
+<h2>定制Jupyter<a class="headerlink" href="#定制Jupyter" title="永久链接至标题">¶</a></h2>
 <p>[root#]./jupyter-notebook &#8211;generate-config 将生成一个jupyter的配置文件,
 比如 /root/.jupyter/jupyter_notebook_config.py , 在其中可配置Notebook
 App的基本信息 文件名为: /root/.jupyter/jupyter_notebook_config.py</p>
@@ -338,7 +338,7 @@ App的基本信息 文件名为: /root/.jupyter/jupyter_notebook_config.py</p>
 </pre></div>
 </div>
 <div class="section" id="为-notebook-的-cell增加line-number">
-<h3>3.2.1. 为 notebook 的 cell增加line number<a class="headerlink" href="#为-notebook-的-cell增加line-number" title="永久链接至标题">¶</a></h3>
+<h3>为 notebook 的 cell增加line number<a class="headerlink" href="#为-notebook-的-cell增加line-number" title="永久链接至标题">¶</a></h3>
 <p>在 ~/.ipython/profile_foo/static/custom/custom.js 增加下面几行</p>
 <p>define([ &#8216;base/js/namespace&#8217;, &#8216;base/js/events&#8217; ], function(IPython,
 events) { events.on(&#8220;app_initialized.NotebookApp&#8221;, function () {
@@ -346,14 +346,14 @@ require(&#8220;notebook/js/cell&#8221;).Cell.options_default.cm_config.lineNumbe
 = true; } ); } );</p>
 </div>
 <div class="section" id="更改jupyter的主题">
-<h3>3.2.2. 更改jupyter的主题<a class="headerlink" href="#更改jupyter的主题" title="永久链接至标题">¶</a></h3>
+<h3>更改jupyter的主题<a class="headerlink" href="#更改jupyter的主题" title="永久链接至标题">¶</a></h3>
 <p><a class="reference external" href="https://github.com/transcranial/jupyter-themer">https://github.com/transcranial/jupyter-themer</a> 更改命令 jupyter-themer
 -c monokai 访问远端的notebook server</p>
 <p>pip install jupyter-themer</p>
 </div>
 </div>
 <div class="section" id="Jupyter服务器">
-<h2>3.3. Jupyter服务器<a class="headerlink" href="#Jupyter服务器" title="永久链接至标题">¶</a></h2>
+<h2>Jupyter服务器<a class="headerlink" href="#Jupyter服务器" title="永久链接至标题">¶</a></h2>
 <p>如果是在远端开启了notebook server, 在本机浏览器直接访问, 将不能打开,
 这应该是notebook server为安全考虑, 有意屏蔽非本机的访问. 当然,
 我们总不能一直通过x-windows到远端打开浏览器使用notebook吧.</p>
@@ -377,7 +377,7 @@ local_port Destination: remote_host:remote_port Click Add.然后,
 </div>
 </div>
 <div class="section" id="与PySpark集成">
-<h2>3.4. 与PySpark集成<a class="headerlink" href="#与PySpark集成" title="永久链接至标题">¶</a></h2>
+<h2>与PySpark集成<a class="headerlink" href="#与PySpark集成" title="永久链接至标题">¶</a></h2>
 <p>IPython和普通的Python interpreter相比, 优点在于对交互性支持更好,
 所以PySpark只有在需要更好交互性的情形下, 才有集成IPython的必要, 显然只有
 pyspark shell 才需要集成IPython. Jupyter和PySpark shell集成方式有好几种,

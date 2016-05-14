@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <title>Geoprocessing with Python using Open Source GIS</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <link href="../css.css" type="text/css" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Geoprocessing with Python using Open Source GIS</h1>
+    WILD 6900 Special Topics<br>
+    Section 3 (1 credit)<br>
+    Spring 2009<br>
+    
+    <p><a href="install.html">Software installation</a<br>
+    Directions for installing and configuring the software used for this course</p>
+    
+    <p><a href="software.html">Free GIS software</a><br>
+    These packages aren't anything like ArcGIS, but they're free. If you plan on doing your homework
+    at home you should probably install one of these so that you can check to see if your script
+    worked correctly.</p>
+
+    <p><a href="docs.html">Documentation</a><br>
+    Documentation for Python and libraries that we'll be using</p>
+
+    <h3>Week 1: Reading and writing vector data with OGR</h3>
+    <a href="lectures/ospy_slides1.pdf">Slides</a><br>
+    <a href="lectures/ospy_data1.zip">Data</a><br>
+    <a href="lectures/ospy_hw1.pdf">Homework description</a><br>
+    <a href="lectures/ospy_demo1.py">Class demo</a><br>
+    <a href="lectures/ospy_hw1a.py">Solution for homework 1a</a><br>
+    <a href="lectures/ospy_hw1b.py">Solution for homework 1b</a><br>
+
+    <h3>Week 2: Creating geometries and handling projections</h3>
+    <a href="lectures/ospy_slides2.pdf">Slides</a><br>
+    <a href="lectures/ospy_data2.zip">Data</a><br>
+    <a href="lectures/ospy_hw2.pdf">Homework description</a><br>
+    <a href="lectures/ospy_demo2.py">Class demo</a><br>
+    <a href="lectures/ospy_hw2a.py">Solution for homework 2a</a><br>
+    <a href="lectures/ospy_hw2b.py">Solution for homework 2b</a><br>
+
+    <h3>Week 3: Filters & analysis; Function & modules</h3>
+    <a href="lectures/ospy_slides3.pdf">Slides</a><br>
+    <a href="lectures/ospy_data3.zip">Data</a><br>
+    <a href="lectures/ospy_hw3.pdf">Homework description</a><br>
+    <a href="lectures/ospy_demo3.py">Class demo</a><br>
+    <a href="lectures/ospy_hw3a.py">Solution for homework 3a</a><br>
+    <a href="lectures/ospy_hw3b_mod.py">Module solution for homework 3b</a><br>
+    <a href="lectures/ospy_hw3b.py">Solution for homework 3b</a><br>
+
+    <h3>Week 4: Reading raster data with GDAL</h3>
+    <a href="lectures/ospy_slides4.pdf">Slides</a><br>
+    <a href="lectures/ospy_data4.zip">Data</a><br>
+    <a href="lectures/ospy_hw4.pdf">Homework description</a><br>
+    <a href="lectures/ospy_demo4.py">Class demo</a><br>
+    <a href="lectures/ospy_hw4a.py">Solution for homework 4a</a><br>
+    <a href="lectures/ospy_hw4b.py">Solution for homework 4b</a><br>
+
+    <h3>Week 5: Map algebra and writing raster data</h3>
+    <a href="lectures/ospy_slides5.pdf">Slides</a><br>
+    <a href="lectures/ospy_data5.zip">Data</a><br>
+    <a href="lectures/ospy_hw5.pdf">Homework description</a><br>
+    <a href="lectures/ospy_demo5.py">Class demo</a><br>
+    <a href="lectures/ospy_hw5a.py">Solution for homework 5a</a><br>
+    <a href="lectures/ospy_hw5b.py">Solution for homework 5b</a><br>
+    
+    <h3>Week 6: More raster processing</h3>
+    <a href="lectures/ospy_slides6.pdf">Slides</a><br>
+    <a href="lectures/ospy_data6.zip">Data</a><br>
+    <a href="lectures/ospy_hw6.pdf">Homework description</a><br>
+    <a href="lectures/ospy_hw6a.py">Solution for homework 6a</a><br>
+    <a href="lectures/ospy_hw6b.py">Solution for homework 6b</a><br>
+
+    <h3>Week 7: Misc stuff</h3>
+    <a href="lectures/ospy_slides7.pdf">Slides</a><br>
+    <a href="lectures/ospy_data7.zip">Data</a><br>
+    <a href="lectures/ospy_hw7.pdf">Homework description</a><br>
+    <a href="lectures/ospy_hw7.txt">Solution for homework 7</a><br>
+    
+  </body>
+</html>
