@@ -1,0 +1,576 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Contributing to GeoPandas &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../../../../index.html"/> 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Contributing to GeoPandas</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../../_sources/geospatial/geopandas/geopandas/doc/source/contributing.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="contributing-to-geopandas">
+<h1>Contributing to GeoPandas<a class="headerlink" href="#contributing-to-geopandas" title="永久链接至标题">¶</a></h1>
+<p>(Contribution guidelines largely copied from <a class="reference external" href="http://pandas.pydata.org/pandas-docs/stable/contributing.html">pandas</a>)</p>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="永久链接至标题">¶</a></h2>
+<p>Contributions to GeoPandas are very welcome.  They are likely to
+be accepted more quickly if they follow these guidelines.</p>
+<p>At this stage of GeoPandas development, the priorities are to define a
+simple, usable, and stable API and to have clean, maintainable,
+readable code.  Performance matters, but not at the expense of those
+goals.</p>
+<p>In general, GeoPandas follows the conventions of the pandas project
+where applicable.</p>
+<p>In particular, when submitting a pull request:</p>
+<ul class="simple">
+<li>All existing tests should pass.  Please make sure that the test
+suite passes, both locally and on
+<a class="reference external" href="https://travis-ci.org/geopandas/geopandas">Travis CI</a>.  Status on
+Travis will be visible on a pull request.  If you want to enable
+Travis CI on your own fork, please read the pandas guidelines link
+above or the
+<a class="reference external" href="http://about.travis-ci.org/docs/user/getting-started/">getting started docs</a>.</li>
+<li>New functionality should include tests.  Please write reasonable
+tests for your code and make sure that they pass on your pull request.</li>
+<li>Classes, methods, functions, etc. should have docstrings.  The first
+line of a docstring should be a standalone summary.  Parameters and
+return values should be ducumented explicitly.</li>
+<li>GeoPandas supports python 2 (2.6+) and python 3 (3.2+) with a single
+code base.  Use modern python idioms when possible that are
+compatibile with both major versions, and use the
+<a class="reference external" href="https://pythonhosted.org/six">six</a> library where helpful to smooth
+over the differences.  Use <code class="docutils literal"><span class="pre">from</span> <span class="pre">__future__</span> <span class="pre">import</span></code> statements where
+appropriate.  Test code locally in both python 2 and python 3 when
+possible (all supported versions will be automatically tested on
+Travis CI).</li>
+<li>Follow PEP 8 when possible.</li>
+<li>Imports should be grouped with standard library imports first,
+3rd-party libraries next, and geopandas imports third.  Within each
+grouping, imports should be alphabetized.  Always use absolute
+imports when possible, and explicit relative imports for local
+imports when necessary in tests.</li>
+</ul>
+<div class="section" id="seven-steps-for-contributing">
+<h3>Seven Steps for Contributing<a class="headerlink" href="#seven-steps-for-contributing" title="永久链接至标题">¶</a></h3>
+<p>There are seven basic steps to contributing to <em>geopandas</em>:</p>
+<ol class="arabic simple">
+<li>Fork the <em>geopandas</em> git repository</li>
+<li>Create a development environment</li>
+<li>Install <em>geopandas</em> dependencies</li>
+<li>Make a <code class="docutils literal"><span class="pre">development</span></code> build of <em>geopandas</em></li>
+<li>Make changes to code and add tests</li>
+<li>Update the documentation</li>
+<li>Submit a Pull Request</li>
+</ol>
+<p>Each of these 7 steps is detailed below.</p>
+</div>
+</div>
+<div class="section" id="forking-the-geopandas-repository-using-git">
+<h2>1) Forking the <em>geopandas</em> repository using Git<a class="headerlink" href="#forking-the-geopandas-repository-using-git" title="永久链接至标题">¶</a></h2>
+<p>To the new user, working with Git is one of the more daunting aspects of contributing to <em>geopandas*</em>.
+It can very quickly become overwhelming, but sticking to the guidelines below will help keep the process
+straightforward and mostly trouble free.  As always, if you are having difficulties please
+feel free to ask for help.</p>
+<p>The code is hosted on <a class="reference external" href="https://github.com/geopandas/geopandas">GitHub</a>. To
+contribute you will need to sign up for a <a class="reference external" href="https://github.com/signup/free">free GitHub account</a>. We use <a class="reference external" href="http://git-scm.com/">Git</a> for
+version control to allow many people to work together on the project.</p>
+<p>Some great resources for learning Git:</p>
+<ul class="simple">
+<li>Software Carpentry&#8217;s <a class="reference external" href="http://swcarpentry.github.io/git-novice/">Git Tutorial</a></li>
+<li><a class="reference external" href="https://www.atlassian.com/git/tutorials/what-is-version-control">Atlassian</a></li>
+<li>the <a class="reference external" href="http://help.github.com/">GitHub help pages</a>.</li>
+<li>Matthew Brett&#8217;s <a class="reference external" href="http://matthew-brett.github.com/pydagogue/">Pydagogue</a>.</li>
+</ul>
+<div class="section" id="getting-started-with-git">
+<h3>Getting started with Git<a class="headerlink" href="#getting-started-with-git" title="永久链接至标题">¶</a></h3>
+<p><a class="reference external" href="http://help.github.com/set-up-git-redirect">GitHub has instructions</a> for installing git,
+setting up your SSH key, and configuring git.  All these steps need to be completed before
+you can work seamlessly between your local repository and GitHub.</p>
+</div>
+<div class="section" id="forking">
+<span id="contributing-forking"></span><h3>Forking<a class="headerlink" href="#forking" title="永久链接至标题">¶</a></h3>
+<p>You will need your own fork to work on the code. Go to the <a class="reference external" href="https://github.com/geopandas/geopandas">geopandas project
+page</a> and hit the <code class="docutils literal"><span class="pre">Fork</span></code> button. You will
+want to clone your fork to your machine:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="nd">@github.com</span><span class="p">:</span><span class="n">your</span><span class="o">-</span><span class="n">user</span><span class="o">-</span><span class="n">name</span><span class="o">/</span><span class="n">geopandas</span><span class="o">.</span><span class="n">git</span> <span class="n">geopandas</span><span class="o">-</span><span class="n">yourname</span>
+<span class="n">cd</span> <span class="n">geopandas</span><span class="o">-</span><span class="n">yourname</span>
+<span class="n">git</span> <span class="n">remote</span> <span class="n">add</span> <span class="n">upstream</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">geopandas</span><span class="o">/</span><span class="n">geopandas</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+<p>This creates the directory <cite>geopandas-yourname</cite> and connects your repository to
+the upstream (main project) <em>geopandas</em> repository.</p>
+<p>The testing suite will run automatically on Travis-CI once your pull request is
+submitted.  However, if you wish to run the test suite on a branch prior to
+submitting the pull request, then Travis-CI needs to be hooked up to your
+GitHub repository.  Instructions for doing so are <a class="reference external" href="http://about.travis-ci.org/docs/user/getting-started/">here</a>.</p>
+</div>
+<div class="section" id="creating-a-branch">
+<h3>Creating a branch<a class="headerlink" href="#creating-a-branch" title="永久链接至标题">¶</a></h3>
+<p>You want your master branch to reflect only production-ready code, so create a
+feature branch for making your changes. For example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">branch</span> <span class="n">shiny</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">feature</span>
+<span class="n">git</span> <span class="n">checkout</span> <span class="n">shiny</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">feature</span>
+</pre></div>
+</div>
+<p>The above can be simplified to:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">checkout</span> <span class="o">-</span><span class="n">b</span> <span class="n">shiny</span><span class="o">-</span><span class="n">new</span><span class="o">-</span><span class="n">feature</span>
+</pre></div>
+</div>
+<p>This changes your working directory to the shiny-new-feature branch.  Keep any
+changes in this branch specific to one bug or feature so it is clear
+what the branch brings to <em>geopandas</em>. You can have many shiny-new-features
+and switch in between them using the git checkout command.</p>
+<p>To update this branch, you need to retrieve the changes from the master branch:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">fetch</span> <span class="n">upstream</span>
+<span class="n">git</span> <span class="n">rebase</span> <span class="n">upstream</span><span class="o">/</span><span class="n">master</span>
+</pre></div>
+</div>
+<p>This will replay your commits on top of the latest geopandas git master.  If this
+leads to merge conflicts, you must resolve these before submitting your pull
+request.  If you have uncommitted changes, you will need to <code class="docutils literal"><span class="pre">stash</span></code> them prior
+to updating.  This will effectively store your changes and they can be reapplied
+after updating.</p>
+</div>
+</div>
+<div class="section" id="creating-a-development-environment">
+<span id="contributing-dev-env"></span><h2>2) Creating a development environment<a class="headerlink" href="#creating-a-development-environment" title="永久链接至标题">¶</a></h2>
+<p>A development environment is a virtual space where you can keep an independent installation of <em>geopandas</em>.
+This makes it easy to keep both a stable version of python in one place you use for work, and a development
+version (which you may break while playing with code) in another.</p>
+<p>An easy way to create a <em>geopandas</em> development environment is as follows:</p>
+<ul class="simple">
+<li>Install either <a class="reference external" href="http://docs.continuum.io/anaconda/">Anaconda</a> or
+<a class="reference external" href="http://conda.pydata.org/miniconda.html">miniconda</a></li>
+<li>Make sure that you have <a class="reference internal" href="#contributing-forking"><span class="std std-ref">cloned the repository</span></a></li>
+<li><code class="docutils literal"><span class="pre">cd</span></code> to the <em>geopandas*</em> source directory</li>
+</ul>
+<p>Tell conda to create a new environment, named <code class="docutils literal"><span class="pre">geopandas_dev</span></code>, or any other name you would like
+for this environment, by running:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">geopandas_dev</span>
+</pre></div>
+</div>
+<p>For a python 3 environment:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">create</span> <span class="o">-</span><span class="n">n</span> <span class="n">geopandas_dev</span> <span class="n">python</span><span class="o">=</span><span class="mf">3.4</span>
+</pre></div>
+</div>
+<p>This will create the new environment, and not touch any of your existing environments,
+nor any existing python installation.</p>
+<p>To work in this environment, Windows users should <code class="docutils literal"><span class="pre">activate</span></code> it as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">activate</span> <span class="n">geopandas_dev</span>
+</pre></div>
+</div>
+<p>Mac OSX and Linux users should use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">geopandas_dev</span>
+</pre></div>
+</div>
+<p>You will then see a confirmation message to indicate you are in the new development environment.</p>
+<p>To view your environments:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">info</span> <span class="o">-</span><span class="n">e</span>
+</pre></div>
+</div>
+<p>To return to you home root environment:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">deactivate</span>
+</pre></div>
+</div>
+<p>See the full conda docs <a class="reference external" href="http://conda.pydata.org/docs">here</a>.</p>
+<p>At this point you can easily do a <em>development</em> install, as detailed in the next sections.</p>
+</div>
+<div class="section" id="installing-dependencies">
+<h2>3) Installing Dependencies<a class="headerlink" href="#installing-dependencies" title="永久链接至标题">¶</a></h2>
+<p>To run <em>geopandas</em> in an development environment, you must first install
+<em>geopandas</em>&#8216;s dependencies. We suggest doing so using the following commands
+(executed after your development environment has been activated):</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="o">-</span><span class="n">c</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span> <span class="n">fiona</span> <span class="n">shapely</span> <span class="n">pyproj</span> <span class="n">rtree</span>
+<span class="n">conda</span> <span class="n">install</span> <span class="n">pandas</span>
+</pre></div>
+</div>
+<p>This should install all necessary dependencies.</p>
+</div>
+<div class="section" id="making-a-development-build">
+<h2>4) Making a development build<a class="headerlink" href="#making-a-development-build" title="永久链接至标题">¶</a></h2>
+<p>Once dependencies are in place, make an in-place build by navigating to the git
+clone of the <em>geopandas</em> repository and running:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">develop</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="making-changes-and-writing-tests">
+<h2>5) Making changes and writing tests<a class="headerlink" href="#making-changes-and-writing-tests" title="永久链接至标题">¶</a></h2>
+<p><em>geopandas</em> is serious about testing and strongly encourages contributors to embrace
+<a class="reference external" href="http://en.wikipedia.org/wiki/Test-driven_development">test-driven development (TDD)</a>.
+This development process &#8220;relies on the repetition of a very short development cycle:
+first the developer writes an (initially failing) automated test case that defines a desired
+improvement or new function, then produces the minimum amount of code to pass that test.&#8221;
+So, before actually writing any code, you should write your tests.  Often the test can be
+taken from the original GitHub issue.  However, it is always worth considering additional
+use cases and writing corresponding tests.</p>
+<p>Adding tests is one of the most common requests after code is pushed to <em>geopandas</em>.  Therefore,
+it is worth getting in the habit of writing tests ahead of time so this is never an issue.</p>
+<p>Like many packages, <em>geopandas</em> uses the <a class="reference external" href="http://nose.readthedocs.org/en/latest/index.html">Nose testing system</a> and the convenient
+extensions in <a class="reference external" href="http://docs.scipy.org/doc/numpy/reference/routines.testing.html">numpy.testing</a>.</p>
+<div class="section" id="writing-tests">
+<h3>Writing tests<a class="headerlink" href="#writing-tests" title="永久链接至标题">¶</a></h3>
+<p>All tests should go into the <code class="docutils literal"><span class="pre">tests</span></code> directory. This folder contains many
+current examples of tests, and we suggest looking to these for inspiration.</p>
+<p>The <code class="docutils literal"><span class="pre">.util</span></code> module has some special <code class="docutils literal"><span class="pre">assert</span></code> functions that
+make it easier to make statements about whether GeoSeries or GeoDataFrame
+objects are equivalent. The easiest way to verify that your code is correct is to
+explicitly construct the result you expect, then compare the actual result to
+the expected correct result, using eg the function <code class="docutils literal"><span class="pre">assert_geoseries_equal</span></code>.</p>
+</div>
+<div class="section" id="running-the-test-suite">
+<h3>Running the test suite<a class="headerlink" href="#running-the-test-suite" title="永久链接至标题">¶</a></h3>
+<p>The tests can then be run directly inside your Git clone (without having to
+install <em>geopandas</em>) by typing:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">nosetests</span> <span class="o">-</span><span class="n">v</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="updating-the-documentation">
+<h2>6) Updating the Documentation<a class="headerlink" href="#updating-the-documentation" title="永久链接至标题">¶</a></h2>
+<p><em>geopandas</em> documentation resides in the <cite>doc</cite> folder. Changes to the docs are
+make by modifying the appropriate file in the <cite>source</cite> folder within <cite>doc</cite>.
+<em>geopandas</em> docs us reStructuredText syntax, <a class="reference external" href="http://www.sphinx-doc.org/en/stable/rest.html#rst-primer">which is explained here</a>
+and the docstrings follow the <a class="reference external" href="https://github.com/numpy/numpy/blob/master/doc/HOWTO_DOCUMENT.rst.txt">Numpy Docstring standard</a>.</p>
+<p>Once you have made your changes, you can build the docs by navigating to the <cite>doc</cite> folder and typing:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">make</span> <span class="n">html</span>
+</pre></div>
+</div>
+<p>The resulting html pages will be located in <cite>doc/build/html</cite>.</p>
+</div>
+<div class="section" id="submitting-a-pull-request">
+<h2>7) Submitting a Pull Request<a class="headerlink" href="#submitting-a-pull-request" title="永久链接至标题">¶</a></h2>
+<p>Once you&#8217;ve made changes and pushed them to your forked repository, you then
+submit a pull request to have them integrated into the <em>geopandas</em> code base.</p>
+<p>You can find a pull request (or PR) tutorial in the <a class="reference external" href="https://help.github.com/articles/using-pull-requests/">GitHub&#8217;s Help Docs</a>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,729 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Reference &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../../../../index.html"/> 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Reference</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../../_sources/geospatial/geopandas/geopandas/doc/source/reference.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="reference">
+<h1>Reference<a class="headerlink" href="#reference" title="永久链接至标题">¶</a></h1>
+<p>The following Shapely methods and attributes are available on
+<code class="docutils literal"><span class="pre">GeoSeries</span></code> objects:</p>
+<dl class="attribute">
+<dt id="GeoSeries.area">
+<code class="descclassname">GeoSeries.</code><code class="descname">area</code><a class="headerlink" href="#GeoSeries.area" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> containing the area of each geometry in the <code class="docutils literal"><span class="pre">GeoSeries</span></code>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.bounds">
+<code class="descclassname">GeoSeries.</code><code class="descname">bounds</code><a class="headerlink" href="#GeoSeries.bounds" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">DataFrame</span></code> with columns <code class="docutils literal"><span class="pre">minx</span></code>, <code class="docutils literal"><span class="pre">miny</span></code>, <code class="docutils literal"><span class="pre">maxx</span></code>,
+<code class="docutils literal"><span class="pre">maxy</span></code> values containing the bounds for each geometry.
+(see <code class="docutils literal"><span class="pre">GeoSeries.total_bounds</span></code> for the limits of the entire series).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.length">
+<code class="descclassname">GeoSeries.</code><code class="descname">length</code><a class="headerlink" href="#GeoSeries.length" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> containing the length of each geometry.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.geom_type">
+<code class="descclassname">GeoSeries.</code><code class="descname">geom_type</code><a class="headerlink" href="#GeoSeries.geom_type" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> of strings specifying the <cite>Geometry Type</cite> of
+each object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.distance">
+<code class="descclassname">GeoSeries.</code><code class="descname">distance</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.distance" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> containing the minimum distance to the <cite>other</cite>
+<code class="docutils literal"><span class="pre">GeoSeries</span></code> (elementwise) or geometric object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.representative_point">
+<code class="descclassname">GeoSeries.</code><code class="descname">representative_point</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.representative_point" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of (cheaply computed) points that are
+guaranteed to be within each geometry.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.exterior">
+<code class="descclassname">GeoSeries.</code><code class="descname">exterior</code><a class="headerlink" href="#GeoSeries.exterior" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of LinearRings representing the outer
+boundary of each polygon in the GeoSeries.  (Applies to GeoSeries
+containing only Polygons).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.interiors">
+<code class="descclassname">GeoSeries.</code><code class="descname">interiors</code><a class="headerlink" href="#GeoSeries.interiors" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of InteriorRingSequences representing the
+inner rings of each polygon in the GeoSeries.  (Applies to GeoSeries
+containing only Polygons).</p>
+</dd></dl>
+
+<p><cite>Unary Predicates</cite></p>
+<dl class="attribute">
+<dt id="GeoSeries.is_empty">
+<code class="descclassname">GeoSeries.</code><code class="descname">is_empty</code><a class="headerlink" href="#GeoSeries.is_empty" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> of <code class="docutils literal"><span class="pre">dtype('bool')</span></code> with value <code class="docutils literal"><span class="pre">True</span></code> for
+empty geometries.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.is_ring">
+<code class="descclassname">GeoSeries.</code><code class="descname">is_ring</code><a class="headerlink" href="#GeoSeries.is_ring" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> of <code class="docutils literal"><span class="pre">dtype('bool')</span></code> with value <code class="docutils literal"><span class="pre">True</span></code> for
+features that are closed.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.is_simple">
+<code class="descclassname">GeoSeries.</code><code class="descname">is_simple</code><a class="headerlink" href="#GeoSeries.is_simple" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> of <code class="docutils literal"><span class="pre">dtype('bool')</span></code> with value <code class="docutils literal"><span class="pre">True</span></code> for
+geometries that do not cross themselves (meaningful only for
+<cite>LineStrings</cite> and <cite>LinearRings</cite>).</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.is_valid">
+<code class="descclassname">GeoSeries.</code><code class="descname">is_valid</code><a class="headerlink" href="#GeoSeries.is_valid" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> of <code class="docutils literal"><span class="pre">dtype('bool')</span></code> with value <code class="docutils literal"><span class="pre">True</span></code> for
+geometries that are valid.</p>
+</dd></dl>
+
+<p><cite>Binary Predicates</cite></p>
+<dl class="method">
+<dt id="GeoSeries.almost_equals">
+<code class="descclassname">GeoSeries.</code><code class="descname">almost_equals</code><span class="sig-paren">(</span><em>other</em><span class="optional">[</span>, <em>decimal=6</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.almost_equals" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> of <code class="docutils literal"><span class="pre">dtype('bool')</span></code> with value <code class="docutils literal"><span class="pre">True</span></code> if
+each object is approximately equal to the <cite>other</cite> at all
+points to specified <cite>decimal</cite> place precision.  (See also <a class="reference internal" href="#GeoSeries.equals" title="GeoSeries.equals"><code class="xref py py-meth docutils literal"><span class="pre">equals()</span></code></a>)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.contains">
+<code class="descclassname">GeoSeries.</code><code class="descname">contains</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.contains" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> of <code class="docutils literal"><span class="pre">dtype('bool')</span></code> with value <code class="docutils literal"><span class="pre">True</span></code> if
+each object&#8217;s <cite>interior</cite> contains the <cite>boundary</cite> and
+<cite>interior</cite> of the other object and their boundaries do not touch at all.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.crosses">
+<code class="descclassname">GeoSeries.</code><code class="descname">crosses</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.crosses" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> of <code class="docutils literal"><span class="pre">dtype('bool')</span></code> with value <code class="docutils literal"><span class="pre">True</span></code> if
+the <cite>interior</cite> of each object intersects the <cite>interior</cite> of
+the other but does not contain it, and the dimension of the intersection is
+less than the dimension of the one or the other.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.disjoint">
+<code class="descclassname">GeoSeries.</code><code class="descname">disjoint</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.disjoint" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> of <code class="docutils literal"><span class="pre">dtype('bool')</span></code> with value <code class="docutils literal"><span class="pre">True</span></code> if
+the <cite>boundary</cite> and <cite>interior</cite> of each object does not
+intersect at all with those of the other.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.equals">
+<code class="descclassname">GeoSeries.</code><code class="descname">equals</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.equals" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> of <code class="docutils literal"><span class="pre">dtype('bool')</span></code> with value <code class="docutils literal"><span class="pre">True</span></code> if
+if the set-theoretic <cite>boundary</cite>, <cite>interior</cite>, and <cite>exterior</cite>
+of each object coincides with those of the other.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.intersects">
+<code class="descclassname">GeoSeries.</code><code class="descname">intersects</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.intersects" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> of <code class="docutils literal"><span class="pre">dtype('bool')</span></code> with value <code class="docutils literal"><span class="pre">True</span></code> if
+if the <cite>boundary</cite> and <cite>interior</cite> of each object intersects in
+any way with those of the other.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.touches">
+<code class="descclassname">GeoSeries.</code><code class="descname">touches</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.touches" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> of <code class="docutils literal"><span class="pre">dtype('bool')</span></code> with value <code class="docutils literal"><span class="pre">True</span></code> if
+the objects have at least one point in common and their
+interiors do not intersect with any part of the other.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.within">
+<code class="descclassname">GeoSeries.</code><code class="descname">within</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.within" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">Series</span></code> of <code class="docutils literal"><span class="pre">dtype('bool')</span></code> with value <code class="docutils literal"><span class="pre">True</span></code> if
+each object&#8217;s <cite>boundary</cite> and <cite>interior</cite> intersect only
+with the <cite>interior</cite> of the other (not its <cite>boundary</cite> or <cite>exterior</cite>).
+(Inverse of <a class="reference internal" href="#GeoSeries.contains" title="GeoSeries.contains"><code class="xref py py-meth docutils literal"><span class="pre">contains()</span></code></a>)</p>
+</dd></dl>
+
+<p><cite>Set-theoretic Methods</cite></p>
+<dl class="attribute">
+<dt id="GeoSeries.boundary">
+<code class="descclassname">GeoSeries.</code><code class="descname">boundary</code><a class="headerlink" href="#GeoSeries.boundary" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of lower dimensional objects representing
+each geometries&#8217;s set-theoretic <cite>boundary</cite>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.centroid">
+<code class="descclassname">GeoSeries.</code><code class="descname">centroid</code><a class="headerlink" href="#GeoSeries.centroid" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of points for each geometric centroid.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.difference">
+<code class="descclassname">GeoSeries.</code><code class="descname">difference</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.difference" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of the points in each geometry that
+are not in the <em>other</em> object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.intersection">
+<code class="descclassname">GeoSeries.</code><code class="descname">intersection</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.intersection" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of the intersection of each object with the <cite>other</cite>
+geometric object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.symmetric_difference">
+<code class="descclassname">GeoSeries.</code><code class="descname">symmetric_difference</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.symmetric_difference" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of the points in each object not in the <cite>other</cite>
+geometric object, and the points in the <cite>other</cite> not in this object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.union">
+<code class="descclassname">GeoSeries.</code><code class="descname">union</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.union" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of the union of points from each object and the
+<cite>other</cite> geometric object.</p>
+</dd></dl>
+
+<p><cite>Constructive Methods</cite></p>
+<dl class="method">
+<dt id="GeoSeries.buffer">
+<code class="descclassname">GeoSeries.</code><code class="descname">buffer</code><span class="sig-paren">(</span><em>distance</em>, <em>resolution=16</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.buffer" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of geometries representing all points within a given <cite>distance</cite>
+of each geometric object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.convex_hull">
+<code class="descclassname">GeoSeries.</code><code class="descname">convex_hull</code><a class="headerlink" href="#GeoSeries.convex_hull" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of geometries representing the smallest
+convex <cite>Polygon</cite> containing all the points in each object unless the
+number of points in the object is less than three. For two points,
+the convex hull collapses to a <cite>LineString</cite>; for 1, a <cite>Point</cite>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.envelope">
+<code class="descclassname">GeoSeries.</code><code class="descname">envelope</code><a class="headerlink" href="#GeoSeries.envelope" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of geometries representing the point or
+smallest rectangular polygon (with sides parallel to the coordinate
+axes) that contains each object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.simplify">
+<code class="descclassname">GeoSeries.</code><code class="descname">simplify</code><span class="sig-paren">(</span><em>tolerance</em>, <em>preserve_topology=True</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.simplify" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> containing a simplified representation of
+each object.</p>
+</dd></dl>
+
+<p><cite>Affine transformations</cite></p>
+<dl class="method">
+<dt id="GeoSeries.rotate">
+<code class="descclassname">GeoSeries.</code><code class="descname">rotate</code><span class="sig-paren">(</span><em>self</em>, <em>angle</em>, <em>origin='center'</em>, <em>use_radians=False</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.rotate" title="永久链接至目标">¶</a></dt>
+<dd><p>Rotate the coordinates of the GeoSeries.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.scale">
+<code class="descclassname">GeoSeries.</code><code class="descname">scale</code><span class="sig-paren">(</span><em>self</em>, <em>xfact=1.0</em>, <em>yfact=1.0</em>, <em>zfact=1.0</em>, <em>origin='center'</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.scale" title="永久链接至目标">¶</a></dt>
+<dd><p>Scale the geometries of the GeoSeries along each (x, y, z) dimensio.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.skew">
+<code class="descclassname">GeoSeries.</code><code class="descname">skew</code><span class="sig-paren">(</span><em>self</em>, <em>angle</em>, <em>origin='center'</em>, <em>use_radians=False</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.skew" title="永久链接至目标">¶</a></dt>
+<dd><p>Shear/Skew the geometries of the GeoSeries by angles along x and y dimensions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.translate">
+<code class="descclassname">GeoSeries.</code><code class="descname">translate</code><span class="sig-paren">(</span><em>self</em>, <em>angle</em>, <em>origin='center'</em>, <em>use_radians=False</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.translate" title="永久链接至目标">¶</a></dt>
+<dd><p>Shift the coordinates of the GeoSeries.</p>
+</dd></dl>
+
+<p><cite>Aggregating methods</cite></p>
+<dl class="attribute">
+<dt id="GeoSeries.unary_union">
+<code class="descclassname">GeoSeries.</code><code class="descname">unary_union</code><a class="headerlink" href="#GeoSeries.unary_union" title="永久链接至目标">¶</a></dt>
+<dd><p>Return a geometry containing the union of all geometries in the <code class="docutils literal"><span class="pre">GeoSeries</span></code>.</p>
+</dd></dl>
+
+<p>Additionally, the following methods are implemented:</p>
+<dl class="method">
+<dt id="GeoSeries.from_file">
+<code class="descclassname">GeoSeries.</code><code class="descname">from_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.from_file" title="永久链接至目标">¶</a></dt>
+<dd><p>Load a <code class="docutils literal"><span class="pre">GeoSeries</span></code> from a file from any format recognized by
+<a href="#id1"><span class="problematic" id="id2">`fiona`_</span></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.to_crs">
+<code class="descclassname">GeoSeries.</code><code class="descname">to_crs</code><span class="sig-paren">(</span><em>crs=None</em>, <em>epsg=None</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.to_crs" title="永久链接至目标">¶</a></dt>
+<dd><p>Transform all geometries in a GeoSeries to a different coordinate
+reference system.  The <code class="docutils literal"><span class="pre">crs</span></code> attribute on the current GeoSeries
+must be set.  Either <code class="docutils literal"><span class="pre">crs</span></code> in dictionary form or an EPSG code may
+be specified for output.</p>
+<p>This method will transform all points in all objects.  It has no
+notion or projecting entire geometries.  All segments joining points
+are assumed to be lines in the current projection, not geodesics.
+Objects crossing the dateline (or other projection boundary) will
+have undesirable behavior.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.plot">
+<code class="descclassname">GeoSeries.</code><code class="descname">plot</code><span class="sig-paren">(</span><em>colormap='Set1'</em>, <em>alpha=0.5</em>, <em>axes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.plot" title="永久链接至目标">¶</a></dt>
+<dd><p>Generate a plot of the geometries in the <code class="docutils literal"><span class="pre">GeoSeries</span></code>.
+<code class="docutils literal"><span class="pre">colormap</span></code> can be any recognized by matplotlib, but discrete
+colormaps such as <code class="docutils literal"><span class="pre">Accent</span></code>, <code class="docutils literal"><span class="pre">Dark2</span></code>, <code class="docutils literal"><span class="pre">Paired</span></code>, <code class="docutils literal"><span class="pre">Pastel1</span></code>,
+<code class="docutils literal"><span class="pre">Pastel2</span></code>, <code class="docutils literal"><span class="pre">Set1</span></code>, <code class="docutils literal"><span class="pre">Set2</span></code>, or <code class="docutils literal"><span class="pre">Set3</span></code> are recommended.
+Wraps the <code class="docutils literal"><span class="pre">plot_series()</span></code> function.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.total_bounds">
+<code class="descclassname">GeoSeries.</code><code class="descname">total_bounds</code><a class="headerlink" href="#GeoSeries.total_bounds" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a tuple containing <code class="docutils literal"><span class="pre">minx</span></code>, <code class="docutils literal"><span class="pre">miny</span></code>, <code class="docutils literal"><span class="pre">maxx</span></code>,
+<code class="docutils literal"><span class="pre">maxy</span></code> values for the bounds of the series as a whole.
+See <code class="docutils literal"><span class="pre">GeoSeries.bounds</span></code> for the bounds of the geometries contained
+in the series.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.__geo_interface__">
+<code class="descclassname">GeoSeries.</code><code class="descname">__geo_interface__</code><a class="headerlink" href="#GeoSeries.__geo_interface__" title="永久链接至目标">¶</a></dt>
+<dd><p>Implements the <a href="#id3"><span class="problematic" id="id4">`geo_interface`_</span></a>. Returns a python data structure
+to represent the <code class="docutils literal"><span class="pre">GeoSeries</span></code> as a GeoJSON-like <code class="docutils literal"><span class="pre">FeatureCollection</span></code>.
+Note that the features will have an empty <code class="docutils literal"><span class="pre">properties</span></code> dict as they don&#8217;t
+have associated attributes (geometry only).</p>
+</dd></dl>
+
+<p>Methods of pandas <code class="docutils literal"><span class="pre">Series</span></code> objects are also available, although not
+all are applicable to geometric objects and some may return a
+<code class="docutils literal"><span class="pre">Series</span></code> rather than a <code class="docutils literal"><span class="pre">GeoSeries</span></code> result.  The methods
+<code class="docutils literal"><span class="pre">copy()</span></code>, <code class="docutils literal"><span class="pre">align()</span></code>, <code class="docutils literal"><span class="pre">isnull()</span></code> and <code class="docutils literal"><span class="pre">fillna()</span></code> have been
+implemented specifically for <code class="docutils literal"><span class="pre">GeoSeries</span></code> and are expected to work
+correctly.</p>
+<div class="section" id="geodataframe">
+<h2>GeoDataFrame<a class="headerlink" href="#geodataframe" title="永久链接至标题">¶</a></h2>
+<p>A <code class="docutils literal"><span class="pre">GeoDataFrame</span></code> is a tablular data structure that contains a column
+called <code class="docutils literal"><span class="pre">geometry</span></code> which contains a <cite>GeoSeries`</cite>.</p>
+<p>Currently, the following methods are implemented for a <code class="docutils literal"><span class="pre">GeoDataFrame</span></code>:</p>
+<dl class="classmethod">
+<dt id="GeoDataFrame.from_file">
+<em class="property">classmethod </em><code class="descclassname">GeoDataFrame.</code><code class="descname">from_file</code><span class="sig-paren">(</span><em>filename</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoDataFrame.from_file" title="永久链接至目标">¶</a></dt>
+<dd><p>Load a <code class="docutils literal"><span class="pre">GeoDataFrame</span></code> from a file from any format recognized by
+<a href="#id5"><span class="problematic" id="id6">`fiona`_</span></a>.  See <code class="docutils literal"><span class="pre">read_file()</span></code>.</p>
+</dd></dl>
+
+<dl class="classmethod">
+<dt id="GeoDataFrame.from_postgis">
+<em class="property">classmethod </em><code class="descclassname">GeoDataFrame.</code><code class="descname">from_postgis</code><span class="sig-paren">(</span><em>sql</em>, <em>con</em>, <em>geom_col='geom'</em>, <em>crs=None</em>, <em>index_col=None</em>, <em>coerce_float=True</em>, <em>params=None</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoDataFrame.from_postgis" title="永久链接至目标">¶</a></dt>
+<dd><p>Load a <code class="docutils literal"><span class="pre">GeoDataFrame</span></code> from a file from a PostGIS database.
+See <code class="docutils literal"><span class="pre">read_postgis()</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt>
+<code class="descclassname">GeoSeries.</code><code class="descname">to_crs</code><span class="sig-paren">(</span><em>crs=None</em>, <em>epsg=None</em>, <em>inplace=False</em><span class="sig-paren">)</span></dt>
+<dd><p>Transform all geometries in the <code class="docutils literal"><span class="pre">geometry</span></code> column of a
+GeoDataFrame to a different coordinate reference system.  The
+<code class="docutils literal"><span class="pre">crs</span></code> attribute on the current GeoSeries must be set.  Either
+<code class="docutils literal"><span class="pre">crs</span></code> in dictionary form or an EPSG code may be specified for
+output.  If <code class="docutils literal"><span class="pre">inplace=True</span></code> the geometry column will be replaced in
+the current dataframe, otherwise a new GeoDataFrame will be returned.</p>
+<p>This method will transform all points in all objects.  It has no
+notion or projecting entire geometries.  All segments joining points
+are assumed to be lines in the current projection, not geodesics.
+Objects crossing the dateline (or other projection boundary) will
+have undesirable behavior.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.to_file">
+<code class="descclassname">GeoSeries.</code><code class="descname">to_file</code><span class="sig-paren">(</span><em>filename</em>, <em>driver=&quot;ESRI Shapefile&quot;</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.to_file" title="永久链接至目标">¶</a></dt>
+<dd><p>Write the <code class="docutils literal"><span class="pre">GeoDataFrame</span></code> to a file.  By default, an ESRI shapefile
+is written, but any OGR data source supported by Fiona can be
+written.  <code class="docutils literal"><span class="pre">**kwargs</span></code> are passed to the Fiona driver.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.to_json">
+<code class="descclassname">GeoSeries.</code><code class="descname">to_json</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.to_json" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a GeoJSON representation of the <code class="docutils literal"><span class="pre">GeoDataFrame</span></code> as a string.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoDataFrame.plot">
+<code class="descclassname">GeoDataFrame.</code><code class="descname">plot</code><span class="sig-paren">(</span><em>column=None</em>, <em>colormap=None</em>, <em>alpha=0.5</em>, <em>categorical=False</em>, <em>legend=False</em>, <em>axes=None</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoDataFrame.plot" title="永久链接至目标">¶</a></dt>
+<dd><p>Generate a plot of the geometries in the <code class="docutils literal"><span class="pre">GeoDataFrame</span></code>.  If the
+<code class="docutils literal"><span class="pre">column</span></code> parameter is given, colors plot according to values in
+that column, otherwise calls <code class="docutils literal"><span class="pre">GeoSeries.plot()</span></code> on the
+<code class="docutils literal"><span class="pre">geometry</span></code> column.  Wraps the <code class="docutils literal"><span class="pre">plot_dataframe()</span></code> function.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoDataFrame.__geo_interface__">
+<code class="descclassname">GeoDataFrame.</code><code class="descname">__geo_interface__</code><a class="headerlink" href="#GeoDataFrame.__geo_interface__" title="永久链接至目标">¶</a></dt>
+<dd><p>Implements the <a href="#id7"><span class="problematic" id="id8">`geo_interface`_</span></a>. Returns a python data structure
+to represent the <code class="docutils literal"><span class="pre">GeoDataFrame</span></code> as a GeoJSON-like <code class="docutils literal"><span class="pre">FeatureCollection</span></code>.</p>
+</dd></dl>
+
+<p>All pandas <code class="docutils literal"><span class="pre">DataFrame</span></code> methods are also available, although they may
+not operate in a meaningful way on the <code class="docutils literal"><span class="pre">geometry</span></code> column and may not
+return a <code class="docutils literal"><span class="pre">GeoDataFrame</span></code> result even when it would be appropriate to
+do so.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

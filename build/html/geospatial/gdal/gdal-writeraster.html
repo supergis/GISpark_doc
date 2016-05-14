@@ -1,0 +1,631 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>用GDAL写入栅格数据文件 &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>用GDAL写入栅格数据文件</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/geospatial/gdal/gdal-writeraster.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>#!/usr/bin/python
+#coding=utf-8
+</pre></div>
+</div>
+</div>
+<div class="section" id="用GDAL写入栅格数据文件">
+<h1>用GDAL写入栅格数据文件<a class="headerlink" href="#用GDAL写入栅格数据文件" title="永久链接至标题">¶</a></h1>
+<p>by
+<a class="reference external" href="http://my.oschina.net/u/2306127/blog?catalog=3420733">openthings&#64;163.com</a>,
+2016-04-25.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from osgeo import gdal, gdalconst
+from osgeo.gdalconst import *
+import gdal, gdalconst
+</pre></div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">GDAL (<a class="reference external" href="http://www.gdal.org">http://www.gdal.org</a>)
+原生支持超过100种栅格数据类型，涵盖所有主流GIS与RS数据格式，包括: *
+TIFF, GeoTIFF, JPEG, JPEG2000, PNG, GIF, BMP, ECW, MrSID</div>
+<div class="line">* HDF4, HDF5</div>
+<div class="line">* USGS DOQ, USGS DEM</div>
+<div class="line">* GRASS, Idrisi, ENVI, Imagine</div>
+<div class="line">* ArcInfo grids, ArcSDE raster</div>
+</div>
+<p>完整的文件格式支持列表可以参考 <a class="reference external" href="http://www.gdal.org/formats_list.html">http://www.gdal.org/formats_list.html</a></p>
+<div class="section" id="以计算NDVI为例">
+<h2>以计算NDVI为例<a class="headerlink" href="#以计算NDVI为例" title="永久链接至标题">¶</a></h2>
+<p>NDVI=(NIR-RED)/(NIR+RED),其中NIR为波段3，RED为波段2.</p>
+<p>编程要点如下： * 将波段3读入数组data3，将波段2读入数组data2 *
+计算公式为： ndvi = (data3 – data2) / (data3 + data2) *
+当data3和data2均为0时（例如用0表示NODATA），会出现被0除的错误，导致程序崩溃。需要用mask配合choose将0值去掉</p>
+<p>代码如下，仅有4行。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>data2 = band2.ReadAsArray(0, 0, cols,rows).astype(Numeric.Float16)
+data3 = band3.ReadAsArray(0, 0, cols,rows).astype(Numeric.Float16)
+mask = Numeric.greater(data3 + data2, 0)
+ndvi = Numeric.choose(mask, (-99, (data3 - data2) / (data3 + data2)))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-2-5ed42d003a6c&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>data2 <span class="ansi-yellow-intense-fg ansi-bold">=</span> band2<span class="ansi-yellow-intense-fg ansi-bold">.</span>ReadAsArray<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> cols<span class="ansi-yellow-intense-fg ansi-bold">,</span>rows<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>astype<span class="ansi-yellow-intense-fg ansi-bold">(</span>Numeric<span class="ansi-yellow-intense-fg ansi-bold">.</span>Float16<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      2</span> data3 <span class="ansi-yellow-intense-fg ansi-bold">=</span> band3<span class="ansi-yellow-intense-fg ansi-bold">.</span>ReadAsArray<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> cols<span class="ansi-yellow-intense-fg ansi-bold">,</span>rows<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">.</span>astype<span class="ansi-yellow-intense-fg ansi-bold">(</span>Numeric<span class="ansi-yellow-intense-fg ansi-bold">.</span>Float16<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      3</span> mask <span class="ansi-yellow-intense-fg ansi-bold">=</span> Numeric<span class="ansi-yellow-intense-fg ansi-bold">.</span>greater<span class="ansi-yellow-intense-fg ansi-bold">(</span>data3 <span class="ansi-yellow-intense-fg ansi-bold">+</span> data2<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      4</span> ndvi <span class="ansi-yellow-intense-fg ansi-bold">=</span> Numeric<span class="ansi-yellow-intense-fg ansi-bold">.</span>choose<span class="ansi-yellow-intense-fg ansi-bold">(</span>mask<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">-</span><span class="ansi-cyan-intense-fg ansi-bold">99</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span>data3 <span class="ansi-yellow-intense-fg ansi-bold">-</span> data2<span class="ansi-yellow-intense-fg ansi-bold">)</span> <span class="ansi-yellow-intense-fg ansi-bold">/</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span>data3 <span class="ansi-yellow-intense-fg ansi-bold">+</span> data2<span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>: name &#39;band2&#39; is not defined
+</pre></div></div>
+</div>
+<div class="section" id="新建栅格数据集">
+<h3>新建栅格数据集<a class="headerlink" href="#新建栅格数据集" title="永久链接至标题">¶</a></h3>
+</div>
+</div>
+<div class="section" id="将刚才计算得到的数据写入新的栅格数据集之中。">
+<h2>将刚才计算得到的数据写入新的栅格数据集之中。<a class="headerlink" href="#将刚才计算得到的数据写入新的栅格数据集之中。" title="永久链接至标题">¶</a></h2>
+<ul>
+<li><p class="first">首先，复制一份数据驱动。 driver = inDataset.GetDriver()</p>
+</li>
+<li><p class="first">之后，新建数据集。</p>
+<p>Create(, , , [], [])</p>
+</li>
+<li><div class="first line-block">
+<div class="line">其中bands的默认值为1，GDALDataType的默认类型为GDT_Byte，例如:</div>
+<div class="line">outDataset = driver.Create(filename, cols, rows, 1, GDT_Float32)</div>
+</div>
+<div class="line-block">
+<div class="line">在这条语句的执行过程中，存储空间已经被分配到硬盘上了。</div>
+<div class="line">&gt;#### 在写入之前，还需要先引入波段对象。 outBand =
+outDataset.GetRasterBand(1) ####
+波段对象支持直接写入矩阵（两个参数分别为x向偏移和y向偏移）。
+outBand.WriteArray(ndvi, 0, 0)</div>
+</div>
+</li>
+</ul>
+<p>下面的例子采用了逐块写入方法。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>xBlockSize = 64
+yBlockSize = 64
+for i in range(0, rows, yBlockSize):
+   if i + yBlockSize &lt; rows:
+        numRows = yBlockSize
+   else:
+        numRows = rowsnumRows = rows –– ii
+   for j in range(0, cols, xBlockSize):
+        if j + xBlockSize &lt; cols:
+             numCols = xBlockSize
+        else:
+             numCols = cols – j
+        data = band.ReadAsArray(j, i, numCols, numRows)
+        # do calculations here to create outData array
+        outBand.WriteArray(outData, j, i)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="band对象可以设定NoData值">
+<h2>band对象可以设定NoData值<a class="headerlink" href="#band对象可以设定NoData值" title="永久链接至标题">¶</a></h2>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>outBand.SetNoDataValue(-99)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="还可以读取NoData值">
+<h2>还可以读取NoData值<a class="headerlink" href="#还可以读取NoData值" title="永久链接至标题">¶</a></h2>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>ND = outBand.GetNoDataValue()
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="计算band的统计量。">
+<h2>计算band的统计量。<a class="headerlink" href="#计算band的统计量。" title="永久链接至标题">¶</a></h2>
+<ul class="simple">
+<li>首先用FlushCache()把缓存数据写入磁盘。</li>
+<li>之后用GetStatistics(, )计算统计量。</li>
+<li>如果approx_ok=1那么计算是基于pyramid的，如果force=0那么当整幅图都要被重读一遍的时候就不计算统计量了。</li>
+</ul>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>outBand.FlushCache()
+outBand.GetStatistics(0, 1)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="设定新图的地理参考点。">
+<h2>设定新图的地理参考点。<a class="headerlink" href="#设定新图的地理参考点。" title="永久链接至标题">¶</a></h2>
+<p>如果新图与另一张图的地理参考信息完全一致，那就很简单了。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>geoTransform = inDataset.GetGeoTransform()
+outDataset.SetGeoTransform(geoTransform )
+proj = inDataset.GetProjection()
+outDataset.SetProjection(proj)
+</pre></div>
+</div>
+</div>
+<div class="section" id="建立pyramids">
+<h3>建立pyramids<a class="headerlink" href="#建立pyramids" title="永久链接至标题">¶</a></h3>
+<p>设定Imagine风格的pyramids。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>gdal.SetConfigOption(&#39;HFA_USE_RRD&#39;, &#39;YES&#39;)#强制建立pyramids
+outDataset.BuildOverviews(overviewlist=[2,4, 8,16,32,64,128])
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="图像的拼接">
+<h1>图像的拼接<a class="headerlink" href="#图像的拼接" title="永久链接至标题">¶</a></h1>
+<p>对每张图：读取行数和列数，原点(minX,maxY)，像素长，像素宽，并计算坐标范围</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>maxX1 = minX1 + (cols1 * pixelWidth)
+minY1 = maxY1 + (rows1 * pixelHeight)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-6-754ebc3e1544&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>maxX1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> minX1 <span class="ansi-yellow-intense-fg ansi-bold">+</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span>cols1 <span class="ansi-yellow-intense-fg ansi-bold">*</span> pixelWidth<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      2</span> minY1 <span class="ansi-yellow-intense-fg ansi-bold">=</span> maxY1 <span class="ansi-yellow-intense-fg ansi-bold">+</span> <span class="ansi-yellow-intense-fg ansi-bold">(</span>rows1 <span class="ansi-yellow-intense-fg ansi-bold">*</span> pixelHeight<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>: name &#39;minX1&#39; is not defined
+</pre></div></div>
+</div>
+<div class="section" id="计算输出图像的坐标范围">
+<h2>计算输出图像的坐标范围<a class="headerlink" href="#计算输出图像的坐标范围" title="永久链接至标题">¶</a></h2>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>minX = min(minX1, minX2, …) maxX = max(maxX1, maxX2, …)
+minY = min(minY1, minY2, …) maxY = max(maxY1, maxY2, …)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="计算输出图像的行数和列数">
+<h2>计算输出图像的行数和列数<a class="headerlink" href="#计算输出图像的行数和列数" title="永久链接至标题">¶</a></h2>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>cols = int((maxX – minX) / pixelWidth)
+rows = int((maxY – minY) / abs(pixelHeight)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="建立并初始化输出图像">
+<h2>建立并初始化输出图像<a class="headerlink" href="#建立并初始化输出图像" title="永久链接至标题">¶</a></h2>
+<p>对每张待拼接的图：计算offset值。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>xOffset1 = int((minX1 - minX) / pixelWidth)
+yOffset1 = int((maxY1 - maxY) / pixelHeight)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="读入数据并按照上面计算的offset写入">
+<h2>读入数据并按照上面计算的offset写入<a class="headerlink" href="#读入数据并按照上面计算的offset写入" title="永久链接至标题">¶</a></h2>
+<div class="line-block">
+<div class="line">对输出图像，计算统计量。</div>
+<div class="line">设定geotransform： [minX, pixelWidth, 0, maxY, 0, pixelHeight]</div>
+</div>
+<p>设定projection，建立pyramids。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

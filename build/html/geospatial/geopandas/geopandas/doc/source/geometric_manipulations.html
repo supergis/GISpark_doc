@@ -1,0 +1,564 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Geometric Manipulations &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../../../../index.html"/> 
+
+  
+  <script src="../../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Geometric Manipulations</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../../_sources/geospatial/geopandas/geopandas/doc/source/geometric_manipulations.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="geometric-manipulations">
+<h1>Geometric Manipulations<a class="headerlink" href="#geometric-manipulations" title="永久链接至标题">¶</a></h1>
+<div class="section" id="set-theoretic-methods">
+<h2>Set-theoretic Methods<a class="headerlink" href="#set-theoretic-methods" title="永久链接至标题">¶</a></h2>
+<dl class="attribute">
+<dt id="GeoSeries.boundary">
+<code class="descclassname">GeoSeries.</code><code class="descname">boundary</code><a class="headerlink" href="#GeoSeries.boundary" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of lower dimensional objects representing
+each geometries&#8217;s set-theoretic <cite>boundary</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.difference">
+<code class="descclassname">GeoSeries.</code><code class="descname">difference</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.difference" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of the points in each geometry that
+are not in the <em>other</em> object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.intersection">
+<code class="descclassname">GeoSeries.</code><code class="descname">intersection</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.intersection" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of the intersection of each object with the <cite>other</cite>
+geometric object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.symmetric_difference">
+<code class="descclassname">GeoSeries.</code><code class="descname">symmetric_difference</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.symmetric_difference" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of the points in each object not in the <cite>other</cite>
+geometric object, and the points in the <cite>other</cite> not in this object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.union">
+<code class="descclassname">GeoSeries.</code><code class="descname">union</code><span class="sig-paren">(</span><em>other</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.union" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of the union of points from each object and the
+<cite>other</cite> geometric object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.unary_union">
+<code class="descclassname">GeoSeries.</code><code class="descname">unary_union</code><a class="headerlink" href="#GeoSeries.unary_union" title="永久链接至目标">¶</a></dt>
+<dd><p>Return a geometry containing the union of all geometries in the <code class="docutils literal"><span class="pre">GeoSeries</span></code>.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="constructive-methods">
+<h2>Constructive Methods<a class="headerlink" href="#constructive-methods" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="GeoSeries.buffer">
+<code class="descclassname">GeoSeries.</code><code class="descname">buffer</code><span class="sig-paren">(</span><em>distance</em>, <em>resolution=16</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.buffer" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of geometries representing all points within a given <cite>distance</cite>
+of each geometric object.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.convex_hull">
+<code class="descclassname">GeoSeries.</code><code class="descname">convex_hull</code><a class="headerlink" href="#GeoSeries.convex_hull" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of geometries representing the smallest
+convex <cite>Polygon</cite> containing all the points in each object unless the
+number of points in the object is less than three. For two points,
+the convex hull collapses to a <cite>LineString</cite>; for 1, a <cite>Point</cite>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="GeoSeries.envelope">
+<code class="descclassname">GeoSeries.</code><code class="descname">envelope</code><a class="headerlink" href="#GeoSeries.envelope" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> of geometries representing the point or
+smallest rectangular polygon (with sides parallel to the coordinate
+axes) that contains each object.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.simplify">
+<code class="descclassname">GeoSeries.</code><code class="descname">simplify</code><span class="sig-paren">(</span><em>tolerance</em>, <em>preserve_topology=True</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.simplify" title="永久链接至目标">¶</a></dt>
+<dd><p>Returns a <code class="docutils literal"><span class="pre">GeoSeries</span></code> containing a simplified representation of
+each object.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="affine-transformations">
+<h2>Affine transformations<a class="headerlink" href="#affine-transformations" title="永久链接至标题">¶</a></h2>
+<dl class="method">
+<dt id="GeoSeries.rotate">
+<code class="descclassname">GeoSeries.</code><code class="descname">rotate</code><span class="sig-paren">(</span><em>self</em>, <em>angle</em>, <em>origin='center'</em>, <em>use_radians=False</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.rotate" title="永久链接至目标">¶</a></dt>
+<dd><p>Rotate the coordinates of the GeoSeries.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.scale">
+<code class="descclassname">GeoSeries.</code><code class="descname">scale</code><span class="sig-paren">(</span><em>self</em>, <em>xfact=1.0</em>, <em>yfact=1.0</em>, <em>zfact=1.0</em>, <em>origin='center'</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.scale" title="永久链接至目标">¶</a></dt>
+<dd><p>Scale the geometries of the GeoSeries along each (x, y, z) dimensio.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.skew">
+<code class="descclassname">GeoSeries.</code><code class="descname">skew</code><span class="sig-paren">(</span><em>self</em>, <em>angle</em>, <em>origin='center'</em>, <em>use_radians=False</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.skew" title="永久链接至目标">¶</a></dt>
+<dd><p>Shear/Skew the geometries of the GeoSeries by angles along x and y dimensions.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="GeoSeries.translate">
+<code class="descclassname">GeoSeries.</code><code class="descname">translate</code><span class="sig-paren">(</span><em>self</em>, <em>angle</em>, <em>origin='center'</em>, <em>use_radians=False</em><span class="sig-paren">)</span><a class="headerlink" href="#GeoSeries.translate" title="永久链接至目标">¶</a></dt>
+<dd><p>Shift the coordinates of the GeoSeries.</p>
+</dd></dl>
+
+<p><cite>Aggregating methods</cite></p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p3</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">GeoSeries</span><span class="p">([</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span>
+<span class="go">0    POLYGON ((0.0000000000000000 0.000000000000000...</span>
+<span class="go">1    POLYGON ((0.0000000000000000 0.000000000000000...</span>
+<span class="go">2    POLYGON ((2.0000000000000000 0.000000000000000...</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<img alt="../../../../../_images/test1.png" src="../../../../../_images/test1.png" />
+<p>Some geographic operations return normal pandas object.  The <code class="docutils literal"><span class="pre">area</span></code> property of a <code class="docutils literal"><span class="pre">GeoSeries</span></code> will return a <code class="docutils literal"><span class="pre">pandas.Series</span></code> containing the area of each item in the <code class="docutils literal"><span class="pre">GeoSeries</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">g</span><span class="o">.</span><span class="n">area</span>
+<span class="go">0    0.5</span>
+<span class="go">1    1.0</span>
+<span class="go">2    1.0</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<p>Other operations return GeoPandas objects:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="go">Out[15]:</span>
+<span class="go">0    POLYGON ((-0.3535533905932737 0.35355339059327...</span>
+<span class="go">1    POLYGON ((-0.5000000000000000 0.00000000000000...</span>
+<span class="go">2    POLYGON ((1.5000000000000000 0.000000000000000...</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<img alt="../../../../../_images/test_buffer1.png" src="../../../../../_images/test_buffer1.png" />
+<p>GeoPandas objects also know how to plot themselves.  GeoPandas uses <a class="reference external" href="https://pypi.python.org/pypi/descartes">descartes</a> to generate a <a class="reference external" href="http://matplotlib.org">matplotlib</a> plot. To generate a plot of our GeoSeries, use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">g</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>GeoPandas also implements alternate constructors that can read any data format recognized by <a class="reference external" href="http://toblerity.github.io/fiona">fiona</a>.  To read a <a class="reference external" href="http://www.nyc.gov/html/dcp/download/bytes/nybb_14aav.zip">file containing the boroughs of New York City</a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">boros</span> <span class="o">=</span> <span class="n">GeoDataFrame</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;nybb.shp&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">boros</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s1">&#39;BoroCode&#39;</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">boros</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">boros</span>
+<span class="go">               BoroName    Shape_Area     Shape_Leng  \</span>
+<span class="go">BoroCode</span>
+<span class="go">1             Manhattan  6.364422e+08  358532.956418</span>
+<span class="go">2                 Bronx  1.186804e+09  464517.890553</span>
+<span class="go">3              Brooklyn  1.959432e+09  726568.946340</span>
+<span class="go">4                Queens  3.049947e+09  861038.479299</span>
+<span class="go">5         Staten Island  1.623853e+09  330385.036974</span>
+
+<span class="go">                                                   geometry</span>
+<span class="go">BoroCode</span>
+<span class="go">1         (POLYGON ((981219.0557861328125000 188655.3157...</span>
+<span class="go">2         (POLYGON ((1012821.8057861328125000 229228.264...</span>
+<span class="go">3         (POLYGON ((1021176.4790039062500000 151374.796...</span>
+<span class="go">4         (POLYGON ((1029606.0765991210937500 156073.814...</span>
+<span class="go">5         (POLYGON ((970217.0223999023437500 145643.3322...</span>
+</pre></div>
+</div>
+<img alt="../../../../../_images/nyc1.png" src="../../../../../_images/nyc1.png" />
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">boros</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">convex_hull</span>
+<span class="go">0    POLYGON ((915517.6877458114176989 120121.88125...</span>
+<span class="go">1    POLYGON ((1000721.5317993164062500 136681.7761...</span>
+<span class="go">2    POLYGON ((988872.8212280273437500 146772.03179...</span>
+<span class="go">3    POLYGON ((977855.4451904296875000 188082.32238...</span>
+<span class="go">4    POLYGON ((1017949.9776000976562500 225426.8845...</span>
+<span class="go">dtype: object</span>
+</pre></div>
+</div>
+<img alt="../../../../../_images/nyc_hull1.png" src="../../../../../_images/nyc_hull1.png" />
+<p>To demonstrate a more complex operation, we&#8217;ll generate a
+<code class="docutils literal"><span class="pre">GeoSeries</span></code> containing 2000 random points:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">,</span> <span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="mi">900000</span><span class="p">,</span> <span class="mi">1080000</span><span class="p">,</span> <span class="mi">120000</span><span class="p">,</span> <span class="mi">280000</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xc</span> <span class="o">=</span> <span class="p">(</span><span class="n">xmax</span> <span class="o">-</span> <span class="n">xmin</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span> <span class="o">+</span> <span class="n">xmin</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">yc</span> <span class="o">=</span> <span class="p">(</span><span class="n">ymax</span> <span class="o">-</span> <span class="n">ymin</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span> <span class="o">+</span> <span class="n">ymin</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pts</span> <span class="o">=</span> <span class="n">GeoSeries</span><span class="p">([</span><span class="n">Point</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">xc</span><span class="p">,</span> <span class="n">yc</span><span class="p">)])</span>
+</pre></div>
+</div>
+<p>Now draw a circle with fixed radius around each point:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">circles</span> <span class="o">=</span> <span class="n">pts</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We can collapse these circles into a single shapely MultiPolygon
+geometry with</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">mp</span> <span class="o">=</span> <span class="n">circles</span><span class="o">.</span><span class="n">unary_union</span>
+</pre></div>
+</div>
+<p>To extract the part of this geometry contained in each borough, we can
+just use:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">holes</span> <span class="o">=</span> <span class="n">boros</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">mp</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../../../../_images/holes.png" src="../../../../../_images/holes.png" />
+<p>and to get the area outside of the holes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">boros_with_holes</span> <span class="o">=</span> <span class="n">boros</span><span class="p">[</span><span class="s1">&#39;geometry&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">difference</span><span class="p">(</span><span class="n">mp</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="../../../../../_images/boros_with_holes.png" src="../../../../../_images/boros_with_holes.png" />
+<p>Note that this can be simplified a bit, since <code class="docutils literal"><span class="pre">geometry</span></code> is
+available as an attribute on a <code class="docutils literal"><span class="pre">GeoDataFrame</span></code>, and the
+<code class="docutils literal"><span class="pre">intersection</span></code> and <code class="docutils literal"><span class="pre">difference</span></code> methods are implemented with the
+&#8220;&amp;&#8221; and &#8220;-&#8221; operators, respectively.  For example, the latter could
+have been expressed simply as <code class="docutils literal"><span class="pre">boros.geometry</span> <span class="pre">-</span> <span class="pre">mp</span></code>.</p>
+<p>It&#8217;s easy to do things like calculate the fractional area in each
+borough that are in the holes:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">holes</span><span class="o">.</span><span class="n">area</span> <span class="o">/</span> <span class="n">boros</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">area</span>
+<span class="go">BoroCode</span>
+<span class="go">1           0.602015</span>
+<span class="go">2           0.523457</span>
+<span class="go">3           0.585901</span>
+<span class="go">4           0.577020</span>
+<span class="go">5           0.559507</span>
+<span class="go">dtype: float64</span>
+</pre></div>
+</div>
+<div class="toctree-wrapper compound">
+<ul class="simple">
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

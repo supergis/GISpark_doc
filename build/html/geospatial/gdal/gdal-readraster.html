@@ -1,0 +1,824 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>用GDAL读取栅格数据 &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>用GDAL读取栅格数据</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/geospatial/gdal/gdal-readraster.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [23]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>#!/usr/bin/python
+#coding=utf-8
+</pre></div>
+</div>
+</div>
+<div class="section" id="用GDAL读取栅格数据">
+<h1>用GDAL读取栅格数据<a class="headerlink" href="#用GDAL读取栅格数据" title="永久链接至标题">¶</a></h1>
+<p>by
+<a class="reference external" href="http://my.oschina.net/u/2306127/blog?catalog=3420733">openthings&#64;163.com</a>,
+2016-04-25.</p>
+<div class="section" id="GDAL可以读取多种栅格数据文件，然后使用numpy之类的库进行处理。">
+<h2>GDAL可以读取多种栅格数据文件，然后使用numpy之类的库进行处理。<a class="headerlink" href="#GDAL可以读取多种栅格数据文件，然后使用numpy之类的库进行处理。" title="永久链接至标题">¶</a></h2>
+<div class="line-block">
+<div class="line">GDAL (<a class="reference external" href="http://www.gdal.org">http://www.gdal.org</a>)
+原生支持超过100种栅格数据类型，涵盖所有主流GIS与RS数据格式，包括: *
+TIFF, GeoTIFF, JPEG, JPEG2000, PNG, GIF, BMP, ECW, MrSID</div>
+<div class="line">* HDF4, HDF5</div>
+<div class="line">* USGS DOQ, USGS DEM</div>
+<div class="line">* GRASS, Idrisi, ENVI, Imagine</div>
+<div class="line">* ArcInfo grids, ArcSDE raster</div>
+</div>
+<p>完整的文件格式支持列表可以参考 <a class="reference external" href="http://www.gdal.org/formats_list.html">http://www.gdal.org/formats_list.html</a></p>
+</div>
+<div class="section" id="1、读取图像文件">
+<h2>1、读取图像文件<a class="headerlink" href="#1、读取图像文件" title="永久链接至标题">¶</a></h2>
+<div class="section" id="引用GDAL支持库。">
+<h3>引用GDAL支持库。<a class="headerlink" href="#引用GDAL支持库。" title="永久链接至标题">¶</a></h3>
+<ul class="simple">
+<li>旧版本（1.5以前）： import gdal, gdalconst</li>
+<li>新版本（1.6以后）： from osgeo import gdal, gdalconst</li>
+</ul>
+<p>gdal和gdalconst最好都要导入，其中gdalconst中的常量都加了前缀，力图与其他的module冲突最小。所以对gdalconst你可以直接这样导入：</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from osgeo import gdal, gdalconst
+from osgeo.gdalconst import *
+import gdal, gdalconst
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="加载GDAL数据驱动。">
+<h3>加载GDAL数据驱动。<a class="headerlink" href="#加载GDAL数据驱动。" title="永久链接至标题">¶</a></h3>
+<div class="line-block">
+<div class="line">与OGR数据驱动类似，需要先创建某一类型的数据驱动，再创建响应的栅格数据集。
+* 一次性注册所有的数据驱动，但是只能读不能写：gdal.AllRegister()</div>
+<div class="line">*
+单独注册某一类型的数据驱动，这样的话可以读也可以写，可以新建数据集：</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [17]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>driver = gdal.GetDriverByName(&#39;HFA&#39;)
+driver.Register()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[17]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>5
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="打开SRTM.">
+<h2>打开SRTM.<a class="headerlink" href="#打开SRTM." title="永久链接至标题">¶</a></h2>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>fn = &#39;../data/N00E018.hgt&#39;
+ds = gdal.Open(fn, GA_ReadOnly)
+if ds is None:
+   print(&#39;Could not open &#39; + fn)
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>cols = ds.RasterXSize
+rows = ds.RasterYSize
+bands = ds.RasterCount
+print(&quot;Info: X-%d, Y-%d, BAND-%d&quot;%(cols,rows,bands))
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Info: X-1201, Y-1201, BAND-1
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>band = ds.GetRasterBand(1)
+data = band.ReadAsArray(0, 0, 10, 10)
+print(type(data))
+data
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+&lt;class &#39;numpy.ndarray&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[15]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>array([[330, 326, 329, 331, 327, 328, 330, 328, 329, 326],
+       [331, 330, 327, 329, 328, 327, 329, 328, 331, 325],
+       [330, 330, 331, 329, 329, 326, 328, 328, 327, 327],
+       [329, 330, 330, 333, 331, 328, 327, 328, 325, 327],
+       [328, 329, 332, 330, 329, 327, 326, 326, 325, 326],
+       [329, 328, 331, 332, 327, 325, 325, 326, 324, 324],
+       [330, 329, 330, 331, 328, 326, 326, 327, 326, 326],
+       [332, 327, 329, 329, 328, 326, 326, 325, 326, 324],
+       [328, 329, 330, 331, 331, 328, 324, 325, 325, 324],
+       [329, 330, 329, 332, 331, 329, 327, 326, 326, 326]], dtype=int16)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="打开已有的栅格数据集。">
+<h2>打开已有的栅格数据集。<a class="headerlink" href="#打开已有的栅格数据集。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [20]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>fn = &#39;aster.img&#39;
+ds = gdal.Open(fn, GA_ReadOnly)
+if ds is None:
+   print(&#39;Could not open &#39; + fn)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Could not open aster.img
+</pre></div></div>
+</div>
+<div class="section" id="读取栅格数据集的x方向像素数，y方向像素数，和波段数.">
+<h3>读取栅格数据集的x方向像素数，y方向像素数，和波段数.<a class="headerlink" href="#读取栅格数据集的x方向像素数，y方向像素数，和波段数." title="永久链接至标题">¶</a></h3>
+<p>注意后面没有括号，因为他们是属性(properties)不是方法(methods)
+读取地理坐标参考信息(georeference info)</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [21]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>cols = ds.RasterXSize
+rows = ds.RasterYSize
+bands = ds.RasterCount
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-21-d141404f16c4&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>cols <span class="ansi-yellow-intense-fg ansi-bold">=</span> ds<span class="ansi-yellow-intense-fg ansi-bold">.</span>RasterXSize
+<span class="ansi-green-fg">      2</span> rows <span class="ansi-yellow-intense-fg ansi-bold">=</span> ds<span class="ansi-yellow-intense-fg ansi-bold">.</span>RasterYSize
+<span class="ansi-green-fg">      3</span> bands <span class="ansi-yellow-intense-fg ansi-bold">=</span> ds<span class="ansi-yellow-intense-fg ansi-bold">.</span>RasterCount
+
+<span class="ansi-red-intense-fg ansi-bold">AttributeError</span>: &#39;NoneType&#39; object has no attribute &#39;RasterXSize&#39;
+</pre></div></div>
+</div>
+</div>
+</div>
+<div class="section" id="2、图像几何变换">
+<h2>2、图像几何变换<a class="headerlink" href="#2、图像几何变换" title="永久链接至标题">¶</a></h2>
+<p>GeoTransform是一个list，存储着栅格数据集的地理坐标信息</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li>adfGeoTransform[0] /* top left x 左上角x坐标*/</li>
+</ol>
+<ul class="simple">
+<li>adfGeoTransform[1] /* w&#8211;e pixel resolution
+东西方向上的像素分辨率*/</li>
+<li>adfGeoTransform[2] /* rotation, 0 if image is &#8220;north up&#8221;
+如果北边朝上，地图的旋转角度*/</li>
+<li>adfGeoTransform[3] /* top left y 左上角y坐标*/</li>
+<li>adfGeoTransform[4] /* rotation, 0 if image is &#8220;north up&#8221;
+如果北边朝上，地图的旋转角度*/</li>
+<li>adfGeoTransform[5] /* n-s pixel resolution
+南北方向上的像素分辨率*/</li>
+</ul>
+</div></blockquote>
+<p>** <em>注意栅格数据集的坐标一般都是以左上角为基准的。</em> **</p>
+<p>下面的例子是从一个栅格数据集中取出Geotransform作为一个list，然后读取其中的数据:</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>geotransform = ds.GetGeoTransform()
+originX = geotransform[0]
+originY = geotransform[3]originY = geotransform[3]
+pixelWidth = geotransform[1]
+pixelHeight = geotransform[5]
+</pre></div>
+</div>
+</div>
+<p>计算某一坐标对应像素的相对位置(pixel
+offset)，也就是该坐标与左上角的像素的相对位置，按像素数计算，计算公式如下：</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>xOffset = int((x – originX) / pixelWidth)
+yOffset = int((y – originY) / pixelHeight)
+</pre></div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">读取某一像素点的值，需要分两步:</div>
+<div class="line">* 首先读取一个波段(band)：GetRasterBand()，其参数为波段的索引号。 *
+然后用ReadAsArray(, , ,
+)，读出从(xoff,yoff)开始，大小为(xsize,ysize)的矩阵。</div>
+</div>
+<p>如果将矩阵大小设为1X1，就是读取一个像素了。
+但是这一方法只能将读出的数据放到矩阵中，就算只读取一个像素也是一样。例如：</p>
+</div>
+<div class="section" id="3、图像的波段读取">
+<h2>3、图像的波段读取<a class="headerlink" href="#3、图像的波段读取" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [22]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>band = ds.GetRasterBand(1)
+data = band.ReadAsArray(xOffset, yOffset, 1, 1)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">AttributeError</span>                            Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-22-4cf56c37d9db&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>band <span class="ansi-yellow-intense-fg ansi-bold">=</span> ds<span class="ansi-yellow-intense-fg ansi-bold">.</span>GetRasterBand<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      2</span> data <span class="ansi-yellow-intense-fg ansi-bold">=</span> band<span class="ansi-yellow-intense-fg ansi-bold">.</span>ReadAsArray<span class="ansi-yellow-intense-fg ansi-bold">(</span>xOffset<span class="ansi-yellow-intense-fg ansi-bold">,</span> yOffset<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">1</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+
+<span class="ansi-red-intense-fg ansi-bold">AttributeError</span>: &#39;NoneType&#39; object has no attribute &#39;GetRasterBand&#39;
+</pre></div></div>
+</div>
+<p>如果想一次读取一整张图，那么将offset都设定为0，size则设定为整个图幅的size，例如：
+&gt;data = band.ReadAsArray(0, 0, cols, rows)</p>
+<p>但是要注意: * 从data中读取某一像素的值，必须要用data[yoff, xoff]。 *
+注意不要搞反了。数学中的矩阵是[row,col]，而这里恰恰相反！这里面row对应y轴，col对应x轴。
+* 注意在适当的时候释放内存，例如band = None 或者dataset =
+None。尤其当图很大的时候。</p>
+</div>
+</div>
+<div class="section" id="如何更有效率的读取栅格数据？">
+<h1>如何更有效率的读取栅格数据？<a class="headerlink" href="#如何更有效率的读取栅格数据？" title="永久链接至标题">¶</a></h1>
+<div class="line-block">
+<div class="line">显然一个一个的读取效率非常低，将整个栅格数据集都塞进二维数组也不是个好办法，因为这样占的内存还是很多。</div>
+<div class="line">更好的方法是按块(block)来存取数据，只把要用的那一块放进内存。本周的样例代码中有一个utils模块，可以读取block大小。</div>
+<div class="line">** <em>例如：</em>**</div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import utils
+blockSize = utils.GetBlockSize(band)
+xBlockSize = blockSize[0]
+yBlockSize = blockSize[1]
+</pre></div>
+</div>
+</div>
+<p>有的格式，例如GeoTiff没有平铺，一行是一个block。Erdas
+imagine格式则按64x64像素平铺。如果一行是一个block，那么按行读取是比较节省资源的。如果是平铺的数据结构，那么设定ReadAsArray()的参数值，让它一次只读入一个block，就是效率最高的方法了。例如：</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>rows = 13
+cols = 11
+xBSize = 5
+yBSize = 5
+
+for i in range(0, rows, yBSize):
+    if i + yBSize &lt; rows:
+        numRows = yBSize
+    else:
+        numRows = rows - i
+        for j in range(0, cols, xBSize):
+            if j + xBSize &lt; cols:
+                numCols = xBSize
+            else:
+                numCols = colsnumCols = cols - j
+            data = band.ReadAsArray(j, i, numCols, numRows)
+#这一段代码具有通用性，可以时常拿来用的。
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-10-3fa2757ce0b9&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-fg">     14</span>             <span class="ansi-green-intense-fg ansi-bold">else</span><span class="ansi-yellow-intense-fg ansi-bold">:</span>
+<span class="ansi-green-fg">     15</span>                 numCols <span class="ansi-yellow-intense-fg ansi-bold">=</span> colsnumCols <span class="ansi-yellow-intense-fg ansi-bold">=</span> cols <span class="ansi-yellow-intense-fg ansi-bold">-</span> j
+<span class="ansi-green-intense-fg ansi-bold">---&gt; 16</span><span class="ansi-yellow-intense-fg ansi-bold">             </span>data <span class="ansi-yellow-intense-fg ansi-bold">=</span> band<span class="ansi-yellow-intense-fg ansi-bold">.</span>ReadAsArray<span class="ansi-yellow-intense-fg ansi-bold">(</span>j<span class="ansi-yellow-intense-fg ansi-bold">,</span> i<span class="ansi-yellow-intense-fg ansi-bold">,</span> numCols<span class="ansi-yellow-intense-fg ansi-bold">,</span> numRows<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">     17</span> <span class="ansi-red-intense-fg ansi-bold">#这一段代码具有通用性，可以时常拿来用的。</span>
+
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>: name &#39;band&#39; is not defined
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="二维数组的处理技巧">
+<h1>二维数组的处理技巧<a class="headerlink" href="#二维数组的处理技巧" title="永久链接至标题">¶</a></h1>
+<p>图像数据的内存结构实质是一个二维数组。这里要用到两个库，Numeric比较老了，FWTools用它；numpy功能很强，是科学计算标准配置。
+#### 数据类型转换</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>data = band.ReadAsArray(j, i, nCols, nRows)
+data = data.astype(Numeric.Float) # Numeric
+data = data.astype(numpy.float) # numpy
+
+#或者简单点只写一句
+#data = band.ReadAsArray(j, i, nCols, nRows).astype(Numeric.Float)
+</pre></div>
+</div>
+</div>
+<div class="line-block">
+<div class="line">这是Numeric和numpy库的功能，输入一个数组和条件，输出一个二值数组。</div>
+<div class="line">例如：mask = Numeric.greater(data, 0)</div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>mask = Numeric.greater(data, 0)
+a = Numeric.array([0, 4, 6, 0, 2])
+print(a)
+#[0 4 6 0 2]
+
+mask = Numeric.greater(a, 0)
+print(mask)
+#[0 1 1 0 1]
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>a = Numeric.array([0, 4, 6, 0, 2])
+print a
+#[0 4 6 0 2]
+
+print(Numeric.sum(a))
+#12
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [13]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>b = Numeric.array([a, [5, 10, 0, 3, 0]])
+print(b)
+#[[ 0      4  6  0  2]
+#[ 5 10  0  3  0]]
+
+print(Numeric.sum(b))
+print(Numeric.sum(b))
+#[ 5 14  6  3  2]
+
+#所以，二维数组的求和就要这样:
+print(Numeric.sum(Numeric.sum(b)))
+#30
+
+#这里有一个小技巧，统计大于0的像素个数，可以联合运用mask和sum两个函数:
+print(a)
+#[0 4 6 0 2]
+
+mask = Numeric.greater(a, 0)
+print(mask)
+#[0 1 1 0 1]
+print(Numeric.sum(mask))
+#3
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-13-62e96942588b&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 1</span><span class="ansi-yellow-intense-fg ansi-bold"> </span>b <span class="ansi-yellow-intense-fg ansi-bold">=</span> Numeric<span class="ansi-yellow-intense-fg ansi-bold">.</span>array<span class="ansi-yellow-intense-fg ansi-bold">(</span><span class="ansi-yellow-intense-fg ansi-bold">[</span>a<span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-yellow-intense-fg ansi-bold">[</span><span class="ansi-cyan-intense-fg ansi-bold">5</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">10</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">3</span><span class="ansi-yellow-intense-fg ansi-bold">,</span> <span class="ansi-cyan-intense-fg ansi-bold">0</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">]</span><span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      2</span> print<span class="ansi-yellow-intense-fg ansi-bold">(</span>b<span class="ansi-yellow-intense-fg ansi-bold">)</span>
+<span class="ansi-green-fg">      3</span> <span class="ansi-red-intense-fg ansi-bold">#[[ 0      4  6  0  2]</span>
+<span class="ansi-green-fg">      4</span> <span class="ansi-red-intense-fg ansi-bold">#[ 5 10  0  3  0]]</span>
+<span class="ansi-green-fg">      5</span>
+
+<span class="ansi-red-intense-fg ansi-bold">NameError</span>: name &#39;Numeric&#39; is not defined
+</pre></div></div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

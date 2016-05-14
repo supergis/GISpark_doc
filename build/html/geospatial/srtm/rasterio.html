@@ -1,0 +1,646 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Rasterio &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Rasterio</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/geospatial/srtm/rasterio.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="Rasterio">
+<h1>Rasterio<a class="headerlink" href="#Rasterio" title="永久链接至标题">¶</a></h1>
+<p>Rasterio reads and writes geospatial raster datasets.
+<a class="reference external" href="https://travis-ci.org/mapbox/rasterio.png?branch=master">https://travis-ci.org/mapbox/rasterio.png?branch=master</a>
+<a class="reference external" href="https://coveralls.io/repos/github/mapbox/rasterio/badge.svg?branch=master">https://coveralls.io/repos/github/mapbox/rasterio/badge.svg?branch=master</a></p>
+<p>Rasterio employs GDAL under the hood for file I/O and raster formatting.
+Its functions typically accept and return Numpy ndarrays. Rasterio is
+designed to make working with geospatial raster data more productive and
+more fun.</p>
+<p>Rasterio is pronounced raw-STEER-ee-oh. ## Example</p>
+<p>Here&#8217;s a simple example of the basic features rasterio provides. Three
+bands are read from an image and summed to produce something like a
+panchromatic band. This new band is then written to a new single band
+TIFF.</p>
+<div class="section" id="Install">
+<h2>Install<a class="headerlink" href="#Install" title="永久链接至标题">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="n">activate</span> <span class="n">GISpark</span>
+<span class="n">pip</span> <span class="n">install</span> <span class="n">rasterio</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="读取SRTM的单波段高程值。">
+<h2>读取SRTM的单波段高程值。<a class="headerlink" href="#读取SRTM的单波段高程值。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import numpy
+import rasterio
+from pprint import *
+# Read raster bands directly to Numpy arrays.
+url = &quot;../data/N00E018.hgt&quot;
+src = rasterio.open(url)
+av = src.read()
+
+pprint(src.profile)
+print(&quot;ndArray.Shape:&quot;,av.shape)
+pprint(av)
+
+src.close()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+{&#39;affine&#39;: Affine(0.0008333333333333334, 0.0, 17.999583333333334,
+       0.0, -0.0008333333333333334, 1.0004166666666667),
+ &#39;count&#39;: 1,
+ &#39;crs&#39;: {&#39;init&#39;: &#39;epsg:4326&#39;},
+ &#39;driver&#39;: &#39;SRTMHGT&#39;,
+ &#39;dtype&#39;: &#39;int16&#39;,
+ &#39;height&#39;: 1201,
+ &#39;nodata&#39;: -32768.0,
+ &#39;tiled&#39;: False,
+ &#39;transform&#39;: (17.999583333333334,
+               0.0008333333333333334,
+               0.0,
+               1.0004166666666667,
+               0.0,
+               -0.0008333333333333334),
+ &#39;width&#39;: 1201}
+ndArray.Shape: (1, 1201, 1201)
+array([[[330, 326, 329, ..., 341, 340, 340],
+        [331, 330, 327, ..., 340, 338, 339],
+        [330, 330, 331, ..., 340, 342, 340],
+        ...,
+        [323, 322, 324, ..., 331, 328, 330],
+        [322, 323, 324, ..., 328, 328, 328],
+        [321, 322, 323, ..., 331, 330, 332]]], dtype=int16)
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [27]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>print(av.max(),&quot;~&quot;,av.min(),&quot;==&quot;,av.mean())
+av.view()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+388 ~ -32768 == -66.3491587984
+</pre></div></div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[27]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>array([[[330, 326, 329, ..., 341, 340, 340],
+        [331, 330, 327, ..., 340, 338, 339],
+        [330, 330, 331, ..., 340, 342, 340],
+        ...,
+        [323, 322, 324, ..., 331, 328, 330],
+        [322, 323, 324, ..., 328, 328, 328],
+        [321, 322, 323, ..., 331, 330, 332]]], dtype=int16)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="读取影像的多波段值到多个变量。">
+<h2>读取影像的多波段值到多个变量。<a class="headerlink" href="#读取影像的多波段值到多个变量。" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span># Read raster bands directly to Numpy arrays.
+#
+url = &#39;tests/data/RGB.byte.tif&#39;
+with rasterio.open(url) as src:
+    r, g, b = src.read()
+
+# Combine arrays in place. Expecting that the sum will
+# temporarily exceed the 8-bit integer range, initialize it as
+# a 64-bit float (the numpy default) array. Adding other
+# arrays to it in-place converts those arrays &quot;up&quot; and
+# preserves the type of the total array.
+total = numpy.zeros(r.shape)
+for band in r, g, b:
+    total += band
+total /= 3
+
+# Write the product as a raster band to a new 8-bit file. For
+# the new file&#39;s profile, we start with the meta attributes of
+# the source file, but then change the band count to 1, set the
+# dtype to uint8, and specify LZW compression.
+profile = src.profile
+profile.update(dtype=rasterio.uint8, count=1, compress=&#39;lzw&#39;)
+
+with rasterio.open(&#39;example-total.tif&#39;, &#39;w&#39;, **profile) as dst:
+    dst.write(total.astype(rasterio.uint8), 1)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+<span class="ansi-red-intense-fg ansi-bold">---------------------------------------------------------------------------</span>
+<span class="ansi-red-intense-fg ansi-bold">ImportError</span>                               Traceback (most recent call last)
+<span class="ansi-green-intense-fg ansi-bold">&lt;ipython-input-1-7be4fe623d9c&gt;</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span><span class="ansi-blue-intense-fg ansi-bold">()</span>
+<span class="ansi-green-fg">      1</span> <span class="ansi-green-intense-fg ansi-bold">import</span> numpy
+<span class="ansi-green-intense-fg ansi-bold">----&gt; 2</span><span class="ansi-yellow-intense-fg ansi-bold"> </span><span class="ansi-green-intense-fg ansi-bold">import</span> rasterio
+<span class="ansi-green-fg">      3</span>
+<span class="ansi-green-fg">      4</span> <span class="ansi-red-intense-fg ansi-bold"># Read raster bands directly to Numpy arrays.</span>
+<span class="ansi-green-fg">      5</span> <span class="ansi-red-intense-fg ansi-bold">#</span>
+
+<span class="ansi-red-intense-fg ansi-bold">ImportError</span>: No module named &#39;rasterio&#39;
+</pre></div></div>
+</div>
+<p>The output:
+<a class="reference external" href="http://farm6.staticflickr.com/5501/11393054644_74f54484d9_z_d.jpg">http://farm6.staticflickr.com/5501/11393054644_74f54484d9_z_d.jpg</a></p>
+<div class="section" id="API-Overview">
+<h3>API Overview<a class="headerlink" href="#API-Overview" title="永久链接至标题">¶</a></h3>
+<p>Simple access is provided to properties of a geospatial raster file.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>with rasterio.open(&#39;tests/data/RGB.byte.tif&#39;) as src:
+    print(src.width, src.height)
+    print(src.crs)
+    print(src.affine)
+    print(src.count)
+    print(src.indexes)
+
+# Printed:
+# (791, 718)
+# {u&#39;units&#39;: u&#39;m&#39;, u&#39;no_defs&#39;: True, u&#39;ellps&#39;: u&#39;WGS84&#39;, u&#39;proj&#39;: u&#39;utm&#39;, u&#39;zone&#39;: 18}
+# Affine(300.0379266750948, 0.0, 101985.0,
+#        0.0, -300.041782729805, 2826915.0)
+# 3
+# [1, 2, 3]
+</pre></div>
+</div>
+</div>
+<p>A dataset also provides methods for getting extended array slices given
+georeferenced coordinates and vice versa.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>with rasterio.open(&#39;tests/data/RGB.byte.tif&#39;) as src:
+    print src.window(**src.window_bounds(((100, 200), (100, 200))))
+
+# Printed:
+# ((100, 200), (100, 200))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Rasterio-CLI">
+<h3>Rasterio CLI<a class="headerlink" href="#Rasterio-CLI" title="永久链接至标题">¶</a></h3>
+<p>Rasterio&#8217;s command line interface, named &#8220;rio&#8221;, is documented at
+cli.rst. Its rio insp command opens the hood of any raster dataset so
+you can poke around using Python.</p>
+<p>$ rio insp tests/data/RGB.byte.tif Rasterio 0.10 Interactive Inspector
+(Python 3.4.1) Type &#8220;src.meta&#8221;, &#8220;src.read(1)&#8221;, or &#8220;help(src)&#8221; for more
+information. &gt;&gt;&gt; src.name &#8216;tests/data/RGB.byte.tif&#8217; &gt;&gt;&gt; src.closed False
+&gt;&gt;&gt; src.shape (718, 791) &gt;&gt;&gt; src.crs {&#8216;init&#8217;: &#8216;epsg:32618&#8217;} &gt;&gt;&gt; b, g, r
+= src.read() &gt;&gt;&gt; b masked_array(data = [[&#8211; &#8211; &#8211; ..., &#8211; &#8211; &#8211;][&#8211; &#8211;
+&#8211; ..., &#8211; &#8211; &#8211;] [&#8211; &#8211; &#8211; ..., &#8211; &#8211; &#8211;] ..., [&#8211; &#8211; &#8211; ..., &#8211; &#8211;
+&#8211;][&#8211; &#8211; &#8211; ..., &#8211; &#8211; &#8211;] [&#8211; &#8211; &#8211; ..., &#8211; &#8211; &#8211;]], mask = [[ True
+True True ..., True True True][ True True True ..., True True True] [
+True True True ..., True True True] ..., [ True True True ..., True True
+True][ True True True ..., True True True] [ True True True ..., True
+True True]], fill_value = 0)</p>
+<blockquote>
+<div>b.min(), b.max(), b.mean() (1, 255, 44.434478650699106)</div></blockquote>
+</div>
+<div class="section" id="Rio-Plugins">
+<h3>Rio Plugins<a class="headerlink" href="#Rio-Plugins" title="永久链接至标题">¶</a></h3>
+<p>Rio provides the ability to create additional subcommands using plugins.
+See cli.rst for more information on building plugins.</p>
+<p>See the plugin registry for a list of available plugins.</p>
+</div>
+</div>
+<div class="section" id="Installation">
+<h2>Installation<a class="headerlink" href="#Installation" title="永久链接至标题">¶</a></h2>
+<p>Rasterio has one C library dependency: GDAL &gt;=1.9. GDAL itself depends
+on a number of other libraries provided by most major operating systems
+and also depends on the non standard GEOS and PROJ4 libraries.</p>
+<p>Python package dependencies (see also requirements.txt): affine, cligj
+(and click), enum34, numpy.</p>
+<p>Development also requires (see requirements-dev.txt) Cython and other
+packages. #### Installing from binaries OS X</p>
+<p>Binary wheels with the GDAL, GEOS, and PROJ4 libraries included are
+available for OS X versions 10.7+ starting with Rasterio version 0.17.
+To install, just run pip install rasterio. These binary wheels are
+preferred by newer versions of pip. If you don&#8217;t want these wheels and
+want to install from a source distribution, run pip install rasterio
+&#8211;no-use-wheel instead.</p>
+<p>The included GDAL library is fairly minimal, providing only the format
+drivers that ship with GDAL and are enabled by default. To get access to
+more formats, you must build from a source distribution (see below).</p>
+<p>Binary wheels for other operating systems will be available in a future
+release. Windows</p>
+<p>Binary wheels for rasterio and GDAL are created by Christoph Gohlke and
+are available from his website.</p>
+<p>To install rasterio, simply download both binaries for your system
+(rasterio and GDAL) and run something like this from the downloads
+folder:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ pip install -U pip
+$ pip install GDAL-1.11.2-cp27-none-win32.whl
+$ pip install rasterio-0.24.0-cp27-none-win32.whl
+</pre></div>
+</div>
+<p>Rasterio is a Python C extension and to build you&#8217;ll need a working
+compiler (XCode on OS X etc). You&#8217;ll also need Numpy preinstalled; the
+Numpy headers are required to run the rasterio setup script. Numpy has
+to be installed (via the indicated requirements file) before rasterio
+can be installed. See rasterio&#8217;s Travis configuration for more guidance.</p>
+<p>Linux</p>
+<p>The following commands are adapted from Rasterio&#8217;s Travis-CI
+configuration.</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>$ sudo add-apt-repository ppa:ubuntugis/ppa
+$ sudo apt-get update
+$ sudo apt-get install python-numpy libgdal1h gdal-bin libgdal-dev
+$ pip install rasterio
+</pre></div>
+</div>
+<p>Adapt them as necessary for your Linux system.</p>
+<p>OS X</p>
+<p>For a Homebrew based Python environment, do the following.</p>
+<p>$ brew install gdal $ pip install rasterio</p>
+<p>Windows</p>
+<p>You can download a binary distribution of GDAL from here. You will also
+need to download the compiled libraries and headers (include files).</p>
+<p>When building from source on Windows, it is important to know that
+setup.py cannot rely on gdal-config, which is only present on UNIX
+systems, to discover the locations of header files and libraries that
+rasterio needs to compile its C extensions. On Windows, these paths need
+to be provided by the user. You will need to find the include files and
+the library files for gdal and use setup.py as follows.</p>
+<p>$ python setup.py build_ext -I -lgdal_i -L $ python setup.py install</p>
+<p>We have had success compiling code using the same version of Microsoft&#8217;s
+Visual Studio used to compile the targeted version of Python (more info
+on versions used here.).</p>
+<p>Note: The GDAL dll (gdal111.dll) and gdal-data directory need to be in
+your Windows PATH otherwise rasterio will fail to work. Testing</p>
+<p>From the repo directory, run py.test</p>
+<p>$ python -m pytest</p>
+<p>Note: some tests do not succeed on Windows (see #66.). Documentation</p>
+<p>See <a class="reference external" href="https://github.com/mapbox/rasterio/tree/master/docs">https://github.com/mapbox/rasterio/tree/master/docs</a>. License</p>
+<p>See LICENSE.txt. Authors</p>
+<p>See AUTHORS.txt. Changes</p>
+<p>See CHANGES.txt.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

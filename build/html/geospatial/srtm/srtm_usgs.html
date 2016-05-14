@@ -292,7 +292,7 @@ _**</p>
 </pre></div>
 </div>
 <div class="highlight-ipython3"><div class="highlight"><pre>
-<span></span>!wget -c http://dds.cr.usgs.gov/srtm/version2_1/SRTM3/Africa/N00E018.hgt.zip
+<span></span>!wget -c http://dds.cr.usgs.gov/srtm/version2_1/SRTM3/Africa/N00E018.hgt.zip -O ../data/N00E018.hgt.zip
 </pre></div>
 </div>
 </div>
@@ -323,7 +323,7 @@ N00E018.hgt.zip     100%[===================&gt;] 875.45K  16.2KB/s    in 98s
 </pre></div>
 </div>
 <div class="highlight-ipython3"><div class="highlight"><pre>
-<span></span>!unzip N00E018.hgt.zip
+<span></span>!unzip ../data/N00E018.hgt.zip
 </pre></div>
 </div>
 </div>
@@ -348,7 +348,7 @@ Archive:  N00E018.hgt.zip
 </pre></div>
 </div>
 <div class="highlight-ipython3"><div class="highlight"><pre>
-<span></span>!gdal_translate -of GTiff -co &quot;TILED=YES&quot; -a_srs &quot;+proj=latlong&quot; N00E018.hgt N00E018_adapted.tif
+<span></span>!gdal_translate -of GTiff -co &quot;TILED=YES&quot; -a_srs &quot;+proj=latlong&quot; ../data/N00E018.hgt ../data/N00E018_adapted.tif
 </pre></div>
 </div>
 </div>
@@ -398,7 +398,7 @@ Copying nodata values from source N00E018_adapted.tif to destination N00E018_war
 </pre></div>
 </div>
 <div class="highlight-ipython3"><div class="highlight"><pre>
-<span></span>!gdaldem hillshade N00E018_warped.tif N00E018_hillshade.tif
+<span></span>!gdaldem hillshade ../data/N00E018_warped.tif ../data/N00E018_hillshade.tif
 </pre></div>
 </div>
 </div>
@@ -422,7 +422,7 @@ Copying nodata values from source N00E018_adapted.tif to destination N00E018_war
 </pre></div>
 </div>
 <div class="highlight-ipython3"><div class="highlight"><pre>
-<span></span>!gdal_contour -a elev N00E018_adapted.tif N00E018_contour25.shp -i 25.0
+<span></span>!gdal_contour -a elev ../data/N00E018_adapted.tif ../data/N00E018_contour25.shp -i 25.0
 </pre></div>
 </div>
 </div>
@@ -438,11 +438,11 @@ Copying nodata values from source N00E018_adapted.tif to destination N00E018_war
 <h3>查看生成的文件目录。<a class="headerlink" href="#查看生成的文件目录。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
-<span></span>In [8]:
+<span></span>In [1]:
 </pre></div>
 </div>
 <div class="highlight-ipython3"><div class="highlight"><pre>
-<span></span>!ls -l -h
+<span></span>!ls -l -h ../data/
 </pre></div>
 </div>
 </div>
@@ -451,17 +451,23 @@ Copying nodata values from source N00E018_adapted.tif to destination N00E018_war
 </div>
 <div class="container">
 <div class="highlight"><pre>
-总用量 53M
--rw-rw-r-- 1 supermap supermap 3.2M 5月   4 14:18 N00E018_adapted.tif
--rw-rw-r-- 1 supermap supermap 321K 5月   4 14:32 N00E018_contour25.dbf
--rw-rw-r-- 1 supermap supermap  144 5月   4 14:32 N00E018_contour25.prj
--rw-rw-r-- 1 supermap supermap 4.5M 5月   4 14:32 N00E018_contour25.shp
--rw-rw-r-- 1 supermap supermap 123K 5月   4 14:32 N00E018_contour25.shx
+总用量 13M
+-rw-rw-r-- 1 supermap supermap 5.6M 5月   4 13:44 GIScript_Test.udb
+-rw-r--r-- 1 supermap supermap  74K 5月   4 13:44 GIScript_Test.udd
+drwxrwxr-x 2 supermap supermap 4.0K 8月  13  2015 Grid
 -rw-r--r-- 1 supermap supermap 2.8M 1月  15  2009 N00E018.hgt
 -rw-rw-r-- 1 supermap supermap 876K 7月  22  2009 N00E018.hgt.zip
--rw-rw-r-- 1 supermap supermap  14M 5月   4 14:19 N00E018_hillshade.tif
--rw-rw-r-- 1 supermap supermap  29M 5月   4 14:19 N00E018_warped.tif
--rw-rw-r-- 1 supermap supermap 5.8K 5月   4 14:32 srtm_usgs.ipynb
+drwxrwxr-x 2 supermap supermap 4.0K 5月   8 22:50 nybb_16a
+-rw-rw-r-- 1 supermap supermap 645K 2月  29 22:44 nybb_16a.zip
+drwxrwxr-x 2 supermap supermap 4.0K 5月   4 16:04 osm
+-rw-rw-r-- 1 supermap supermap   10 5月   4 15:17 osm_test.cpg
+-rw-rw-r-- 1 supermap supermap 5.8K 5月   4 15:17 osm_test.dbf
+-rw-rw-r-- 1 supermap supermap 2.7M 5月   4 15:00 osm_test.osm
+-rw-rw-r-- 1 supermap supermap  380 5月   4 15:17 osm_test.shp
+-rw-rw-r-- 1 supermap supermap  180 5月   4 15:17 osm_test.shx
+-rw-rw-r-- 1 supermap supermap 131K 5月   4 15:27 overpass.osm_node.json
+drwxrwxr-x 2 supermap supermap 4.0K 8月  11  2015 Raster
+drwxrwxr-x 2 supermap supermap 4.0K 7月  31  2015 Shape
 </pre></div></div>
 </div>
 <div class="nbinput nblast container">

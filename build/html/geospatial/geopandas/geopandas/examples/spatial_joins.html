@@ -1,0 +1,1120 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Spatial Joins &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../../../index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Spatial Joins</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/geospatial/geopandas/geopandas/examples/spatial_joins.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="Spatial-Joins">
+<h1>Spatial Joins<a class="headerlink" href="#Spatial-Joins" title="永久链接至标题">¶</a></h1>
+<p>A <em>spatial join</em> uses <a class="reference external" href="http://toblerity.org/shapely/manual.html#binary-predicates">binary
+predicates</a>
+such as <code class="docutils literal"><span class="pre">intersects</span></code> and <code class="docutils literal"><span class="pre">crosses</span></code> to combine two <code class="docutils literal"><span class="pre">GeoDataFrames</span></code>
+based on the spatial relationship between their geometries.</p>
+<p>A common use case might be a spatial join between a point layer and a
+polygon layer where you want to retain the point geometries and grab the
+attributes of the intersecting polygons.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from IPython.core.display import Image
+Image(url=&quot;https://dl.dropboxusercontent.com/u/6769420/sjoin_test.png&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[2]:
+</pre></div>
+</div>
+<div class="container">
+<img src="https://dl.dropboxusercontent.com/u/6769420/sjoin_test.png"/></div>
+</div>
+<div class="section" id="Types-of-spatial-joins">
+<h2>Types of spatial joins<a class="headerlink" href="#Types-of-spatial-joins" title="永久链接至标题">¶</a></h2>
+<p>We currently support the following methods of spatial joins. We refer to
+the <em>left_df</em> and <em>right_df</em> which are the correspond to the two
+dataframes passed in as args.</p>
+<div class="section" id="Left-outer-join">
+<h3>Left outer join<a class="headerlink" href="#Left-outer-join" title="永久链接至标题">¶</a></h3>
+<p>In a LEFT OUTER JOIN (<code class="docutils literal"><span class="pre">how='left'</span></code>), we keep <em>all</em> rows from the left
+and duplicate them if necessary to represent multiple hits between the
+two dataframes. We retain attributes of the right if they intersect and
+lose right rows that don&#8217;t intersect. A left outer join implies that we
+are interested in retaining the geometries of the left.</p>
+<p>This is equivalent to the PostGIS query:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">pts</span><span class="o">.</span><span class="n">geom</span><span class="p">,</span> <span class="n">pts</span><span class="o">.</span><span class="n">id</span> <span class="k">as</span> <span class="n">ptid</span><span class="p">,</span> <span class="n">polys</span><span class="o">.</span><span class="n">id</span> <span class="k">as</span> <span class="n">polyid</span>
+<span class="n">FROM</span> <span class="n">pts</span>
+<span class="n">LEFT</span> <span class="n">OUTER</span> <span class="n">JOIN</span> <span class="n">polys</span>
+<span class="n">ON</span> <span class="n">ST_Intersects</span><span class="p">(</span><span class="n">pts</span><span class="o">.</span><span class="n">geom</span><span class="p">,</span> <span class="n">polys</span><span class="o">.</span><span class="n">geom</span><span class="p">);</span>
+
+                    <span class="n">geom</span>                    <span class="o">|</span> <span class="n">ptid</span> <span class="o">|</span> <span class="n">polyid</span>
+<span class="o">--------------------------------------------+------+--------</span>
+ <span class="mo">010100000040</span><span class="n">A9FBF2D88AD03F349CD47D796CE9BF</span> <span class="o">|</span>    <span class="mi">4</span> <span class="o">|</span>     <span class="mi">10</span>
+ <span class="mo">01010000004</span><span class="mi">8</span><span class="n">EABE3CB622D8BFA8FBF2D88AA0E9BF</span> <span class="o">|</span>    <span class="mi">3</span> <span class="o">|</span>     <span class="mi">10</span>
+ <span class="mo">01010000004</span><span class="mi">8</span><span class="n">EABE3CB622D8BFA8FBF2D88AA0E9BF</span> <span class="o">|</span>    <span class="mi">3</span> <span class="o">|</span>     <span class="mi">20</span>
+ <span class="mo">0101000000</span><span class="n">F0D88AA0E1A4EEBF7052F7E5B115E9BF</span> <span class="o">|</span>    <span class="mi">2</span> <span class="o">|</span>     <span class="mi">20</span>
+ <span class="mo">0101000000</span><span class="mi">818693</span><span class="n">BA2F8FF7BF4ADD97C75604E9BF</span> <span class="o">|</span>    <span class="mi">1</span> <span class="o">|</span>
+<span class="p">(</span><span class="mi">5</span> <span class="n">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Right-outer-join">
+<h3>Right outer join<a class="headerlink" href="#Right-outer-join" title="永久链接至标题">¶</a></h3>
+<p>In a RIGHT OUTER JOIN (<code class="docutils literal"><span class="pre">how='right'</span></code>), we keep <em>all</em> rows from the
+right and duplicate them if necessary to represent multiple hits between
+the two dataframes. We retain attributes of the left if they intersect
+and lose left rows that don&#8217;t intersect. A right outer join implies that
+we are interested in retaining the geometries of the right.</p>
+<p>This is equivalent to the PostGIS query:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">polys</span><span class="o">.</span><span class="n">geom</span><span class="p">,</span> <span class="n">pts</span><span class="o">.</span><span class="n">id</span> <span class="k">as</span> <span class="n">ptid</span><span class="p">,</span> <span class="n">polys</span><span class="o">.</span><span class="n">id</span> <span class="k">as</span> <span class="n">polyid</span>
+<span class="n">FROM</span> <span class="n">pts</span>
+<span class="n">RIGHT</span> <span class="n">OUTER</span> <span class="n">JOIN</span> <span class="n">polys</span>
+<span class="n">ON</span> <span class="n">ST_Intersects</span><span class="p">(</span><span class="n">pts</span><span class="o">.</span><span class="n">geom</span><span class="p">,</span> <span class="n">polys</span><span class="o">.</span><span class="n">geom</span><span class="p">);</span>
+
+  <span class="n">geom</span>    <span class="o">|</span> <span class="n">ptid</span> <span class="o">|</span> <span class="n">polyid</span>
+<span class="o">----------+------+--------</span>
+ <span class="mf">01.</span><span class="o">..</span><span class="mi">9</span><span class="n">BF</span> <span class="o">|</span>    <span class="mi">4</span> <span class="o">|</span>     <span class="mi">10</span>
+ <span class="mf">01.</span><span class="o">..</span><span class="mi">9</span><span class="n">BF</span> <span class="o">|</span>    <span class="mi">3</span> <span class="o">|</span>     <span class="mi">10</span>
+ <span class="mf">02.</span><span class="o">..</span><span class="mi">7</span><span class="n">BF</span> <span class="o">|</span>    <span class="mi">3</span> <span class="o">|</span>     <span class="mi">20</span>
+ <span class="mf">02.</span><span class="o">..</span><span class="mi">7</span><span class="n">BF</span> <span class="o">|</span>    <span class="mi">2</span> <span class="o">|</span>     <span class="mi">20</span>
+ <span class="mf">00.</span><span class="o">..</span><span class="mi">5</span><span class="n">BF</span> <span class="o">|</span>      <span class="o">|</span>     <span class="mi">30</span>
+<span class="p">(</span><span class="mi">5</span> <span class="n">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Inner-join">
+<h3>Inner join<a class="headerlink" href="#Inner-join" title="永久链接至标题">¶</a></h3>
+<p>In an INNER JOIN (<code class="docutils literal"><span class="pre">how='inner'</span></code>), we keep rows from the right and left
+only where their binary predicate is <code class="docutils literal"><span class="pre">True</span></code>. We duplicate them if
+necessary to represent multiple hits between the two dataframes. We
+retain attributes of the right and left only if they intersect and lose
+all rows that do not. An inner join implies that we are interested in
+retaining the geometries of the left.</p>
+<p>This is equivalent to the PostGIS query:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">SELECT</span> <span class="n">pts</span><span class="o">.</span><span class="n">geom</span><span class="p">,</span> <span class="n">pts</span><span class="o">.</span><span class="n">id</span> <span class="k">as</span> <span class="n">ptid</span><span class="p">,</span> <span class="n">polys</span><span class="o">.</span><span class="n">id</span> <span class="k">as</span> <span class="n">polyid</span>
+<span class="n">FROM</span> <span class="n">pts</span>
+<span class="n">INNER</span> <span class="n">JOIN</span> <span class="n">polys</span>
+<span class="n">ON</span> <span class="n">ST_Intersects</span><span class="p">(</span><span class="n">pts</span><span class="o">.</span><span class="n">geom</span><span class="p">,</span> <span class="n">polys</span><span class="o">.</span><span class="n">geom</span><span class="p">);</span>
+
+                    <span class="n">geom</span>                    <span class="o">|</span> <span class="n">ptid</span> <span class="o">|</span> <span class="n">polyid</span>
+<span class="o">--------------------------------------------+------+--------</span>
+ <span class="mo">010100000040</span><span class="n">A9FBF2D88AD03F349CD47D796CE9BF</span> <span class="o">|</span>    <span class="mi">4</span> <span class="o">|</span>     <span class="mi">10</span>
+ <span class="mo">01010000004</span><span class="mi">8</span><span class="n">EABE3CB622D8BFA8FBF2D88AA0E9BF</span> <span class="o">|</span>    <span class="mi">3</span> <span class="o">|</span>     <span class="mi">10</span>
+ <span class="mo">01010000004</span><span class="mi">8</span><span class="n">EABE3CB622D8BFA8FBF2D88AA0E9BF</span> <span class="o">|</span>    <span class="mi">3</span> <span class="o">|</span>     <span class="mi">20</span>
+ <span class="mo">0101000000</span><span class="n">F0D88AA0E1A4EEBF7052F7E5B115E9BF</span> <span class="o">|</span>    <span class="mi">2</span> <span class="o">|</span>     <span class="mi">20</span>
+<span class="p">(</span><span class="mi">4</span> <span class="n">rows</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Spatial-Joins-between-two-GeoDataFrames">
+<h2>Spatial Joins between two GeoDataFrames<a class="headerlink" href="#Spatial-Joins-between-two-GeoDataFrames" title="永久链接至标题">¶</a></h2>
+<p>Let&#8217;s take a look at how we&#8217;d implement these using <code class="docutils literal"><span class="pre">GeoPandas</span></code>.
+First, load up the NYC test data into <code class="docutils literal"><span class="pre">GeoDataFrames</span></code>:</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [19]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import os
+from shapely.geometry import Point
+from geopandas import GeoDataFrame, read_file
+from geopandas.tools import overlay
+
+# NYC Boros
+zippath = os.path.abspath(&#39;../examples/nybb_14aav.zip&#39;)
+polydf = read_file(&#39;/nybb_14a_av/nybb.shp&#39;, vfs=&#39;zip://&#39; + zippath)
+
+# Generate some points
+b = [int(x) for x in polydf.total_bounds]
+N = 8
+pointdf = GeoDataFrame([
+    {&#39;geometry&#39; : Point(x, y), &#39;value1&#39;: x + y, &#39;value2&#39;: x - y}
+    for x, y in zip(range(b[0], b[2], int((b[2]-b[0])/N)),
+                    range(b[1], b[3], int((b[3]-b[1])/N)))])
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [20]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>pointdf
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[20]:
+</pre></div>
+</div>
+<div class="container">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>value1</th>
+      <th>value2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>  POINT (913175 120121)</td>
+      <td> 1033296</td>
+      <td> 793054</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>  POINT (932450 139211)</td>
+      <td> 1071661</td>
+      <td> 793239</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>  POINT (951725 158301)</td>
+      <td> 1110026</td>
+      <td> 793424</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>  POINT (971000 177391)</td>
+      <td> 1148391</td>
+      <td> 793609</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>  POINT (990275 196481)</td>
+      <td> 1186756</td>
+      <td> 793794</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td> POINT (1009550 215571)</td>
+      <td> 1225121</td>
+      <td> 793979</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td> POINT (1028825 234661)</td>
+      <td> 1263486</td>
+      <td> 794164</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td> POINT (1048100 253751)</td>
+      <td> 1301851</td>
+      <td> 794349</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td> POINT (1067375 272841)</td>
+      <td> 1340216</td>
+      <td> 794534</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [21]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>polydf
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[21]:
+</pre></div>
+</div>
+<div class="container">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BoroCode</th>
+      <th>BoroName</th>
+      <th>Shape_Area</th>
+      <th>Shape_Leng</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> 5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+      <td> (POLYGON ((970217.0223999023 145643.3322143555...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td> 3</td>
+      <td>      Brooklyn</td>
+      <td> 1.937810e+09</td>
+      <td> 741227.337073</td>
+      <td> (POLYGON ((1021176.479003906 151374.7969970703...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> 4</td>
+      <td>        Queens</td>
+      <td> 3.045079e+09</td>
+      <td> 896875.396449</td>
+      <td> (POLYGON ((1029606.076599121 156073.8142089844...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td> 1</td>
+      <td>     Manhattan</td>
+      <td> 6.364308e+08</td>
+      <td> 358400.912836</td>
+      <td> (POLYGON ((981219.0557861328 188655.3157958984...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td> 2</td>
+      <td>         Bronx</td>
+      <td> 1.186822e+09</td>
+      <td> 464475.145651</td>
+      <td> (POLYGON ((1012821.805786133 229228.2645874023...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [22]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>pointdf.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[22]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes.AxesSubplot at 0x7fe17c79de90&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../../../_images/geospatial_geopandas_geopandas_examples_spatial_joins_7_1.png" src="../../../../_images/geospatial_geopandas_geopandas_examples_spatial_joins_7_1.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [23]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>polydf.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[23]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes.AxesSubplot at 0x7fe17c48f8d0&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../../../_images/geospatial_geopandas_geopandas_examples_spatial_joins_8_1.png" src="../../../../_images/geospatial_geopandas_geopandas_examples_spatial_joins_8_1.png" />
+</div>
+</div>
+</div>
+<div class="section" id="Joins">
+<h2>Joins<a class="headerlink" href="#Joins" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [24]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geopandas.tools import sjoin
+join_left_df = sjoin(pointdf, polydf, how=&quot;left&quot;)
+join_left_df
+# Note the NaNs where the point did not intersect a boro
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[24]:
+</pre></div>
+</div>
+<div class="container">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>value1</th>
+      <th>value2</th>
+      <th>BoroCode</th>
+      <th>BoroName</th>
+      <th>Shape_Area</th>
+      <th>Shape_Leng</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>  POINT (913175 120121)</td>
+      <td> 1033296</td>
+      <td> 793054</td>
+      <td>NaN</td>
+      <td>          None</td>
+      <td>          NaN</td>
+      <td>           NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>  POINT (932450 139211)</td>
+      <td> 1071661</td>
+      <td> 793239</td>
+      <td>  5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>  POINT (951725 158301)</td>
+      <td> 1110026</td>
+      <td> 793424</td>
+      <td>  5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>  POINT (971000 177391)</td>
+      <td> 1148391</td>
+      <td> 793609</td>
+      <td>NaN</td>
+      <td>          None</td>
+      <td>          NaN</td>
+      <td>           NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>  POINT (990275 196481)</td>
+      <td> 1186756</td>
+      <td> 793794</td>
+      <td>NaN</td>
+      <td>          None</td>
+      <td>          NaN</td>
+      <td>           NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td> POINT (1009550 215571)</td>
+      <td> 1225121</td>
+      <td> 793979</td>
+      <td>  4</td>
+      <td>        Queens</td>
+      <td> 3.045079e+09</td>
+      <td> 896875.396449</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td> POINT (1028825 234661)</td>
+      <td> 1263486</td>
+      <td> 794164</td>
+      <td>  2</td>
+      <td>         Bronx</td>
+      <td> 1.186822e+09</td>
+      <td> 464475.145651</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td> POINT (1048100 253751)</td>
+      <td> 1301851</td>
+      <td> 794349</td>
+      <td>NaN</td>
+      <td>          None</td>
+      <td>          NaN</td>
+      <td>           NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td> POINT (1067375 272841)</td>
+      <td> 1340216</td>
+      <td> 794534</td>
+      <td>NaN</td>
+      <td>          None</td>
+      <td>          NaN</td>
+      <td>           NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [25]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>join_right_df = sjoin(pointdf, polydf, how=&quot;right&quot;)
+join_right_df
+# Note Staten Island is repeated
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[25]:
+</pre></div>
+</div>
+<div class="container">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BoroCode</th>
+      <th>BoroName</th>
+      <th>Shape_Area</th>
+      <th>Shape_Leng</th>
+      <th>geometry</th>
+      <th>value1</th>
+      <th>value2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> 5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+      <td> (POLYGON ((970217.0223999023 145643.3322143555...</td>
+      <td> 1071661</td>
+      <td> 793239</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td> 5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+      <td> (POLYGON ((970217.0223999023 145643.3322143555...</td>
+      <td> 1110026</td>
+      <td> 793424</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> 3</td>
+      <td>      Brooklyn</td>
+      <td> 1.937810e+09</td>
+      <td> 741227.337073</td>
+      <td> (POLYGON ((1021176.479003906 151374.7969970703...</td>
+      <td>     NaN</td>
+      <td>    NaN</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td> 4</td>
+      <td>        Queens</td>
+      <td> 3.045079e+09</td>
+      <td> 896875.396449</td>
+      <td> (POLYGON ((1029606.076599121 156073.8142089844...</td>
+      <td> 1225121</td>
+      <td> 793979</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td> 1</td>
+      <td>     Manhattan</td>
+      <td> 6.364308e+08</td>
+      <td> 358400.912836</td>
+      <td> (POLYGON ((981219.0557861328 188655.3157958984...</td>
+      <td>     NaN</td>
+      <td>    NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td> 2</td>
+      <td>         Bronx</td>
+      <td> 1.186822e+09</td>
+      <td> 464475.145651</td>
+      <td> (POLYGON ((1012821.805786133 229228.2645874023...</td>
+      <td> 1263486</td>
+      <td> 794164</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [27]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>join_inner_df = sjoin(pointdf, polydf, how=&quot;inner&quot;)
+join_inner_df
+# Note the lack of NaNs; dropped anything that didn&#39;t intersect
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[27]:
+</pre></div>
+</div>
+<div class="container">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>value1</th>
+      <th>value2</th>
+      <th>BoroCode</th>
+      <th>BoroName</th>
+      <th>Shape_Area</th>
+      <th>Shape_Leng</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>  POINT (932450 139211)</td>
+      <td> 1071661</td>
+      <td> 793239</td>
+      <td> 5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>  POINT (951725 158301)</td>
+      <td> 1110026</td>
+      <td> 793424</td>
+      <td> 5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> POINT (1009550 215571)</td>
+      <td> 1225121</td>
+      <td> 793979</td>
+      <td> 4</td>
+      <td>        Queens</td>
+      <td> 3.045079e+09</td>
+      <td> 896875.396449</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td> POINT (1028825 234661)</td>
+      <td> 1263486</td>
+      <td> 794164</td>
+      <td> 2</td>
+      <td>         Bronx</td>
+      <td> 1.186822e+09</td>
+      <td> 464475.145651</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>We&#8217;re not limited to using the <code class="docutils literal"><span class="pre">intersection</span></code> binary predicate. Any of
+the <code class="docutils literal"><span class="pre">Shapely</span></code> geometry methods that return a Boolean can be used by
+specifying the <code class="docutils literal"><span class="pre">op</span></code> kwarg.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [32]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>sjoin(pointdf, polydf, how=&quot;left&quot;, op=&quot;within&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[32]:
+</pre></div>
+</div>
+<div class="container">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>value1</th>
+      <th>value2</th>
+      <th>BoroCode</th>
+      <th>BoroName</th>
+      <th>Shape_Area</th>
+      <th>Shape_Leng</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>  POINT (913175 120121)</td>
+      <td> 1033296</td>
+      <td> 793054</td>
+      <td>NaN</td>
+      <td>          None</td>
+      <td>          NaN</td>
+      <td>           NaN</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>  POINT (932450 139211)</td>
+      <td> 1071661</td>
+      <td> 793239</td>
+      <td>  5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>  POINT (951725 158301)</td>
+      <td> 1110026</td>
+      <td> 793424</td>
+      <td>  5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>  POINT (971000 177391)</td>
+      <td> 1148391</td>
+      <td> 793609</td>
+      <td>NaN</td>
+      <td>          None</td>
+      <td>          NaN</td>
+      <td>           NaN</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>  POINT (990275 196481)</td>
+      <td> 1186756</td>
+      <td> 793794</td>
+      <td>NaN</td>
+      <td>          None</td>
+      <td>          NaN</td>
+      <td>           NaN</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td> POINT (1009550 215571)</td>
+      <td> 1225121</td>
+      <td> 793979</td>
+      <td>  4</td>
+      <td>        Queens</td>
+      <td> 3.045079e+09</td>
+      <td> 896875.396449</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td> POINT (1028825 234661)</td>
+      <td> 1263486</td>
+      <td> 794164</td>
+      <td>  2</td>
+      <td>         Bronx</td>
+      <td> 1.186822e+09</td>
+      <td> 464475.145651</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td> POINT (1048100 253751)</td>
+      <td> 1301851</td>
+      <td> 794349</td>
+      <td>NaN</td>
+      <td>          None</td>
+      <td>          NaN</td>
+      <td>           NaN</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td> POINT (1067375 272841)</td>
+      <td> 1340216</td>
+      <td> 794534</td>
+      <td>NaN</td>
+      <td>          None</td>
+      <td>          NaN</td>
+      <td>           NaN</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

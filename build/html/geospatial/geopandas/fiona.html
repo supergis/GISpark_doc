@@ -1,0 +1,529 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Fiona &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>Fiona</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/geospatial/geopandas/fiona.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="Fiona">
+<h1>Fiona<a class="headerlink" href="#Fiona" title="永久链接至标题">¶</a></h1>
+<p><a class="reference external" href="http://toblerity.org/fiona/README.html#usage">Fiona</a> is OGR’s neat,
+nimble, no-nonsense API for Python programmers.
+<a class="reference external" href="https://travis-ci.org/Toblerity/Fiona.png?branch=master">https://travis-ci.org/Toblerity/Fiona.png?branch=master</a></p>
+<p>Fiona is designed to be simple and dependable. It focuses on reading and
+writing data in standard Python IO style and relies upon familiar Python
+types and protocols such as files, dictionaries, mappings, and iterators
+instead of classes specific to OGR. Fiona can read and write real-world
+data using multi-layered GIS formats and zipped virtual file systems and
+integrates readily with other Python GIS packages such as pyproj, Rtree,
+and Shapely.</p>
+<div class="section" id="Usage">
+<h2>Usage<a class="headerlink" href="#Usage" title="永久链接至标题">¶</a></h2>
+<div class="section" id="Collections">
+<h3>Collections<a class="headerlink" href="#Collections" title="永久链接至标题">¶</a></h3>
+<p>Records are read from and written to file-like Collection objects
+returned from the fiona.open() function. Records are mappings modeled on
+the GeoJSON format. They don’t have any spatial methods of their own, so
+if you want to do anything fancy with them you will probably need
+Shapely or something like it. Here is an example of using Fiona to read
+some records from one data file, change their geometry attributes, and
+write them to a new data file.</p>
+import fiona
+
+# Register format drivers with a context manager
+with fiona.drivers():
+    # Open a file for reading. We'll call this the "source."
+    with fiona.open('docs/data/test_uk.shp') as source:
+
+        # The file we'll write to, the "sink", must be initialized
+        # with a coordinate system, a format driver name, and
+        # a record schema.  We can get initial values from the open
+        # collection's ``meta`` property and then modify them as
+        # desired.
+
+        meta = source.meta
+        meta['schema']['geometry'] = 'Point'
+
+        # Open an output file, using the same format driver and
+        # coordinate reference system as the source. The ``meta``
+        # mapping fills in the keyword parameters of fiona.open().
+
+        with fiona.open('test_write.shp', 'w', **meta) as sink:
+
+            # Process only the records intersecting a box.
+            for f in source.filter(bbox=(-5.0, 55.0, 0.0, 60.0)):
+
+                # Get a point on the boundary of the record's
+                # geometry.
+
+                f['geometry'] = {
+                    'type': 'Point',
+                    'coordinates': f['geometry']['coordinates'][0][0]}
+
+                # Write the record out.
+
+                sink.write(f)
+
+    # The sink's contents are flushed to disk and the file is
+    # closed when its ``with`` block ends. This effectively
+    # executes ``sink.flush(); sink.close()``.
+
+# At the end of the ``with fiona.drivers()`` block, context
+# manager exits and all drivers are de-registered.<p>The fiona.drivers() function and context manager are new in 1.1. The
+example above shows the way to use it to register and de-register
+drivers in a deterministic and efficient way. Code written for Fiona 1.0
+will continue to work: opened collections may manage the global driver
+registry if no other manager is present. Reading Multilayer data</p>
+<p>Collections can also be made from single layers within multilayer files
+or directories of data. The target layer is specified by name or by its
+integer index within the file or directory. The fiona.listlayers()
+function provides an index ordered list of layer names.</p>
+with fiona.drivers():
+
+    for layername in fiona.listlayers('docs/data'):
+        with fiona.open('docs/data', layer=layername) as c:
+            print(layername, len(c))
+
+# Output:
+# test_uk 48<p>Layer can also be specified by index. In this case, layer=0 and
+layer=&#8217;test_uk&#8217; specify the same layer in the data file or directory.</p>
+with fiona.drivers():
+
+    for i, layername in enumerate(fiona.listlayers('docs/data')):
+        with fiona.open('docs/data', layer=i) as c:
+            print(i, layername, len(c))
+
+# Output:
+# 0 test_uk 48</div>
+<div class="section" id="Writing-Multilayer-data">
+<h3>Writing Multilayer data<a class="headerlink" href="#Writing-Multilayer-data" title="永久链接至标题">¶</a></h3>
+<p>Multilayer data can be written as well. Layers must be specified by name
+when writing.</p>
+with fiona.drivers():
+
+    with open('docs/data/test_uk.shp') as c:
+        meta = c.meta
+        f = next(c)
+
+    with fiona.open('/tmp/foo', 'w', layer='bar', **meta) as c:
+        c.write(f)
+
+    print(fiona.listlayers('/tmp/foo'))
+    # Output: ['bar']
+
+    with fiona.open('/tmp/foo', layer='bar') as c:
+        print(len(c))
+        f = next(c)
+        print(f['geometry']['type'])
+        print(f['properties'])
+
+    # Output:
+    # 1
+    # Polygon
+    # {'FIPS_CNTRY': 'UK', 'POP_CNTRY': 60270708.0, 'CAT': 232.0,
+    #  'AREA': 244820.0, 'CNTRY_NAME': 'United Kingdom'}<p>A view of the /tmp/foo directory will confirm the creation of the new
+files.</p>
+<p>$ ls /tmp/foo bar.cpg bar.dbf bar.prj bar.shp bar.shx</p>
+<p>Collections from archives and virtual file systems</p>
+<p>Zip and Tar archives can be treated as virtual filesystems and
+Collections can be made from paths and layers within them. In other
+words, Fiona lets you read and write zipped Shapefiles.</p>
+with fiona.drivers():
+
+    for i, layername in enumerate(
+            fiona.listlayers(
+                '/',
+                vfs='zip://docs/data/test_uk.zip')):
+        with fiona.open(
+                '/',
+                vfs='zip://docs/data/test_uk.zip',
+                layer=i) as c:
+            print(i, layername, len(c))
+
+# Output:
+# 0 test_uk 48<p>Fiona CLI</p>
+<p>Fiona’s command line interface, named “fio”, is documented at
+docs/cli.rst. Its fio info pretty prints information about a data file.</p>
+<p>$ fio info docs/data/test_uk.shp { &#8216;bbox&#8217;: (-8.621389, 49.911659,
+1.749444, 60.844444), &#8216;count&#8217;: 48, &#8216;crs&#8217;: { u&#8217;datum&#8217;: u&#8217;WGS84&#8217;,
+u&#8217;no_defs&#8217;: True, u&#8217;proj&#8217;: u&#8217;longlat&#8217;}, &#8216;driver&#8217;: u&#8217;ESRI Shapefile&#8217;,
+&#8216;schema&#8217;: { &#8216;geometry&#8217;: &#8216;Polygon&#8217;, &#8216;properties&#8217;: OrderedDict([(u&#8217;CAT&#8217;,
+&#8216;float:16&#8217;), (u&#8217;FIPS_CNTRY&#8217;, &#8216;str:80&#8217;), (u&#8217;CNTRY_NAME&#8217;, &#8216;str:80&#8217;),
+(u&#8217;AREA&#8217;, &#8216;float:15.2&#8217;), (u&#8217;POP_CNTRY&#8217;, &#8216;float:15.2&#8217;)])}}</p>
+<p>Installation</p>
+<p>Fiona requires Python 2.6, 2.7, 3.3, or 3.4 and GDAL/OGR 1.8+. To build
+from a source distribution you will need a C compiler and GDAL and
+Python development headers and libraries (libgdal1-dev for
+Debian/Ubuntu, gdal-dev for CentOS/Fedora).</p>
+<p>To build from a repository copy, you will also need Cython to build C
+sources from the project’s .pyx files. See the project’s
+requirements-dev.txt file for guidance.</p>
+<p>The popular Kyngchaos GDAL frameworks will satisfy the GDAL/OGR
+dependency for OS X. Fiona’s author uses Homebrew (brew install gdal) on
+OS X. Python Requirements</p>
+<p>Fiona depends on the modules six and argparse. The latter is standard in
+Python 2.7+. Easy_install and pip will fetch these requirements for
+you, but users installing Fiona from a Windows installer must get them
+separately. Unix-like systems</p>
+<p>Assuming you’re using a virtualenv (if not, skip to the 4th command) and
+GDAL/OGR libraries, headers, and gdal-config program are installed to
+well known locations on your system via your system’s package manager
+(brew install gdal using Homebrew on OS X), installation is this simple:</p>
+<p>$ mkdir fiona_env $ virtualenv fiona_env $ source
+fiona_env/bin/activate (fiona_env)$ pip install Fiona</p>
+<p>If gdal-config is not available or if GDAL/OGR headers and libs aren’t
+installed to a well known location, you must set include dirs, library
+dirs, and libraries options via the setup.cfg file or setup command line
+as shown below (using git):</p>
+<p>(fiona_env)$ git clone git://github.com/Toblerity/Fiona.git
+(fiona_env)$ cd Fiona (fiona_env)$ python setup.py build_ext
+-I/path/to/gdal/include -L/path/to/gdal/lib -lgdal install</p>
+<p>Windows</p>
+<p>Binary installers are available at
+<a class="reference external" href="http://www.lfd.uci.edu/~gohlke/pythonlibs/#fiona">http://www.lfd.uci.edu/~gohlke/pythonlibs/#fiona</a> and coming eventually
+to PyPI. Development and testing</p>
+<p>Building from the source requires Cython. Tests require Nose. If the
+GDAL/OGR libraries, headers, and gdal-config program are installed to
+well known locations on your system (via your system’s package manager),
+you can do this:</p>
+<p>(fiona_env)$ git clone git://github.com/Toblerity/Fiona.git
+(fiona_env)$ cd Fiona (fiona_env)$ python setup.py develop
+(fiona_env)$ nosetests</p>
+<p>If you have a non-standard environment, you’ll need to specify the
+include and lib dirs and GDAL library on the command line:</p>
+<p>(fiona_env)$ python setup.py build_ext -I/path/to/gdal/include
+-L/path/to/gdal/lib -lgdal develop (fiona_env)$ nosetests</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

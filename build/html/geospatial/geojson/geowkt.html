@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>WKT 描述的几何对象 &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>WKT 描述的几何对象</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/geospatial/geojson/geowkt.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="WKT-描述的几何对象">
+<h1>WKT 描述的几何对象<a class="headerlink" href="#WKT-描述的几何对象" title="永久链接至标题">¶</a></h1>
+<p>WKT（Well-known
+Text）可以通过文本来描述几何对象。下面的例子可以比较快速、直观地说明什么是WKT：</p>
+<div class="section" id="几何类型">
+<h2>几何类型<a class="headerlink" href="#几何类型" title="永久链接至标题">¶</a></h2>
+<div class="section" id="WKT-例子">
+<h3>WKT 例子<a class="headerlink" href="#WKT-例子" title="永久链接至标题">¶</a></h3>
+<p>说明</p>
+<div class="line-block">
+<div class="line">Point</div>
+<div class="line">Point (10 10)</div>
+</div>
+<p>点</p>
+<ul class="simple">
+<li>LineString
+LineString ( 10 10, 20 20, 30 40)</li>
+</ul>
+<p>有3个节点的线:<code class="docutils literal"><span class="pre">Polygon</span> <span class="pre">((10</span> <span class="pre">10,</span> <span class="pre">10</span> <span class="pre">20,</span> <span class="pre">20</span> <span class="pre">20,</span> <span class="pre">20</span> <span class="pre">15,</span> <span class="pre">10</span> <span class="pre">10))</span></code></p>
+<p>只有1个外环的多边形</p>
+<p>MultiPoint</p>
+<p>MultiPoint</p>
+<p>(</p>
+<p>(10 10),</p>
+<p>(20 20)</p>
+<p>)</p>
+<p>多点</p>
+<p>MultiLineString</p>
+<p>MultiLineString</p>
+<p>(</p>
+<p>(10 10, 20 20),</p>
+<p>(15 15, 30 15)</p>
+<p>)</p>
+<p>多线</p>
+<p>MultiPolygon</p>
+<p>MultiPolygon</p>
+<p>(</p>
+<p>((10 10, 10 20, 20 20, 20 15, 10 10)),</p>
+<p>((60 60, 70 70, 80 60, 60 60 ))</p>
+<p>)</p>
+<p>多面</p>
+<p>GeometryCollection</p>
+<p>GeometryCollection</p>
+<p>(</p>
+<p>POINT (10 10),</p>
+<p>POINT (30 30),</p>
+<p>LINESTRING (15 15, 20 20)</p>
+<p>)</p>
+<p>几何集合</p>
+<p>PolyhedralSurface</p>
+<p>PolyhedralSurface Z</p>
+<p>(</p>
+<p>((0 0 0, 0 0 1, 0 1 1, 0 1 0, 0 0 0)),</p>
+<p>((0 0 0, 0 1 0, 1 1 0, 1 0 0, 0 0 0)),</p>
+<p>((0 0 0, 1 0 0, 1 0 1, 0 0 1, 0 0 0)),</p>
+<p>((1 1 0, 1 1 1, 1 0 1, 1 0 0, 1 1 0)),</p>
+<p>((0 1 0, 0 1 1, 1 1 1, 1 1 0, 0 1 0)),</p>
+<p>((0 0 1, 1 0 1, 1 1 1, 0 1 1. 0 0 1))</p>
+<p>)</p>
+<p>多个表面构成的立方体</p>
+<p>Tin</p>
+<p>Tin Z</p>
+<p>(</p>
+<p>((0 0 0, 0 0 1, 0 1 0, 0 0 0)),</p>
+<p>((0 0 0, 0 1 0, 1 0 0, 0 0 0)),</p>
+<p>((0 0 0, 1 0 0, 0 0 1, 0 0 0)),</p>
+<p>((1 0 0, 0 1 0, 0 0 1, 1 0 0)),</p>
+<p>)</p>
+<p>4个三角形构成的TIN网格</p>
+<p>Point</p>
+<p>Point Z (10 10 5)</p>
+<p>三维点</p>
+<p>Point</p>
+<p>Point ZM (10 10 5 40)</p>
+<p>带M值的三维点</p>
+<p>Point</p>
+<p>Point M (10 10 40)</p>
+<p>带M值的二维点</p>
+<p>表 2 WKT描述几何对象示例 · WKB 描述的几何对象</p>
+<p>WKB（Well-known
+Binary）通过序列化的字节对象来描述几何对象。在WKB中主要涉及两种数值类型：一种是uint32，占4个字节，用以存储节点数、几何对象类型等信息；另一种是double，占8个字节，用以存储节点坐标值。其中的几何对象类型对应的整数可以参考下表：</p>
+<p>image</p>
+<p>图 3 WKB中几何类型对应的整数值</p>
+<p>除此之外，WKB在第一位还存储了一个额外的字节用来标识字节序[1]
+（0=Big-Indian，1=Little-Indian）。因此，对于一个点（不带M值的二维点）来说，它的WKB描述应该类似下面的结构，总共占据21个字节：</p>
+<p>image</p>
+<p>图 4 WKB描述点的字节结构</p>
+<p>对于有2个节点的线来说，WKB描述应该包含41个字节：</p>
+<p>image</p>
+<p>图 5 WKB描述线的字节结构</p>
+<p>对于仅有1个外环，由3个节点构成的多边形来说，WKB描述则应该包含77个字节：</p>
+<p>image</p>
+<p>图 6 WKB描述多边形的字节结构 · WKT 描述的空间参考</p>
+<p>WKT除了可以描述几何对象，也可以描述空间参考。通过2个例子可以很直观地看到如何通过文本来描述空间参考。</p>
+<p>对于一个地理坐标系，比如最常见的WGS84坐标系统，WKT描述是这样的：</p>
+<p>GEOGCS</p>
+<p>[</p>
+<p>&#8220;GCS_WGS_1984&#8221;,</p>
+<p>DATUM[&#8220;D_WGS_1984&#8221;,SPHEROID[&#8220;WGS_1984&#8221;,6378137.0,298.257223563]],</p>
+<p>PRIMEM[&#8220;Greenwich&#8221;,0.0],</p>
+<p>UNIT[&#8220;Degree&#8221;,0.0174532925199433],</p>
+<p>AUTHORITY[&#8220;EPSG&#8221;,4326]</p>
+<p>]</p>
+<p>“GEOGCS”表明其后紧随的“[
+]”中描述的是一个地理坐标系统。该坐标系统名称为“GCS_WGS_1984”；采用的大地基准面为“D_WGS_1984”，该基准面近似椭球体的长轴为6378137.0米、扁率为298.257223563；以格林威治0度经线为起始经线；地图单位为度，该单位的转换因子[2]
+为0. 0174532925199433（π/180）；最后，该坐标系统在EPSG[3]
+中的编码为“4326”。</p>
+<p>对于一个投影坐标系，比如WGS84 Web Mercator（Auxiliary
+Sphere）坐标系统，WKT描述是这样的：</p>
+<p>PROJCS</p>
+<p>[</p>
+<p>&#8220;WGS_1984_Web_Mercator_Auxiliary_Sphere&#8221;,</p>
+<p>GEOGCS</p>
+<p>[</p>
+<p>&#8220;GCS_WGS_1984&#8221;,</p>
+<p>DATUM[&#8220;D_WGS_1984&#8221;,SPHEROID[&#8220;WGS_1984&#8221;,6378137.0,298.257223563]],</p>
+<p>PRIMEM[&#8220;Greenwich&#8221;,0.0],</p>
+<p>UNIT[&#8220;Degree&#8221;,0.0174532925199433]</p>
+<p>],</p>
+<p>PROJECTION[&#8220;Mercator_Auxiliary_Sphere&#8221;],</p>
+<p>PARAMETER[&#8220;False_Easting&#8221;,0.0],</p>
+<p>PARAMETER[&#8220;False_Northing&#8221;,0.0],</p>
+<p>PARAMETER[&#8220;Central_Meridian&#8221;,0.0],</p>
+<p>PARAMETER[&#8220;Standard_Parallel_1&#8221;,0.0],</p>
+<p>PARAMETER[&#8220;Auxiliary_Sphere_Type&#8221;,0.0],</p>
+<p>UNIT[&#8220;Meter&#8221;,1.0],</p>
+<p>AUTHORITY[&#8220;EPSG&#8221;,3857]</p>
+<p>]</p>
+<p>类似的，“PROJCS”代表这是一个投影坐标系。投影坐标系中必然会包括一个地理坐标系，这里的地理坐标系就是“GCS_WGS_1984”，这个地理坐标系的定义和上面的类似。下面紧跟着的是投影的相关参数，“Mercator_Auxiliary_Sphere”是采用投影的名称，这个投影坐标系以0度经线为中央经线进行投影；坐标系的单位为米（显然，转换因子就为1.0），而该坐标系的EPSG编码为“3857”。</p>
+<p>[1]
+关于字节序可以参考：<a class="reference external" href="http://zh.wikipedia.org/zh/%E5%AD%97%E8%8A%82%E5%BA%8F">http://zh.wikipedia.org/zh/%E5%AD%97%E8%8A%82%E5%BA%8F</a></p>
+<p>[2]
+转换因子意为一个单位所代表的米（线性单位）或所代表的弧度数（角度单位）。</p>
+<p>[3] 在线EPSG编码参考：<a class="reference external" href="http://spatialreference.org/ref/epsg/">http://spatialreference.org/ref/epsg/</a></p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

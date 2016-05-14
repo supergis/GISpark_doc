@@ -30,7 +30,7 @@
     "[Shapely](geospatial/shapely.ipynb)提供地理几何对象数据结构、编解码及对象之间的几何代数运算。[Shapely工程源代码](https://github.com/Toblerity/Shapely.git)可以直接下载、编译、安装，文档参见：http://toblerity.org/shapely/project.html。\n",
     "\n",
     "### Fiona几何对象操作\n",
-    "[Fiona库](geospatial/fiona.ipynb)提供几何对象操作和Shape文件的读写功能，详情可以查看[文档](http://toblerity.org/fiona/README.html#usage)和[源代码](https://github.com/Toblerity/Fiona)。\n",
+    "[Fiona库](geospatial/fiona.ipynb)提供几何对象操作和Shape文件的读写功能，基于OGR实现的简洁的Python API对象接口，详情可以查看[文档](http://toblerity.org/fiona/README.html#usage)和[源代码](https://github.com/Toblerity/Fiona)。\n",
     "\n",
     "\n",
     "## GDAL库安装与使用\n",

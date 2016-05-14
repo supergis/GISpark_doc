@@ -1,0 +1,831 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../../../index.html"/> 
+
+  
+  <script src="../../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../../../index.html">Docs</a> &raquo;</li>
+      
+    <li>&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../../../_sources/geospatial/geopandas/geopandas/examples/overlays.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<p>Spatial overlays allow you to compare two GeoDataFrames containing
+polygon or multipolygon geometries and create a new GeoDataFrame with
+the new geometries representing the spatial combination <em>and</em> merged
+properties. This allows you to answer questions like</p>
+<blockquote>
+<div>What are the demographics of the census tracts within 1000 ft of the
+highway?</div></blockquote>
+<p>The basic idea is demonstrated by the graphic below but keep in mind
+that overlays operate at the dataframe level, not on individual
+geometries, and the properties from both are retained</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [1]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from IPython.core.display import Image
+Image(url=&quot;http://docs.qgis.org/testing/en/_images/overlay_operations.png&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[1]:
+</pre></div>
+</div>
+<div class="container">
+<img src="http://docs.qgis.org/testing/en/_images/overlay_operations.png"/></div>
+</div>
+<p>Now we can load up two GeoDataFrames containing (multi)polygon
+geometries...</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%matplotlib inline
+import os
+from shapely.geometry import Point
+from geopandas import GeoDataFrame, read_file
+from geopandas.tools import overlay
+
+# NYC Boros
+zippath = os.path.abspath(&#39;../examples/nybb_14aav.zip&#39;)
+polydf = read_file(&#39;/nybb_14a_av/nybb.shp&#39;, vfs=&#39;zip://&#39; + zippath)
+
+# Generate some circles
+b = [int(x) for x in polydf.total_bounds]
+N = 10
+polydf2 = GeoDataFrame([
+    {&#39;geometry&#39; : Point(x, y).buffer(10000), &#39;value1&#39;: x + y, &#39;value2&#39;: x - y}
+    for x, y in zip(range(b[0], b[2], int((b[2]-b[0])/N)),
+                    range(b[1], b[3], int((b[3]-b[1])/N)))])
+</pre></div>
+</div>
+</div>
+<p>The first dataframe contains multipolygons of the NYC boros</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>polydf.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[3]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes.AxesSubplot at 0x1038b1550&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_5_1.png" src="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_5_1.png" />
+</div>
+</div>
+<p>And the second GeoDataFrame is a randomly generated set of circles in
+the same geographic space (TODO ...use real data)</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>polydf2.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[4]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes.AxesSubplot at 0x10fb4ad90&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_7_1.png" src="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_7_1.png" />
+</div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">geopandas.tools.overlay</span></code> function takes three arguments:</p>
+<ul class="simple">
+<li>df1</li>
+<li>df2</li>
+<li>how</li>
+</ul>
+<p>Where <code class="docutils literal"><span class="pre">how</span></code> can be one of:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="p">[</span><span class="s1">&#39;intersection&#39;</span><span class="p">,</span>
+<span class="s1">&#39;union&#39;</span><span class="p">,</span>
+<span class="s1">&#39;identity&#39;</span><span class="p">,</span>
+<span class="s1">&#39;symmetric_difference&#39;</span><span class="p">,</span>
+<span class="s1">&#39;difference&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>So let&#8217;s identify the areas (and attributes) where both dataframes
+intersect using the <code class="docutils literal"><span class="pre">overlay</span></code> tool.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [5]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geopandas.tools import overlay
+newdf = overlay(polydf, polydf2, how=&quot;intersection&quot;)
+newdf.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[5]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes.AxesSubplot at 0x10ce02510&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_9_1.png" src="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_9_1.png" />
+</div>
+</div>
+<p>And take a look at the attributes; we see that the attributes from both
+of the original GeoDataFrames are retained.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [6]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>polydf.head()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[6]:
+</pre></div>
+</div>
+<div class="container">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BoroCode</th>
+      <th>BoroName</th>
+      <th>Shape_Area</th>
+      <th>Shape_Leng</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> 5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+      <td> (POLYGON ((970217.0223999023 145643.3322143555...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td> 3</td>
+      <td>      Brooklyn</td>
+      <td> 1.937810e+09</td>
+      <td> 741227.337073</td>
+      <td> (POLYGON ((1021176.479003906 151374.7969970703...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> 4</td>
+      <td>        Queens</td>
+      <td> 3.045079e+09</td>
+      <td> 896875.396449</td>
+      <td> (POLYGON ((1029606.076599121 156073.8142089844...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td> 1</td>
+      <td>     Manhattan</td>
+      <td> 6.364308e+08</td>
+      <td> 358400.912836</td>
+      <td> (POLYGON ((981219.0557861328 188655.3157958984...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td> 2</td>
+      <td>         Bronx</td>
+      <td> 1.186822e+09</td>
+      <td> 464475.145651</td>
+      <td> (POLYGON ((1012821.805786133 229228.2645874023...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>polydf2.head()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[7]:
+</pre></div>
+</div>
+<div class="container">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>geometry</th>
+      <th>value1</th>
+      <th>value2</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> POLYGON ((923175 120121, 923126.847266722 1191...</td>
+      <td> 1033296</td>
+      <td> 793054</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td> POLYGON ((938595 135393, 938546.847266722 1344...</td>
+      <td> 1063988</td>
+      <td> 793202</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> POLYGON ((954015 150665, 953966.847266722 1496...</td>
+      <td> 1094680</td>
+      <td> 793350</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td> POLYGON ((969435 165937, 969386.847266722 1649...</td>
+      <td> 1125372</td>
+      <td> 793498</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td> POLYGON ((984855 181209, 984806.847266722 1802...</td>
+      <td> 1156064</td>
+      <td> 793646</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>newdf.head()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[8]:
+</pre></div>
+</div>
+<div class="container">
+<div style="max-height:1000px;max-width:1500px;overflow:auto;">
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BoroCode</th>
+      <th>BoroName</th>
+      <th>Shape_Area</th>
+      <th>Shape_Leng</th>
+      <th>value1</th>
+      <th>value2</th>
+      <th>geometry</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td> 5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+      <td> 1033296</td>
+      <td> 793054</td>
+      <td> POLYGON ((916755.4256330276 129447.9617643995,...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td> 5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+      <td> 1063988</td>
+      <td> 793202</td>
+      <td> POLYGON ((938595 135393, 938546.847266722 1344...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td> 5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+      <td> 1125372</td>
+      <td> 793498</td>
+      <td> POLYGON ((961436.3049926758 175473.0296020508,...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td> 5</td>
+      <td> Staten Island</td>
+      <td> 1.623847e+09</td>
+      <td> 330454.175933</td>
+      <td> 1094680</td>
+      <td> 793350</td>
+      <td> POLYGON ((954015 150665, 953966.847266722 1496...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td> 2</td>
+      <td>         Bronx</td>
+      <td> 1.186822e+09</td>
+      <td> 464475.145651</td>
+      <td> 1309524</td>
+      <td> 794386</td>
+      <td> POLYGON ((1043287.193237305 260300.0289916992,...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<p>Now let&#8217;s look at the other <code class="docutils literal"><span class="pre">how</span></code> operations:</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>newdf = overlay(polydf, polydf2, how=&quot;union&quot;)
+newdf.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[9]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes.AxesSubplot at 0x10ce3a610&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_15_1.png" src="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_15_1.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [10]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>newdf = overlay(polydf, polydf2, how=&quot;identity&quot;)
+newdf.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[10]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes.AxesSubplot at 0x113aeda90&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_16_1.png" src="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_16_1.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>newdf = overlay(polydf, polydf2, how=&quot;symmetric_difference&quot;)
+newdf.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[11]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes.AxesSubplot at 0x113473b50&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_17_1.png" src="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_17_1.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [12]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>newdf = overlay(polydf, polydf2, how=&quot;difference&quot;)
+newdf.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[12]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes.AxesSubplot at 0x113c7cc10&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_18_1.png" src="../../../../_images/geospatial_geopandas_geopandas_examples_overlays_18_1.png" />
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,561 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GeoPy &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>GeoPy</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/geospatial/geopy.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="GeoPy">
+<h1>GeoPy<a class="headerlink" href="#GeoPy" title="永久链接至标题">¶</a></h1>
+<p><a class="reference external" href="https://github.com/geopy/geopy.git">geopy</a> is a Python 2 and 3
+client for several popular geocoding web services.</p>
+<p>geopy makes it easy for Python developers to locate the coordinates of
+addresses, cities, countries, and landmarks across the globe using
+third-party geocoders and other data sources.</p>
+<p>geopy includes geocoder classes for the OpenStreetMap Nominatim, ESRI
+ArcGIS, Google Geocoding API (V3), Baidu Maps, Bing Maps API, Yahoo!
+PlaceFinder, Yandex, IGN France, GeoNames, NaviData, OpenMapQuest,
+What3Words, OpenCage, SmartyStreets, geocoder.us, and GeocodeFarm
+geocoder services. The various geocoder classes are located in
+geopy.geocoders.</p>
+<p>geopy is tested against CPython 2.7, CPython 3.2, CPython 3.4, PyPy, and
+PyPy3. geopy does not and will not support CPython 2.6.</p>
+<p>© geopy contributors 2006-2015 (see AUTHORS) under the MIT License.</p>
+<div class="section" id="Documentation">
+<h2>Documentation<a class="headerlink" href="#Documentation" title="永久链接至标题">¶</a></h2>
+<p>More documentation and examples can be found at <a class="reference external" href="http://geopy.readthedocs.io/en/latest/">Read the
+Docs</a>.</p>
+</div>
+<div class="section" id="Installation">
+<h2>Installation<a class="headerlink" href="#Installation" title="永久链接至标题">¶</a></h2>
+<p>Install using pip with: <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">geopy</span></code> Or, download a wheel or
+source archive from PyPI.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [3]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%%!
+source activate GISpark
+pip install geopy
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[3]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>[&#39;/bin/sh: 1: source: not found&#39;,
+ &#39;Collecting geopy&#39;,
+ &#39;  Downloading geopy-1.11.0-py2.py3-none-any.whl (66kB)&#39;,
+ &#39;Installing collected packages: geopy&#39;,
+ &#39;Successfully installed geopy-1.11.0&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Geocoding">
+<h2>Geocoding<a class="headerlink" href="#Geocoding" title="永久链接至标题">¶</a></h2>
+<p>To geolocate a query to an address and coordinates:</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import geopy.geocoders
+#help(geopy.geocoders)
+</pre></div>
+</div>
+</div>
+<p>Using osm geolocator.</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [43]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import ssl
+from geopy.geocoders import osm
+#help(osm)
+
+geolocator = osm.Nominatim(scheme=&#39;http&#39;)
+
+location = geolocator.geocode(&quot;175 5th Avenue NYC&quot;)
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [44]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from pprint import *
+pprint(location.point)
+pprint(location.raw)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Point(40.7410861, -73.9896297241625, 0.0)
+{&#39;boundingbox&#39;: [&#39;40.7407597&#39;, &#39;40.7413004&#39;, &#39;-73.9898714&#39;, &#39;-73.9895013&#39;],
+ &#39;class&#39;: &#39;tourism&#39;,
+ &#39;display_name&#39;: &#39;Flatiron Building, 175, 5th Avenue, Flatiron, Manhattan, New &#39;
+                 &#39;York County, NYC, New York, 10010, United States of America&#39;,
+ &#39;icon&#39;: &#39;http://nominatim.openstreetmap.org/images/mapicons/poi_point_of_interest.p.20.png&#39;,
+ &#39;importance&#39;: 0.68300331552197,
+ &#39;lat&#39;: &#39;40.7410861&#39;,
+ &#39;licence&#39;: &#39;Data © OpenStreetMap contributors, ODbL 1.0. &#39;
+            &#39;http://www.openstreetmap.org/copyright&#39;,
+ &#39;lon&#39;: &#39;-73.9896297241625&#39;,
+ &#39;osm_id&#39;: &#39;264768896&#39;,
+ &#39;osm_type&#39;: &#39;way&#39;,
+ &#39;place_id&#39;: &#39;121844315&#39;,
+ &#39;type&#39;: &#39;attraction&#39;}
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [31]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import ssl
+from geopy.geocoders import Nominatim
+
+#help(Nominatim)
+
+geolocator = Nominatim(scheme=&#39;http&#39;)
+location = geolocator.geocode(&quot;175 5th Avenue NYC&quot;)
+#location = geolocator.geocode(&quot;上海市 徐汇区乐山路33号 慧谷高科技创业中心&quot;)
+
+print(location.address)
+#Flatiron Building, 175, 5th Avenue, Flatiron, New York, NYC, New York, ...
+
+print((location.latitude, location.longitude))
+#(40.7410861, -73.9896297241625)
+
+print(location.raw)
+#{&#39;place_id&#39;: &#39;9167009604&#39;, &#39;type&#39;: &#39;attraction&#39;, ...}location
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+Flatiron Building, 175, 5th Avenue, Flatiron, Manhattan, New York County, NYC, New York, 10010, United States of America
+(40.7410861, -73.9896297241625)
+{&#39;display_name&#39;: &#39;Flatiron Building, 175, 5th Avenue, Flatiron, Manhattan, New York County, NYC, New York, 10010, United States of America&#39;, &#39;icon&#39;: &#39;http://nominatim.openstreetmap.org/images/mapicons/poi_point_of_interest.p.20.png&#39;, &#39;boundingbox&#39;: [&#39;40.7407597&#39;, &#39;40.7413004&#39;, &#39;-73.9898714&#39;, &#39;-73.9895013&#39;], &#39;lat&#39;: &#39;40.7410861&#39;, &#39;importance&#39;: 0.68300331552197, &#39;class&#39;: &#39;tourism&#39;, &#39;place_id&#39;: &#39;121844315&#39;, &#39;licence&#39;: &#39;Data © OpenStreetMap contributors, ODbL 1.0. http://www.openstreetmap.org/copyright&#39;, &#39;type&#39;: &#39;attraction&#39;, &#39;lon&#39;: &#39;-73.9896297241625&#39;, &#39;osm_type&#39;: &#39;way&#39;, &#39;osm_id&#39;: &#39;264768896&#39;}
+</pre></div></div>
+</div>
+</div>
+<div class="section" id="To-find-the-address-corresponding-to-a-set-of-coordinates.">
+<h2>To find the address corresponding to a set of coordinates.<a class="headerlink" href="#To-find-the-address-corresponding-to-a-set-of-coordinates." title="永久链接至标题">¶</a></h2>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geopy.geocoders import Nominatim
+
+geolocator = Nominatim()
+location = geolocator.reverse(&quot;52.509669, 13.376294&quot;)
+
+print(location.address)
+#Potsdamer Platz, Mitte, Berlin, 10117, Deutschland, European Union
+
+print((location.latitude, location.longitude))
+#(52.5094982, 13.3765983)
+
+print(location.raw)
+#{&#39;place_id&#39;: &#39;654513&#39;, &#39;osm_type&#39;: &#39;node&#39;, ...}
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="Measuring-Distance">
+<h2>Measuring Distance<a class="headerlink" href="#Measuring-Distance" title="永久链接至标题">¶</a></h2>
+<p>Geopy can calculate geodesic distance between two points using the
+Vincenty distance or great-circle distance formulas, with a default of
+Vincenty available as the class geopy.distance.distance, and the
+computed distance available as attributes (e.g., miles, meters, etc.).</p>
+<p>Here&#8217;s an example usage of Vincenty distance:</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geopy.distance import vincenty
+
+newport_ri = (41.49008, -71.312796)
+cleveland_oh = (41.499498, -81.695391)
+
+print(vincenty(newport_ri, cleveland_oh).miles)
+# 538.3904451566326
+</pre></div>
+</div>
+</div>
+<div class="section" id="Using-great-circle-distance:">
+<h3>Using great-circle distance:<a class="headerlink" href="#Using-great-circle-distance:" title="永久链接至标题">¶</a></h3>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geopy.distance import great_circle
+
+newport_ri = (41.49008, -71.312796)
+cleveland_oh = (41.499498, -81.695391)
+
+print(great_circle(newport_ri, cleveland_oh).miles)
+#537.1485284062816
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

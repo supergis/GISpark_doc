@@ -1,0 +1,658 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>&lt;no title&gt; &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../index.html">Docs</a> &raquo;</li>
+      
+    <li>&lt;no title&gt;</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/geospatial/get_geoprocess_tutorial.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<p>来自于 <a class="reference external" href="http://www.gis.usu.edu/~chrisg/python/2009/">http://www.gis.usu.edu/~chrisg/python/2009/</a> 的GeoProcessing
+教程。</p>
+<p>批量下载工具。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from bs4 import BeautifulSoup as bs
+import requests as req
+from pprint import *
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [14]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>!wget http://www.gis.usu.edu/~chrisg/python/2009/ -O ./GeoProcessingPython.txt
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+--2016-05-09 09:50:20--  http://www.gis.usu.edu/~chrisg/python/2009/
+正在解析主机 www.gis.usu.edu (www.gis.usu.edu)... 129.123.55.12
+正在连接 www.gis.usu.edu (www.gis.usu.edu)|129.123.55.12|:80... 已连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 3897 (3.8K) [text/html]
+正在保存至: “./GeoProcessingPython.txt”
+
+./GeoProcessingPyth 100%[===================&gt;]   3.81K  --.-KB/s    in 0s
+
+2016-05-09 09:50:21 (395 MB/s) - 已保存 “./GeoProcessingPython.txt” [3897/3897])
+
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [15]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>url = &quot;http://www.gis.usu.edu/~chrisg/python/2009/&quot;
+
+bsr = bs(open(&quot;./GeoProcessingPython.txt&quot;),&quot;html.parser&quot;)
+alist = bsr.find_all(&#39;a&#39;)
+pprint(alist)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+[&lt;a href=&#34;install.html&#34;&gt;Software installation&lt;/a&gt;,
+ &lt;a href=&#34;software.html&#34;&gt;Free GIS software&lt;/a&gt;,
+ &lt;a href=&#34;docs.html&#34;&gt;Documentation&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_slides1.pdf&#34;&gt;Slides&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_data1.zip&#34;&gt;Data&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw1.pdf&#34;&gt;Homework description&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_demo1.py&#34;&gt;Class demo&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw1a.py&#34;&gt;Solution for homework 1a&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw1b.py&#34;&gt;Solution for homework 1b&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_slides2.pdf&#34;&gt;Slides&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_data2.zip&#34;&gt;Data&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw2.pdf&#34;&gt;Homework description&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_demo2.py&#34;&gt;Class demo&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw2a.py&#34;&gt;Solution for homework 2a&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw2b.py&#34;&gt;Solution for homework 2b&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_slides3.pdf&#34;&gt;Slides&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_data3.zip&#34;&gt;Data&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw3.pdf&#34;&gt;Homework description&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_demo3.py&#34;&gt;Class demo&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw3a.py&#34;&gt;Solution for homework 3a&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw3b_mod.py&#34;&gt;Module solution for homework 3b&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw3b.py&#34;&gt;Solution for homework 3b&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_slides4.pdf&#34;&gt;Slides&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_data4.zip&#34;&gt;Data&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw4.pdf&#34;&gt;Homework description&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_demo4.py&#34;&gt;Class demo&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw4a.py&#34;&gt;Solution for homework 4a&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw4b.py&#34;&gt;Solution for homework 4b&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_slides5.pdf&#34;&gt;Slides&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_data5.zip&#34;&gt;Data&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw5.pdf&#34;&gt;Homework description&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_demo5.py&#34;&gt;Class demo&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw5a.py&#34;&gt;Solution for homework 5a&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw5b.py&#34;&gt;Solution for homework 5b&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_slides6.pdf&#34;&gt;Slides&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_data6.zip&#34;&gt;Data&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw6.pdf&#34;&gt;Homework description&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw6a.py&#34;&gt;Solution for homework 6a&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw6b.py&#34;&gt;Solution for homework 6b&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_slides7.pdf&#34;&gt;Slides&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_data7.zip&#34;&gt;Data&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw7.pdf&#34;&gt;Homework description&lt;/a&gt;,
+ &lt;a href=&#34;lectures/ospy_hw7.txt&#34;&gt;Solution for homework 7&lt;/a&gt;]
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [16]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>f = open(&quot;GeoProcessingPython_list.txt&quot;,&quot;w+&quot;)
+for a in alist:
+    a1 = a.attrs[&#39;href&#39;]
+    if (a1.find(&quot;.zip&quot;) &gt; 0) or (a1.find(&quot;.pdf&quot;) &gt; 0) or (a1.find(&quot;.py&quot;) &gt; 0):
+        print(url+a1)
+        f.write(url+a1+&quot;\n&quot;)
+f.close()
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides1.pdf
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data1.zip
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw1.pdf
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo1.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw1a.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw1b.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides2.pdf
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data2.zip
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw2.pdf
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo2.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw2a.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw2b.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides3.pdf
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data3.zip
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw3.pdf
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo3.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw3a.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw3b_mod.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw3b.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides4.pdf
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data4.zip
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw4.pdf
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo4.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw4a.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw4b.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides5.pdf
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data5.zip
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw5.pdf
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo5.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw5a.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw5b.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides6.pdf
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data6.zip
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw6.pdf
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw6a.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw6b.py
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides7.pdf
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data7.zip
+http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw7.pdf
+</pre></div></div>
+</div>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [17]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>!mkdir geoprocess
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [ ]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>!wget -c -i GeoProcessingPython_list.txt -P geoprocess
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+--2016-05-09 09:52:23--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides1.pdf
+正在解析主机 www.gis.usu.edu (www.gis.usu.edu)... 129.123.55.12
+正在连接 www.gis.usu.edu (www.gis.usu.edu)|129.123.55.12|:80... 已连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 142118 (139K) [application/pdf]
+正在保存至: “geoprocess/ospy_slides1.pdf”
+
+ospy_slides1.pdf    100%[===================&gt;] 138.79K   105KB/s    in 1.3s
+
+2016-05-09 09:52:25 (105 KB/s) - 已保存 “geoprocess/ospy_slides1.pdf” [142118/142118])
+
+--2016-05-09 09:52:25--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data1.zip
+再次使用存在的到 www.gis.usu.edu:80 的连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 2603 (2.5K) [application/zip]
+正在保存至: “geoprocess/ospy_data1.zip”
+
+ospy_data1.zip      100%[===================&gt;]   2.54K  --.-KB/s    in 0s
+
+2016-05-09 09:52:25 (259 MB/s) - 已保存 “geoprocess/ospy_data1.zip” [2603/2603])
+
+--2016-05-09 09:52:25--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw1.pdf
+再次使用存在的到 www.gis.usu.edu:80 的连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 33907 (33K) [application/pdf]
+正在保存至: “geoprocess/ospy_hw1.pdf”
+
+ospy_hw1.pdf        100%[===================&gt;]  33.11K  43.0KB/s    in 0.8s
+
+2016-05-09 09:52:26 (43.0 KB/s) - 已保存 “geoprocess/ospy_hw1.pdf” [33907/33907])
+
+--2016-05-09 09:52:26--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo1.py
+再次使用存在的到 www.gis.usu.edu:80 的连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 2566 (2.5K) [text/plain]
+正在保存至: “geoprocess/ospy_demo1.py”
+
+ospy_demo1.py       100%[===================&gt;]   2.51K  --.-KB/s    in 0s
+
+2016-05-09 09:52:27 (275 MB/s) - 已保存 “geoprocess/ospy_demo1.py” [2566/2566])
+
+--2016-05-09 09:52:27--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw1a.py
+再次使用存在的到 www.gis.usu.edu:80 的连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 1020 [text/plain]
+正在保存至: “geoprocess/ospy_hw1a.py”
+
+ospy_hw1a.py        100%[===================&gt;]    1020  --.-KB/s    in 0s
+
+2016-05-09 09:52:27 (93.6 MB/s) - 已保存 “geoprocess/ospy_hw1a.py” [1020/1020])
+
+--2016-05-09 09:52:27--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw1b.py
+再次使用存在的到 www.gis.usu.edu:80 的连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 1874 (1.8K) [text/plain]
+正在保存至: “geoprocess/ospy_hw1b.py”
+
+ospy_hw1b.py        100%[===================&gt;]   1.83K  --.-KB/s    in 0s
+
+2016-05-09 09:52:27 (284 MB/s) - 已保存 “geoprocess/ospy_hw1b.py” [1874/1874])
+
+--2016-05-09 09:52:27--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides2.pdf
+再次使用存在的到 www.gis.usu.edu:80 的连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 108150 (106K) [application/pdf]
+正在保存至: “geoprocess/ospy_slides2.pdf”
+
+ospy_slides2.pdf    100%[===================&gt;] 105.62K  53.9KB/s    in 2.0s
+
+2016-05-09 09:52:30 (53.9 KB/s) - 已保存 “geoprocess/ospy_slides2.pdf” [108150/108150])
+
+--2016-05-09 09:52:30--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data2.zip
+再次使用存在的到 www.gis.usu.edu:80 的连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 24609 (24K) [application/zip]
+正在保存至: “geoprocess/ospy_data2.zip”
+
+ospy_data2.zip      100%[===================&gt;]  24.03K  --.-KB/s    in 0.001s
+
+2016-05-09 09:52:30 (46.9 MB/s) - 已保存 “geoprocess/ospy_data2.zip” [24609/24609])
+
+--2016-05-09 09:52:30--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw2.pdf
+再次使用存在的到 www.gis.usu.edu:80 的连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 42804 (42K) [application/pdf]
+正在保存至: “geoprocess/ospy_hw2.pdf”
+
+ospy_hw2.pdf        100%[===================&gt;]  41.80K   102KB/s    in 0.4s
+
+2016-05-09 09:52:31 (102 KB/s) - 已保存 “geoprocess/ospy_hw2.pdf” [42804/42804])
+
+--2016-05-09 09:52:31--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo2.py
+再次使用存在的到 www.gis.usu.edu:80 的连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 2754 (2.7K) [text/plain]
+正在保存至: “geoprocess/ospy_demo2.py”
+
+ospy_demo2.py       100%[===================&gt;]   2.69K  --.-KB/s    in 0s
+
+2016-05-09 09:52:31 (281 MB/s) - 已保存 “geoprocess/ospy_demo2.py” [2754/2754])
+
+--2016-05-09 09:52:31--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw2a.py
+再次使用存在的到 www.gis.usu.edu:80 的连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 1950 (1.9K) [text/plain]
+正在保存至: “geoprocess/ospy_hw2a.py”
+
+ospy_hw2a.py        100%[===================&gt;]   1.90K  1.81KB/s    in 1.1s
+
+2016-05-09 09:52:32 (1.81 KB/s) - 已保存 “geoprocess/ospy_hw2a.py” [1950/1950])
+
+--2016-05-09 09:52:32--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw2b.py
+再次使用存在的到 www.gis.usu.edu:80 的连接。
+已发出 HTTP 请求，正在等待回应... 200 OK
+长度： 2042 (2.0K) [text/plain]
+正在保存至: “geoprocess/ospy_hw2b.py”
+
+ospy_hw2b.py        100%[===================&gt;]   1.99K  --.-KB/s    in 0s
+
+2016-05-09 09:52:33 (142 MB/s) - 已保存 “geoprocess/ospy_hw2b.py” [2042/2042])
+
+--2016-05-09 09:52:33--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides3.pdf
+再次使用存在的到 www.gis.usu.edu:80 的连接。
+已发出 HTTP 请求，正在等待回应...
+</pre></div></div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

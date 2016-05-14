@@ -1,0 +1,357 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "来自于 http://www.gis.usu.edu/~chrisg/python/2009/ 的GeoProcessing 教程。\n",
+    "\n",
+    "批量下载工具。"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "from bs4 import BeautifulSoup as bs\n",
+    "import requests as req\n",
+    "from pprint import *"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 14,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "--2016-05-09 09:50:20--  http://www.gis.usu.edu/~chrisg/python/2009/\n",
+      "正在解析主机 www.gis.usu.edu (www.gis.usu.edu)... 129.123.55.12\n",
+      "正在连接 www.gis.usu.edu (www.gis.usu.edu)|129.123.55.12|:80... 已连接。\n",
+      "已发出 HTTP 请求，正在等待回应... 200 OK\n",
+      "长度： 3897 (3.8K) [text/html]\n",
+      "正在保存至: “./GeoProcessingPython.txt”\n",
+      "\n",
+      "./GeoProcessingPyth 100%[===================>]   3.81K  --.-KB/s    in 0s      \n",
+      "\n",
+      "2016-05-09 09:50:21 (395 MB/s) - 已保存 “./GeoProcessingPython.txt” [3897/3897])\n",
+      "\n"
+     ]
+    }
+   ],
+   "source": [
+    "!wget http://www.gis.usu.edu/~chrisg/python/2009/ -O ./GeoProcessingPython.txt"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 15,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "[<a href=\"install.html\">Software installation</a>,\n",
+      " <a href=\"software.html\">Free GIS software</a>,\n",
+      " <a href=\"docs.html\">Documentation</a>,\n",
+      " <a href=\"lectures/ospy_slides1.pdf\">Slides</a>,\n",
+      " <a href=\"lectures/ospy_data1.zip\">Data</a>,\n",
+      " <a href=\"lectures/ospy_hw1.pdf\">Homework description</a>,\n",
+      " <a href=\"lectures/ospy_demo1.py\">Class demo</a>,\n",
+      " <a href=\"lectures/ospy_hw1a.py\">Solution for homework 1a</a>,\n",
+      " <a href=\"lectures/ospy_hw1b.py\">Solution for homework 1b</a>,\n",
+      " <a href=\"lectures/ospy_slides2.pdf\">Slides</a>,\n",
+      " <a href=\"lectures/ospy_data2.zip\">Data</a>,\n",
+      " <a href=\"lectures/ospy_hw2.pdf\">Homework description</a>,\n",
+      " <a href=\"lectures/ospy_demo2.py\">Class demo</a>,\n",
+      " <a href=\"lectures/ospy_hw2a.py\">Solution for homework 2a</a>,\n",
+      " <a href=\"lectures/ospy_hw2b.py\">Solution for homework 2b</a>,\n",
+      " <a href=\"lectures/ospy_slides3.pdf\">Slides</a>,\n",
+      " <a href=\"lectures/ospy_data3.zip\">Data</a>,\n",
+      " <a href=\"lectures/ospy_hw3.pdf\">Homework description</a>,\n",
+      " <a href=\"lectures/ospy_demo3.py\">Class demo</a>,\n",
+      " <a href=\"lectures/ospy_hw3a.py\">Solution for homework 3a</a>,\n",
+      " <a href=\"lectures/ospy_hw3b_mod.py\">Module solution for homework 3b</a>,\n",
+      " <a href=\"lectures/ospy_hw3b.py\">Solution for homework 3b</a>,\n",
+      " <a href=\"lectures/ospy_slides4.pdf\">Slides</a>,\n",
+      " <a href=\"lectures/ospy_data4.zip\">Data</a>,\n",
+      " <a href=\"lectures/ospy_hw4.pdf\">Homework description</a>,\n",
+      " <a href=\"lectures/ospy_demo4.py\">Class demo</a>,\n",
+      " <a href=\"lectures/ospy_hw4a.py\">Solution for homework 4a</a>,\n",
+      " <a href=\"lectures/ospy_hw4b.py\">Solution for homework 4b</a>,\n",
+      " <a href=\"lectures/ospy_slides5.pdf\">Slides</a>,\n",
+      " <a href=\"lectures/ospy_data5.zip\">Data</a>,\n",
+      " <a href=\"lectures/ospy_hw5.pdf\">Homework description</a>,\n",
+      " <a href=\"lectures/ospy_demo5.py\">Class demo</a>,\n",
+      " <a href=\"lectures/ospy_hw5a.py\">Solution for homework 5a</a>,\n",
+      " <a href=\"lectures/ospy_hw5b.py\">Solution for homework 5b</a>,\n",
+      " <a href=\"lectures/ospy_slides6.pdf\">Slides</a>,\n",
+      " <a href=\"lectures/ospy_data6.zip\">Data</a>,\n",
+      " <a href=\"lectures/ospy_hw6.pdf\">Homework description</a>,\n",
+      " <a href=\"lectures/ospy_hw6a.py\">Solution for homework 6a</a>,\n",
+      " <a href=\"lectures/ospy_hw6b.py\">Solution for homework 6b</a>,\n",
+      " <a href=\"lectures/ospy_slides7.pdf\">Slides</a>,\n",
+      " <a href=\"lectures/ospy_data7.zip\">Data</a>,\n",
+      " <a href=\"lectures/ospy_hw7.pdf\">Homework description</a>,\n",
+      " <a href=\"lectures/ospy_hw7.txt\">Solution for homework 7</a>]\n"
+     ]
+    }
+   ],
+   "source": [
+    "url = \"http://www.gis.usu.edu/~chrisg/python/2009/\"\n",
+    "    \n",
+    "bsr = bs(open(\"./GeoProcessingPython.txt\"),\"html.parser\")\n",
+    "alist = bsr.find_all('a')\n",
+    "pprint(alist)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 16,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides1.pdf\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data1.zip\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw1.pdf\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo1.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw1a.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw1b.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides2.pdf\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data2.zip\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw2.pdf\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo2.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw2a.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw2b.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides3.pdf\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data3.zip\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw3.pdf\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo3.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw3a.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw3b_mod.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw3b.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides4.pdf\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data4.zip\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw4.pdf\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo4.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw4a.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw4b.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides5.pdf\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data5.zip\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw5.pdf\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo5.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw5a.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw5b.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides6.pdf\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data6.zip\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw6.pdf\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw6a.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw6b.py\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides7.pdf\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data7.zip\n",
+      "http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw7.pdf\n"
+     ]
+    }
+   ],
+   "source": [
+    "f = open(\"GeoProcessingPython_list.txt\",\"w+\")\n",
+    "for a in alist:\n",
+    "    a1 = a.attrs['href']\n",
+    "    if (a1.find(\".zip\") > 0) or (a1.find(\".pdf\") > 0) or (a1.find(\".py\") > 0):\n",
+    "        print(url+a1)\n",
+    "        f.write(url+a1+\"\\n\")\n",
+    "f.close()"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 17,
+   "metadata": {
+    "collapsed": true
+   },
+   "outputs": [],
+   "source": [
+    "!mkdir geoprocess"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {
+    "collapsed": false
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "--2016-05-09 09:52:23--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides1.pdf\n",
+      "正在解析主机 www.gis.usu.edu (www.gis.usu.edu)... 129.123.55.12\n",
+      "正在连接 www.gis.usu.edu (www.gis.usu.edu)|129.123.55.12|:80... 已连接。\n",
+      "已发出 HTTP 请求，正在等待回应... 200 OK\n",
+      "长度： 142118 (139K) [application/pdf]\n",
+      "正在保存至: “geoprocess/ospy_slides1.pdf”\n",
+      "\n",
+      "ospy_slides1.pdf    100%[===================>] 138.79K   105KB/s    in 1.3s    \n",
+      "\n",
+      "2016-05-09 09:52:25 (105 KB/s) - 已保存 “geoprocess/ospy_slides1.pdf” [142118/142118])\n",
+      "\n",
+      "--2016-05-09 09:52:25--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data1.zip\n",
+      "再次使用存在的到 www.gis.usu.edu:80 的连接。\n",
+      "已发出 HTTP 请求，正在等待回应... 200 OK\n",
+      "长度： 2603 (2.5K) [application/zip]\n",
+      "正在保存至: “geoprocess/ospy_data1.zip”\n",
+      "\n",
+      "ospy_data1.zip      100%[===================>]   2.54K  --.-KB/s    in 0s      \n",
+      "\n",
+      "2016-05-09 09:52:25 (259 MB/s) - 已保存 “geoprocess/ospy_data1.zip” [2603/2603])\n",
+      "\n",
+      "--2016-05-09 09:52:25--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw1.pdf\n",
+      "再次使用存在的到 www.gis.usu.edu:80 的连接。\n",
+      "已发出 HTTP 请求，正在等待回应... 200 OK\n",
+      "长度： 33907 (33K) [application/pdf]\n",
+      "正在保存至: “geoprocess/ospy_hw1.pdf”\n",
+      "\n",
+      "ospy_hw1.pdf        100%[===================>]  33.11K  43.0KB/s    in 0.8s    \n",
+      "\n",
+      "2016-05-09 09:52:26 (43.0 KB/s) - 已保存 “geoprocess/ospy_hw1.pdf” [33907/33907])\n",
+      "\n",
+      "--2016-05-09 09:52:26--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo1.py\n",
+      "再次使用存在的到 www.gis.usu.edu:80 的连接。\n",
+      "已发出 HTTP 请求，正在等待回应... 200 OK\n",
+      "长度： 2566 (2.5K) [text/plain]\n",
+      "正在保存至: “geoprocess/ospy_demo1.py”\n",
+      "\n",
+      "ospy_demo1.py       100%[===================>]   2.51K  --.-KB/s    in 0s      \n",
+      "\n",
+      "2016-05-09 09:52:27 (275 MB/s) - 已保存 “geoprocess/ospy_demo1.py” [2566/2566])\n",
+      "\n",
+      "--2016-05-09 09:52:27--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw1a.py\n",
+      "再次使用存在的到 www.gis.usu.edu:80 的连接。\n",
+      "已发出 HTTP 请求，正在等待回应... 200 OK\n",
+      "长度： 1020 [text/plain]\n",
+      "正在保存至: “geoprocess/ospy_hw1a.py”\n",
+      "\n",
+      "ospy_hw1a.py        100%[===================>]    1020  --.-KB/s    in 0s      \n",
+      "\n",
+      "2016-05-09 09:52:27 (93.6 MB/s) - 已保存 “geoprocess/ospy_hw1a.py” [1020/1020])\n",
+      "\n",
+      "--2016-05-09 09:52:27--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw1b.py\n",
+      "再次使用存在的到 www.gis.usu.edu:80 的连接。\n",
+      "已发出 HTTP 请求，正在等待回应... 200 OK\n",
+      "长度： 1874 (1.8K) [text/plain]\n",
+      "正在保存至: “geoprocess/ospy_hw1b.py”\n",
+      "\n",
+      "ospy_hw1b.py        100%[===================>]   1.83K  --.-KB/s    in 0s      \n",
+      "\n",
+      "2016-05-09 09:52:27 (284 MB/s) - 已保存 “geoprocess/ospy_hw1b.py” [1874/1874])\n",
+      "\n",
+      "--2016-05-09 09:52:27--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides2.pdf\n",
+      "再次使用存在的到 www.gis.usu.edu:80 的连接。\n",
+      "已发出 HTTP 请求，正在等待回应... 200 OK\n",
+      "长度： 108150 (106K) [application/pdf]\n",
+      "正在保存至: “geoprocess/ospy_slides2.pdf”\n",
+      "\n",
+      "ospy_slides2.pdf    100%[===================>] 105.62K  53.9KB/s    in 2.0s    \n",
+      "\n",
+      "2016-05-09 09:52:30 (53.9 KB/s) - 已保存 “geoprocess/ospy_slides2.pdf” [108150/108150])\n",
+      "\n",
+      "--2016-05-09 09:52:30--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_data2.zip\n",
+      "再次使用存在的到 www.gis.usu.edu:80 的连接。\n",
+      "已发出 HTTP 请求，正在等待回应... 200 OK\n",
+      "长度： 24609 (24K) [application/zip]\n",
+      "正在保存至: “geoprocess/ospy_data2.zip”\n",
+      "\n",
+      "ospy_data2.zip      100%[===================>]  24.03K  --.-KB/s    in 0.001s  \n",
+      "\n",
+      "2016-05-09 09:52:30 (46.9 MB/s) - 已保存 “geoprocess/ospy_data2.zip” [24609/24609])\n",
+      "\n",
+      "--2016-05-09 09:52:30--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw2.pdf\n",
+      "再次使用存在的到 www.gis.usu.edu:80 的连接。\n",
+      "已发出 HTTP 请求，正在等待回应... 200 OK\n",
+      "长度： 42804 (42K) [application/pdf]\n",
+      "正在保存至: “geoprocess/ospy_hw2.pdf”\n",
+      "\n",
+      "ospy_hw2.pdf        100%[===================>]  41.80K   102KB/s    in 0.4s    \n",
+      "\n",
+      "2016-05-09 09:52:31 (102 KB/s) - 已保存 “geoprocess/ospy_hw2.pdf” [42804/42804])\n",
+      "\n",
+      "--2016-05-09 09:52:31--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_demo2.py\n",
+      "再次使用存在的到 www.gis.usu.edu:80 的连接。\n",
+      "已发出 HTTP 请求，正在等待回应... 200 OK\n",
+      "长度： 2754 (2.7K) [text/plain]\n",
+      "正在保存至: “geoprocess/ospy_demo2.py”\n",
+      "\n",
+      "ospy_demo2.py       100%[===================>]   2.69K  --.-KB/s    in 0s      \n",
+      "\n",
+      "2016-05-09 09:52:31 (281 MB/s) - 已保存 “geoprocess/ospy_demo2.py” [2754/2754])\n",
+      "\n",
+      "--2016-05-09 09:52:31--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw2a.py\n",
+      "再次使用存在的到 www.gis.usu.edu:80 的连接。\n",
+      "已发出 HTTP 请求，正在等待回应... 200 OK\n",
+      "长度： 1950 (1.9K) [text/plain]\n",
+      "正在保存至: “geoprocess/ospy_hw2a.py”\n",
+      "\n",
+      "ospy_hw2a.py        100%[===================>]   1.90K  1.81KB/s    in 1.1s    \n",
+      "\n",
+      "2016-05-09 09:52:32 (1.81 KB/s) - 已保存 “geoprocess/ospy_hw2a.py” [1950/1950])\n",
+      "\n",
+      "--2016-05-09 09:52:32--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_hw2b.py\n",
+      "再次使用存在的到 www.gis.usu.edu:80 的连接。\n",
+      "已发出 HTTP 请求，正在等待回应... 200 OK\n",
+      "长度： 2042 (2.0K) [text/plain]\n",
+      "正在保存至: “geoprocess/ospy_hw2b.py”\n",
+      "\n",
+      "ospy_hw2b.py        100%[===================>]   1.99K  --.-KB/s    in 0s      \n",
+      "\n",
+      "2016-05-09 09:52:33 (142 MB/s) - 已保存 “geoprocess/ospy_hw2b.py” [2042/2042])\n",
+      "\n",
+      "--2016-05-09 09:52:33--  http://www.gis.usu.edu/~chrisg/python/2009/lectures/ospy_slides3.pdf\n",
+      "再次使用存在的到 www.gis.usu.edu:80 的连接。\n",
+      "已发出 HTTP 请求，正在等待回应... "
+     ]
+    }
+   ],
+   "source": [
+    "!wget -c -i GeoProcessingPython_list.txt -P geoprocess"
+   ]
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.5.1"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 0
+}

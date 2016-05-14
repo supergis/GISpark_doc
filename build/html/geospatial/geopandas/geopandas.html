@@ -1,0 +1,1049 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>GeoPandas &mdash; GISpark 0.1 文档</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="GISpark 0.1 文档" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> GISpark
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_prefix.html">前言</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_profile.html">1. GISpark简介</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_cloud.html">2. 云计算基础设施</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_paas.html">3. 分布式计算与持续交付</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_saas.html">4. 地理空间信息服务平台</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_process.html">5. 地理空间信息数据处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_mapping.html">6. 地理制图与空间可视化</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_analyst.html">7. 高级空间分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_network.html">8. 地理空间网络</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_stream.html">9. 实时流处理</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_dimension.html">10. 多维时空分析</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_ml.html">11. 机器学习框架</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_science.html">12. 模型构建与共享</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../gispark_appendix.html">附录</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="../../index.html">GISpark</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+ 
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="../../index.html">Docs</a> &raquo;</li>
+      
+    <li>GeoPandas</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/geospatial/geopandas/geopandas.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput,
+div.nbinput > div,
+div.nbinput div[class^=highlight],
+div.nbinput div[class^=highlight] pre,
+div.nboutput,
+div.nboutput > div,
+div.nboutput div[class^=highlight],
+div.nboutput div[class^=highlight] pre {
+    background: none;
+    border: none;
+    padding: 0 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+/* avoid gaps between output lines */
+div.nboutput div[class^=highlight] pre {
+    line-height: unset;
+}
+
+/* input/output containers */
+div.nbinput,
+div.nboutput {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+}
+
+/* input container */
+div.nbinput {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput > :first-child pre {
+    color: #303F9F;
+}
+
+/* output prompt */
+div.nboutput > :first-child pre {
+    color: #D84315;
+}
+
+/* all prompts */
+div.nbinput > :first-child[class^=highlight],
+div.nboutput > :first-child[class^=highlight],
+div.nboutput > :first-child {
+    min-width: 11ex;
+    padding-top: 0.4em;
+    padding-right: 0.4em;
+    text-align: right;
+    flex: 0;
+}
+
+/* input/output area */
+div.nbinput > :nth-child(2)[class^=highlight],
+div.nboutput > :nth-child(2),
+div.nboutput > :nth-child(2)[class^=highlight] {
+    padding: 0.4em;
+    -webkit-flex: 1;
+    flex: 1;
+}
+
+/* input area */
+div.nbinput > :nth-child(2)[class^=highlight] {
+    border: 1px solid #cfcfcf;
+    border-radius: 2px;
+    background: #f7f7f7;
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.pngmath center alignment in output cells */
+div.nboutput div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput  > :nth-child(2).stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-bold { font-weight: bold; }
+</style>
+<div class="section" id="GeoPandas">
+<h1>GeoPandas<a class="headerlink" href="#GeoPandas" title="永久链接至标题">¶</a></h1>
+<div class="line-block">
+<div class="line"><a class="reference external" href="https://github.com/geopandas/geopandas">GeoPandas</a>是基于<a class="reference external" href="http://pandas.pydata.org">Pandas</a>的扩展，增加了地理空间几何对象的处理。</div>
+<div class="line">* 在<a class="reference external" href="http://geopandas.org">http://geopandas.org</a>
+原文档部分已经过时，请参考源代码工程：<a class="reference external" href="https://github.com/geopandas/geopandas">https://github.com/geopandas/geopandas</a>。</div>
+<div class="line">* GeoPandas 是一个开源项目，使得在Python下更方便的处理地理空间数据。</div>
+<div class="line">* GeoPandas 扩展了pandas的数据类型，允许其在几何类型上进行空间操作。</div>
+<div class="line">* GeoPandas 几何对象和几何运算操作由shapely执行。</div>
+<div class="line">* GeoPandas
+进一步依赖于fiona进行文件存取和descartes，matplotlib进行绘图。</div>
+</div>
+<div class="section" id="描述">
+<h2>描述<a class="headerlink" href="#描述" title="永久链接至标题">¶</a></h2>
+<p>GeoPandas的目的是在Python下更容易处理地理数据。它结合了pandas和shaply的功能，提供在pandas下的空间操作和shapel下高层次的处理多几何构型的接口。GeoPandas允许你很容易的用Python进行操作，不然的话，你将不得不用一个空间数据库去处理，如PostGIS。</p>
+<div class="section" id="安装">
+<h3>安装<a class="headerlink" href="#安装" title="永久链接至标题">¶</a></h3>
+<p>安装使用pip或easy_install：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">geopandas</span>
+</pre></div>
+</div>
+<p>你也可以通过克隆GitHub上的仓库去安装最新的开发版本，命令脚本如下：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">geopandas</span><span class="o">/</span><span class="n">geopandas</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">geopandas</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>同样也可以在PyPI上安装最新的可用开发版本，使用pip，加上&#8211;pre安装1.4或者更高的版本，或者直接使用pip从GitHub仓库中安装：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">geopandas</span><span class="o">/</span><span class="n">geopandas</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="依赖">
+<h3>依赖<a class="headerlink" href="#依赖" title="永久链接至标题">¶</a></h3>
+<p>GeoPandas依赖以下的软件包:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pandas</span>
+<span class="n">shapely</span>
+<span class="n">fiona</span>
+<span class="n">descartes</span>
+<span class="n">pyproj</span>
+</pre></div>
+</div>
+<p>绘图的话，会用到另外的一些包：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">matplotlib</span>
+<span class="n">descartes</span>
+<span class="n">pysal</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="测试">
+<h3>测试<a class="headerlink" href="#测试" title="永久链接至标题">¶</a></h3>
+<p>从源目录下运行当前的测试集，在命令行运行：<code class="docutils literal"><span class="pre">nosetests</span> <span class="pre">-v</span></code>。测试自动运行在GitHub库中所有的提交事务上，包括在Travis
+CI的push请求。</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [2]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>from geopandas import *
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="GeoPandas-使用参考">
+<h2>GeoPandas 使用参考<a class="headerlink" href="#GeoPandas-使用参考" title="永久链接至标题">¶</a></h2>
+<p>GeoPandas实现了两个主要的数据结构，GeoSeries和GeoDataFrame。它们分别是pandas中Series和DataFrame的子类。</p>
+<div class="section" id="GeoSeries">
+<h3>GeoSeries<a class="headerlink" href="#GeoSeries" title="永久链接至标题">¶</a></h3>
+<p>一个GeoSeries包含一个几何图形的序列。</p>
+<p>GeoSeries类实现了几乎所有的Shapely对象的属性和方法。在使用
+GeoSeries时，它将应用于序列中所有几何图形的每一个元素。二元操作可以在两个GeoSeries对象之间进行，这种情况下二元操作将应用于每一
+个元素。这两个序列将按匹配的索引进行对于操作。二元操作也可以应用于单个几何，此时二元操作将对该几何序列的每个元素进行。在以上两种情况下，操作将会
+返回Series或者GeoSeries对象。</p>
+<p>在GeoSeries对象中，以下Shapely对象的方法和属性是可以使用的：</p>
+<p>GeoSeries.area</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>返回一个Series，它包含GeoSeries中每个几何的面积。
+</pre></div>
+</div>
+<p>GeoSeries.bounds</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>返回一个DataFrame，它包含每个几何的边界，用列值minx, miny, maxx, maxy来表示。
+</pre></div>
+</div>
+<p>GeoSeries.lengt</p>
+<p>　　返回一个Series，它包含每个几何的长度。</p>
+<p>GeoSeries.geom_type</p>
+<p>　　返回一个字符串的Series，字符串指定每个对象的几何类型。</p>
+<p>GeoSeries.distance(other)</p>
+<p>　　返回一个Series，它包含与其他GeoSeries对象（每个元素）或几何对象的最小距离。</p>
+<p>GeoSeries.representative_point()</p>
+<p>　　返回所有点的一个GeoSeries（经简易计算），这些点必须保证在每个几何的内部。</p>
+<p>GeoSeries.exterior</p>
+<p>　　返回线环（LinearRings）的一个GeoSeries，它表示GeoSeries中每个多边形的外边界。</p>
+<p>GeoSeries.interior</p>
+<p>　　返回内部环序列的一个GeoSeries，它表示GeoSeries中每个多边形的内部环。</p>
+<div class="section" id="一元谓词操作">
+<h4>一元谓词操作<a class="headerlink" href="#一元谓词操作" title="永久链接至标题">¶</a></h4>
+<p>GeoSeries.is_empty</p>
+<p>　　返回一个布尔型的Series，对于一个空的几何图形，该值就为True。</p>
+<p>GeoSeries.is_ring</p>
+<p>　　返回一个布尔型的Series，对于闭合的要素，该值就为True。</p>
+<p>GeoSeries.is_simple</p>
+<p>　　返回一个布尔型的Series，如果几何体自身不交叉，该值就为True(仅对线串&#8211;LineStrings和线环&#8211;LineRings有意义)。</p>
+<p>GeoSeries.is_valid</p>
+<p>　　返回一个布尔型的Series，如果几何体是有效的，该值就为True。</p>
+</div>
+<div class="section" id="二元谓词操作">
+<h4>二元谓词操作<a class="headerlink" href="#二元谓词操作" title="永久链接至标题">¶</a></h4>
+<p>GeoSeries.almost_equals(other[,decimal=6])</p>
+<p>　　返回一个布尔型的Series对象，如果在指定的小数位精度下，每个对象所有点与其他对象大致相等，该值就为True（可见equals()）。</p>
+<p>GeoSeries.contains(other)</p>
+<p>　　返回一个布尔型的Series，如果每个对象的内部包含其他对象的内部和边界，并且它们的边界不相接，该值为True。</p>
+<p>GeoSeries.crosses(other)</p>
+<p>　　返回一个布尔型的Series，如果每个对象的内部与其他对象的内部相交但不包含，并且相交的部分小于这两个相交对象自身，该值为True。</p>
+<p>GeoSeries.disjoint(other)</p>
+<p>　　返回一个布尔型的Series，如果每个对象的边界和内部与其他对象的边界和内部都不相交，该值为True。</p>
+<p>GeoSeries.equals(other)</p>
+<p>　　返回一个布尔型的Series，如果几何对象集合的边界，内部，外部都与其他几何对象一样，该值为True。</p>
+<p>GeoSeries.intersects(other)</p>
+<p>　　返回一个布尔型的Series，如果每个对象的边界和内部以其它任何形式与其他对象相交，该值为True。</p>
+<p>GeoSeries.touches(other)</p>
+<p>　　返回一个布尔型的Series，如果对象与其他对象至少有一个点相同，且它们的内部任何部分都不相交，该值为True。</p>
+<p>GeoSeries.within(other)</p>
+<p>　　返回一个布尔型的Series，
+如果每个对象的边界和内部只与其他对象的内部相交（不包括边界和外部），该值为True（与contains()方法相反）。
+集合理论方法</p>
+<p>GeoSeries.boundary</p>
+<p>　　返回一个低维对象每个几何体的边界集合的GeoSeries。</p>
+<p>GeoSeries.centroid</p>
+<p>　　返回表示几何重心点的一个GeoSeries。</p>
+<p>GeoSeries.difference(other)</p>
+<p>　　返回每个几何体不在其他对象中的点的一个GeoSeries。</p>
+<p>GeoSeries.intersection(other)</p>
+<p>　　返回每个几何对象与其他几何对象相交的一个GeoSeries。</p>
+<p>GeoSeries.symmetric_difference(other)</p>
+<p>　　返回一个GeoSeries，它表示每个几何对象中的点不在其他几何对象中，同时其他几何对象中的点也不在这个几何对象中的部分（注：对称差异）。</p>
+<p>GeoSeries.union(other)</p>
+<p>　　返回每个几何对象与其他几何对象联合的一个GeoSeries。</p>
+</div>
+<div class="section" id="构造方法">
+<h4>构造方法<a class="headerlink" href="#构造方法" title="永久链接至标题">¶</a></h4>
+<p>GeoSeries.buffer(distance,resolution=16)</p>
+<p>　　返回几何图形的一个GeoSeries，他表示每个几何对象在给定的距离内的所有点。</p>
+<p>GeoSeries.convex_hull</p>
+<p>　　当对象的点多于三个的时候，返回表示每个对象所有点的最小凸包多边形的一个GeoSeries；只有两个点的时候，凸包变成了线串；只有一个点的时候，就是当个点。</p>
+<p>GeoSeries.envelope</p>
+<p>　　返回几何图形的一个GeoSeries，它表示包含其它对象的点或者最小矩形（边平行于坐标轴）。注：即包络线</p>
+<p>GeoSeries.simplify(tolerance,preserve_topology=True)</p>
+<p>　　返回包含每个对象简化表示的一个GeoSeries。</p>
+</div>
+<div class="section" id="仿射变换">
+<h4>仿射变换<a class="headerlink" href="#仿射变换" title="永久链接至标题">¶</a></h4>
+<p>GeoSeries.rotate(self,angle,origin=&#8217;center&#8217;,use_radians=False)</p>
+<p>　　旋转GeoSeries的坐标。</p>
+<p>GeoSeries.scale(self,xfact=1.0,yfact=1.0,zfact=1.0,origin=&#8217;center&#8217;)</p>
+<p>　　沿着（x,y,z）上各个方向的尺寸缩放几何图形。</p>
+<p>GeoSeries.skew(self,angle,origin=&#8217;center&#8217;,use_radians=False)</p>
+<p>　　按角度沿着x和y维剪切/倾斜几何图形。</p>
+<p>GeoSeries.translate(self,angle,origin=&#8217;center&#8217;,use_radians=False)</p>
+<p>　　转变GeoSeries的坐标。</p>
+</div>
+<div class="section" id="聚合方法">
+<h4>聚合方法<a class="headerlink" href="#聚合方法" title="永久链接至标题">¶</a></h4>
+<p>GeoSeries.unary_union</p>
+<p>　　返回GeoSeries中所有几何体联合的一个几何体。</p>
+</div>
+<div class="section" id="载入文件和坐标系统">
+<h4>载入文件和坐标系统<a class="headerlink" href="#载入文件和坐标系统" title="永久链接至标题">¶</a></h4>
+<p>另外，以下的方法也实现了：</p>
+<p>GeoSeries.from_file()</p>
+<p>　　从文件中加载任何能被fiona识别的格式。</p>
+<p>GeoSeries.to_crs(crs=None,epsg=None)</p>
+<p>　　转换GeoSeries中的几何图形到不同的坐标参考系统。当前GeoSeries的crs属性必须被设置。crs属性需要被指定以用于输出，或是用字典形式或是用EPSG编码方式。</p>
+<p>　　这种方法将改变所有对象中的所有点。它没有概念或转换整个几何图形。所有连接点的片段在当前的投影中被认为是线段，而不是测地线。对象跨越国际日期变更线（或其他投影边界）是不被允许的。</p>
+</div>
+<div class="section" id="绘图">
+<h4>绘图<a class="headerlink" href="#绘图" title="永久链接至标题">¶</a></h4>
+<p>GeoSeries.plot(colormap=&#8217;Set1&#8217;,alpha=0.5,axes=None)</p>
+<p>　　进行GeoSeries中几何图形的绘制。colormap可以被matplotlib认可，但是推荐诸如Accent,Dark2,Paired,Pastel1,Pastel2,Set1,Set2,Set3这些离散的colormap。这些都封装在plot_series()函数中。</p>
+<p>GeoSeries.total_bounds</p>
+<p>　　返回一个元组，包含整个series边界的minx,miny,maxx,maxy值。包含在序列中的几何体的边界，可以参照GeoSeries.bounds。</p>
+<p>pandas中Series对象的方法也是可以用的，尽管不是所有的都能适用于几何对象，并且一些结果可能返回Series而不是GeoSeries。在GeoSeries中专门实现了copy()，
+align()， isnull()和fillna()方法，它们是可以正常使用的。</p>
+</div>
+</div>
+<div class="section" id="GeoDataFrame">
+<h3>GeoDataFrame<a class="headerlink" href="#GeoDataFrame" title="永久链接至标题">¶</a></h3>
+<p>一个GeoDataFrame是一个列表数据结构，它包含一个叫做包含geometry的列，这个geometry包含一个GeoSeries。</p>
+<p>现在，GeoDataFrame实现了以下方法：</p>
+<ul>
+<li><p class="first">类方法 GeoDataFrame.from_file(filename, **kwargs)</p>
+<p>从文件中加载可以被fiona识别的任何格式的一个GeoDataFrame。参见read_file()。</p>
+</li>
+<li><p class="first">类方法GeoDataFrame.from_postgis(sql,con,geom_col=&#8217;geom&#8217;,crs=None,index_col=None,coerce_float=True,params=None)</p>
+</li>
+</ul>
+<p>　　从PostGIS数据库文件中加载GeoDataFrame。</p>
+<ul class="simple">
+<li>GeoSeries.to_crs(crs=None,epsg=None,inplace=False)</li>
+</ul>
+<p>　　转换GeoDataFrame的geometry列中的所有几何图形到其他坐标参考系统。当前GeoSeries的crs属性必须被设置。crs属性需要被
+指定以用于输出，或是用字典形式或是用EPSG编码方式。如果inplace=True，在当前的dataframe中geometry列将被替换，否则
+将返回一个新的GeoDataFrame。</p>
+<p>　　这种方法将改变所有对象中的所有点。它没有概念或转换整个几何图形。所有连接点的片段在当前的投影中被认为是线段，而不是测地线。对象跨越国际日期变更线（或其他投影边界）是不被允许的。</p>
+<ul class="simple">
+<li>GeoSeries.to_file(filename,driver=&#8221;ESRI Shapefile&#8221;,**kwargs)</li>
+</ul>
+<p>　　将GeoDataFrame写入文件。默认情况下，写成ESRI的shapefile格式。但是通过Fiona，任何OGR数据源也被支持写入。**kwargs被传给Fiona驱动器。</p>
+<ul class="simple">
+<li>GeoSeries.to_json(**kwargs)</li>
+</ul>
+<p>　　将GeoDataFrame以字符串的方式表示为GeoJSON对象返回。</p>
+<ul class="simple">
+<li>GeoSeries.plot(column=None,colormap=None,alpha=0.5,categorical=False,legend=False,axes=None)</li>
+</ul>
+<p>　　绘制GeoDataFrame中几何图形。如果列参数给定，颜色根据这列的值绘制，否则在geometry列调用GeoSeries.plot()函数。都封装在plot_dataframe()函数中。</p>
+<p>所有pandas中DataFrane对象的方法也是可以用的，尽管可能有些针对geometry列正当的操作没有意义也可能不返回GeoDataFrame。</p>
+<div class="section" id="Geopandas函数">
+<h4>Geopandas函数<a class="headerlink" href="#Geopandas函数" title="永久链接至标题">¶</a></h4>
+<p>GeoSeries.geocode.geocode(strings,provider=&#8217;googlev3&#8217;,**kwargs)</p>
+<p>　　对字符串列表进行地理编码，返回一个GeoDataFrame，它包含在geometry列生成的点。可用的提供者有googlev3,bing,google,yahoo,mapquest和openmapquest，**kwargs将作为参数传递给适当的地理编码器。</p>
+<p>　　需要使用geopy。请咨询选择的提供商的服务条款。</p>
+</div>
+</div>
+</div>
+<div class="section" id="示例">
+<h2>示例<a class="headerlink" href="#示例" title="永久链接至标题">¶</a></h2>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [30]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>%matplotlib inline
+
+import numpy as np
+from geopandas import *
+from shapely.geometry import *
+
+p1 = Polygon([(0, 0), (1, 0), (1, 1)])
+p2 = Polygon([(0, 0), (1, 0), (1, 1), (0, 1)])
+p3 = Polygon([(2, 0), (3, 0), (3, 1), (2, 1)])
+
+g = GeoSeries([p1, p2, p3])
+g
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[30]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>0         POLYGON ((0 0, 1 0, 1 1, 0 0))
+1    POLYGON ((0 0, 1 0, 1 1, 0 1, 0 0))
+2    POLYGON ((2 0, 3 0, 3 1, 2 1, 2 0))
+dtype: object
+</pre></div>
+</div>
+</div>
+<p>一些地理操作返回标准的pandas对象。一个GeoSeries对象的area属性将会返回一个pandas.Series,它包含GeoSeries中每一项的面积.</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [31]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>print(g.area)
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<div class="highlight"><pre>
+0    0.5
+1    1.0
+2    1.0
+dtype: float64
+</pre></div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [37]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>g.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[37]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f2374c2a160&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../_images/geospatial_geopandas_geopandas_8_1.png" src="../../_images/geospatial_geopandas_geopandas_8_1.png" />
+</div>
+</div>
+<p>其他操作，返回GeoPandas对象：</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [35]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>gb = g.buffer(0.5)
+gb
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[35]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>0    POLYGON ((-0.3535533905932737 0.35355339059327...
+1    POLYGON ((-0.5 0, -0.5 1, -0.4975923633360985 ...
+2    POLYGON ((1.5 0, 1.5 1, 1.502407636663901 1.04...
+dtype: object
+</pre></div>
+</div>
+</div>
+<p>GeoPandas对象能后绘制这些图像。GeoPandas 使用descartes
+，用matplotlib库绘制。为生产我们的GeoSeries图形，使用以下命令：</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [36]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>gb.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[36]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f2374b27e10&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../_images/geospatial_geopandas_geopandas_12_1.png" src="../../_images/geospatial_geopandas_geopandas_12_1.png" />
+</div>
+</div>
+<p>GeoPandas也实现了替代构造函数，能够读取被fiona识别的格式。为读取包含<a class="reference external" href="http://www1.nyc.gov/assets/planning/download/zip/data-maps/open-data/nybb_16a.zip">纽约市镇文件</a>：</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [25]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>boros = GeoDataFrame.from_file(&#39;../data/nybb_16a/nybb.shp&#39;)
+boros.set_index(&#39;BoroCode&#39;, inplace=True)
+boros.sort_index()
+boros
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[25]:
+</pre></div>
+</div>
+<div class="container">
+<div>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>BoroName</th>
+      <th>Shape_Area</th>
+      <th>Shape_Leng</th>
+      <th>geometry</th>
+    </tr>
+    <tr>
+      <th>BoroCode</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>5</th>
+      <td>Staten Island</td>
+      <td>1.623820e+09</td>
+      <td>330470.010332</td>
+      <td>(POLYGON ((970217.0223999023 145643.3322143555...</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Queens</td>
+      <td>3.045213e+09</td>
+      <td>896344.047763</td>
+      <td>(POLYGON ((1029606.076599121 156073.8142089844...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Brooklyn</td>
+      <td>1.937479e+09</td>
+      <td>741080.523166</td>
+      <td>(POLYGON ((1021176.479003906 151374.7969970703...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Manhattan</td>
+      <td>6.364715e+08</td>
+      <td>359299.096471</td>
+      <td>(POLYGON ((981219.0557861328 188655.3157958984...</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Bronx</td>
+      <td>1.186925e+09</td>
+      <td>464392.991824</td>
+      <td>(POLYGON ((1012821.805786133 229228.2645874023...</td>
+    </tr>
+  </tbody>
+</table>
+</div></div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [38]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>boros.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[38]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f23749b3898&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../_images/geospatial_geopandas_geopandas_15_1.png" src="../../_images/geospatial_geopandas_geopandas_15_1.png" />
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [39]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>bconvex = boros[&#39;geometry&#39;].convex_hull
+bconvex.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[39]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f237497ecf8&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../_images/geospatial_geopandas_geopandas_16_1.png" src="../../_images/geospatial_geopandas_geopandas_16_1.png" />
+</div>
+</div>
+<p>为展示更复杂的操作，我们创建包含2000个随机点的一个GeoSeries：</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [4]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>import numpy as np
+from geopandas import *
+from shapely.geometry import Point
+
+xmin, xmax, ymin, ymax = 900000, 1080000, 120000, 280000
+xc = (xmax - xmin) * np.random.random(2000) + xmin
+yc = (ymax - ymin) * np.random.random(2000) + ymin
+pts = GeoSeries([Point(x, y) for x, y in zip(xc, yc)])
+</pre></div>
+</div>
+</div>
+<p>现在，在每个点周围按固定的半径绘制圆：</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [8]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>circles = pts.buffer(2000)
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [7]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>circles[0:10]
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[7]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>0    POLYGON ((951681.0568336815 264407.7832523477,...
+1    POLYGON ((1032640.351080816 225306.1907613327,...
+2    POLYGON ((1018051.09598391 237969.795847317, 1...
+3    POLYGON ((1039412.225954991 155097.131087125, ...
+4    POLYGON ((956481.9518179207 151277.5158415905,...
+5    POLYGON ((1046298.099179208 279652.637783823, ...
+6    POLYGON ((937618.361174301 241496.0840437295, ...
+7    POLYGON ((921387.7309267259 234169.4360833257,...
+8    POLYGON ((1032762.077745034 153478.4663477052,...
+9    POLYGON ((933176.4085089836 135483.7649990012,...
+dtype: object
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [40]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>circles.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[40]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f237490de80&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../_images/geospatial_geopandas_geopandas_22_1.png" src="../../_images/geospatial_geopandas_geopandas_22_1.png" />
+</div>
+</div>
+<p>我们可以使用以下命令使这些圆合并成单个shapely的MutiPolygon几何对象：</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [9]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>mp = circles.unary_union
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [11]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>mp
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[11]:
+</pre></div>
+</div>
+<div class="container">
+<img src="../../_images/geospatial_geopandas_geopandas_25_0.svg" /></div>
+</div>
+<p>提取在每个区内的上一步生成的几何对象的部分，可以使用：</p>
+<div class="nbinput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [41]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>holes = boros[&#39;geometry&#39;].intersection(mp)
+</pre></div>
+</div>
+</div>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [42]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>holes.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[42]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f23637dd198&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../_images/geospatial_geopandas_geopandas_28_1.png" src="../../_images/geospatial_geopandas_geopandas_28_1.png" />
+</div>
+</div>
+<p>并且可以得到区域内这些部分以外的其他部分面积：</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [43]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>boros_with_holes = boros[&#39;geometry&#39;].difference(mp)
+boros_with_holes.plot()
+</pre></div>
+</div>
+</div>
+<div class="nboutput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[43]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>&lt;matplotlib.axes._subplots.AxesSubplot at 0x7f236327a748&gt;
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="container">
+</div>
+<div class="container">
+<img alt="../../_images/geospatial_geopandas_geopandas_30_1.png" src="../../_images/geospatial_geopandas_geopandas_30_1.png" />
+</div>
+</div>
+<p>注意，这个可以简化一点，因为geometry可以在GeoDataFrame中作为属性得到，intersection和difference方法分别是由“&amp;”和“-”操作符实现的。例如，后者可以简单的表示为boros.geometry
+-mp。</p>
+<p>计算每个区中这些由点缓冲生成的holes的比例，是很容易做到的。</p>
+<div class="nbinput container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>In [44]:
+</pre></div>
+</div>
+<div class="highlight-ipython3"><div class="highlight"><pre>
+<span></span>holes.area / boros.geometry.area
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast container">
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>Out[44]:
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>
+<span></span>BoroCode
+5    0.579315
+4    0.512007
+3    0.544318
+1    0.470722
+2    0.655507
+dtype: float64
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; 版权所有 2016, http://www.supermap.com,http://www.supermap.com.cn.
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+      <script type="text/javascript" src="../../_static/translations.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
