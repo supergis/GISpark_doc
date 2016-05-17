@@ -289,14 +289,13 @@ div.nboutput  > :nth-child(2).stderr {
 <h2>1.1. GISpark是什么？<a class="headerlink" href="#GISpark是什么？" title="永久链接至标题">¶</a></h2>
 <p>GISpark 是用于大规模地理空间信息处理与建模分析的分布式计算平台。</p>
 <ul class="simple">
-<li>GISpark基于OpenStack云计算环境和Docker容器技术进行开发，用于构建多用户托管的云计算基础设施。</li>
-<li>GISpark采用HDFS/Ceph/MongoDB等大规模虚拟化存储系统进行时空信息的存储，能够处理大规模的矢量、影像和流式数据，能够兼容已有的GIS系统，并拓展GIS的数据服务和空间分析能力到整个IT基础设施。</li>
-<li>GISpark采用最新的Spark分布式并行计算框架，可以快速集结数百台服务器进行大规模的时空信息处理和地理模型分析。</li>
-<li>GISpark集成Anaconda科学计算环境，包含大量的经典算法和模型库，可以为时空大数据处理和时空一体化分析提供持续发展的模型系统。</li>
-<li>GISpark集成TensorFlow和Orange等多种机器学习算法库，包含深度学习、对象识别、网络分析、自主分类、降维分析、随机森林、支持向量机等多种算法，为地理空间模型与机器学习的进一步融合打下了坚实的基础。</li>
-<li>GISpark是一个高度可扩展的架构，全部采用开源软件搭建，同时可以集成SuperMap
-GIS的强大地理空间数据处理和制图、可视化与地图发布服务、空间分析服务等重要能力，并能集成其它各种商业软件模块。</li>
-<li>GISpark集成GitLab源代码托管、Jenkins自动化构建、Maven软件仓库等持续集成软件，可以为用户构建一个持续交付的IT基础设施。以及通过SuperMap
+<li>GISpark基于<code class="docutils literal"><span class="pre">OpenStack</span></code>云计算环境和<code class="docutils literal"><span class="pre">Docker</span></code>容器技术进行开发，用于构建多用户托管的云计算基础设施。</li>
+<li>GISpark采用<code class="docutils literal"><span class="pre">HDFS</span></code>/<code class="docutils literal"><span class="pre">Ceph</span></code>/<code class="docutils literal"><span class="pre">MongoDB</span></code>等大规模虚拟化存储系统进行时空信息的存储，能够处理大规模的矢量、影像和流式数据，能够兼容已有的GIS系统，并拓展GIS的数据服务和空间分析能力到整个IT基础设施。</li>
+<li>GISpark采用最新的<code class="docutils literal"><span class="pre">Spark</span></code>分布式并行计算框架，融合<code class="docutils literal"><span class="pre">GIScript</span></code>地理空间信息脚本引擎和多种开源的GIS模型库，可以快速集结数百台服务器进行大规模的时空信息处理和地理模型分析。</li>
+<li>GISpark集成<code class="docutils literal"><span class="pre">Anaconda</span></code>科学计算环境和<code class="docutils literal"><span class="pre">Jupyter</span> <span class="pre">notebook</span></code>交互计算Web界面，包含大量的经典算法和模型库，可以为时空大数据处理和时空一体化分析提供持续发展的模型系统。</li>
+<li>GISpark集成<code class="docutils literal"><span class="pre">TensorFlow</span></code>和<code class="docutils literal"><span class="pre">Orange</span></code>等多种机器学习算法库，包含深度学习、对象识别、网络分析、自主分类、降维分析、随机森林、支持向量机等多种算法，为地理空间模型与机器学习的进一步融合打下了坚实的基础。</li>
+<li>GISpark是一个高度可扩展的架构，全部采用开源软件搭建，同时可以集成<code class="docutils literal"><span class="pre">SuperMap</span> <span class="pre">GIS</span></code>的强大地理空间数据处理和制图、可视化与地图发布服务、空间分析服务等重要能力，并能集成其它各种商业软件模块。</li>
+<li>GISpark集成<code class="docutils literal"><span class="pre">GitLab</span></code>源代码托管、<code class="docutils literal"><span class="pre">Jenkins</span></code>自动化构建、<code class="docutils literal"><span class="pre">Maven</span></code>软件仓库等持续集成软件，充分利用<code class="docutils literal"><span class="pre">Git</span></code>的分布式版本管理能力，可以为用户构建一个持续交付的IT基础设施。以及通过SuperMap
 Portal/iServer/Express等服务器系统和iDesktop/iClient/iMobile等客户端工具的综合运用，快速建立时空大数据处理和在线分析的GIS云平台。</li>
 </ul>
 <p>GISpark易于学习，并且随着社区不断演进，是一个自我进化的时空大数据平台。</p>
@@ -304,7 +303,8 @@ Portal/iServer/Express等服务器系统和iDesktop/iClient/iMobile等客户端�
 <div class="section" id="GISpark-体系架构">
 <h2>1.2. GISpark 体系架构<a class="headerlink" href="#GISpark-体系架构" title="永久链接至标题">¶</a></h2>
 <p><strong>GISpark并非一个固定的框架或模式</strong>，采用开源框架并保持开放，让各种模型和算法可以非常容易集成进来，甚至于改变GISpark本身。</p>
-<p>GISpark通过OpenStack等云计算环境建立计算基础设施，采用Docker等容器技术为多用户建立独立的运行环境。GISpark通过虚拟存储技术建立统一的大规模存储系统和访问接口，保障所有用户可以按照一致的方式访问需要的数据。GISpark为每一个用户建立Anaconda科学计算环境，可以在线运行Python/R以及其他语言建立的模型，并通过Github或类似的方式进行模型和计算结果的版本控制、即时协作和在线共享。GISpark通过运行于大规模计算资源的Spark或iPyParallel等分布式调度服务来按需提供计算能力，以最快的速度获得计算结果，并通过网络发布出来，供所有连接的终端和系统进行使用。</p>
+<p>GISpark通过OpenStack等云计算环境建立计算基础设施，采用Docker等容器技术为多用户建立独立的运行环境。GISpark通过虚拟存储技术建立统一的大规模存储系统和访问接口，保障所有用户可以按照一致的方式访问需要的数据。GISpark为每一个用户建立Anaconda科学计算环境，可以在线运行Python/R以及其他语言建立的模型，并通过Github或类似的方式进行模型和计算结果的版本控制、即时协作和在线共享。</p>
+<p>GISpark通过运行于大规模计算资源的Spark或iPyParallel等分布式调度服务来按需提供计算能力，以最快的速度获得计算结果，并通过网络发布出来，供所有连接的终端和系统进行使用。</p>
 </div>
 <div class="section" id="GISpark-实施路线图">
 <h2>1.3. GISpark 实施路线图<a class="headerlink" href="#GISpark-实施路线图" title="永久链接至标题">¶</a></h2>
@@ -317,20 +317,19 @@ Portal/iServer/Express等服务器系统和iDesktop/iClient/iMobile等客户端�
 <h2>1.4. 可持续的信息基础设施<a class="headerlink" href="#可持续的信息基础设施" title="永久链接至标题">¶</a></h2>
 <p>GISpark 的目标是提供一个可持续的地理空间信息基础设施。</p>
 <p>信息系统的持续性是一件极具挑战性的事情。因为信息系统的运行过程中有很多因素导致原先设定的目标无法达成，或在运行过程被中断，导致所积累的知识和付出的投资无法得到回报，问题也无法得到最终的解决。</p>
-<div class="line-block">
-<div class="line">影响信息系统持续性主要有五大挑战性因素，包括： 1.
-<strong>业务变化。</strong>往往由需求变化引起，然后系统设计的目标将随着发生大的变化，从而引发功能、软件形态和运行形式的巨大调整，进一步引起业务流程和管理制度的改变和要素的重组，原来的架构被重新开发，模块的重用也成为泡影。</div>
-<div class="line">2.
-<strong>人员变动。</strong>人员频繁变化是IT领域面临的通病，这不仅包括人员组织的变化，也包括与其相关的知识结构、文档体系、培训教育和知识的传承。即便“人”全部保持不变，也会面临由于新技术的引入需要学习新知识和采用新流程的问题，导致难以应对新的挑战和不断解决新的问题。
-3.
-<strong>数据变化。</strong>业务运行中，数据规模将不断增长，不断引入新的数据类型，以及建立新的数据获取手段、为了新功能而进行数据结构的调整，都会导致原来的数据基础发生变化，引发效率降低、系统崩溃、数据错误，甚至变得不再可用。而数据的更新往往需要花费巨大的代价和时间成本。
-4.
-<strong>系统扩容。</strong>随着系统的投入运行，往往规模会变得越来越大。当现有实施无法满足业务增长需要时，就需要进行扩容和部署的变更。遗憾的是，大部分系统并不能线性地进行规模扩展，效率会急剧下降甚至进入瓶颈阶段，甚至引发大面积的宕机现象，让业务步入泥潭。
-5.
-<strong>软件更新。</strong>由于功能调整、性能优化或者仅仅是Bug修复，软件总是处于不断的优化、升级的过程中。并非每次升级都能解决问题，有时候还会引入新的破坏性因素。可怕的是，如果对升级的影响缺乏足够的评估和测试、验证，可能会带来一系列的连锁反应，导致升级的结果无法控制、成本超出预期。</div>
-</div>
+<p>影响信息系统持续性主要有五大挑战性因素，包括：</p>
+<ol class="arabic simple">
+<li><strong>业务变化。</strong>往往由需求变化引起，然后系统设计的目标将随着发生大的变化，从而引发功能、软件形态和运行形式的巨大调整，进一步引起业务流程和管理制度的改变和要素的重组，原来的架构被重新开发，模块的重用也成为泡影。</li>
+<li><strong>人员变动。</strong>人员频繁变化是IT领域面临的通病，这不仅包括人员组织的变化，也包括与其相关的知识结构、文档体系、培训教育和知识的传承。即便“人”全部保持不变，也会面临由于新技术的引入需要学习新知识和采用新流程的问题，导致难以应对新的挑战和不断解决新的问题。</li>
+<li><strong>数据变化。</strong>业务运行中，数据规模将不断增长，不断引入新的数据类型，以及建立新的数据获取手段、为了新功能而进行数据结构的调整，都会导致原来的数据基础发生变化，引发效率降低、系统崩溃、数据错误，甚至变得不再可用。而数据的更新往往需要花费巨大的代价和时间成本。</li>
+<li><strong>系统扩容。</strong>随着系统的投入运行，往往规模会变得越来越大。当现有实施无法满足业务增长需要时，就需要进行扩容和部署的变更。遗憾的是，大部分系统并不能线性地进行规模扩展，效率会急剧下降甚至进入瓶颈阶段，甚至引发大面积的宕机现象，让业务步入泥潭。</li>
+<li><strong>软件更新。</strong>由于功能调整、性能优化或者仅仅是Bug修复，软件总是处于不断的优化、升级的过程中。并非每次升级都能解决问题，有时候还会引入新的破坏性因素。可怕的是，如果对升级的影响缺乏足够的评估和测试、验证，可能会带来一系列的连锁反应，导致升级的结果无法控制、成本超出预期。</li>
+</ol>
 <p>GISpark
-采用虚拟化和微服务架构提供灵活的基础设施，可以实现资源的动态调度和服务的动态编排、负载均衡、故障转移等能力。通过基于Git的分布式版本控制，可以实现多版本共存和网络协同，从而降低需求变化带来的不利影响，以及应对数据和软件版本的兼容性问题。通过Maven软件仓库和Jekins持续集成和持续交付的功能，将软件开发、自动化测试、快速部署过程集成到一个预定的流程之中，实现软件“从摇篮到坟墓”的持续交付过程的规范化和自动化，可以将原有的组件和代码实现更高程度的复用，从而提高运营的效率，减少人为因素在大规模部署中的影响。软件技术与开源社区的融合，为人才培养提供社会化的储备，而且可以从社区获得知识、经验和更好的解决方案，通过向社区共享成果，构建共赢、共享、互利的开放社区，使这一过程进入良性循环。</p>
+采用虚拟化和微服务架构提供灵活的基础设施，可以实现资源的动态调度和服务的动态编排、负载均衡、故障转移等能力。</p>
+<p>通过基于Git的分布式版本控制，可以实现多版本共存和网络协同，从而降低需求变化带来的不利影响，以及应对数据和软件版本的兼容性问题。</p>
+<p>通过Maven软件仓库和Jekins持续集成和持续交付的功能，将软件开发、自动化测试、快速部署过程集成到一个预定的流程之中，实现软件“从摇篮到坟墓”的持续交付过程的规范化和自动化，可以将原有的组件和代码实现更高程度的复用，从而提高运营的效率，减少人为因素在大规模部署中的影响。</p>
+<p>通过软件技术与开源社区的融合，为人才培养提供社会化的储备，而且可以从社区获得知识、经验和更好的解决方案，通过向社区共享成果，构建共赢、共享、互利的开放社区，使这一过程进入良性循环。</p>
 </div>
 </div>
 
