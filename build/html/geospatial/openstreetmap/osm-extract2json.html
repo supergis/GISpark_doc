@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>OpenStreetMap的OSM文件对象数据分类捡取器 &mdash; GISpark 0.1 文档</title>
+  <title>OSM文件对象数据分类捡取器 &mdash; GISpark 0.1 文档</title>
   
 
   
@@ -128,7 +128,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>OpenStreetMap的OSM文件对象数据分类捡取器</li>
+    <li>OSM文件对象数据分类捡取器</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -274,9 +274,29 @@ div.nboutput  > :nth-child(2).stderr {
 
 .ansi-bold { font-weight: bold; }
 </style>
+<div class="section" id="OSM文件对象数据分类捡取器">
+<h1>OSM文件对象数据分类捡取器<a class="headerlink" href="#OSM文件对象数据分类捡取器" title="永久链接至标题">¶</a></h1>
+<p><a class="reference external" href="http://www.openstreetmap.org">OpenStreetMap</a>OSM文件对象数据分类捡取器，实现店、线、面文件的分拣，并进一步转为JSON格式和csv格式，从而可以在Spark中进行快速处理和深度分析。</p>
+<p>主要功能：</p>
+<ul class="simple">
+<li>输出三个单行存储的json文件，可在<a class="reference external" href="http://spark.apache.org">Spark</a>中使用，通过spark的sc.read.json()直接读入处理。</li>
+<li>将osm文件按照tag快速分类，直接转为node/way/relation三个json文件，并按行存储。</li>
+</ul>
+<div class="line-block">
+<div class="line">说明： *
+Spark默认按行处理，因此处理xml尤其是多行XML比较麻烦，如OpenStreetMap的OSM格式。</div>
+<div class="line">*
+对于xml文件较大、无法全部载入内存的情况，需要预处理成行方式，然后在Spark中分布式载入。</div>
+</div>
+<p>后续工作：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>1、映射way的nd节点坐标，构建出几何对象的坐标串。
+2、每一几何对象数据转为wkt格式，保存到JSON的geometry域。
+3、数据表按区域分割后，转为GeoPandas，然后进一步转为shape file。
+</pre></div>
+</div>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
-<span></span>In [9]:
+<span></span>In [1]:
 </pre></div>
 </div>
 <div class="highlight-ipython3"><div class="highlight"><pre>
@@ -285,63 +305,24 @@ div.nboutput  > :nth-child(2).stderr {
 </pre></div>
 </div>
 </div>
-<div class="section" id="OpenStreetMap的OSM文件对象数据分类捡取器">
-<h1><a class="reference external" href="http://www.openstreetmap.org">OpenStreetMap</a>的OSM文件对象数据分类捡取器<a class="headerlink" href="#OpenStreetMap的OSM文件对象数据分类捡取器" title="永久链接至标题">¶</a></h1>
-<p>by
-<a class="reference external" href="http://my.oschina.net/u/2306127/blog?catalog=3420733">openthings&#64;163.com</a>,
-2016-03-21.</p>
-<div class="section" id="功能：">
-<h2>功能：<a class="headerlink" href="#功能：" title="永久链接至标题">¶</a></h2>
-<ul class="simple">
-<li><strong>输出三个单行存储的json文件，可在`Spark &lt;http://spark.apache.org&gt;`__中使用，通过spark的sc.read.json()直接读入处理。</strong></li>
-<li><strong>本工具将osm文件按照tag快速分类，直接转为node/way/relation三个json文件，并按行存储。</strong></li>
-</ul>
-</div>
-<div class="section" id="说明：">
-<h2>说明：<a class="headerlink" href="#说明：" title="永久链接至标题">¶</a></h2>
-<ul class="simple">
-<li>Spark默认按行处理，因此处理xml尤其是多行XML比较麻烦，如OpenStreetMap的OSM格式。</li>
-<li>对于xml文件较大、无法全部载入内存的情况，需要预处理成行方式，然后在Spark中分布式载入。</li>
-</ul>
-<div class="section" id="后续工作：">
-<h3>后续工作：<a class="headerlink" href="#后续工作：" title="永久链接至标题">¶</a></h3>
-<div class="highlight-python"><div class="highlight"><pre><span></span>1、映射way的nd节点坐标，构建出几何对象的坐标串。
-2、每一几何对象数据转为wkt格式，保存到JSON的geometry域。
-3、数据表按区域分割后，转为GeoPandas，然后进一步转为shape file。
-</pre></div>
-</div>
-</div>
-</div>
 <div class="section" id="XML快速转为JSON格式，使用lxml进行流式处理。">
 <h2>XML快速转为JSON格式，使用lxml进行流式处理。<a class="headerlink" href="#XML快速转为JSON格式，使用lxml进行流式处理。" title="永久链接至标题">¶</a></h2>
-<ul>
-<li><p class="first">流方式递归读取xml结构数据（占用资源少）:
-<a class="reference external" href="http://www.ibm.com/developerworks/xml/library/x-hiperfparse/">http://www.ibm.com/developerworks/xml/library/x-hiperfparse/</a></p>
-</li>
-<li><div class="first line-block">
-<div class="line">XML字符串转为json对象支持库 :
-<a class="reference external" href="https://github.com/martinblech/xmltodict">https://github.com/martinblech/xmltodict</a></div>
-<div class="line">&gt;*
-xmltodict.parse()会将字段名输出添加&#64;和#，在Spark查询中会引起问题，需要去掉。如下设置即可：</div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span></span>xmltodict.parse(elem_data,attr_prefix=&quot;&quot;,cdata_key=&quot;&quot;)
-
--  编码和错误xml文件恢复，如下：
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span></span>magical_parser = lxml.etree.XMLParser(encoding=&#39;utf-8&#39;, recover=True)
-tree = etree.parse(StringIO(your_xml_string), magical_parser) #or pass in an open file object
-
--  先将element转为string，然后生成dict，再用json.dump()产生json字符串。
-</pre></div>
-</div>
-<div class="highlight-python"><div class="highlight"><pre><span></span>elem_data = etree.tostring(elem)
-elem_dict = xmltodict.parse(elem_data)
-elem_jsonStr = json.dumps(elem_dict)
-
--  可以使用json.loads(elem\_jsonStr)创建出可编程的json对象。
-</pre></div>
-</div>
+<ul class="simple">
+<li>流方式递归读取xml结构数据（占用资源少）:
+<a class="reference external" href="http://www.ibm.com/developerworks/xml/library/x-hiperfparse/">http://www.ibm.com/developerworks/xml/library/x-hiperfparse/</a></li>
+<li>XML字符串转为json对象支持库 :
+<a class="reference external" href="https://github.com/martinblech/xmltodict">https://github.com/martinblech/xmltodict</a><ul>
+<li>xmltodict.parse()会将字段名输出添加&#64;和#，在Spark查询中会引起问题，需要去掉。如下设置即可：
+xmltodict.parse(elem_data,attr_prefix=&#8221;&#8221;,cdata_key=&#8221;&#8221;)</li>
+<li>编码和错误xml文件恢复，如下： magical_parser =
+lxml.etree.XMLParser(encoding=&#8217;utf-8&#8217;, recover=True)
+tree = etree.parse(StringIO(your_xml_string), magical_parser)
+#or pass in an open file object</li>
+<li>先将element转为string，然后生成dict，再用json.dump()产生json字符串。
+elem_data = etree.tostring(elem) elem_dict =
+xmltodict.parse(elem_data) elem_jsonStr = json.dumps(elem_dict)</li>
+<li>可以使用json.loads(elem_jsonStr)创建出可编程的json对象。</li>
+</ul>
 </li>
 </ul>
 <div class="nbinput nblast container">
@@ -439,6 +420,8 @@ def transform(osmfile,maxline = 0):
 </pre></div>
 </div>
 </div>
+<div class="section" id="执行转换。">
+<h3>执行转换。<a class="headerlink" href="#执行转换。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [14]:
@@ -460,6 +443,7 @@ transform(osmfile,0)
 2016-05-04 16:18:38 , Error: attributes construct error, line 51046, column 44
 2016-05-04 16:18:38 , OSM to JSON, Finished.
 </pre></div></div>
+</div>
 </div>
 </div>
 <div class="section" id="保存到MongoDB等其它存储系统(待续)。">

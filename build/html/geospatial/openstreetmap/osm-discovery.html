@@ -274,6 +274,9 @@ div.nboutput  > :nth-child(2).stderr {
 
 .ansi-bold { font-weight: bold; }
 </style>
+<div class="section" id="探索OSM的文件格式(Node对象)。">
+<h1>探索OSM的文件格式(Node对象)。<a class="headerlink" href="#探索OSM的文件格式(Node对象)。" title="永久链接至标题">¶</a></h1>
+<p>在线获取<a class="reference external" href="http://www.openstreetmap.org">OpenStreetMap</a>区域地图数据，转为GeoPandas，并最终转为shp格式文件。</p>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [1]:
@@ -285,12 +288,6 @@ div.nboutput  > :nth-child(2).stderr {
 </pre></div>
 </div>
 </div>
-<div class="section" id="探索OSM的文件格式(Node对象)。">
-<h1>探索OSM的文件格式(Node对象)。<a class="headerlink" href="#探索OSM的文件格式(Node对象)。" title="永久链接至标题">¶</a></h1>
-<div class="section" id="在线获取OpenStreetMap区域地图数据，转为GeoPandas，并最终转为shp格式文件。">
-<h2>在线获取<a class="reference external" href="http://www.openstreetmap.org">OpenStreetMap</a>区域地图数据，转为GeoPandas，并最终转为shp格式文件。<a class="headerlink" href="#在线获取OpenStreetMap区域地图数据，转为GeoPandas，并最终转为shp格式文件。" title="永久链接至标题">¶</a></h2>
-<p>**_ by <a class="reference external" href="http://my.oschina.net/u/2306127/blog">openthings&#64;163.com</a>
-_**</p>
 <p>**
 OSM为xml格式，解析文件结构使用强大的requests数据下载包，网页和xml分析神器BeautifulSoup。**
 <a href="#id1"><span class="problematic" id="id2">**</span></a>注意：**由于BeautifulSoup将数据读到内存处理，因此不适合大数据量的处理。</p>
@@ -304,7 +301,6 @@ OSM为xml格式，解析文件结构使用强大的requests数据下载包，网
 import requests as req
 from pprint import *
 </pre></div>
-</div>
 </div>
 </div>
 <div class="section" id="直接下载到内存。不推荐使用，因为如果网络中断，需要重新下载。">

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>OSM-overpass服务接口使用，在线查询OpenStreetMap开放空间数据库。 &mdash; GISpark 0.1 文档</title>
+  <title>OSM-overpass服务接口使用 &mdash; GISpark 0.1 文档</title>
   
 
   
@@ -128,7 +128,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>OSM-overpass服务接口使用，在线查询OpenStreetMap开放空间数据库。</li>
+    <li>OSM-overpass服务接口使用</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -274,6 +274,17 @@ div.nboutput  > :nth-child(2).stderr {
 
 .ansi-bold { font-weight: bold; }
 </style>
+<div class="section" id="OSM-overpass服务接口使用">
+<h1>OSM-overpass服务接口使用<a class="headerlink" href="#OSM-overpass服务接口使用" title="永久链接至标题">¶</a></h1>
+<p>通过Overpass接口，可以在线查询<a class="reference external" href="http:www.openstreetmap.org">OpenStreetMap</a>开放空间数据库。</p>
+<p>overpy-使用overpass api接口的python
+library，这里将返回结果集保存为JSON格式。</p>
+<ul class="simple">
+<li>安装：$ pip install overpy</li>
+<li>文档：<a class="reference external" href="http://python-overpy.readthedocs.org/en/latest/example.html#basic-example">http://python-overpy.readthedocs.org/en/latest/example.html#basic-example</a></li>
+<li>接口：<a class="reference external" href="http://wiki.openstreetmap.org/wiki/Overpass_API">http://wiki.openstreetmap.org/wiki/Overpass_API</a></li>
+</ul>
+<p>本工具例程基于上述文档例程进行编写。</p>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [1]:
@@ -284,19 +295,6 @@ div.nboutput  > :nth-child(2).stderr {
 #coding=utf-8
 </pre></div>
 </div>
-</div>
-<div class="section" id="OSM-overpass服务接口使用，在线查询OpenStreetMap开放空间数据库。">
-<h1>OSM-overpass服务接口使用，在线查询<a class="reference external" href="http:www.openstreetmap.org">OpenStreetMap</a>开放空间数据库。<a class="headerlink" href="#OSM-overpass服务接口使用，在线查询OpenStreetMap开放空间数据库。" title="永久链接至标题">¶</a></h1>
-<div class="line-block">
-<div class="line">**_ by
-<a class="reference external" href="http://my.oschina.net/u/2306127/blog">openthings&#64;163.com</a>,
-2016-04-23. _**</div>
-<div class="line">&gt;#### overpy-使用overpass api接口的python
-library，这里将返回结果集保存为JSON格式。</div>
-<div class="line">* 安装：$ pip install overpy *
-文档：<a class="reference external" href="http://python-overpy.readthedocs.org/en/latest/example.html#basic-example">http://python-overpy.readthedocs.org/en/latest/example.html#basic-example</a></div>
-<div class="line">* 接口：<a class="reference external" href="http://wiki.openstreetmap.org/wiki/Overpass_API">http://wiki.openstreetmap.org/wiki/Overpass_API</a></div>
-<div class="line">本工具例程基于上述文档例程进行编写。</div>
 </div>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -313,9 +311,8 @@ from pprint import *
 </pre></div>
 </div>
 </div>
-</div>
 <div class="section" id="调用overpass接口，获取result数据结果集。">
-<h1>调用overpass接口，获取result数据结果集。<a class="headerlink" href="#调用overpass接口，获取result数据结果集。" title="永久链接至标题">¶</a></h1>
+<h2>调用overpass接口，获取result数据结果集。<a class="headerlink" href="#调用overpass接口，获取result数据结果集。" title="永久链接至标题">¶</a></h2>
 <ul class="simple">
 <li>由于通过网络返回，容易中断，而且是在内存中处理，不适合创建大的查询集。</li>
 </ul>
@@ -341,7 +338,7 @@ def get_osm():
 </div>
 </div>
 <div class="section" id="在线获取osm数据.">
-<h1>在线获取osm数据.<a class="headerlink" href="#在线获取osm数据." title="永久链接至标题">¶</a></h1>
+<h2>在线获取osm数据.<a class="headerlink" href="#在线获取osm数据." title="永久链接至标题">¶</a></h2>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [3]:
@@ -363,7 +360,7 @@ Relations:  0
 </pre></div></div>
 </div>
 <div class="section" id="显示node的属性信息（仅显示前3个node的信息）。">
-<h2>显示node的属性信息（仅显示前3个node的信息）。<a class="headerlink" href="#显示node的属性信息（仅显示前3个node的信息）。" title="永久链接至标题">¶</a></h2>
+<h3>显示node的属性信息（仅显示前3个node的信息）。<a class="headerlink" href="#显示node的属性信息（仅显示前3个node的信息）。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [4]:
@@ -387,7 +384,7 @@ pprint(nodeset)
 </div>
 </div>
 <div class="section" id="遍历node的子集，该子集由上一步产生。">
-<h2>遍历node的子集，该子集由上一步产生。<a class="headerlink" href="#遍历node的子集，该子集由上一步产生。" title="永久链接至标题">¶</a></h2>
+<h3>遍历node的子集，该子集由上一步产生。<a class="headerlink" href="#遍历node的子集，该子集由上一步产生。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [5]:
@@ -412,7 +409,7 @@ pprint(nodeset)
 </div>
 </div>
 <div class="section" id="将查询到的数据集合转换为json格式，写入json格式的文件.">
-<h1>将查询到的数据集合转换为json格式，写入json格式的文件.<a class="headerlink" href="#将查询到的数据集合转换为json格式，写入json格式的文件." title="永久链接至标题">¶</a></h1>
+<h2>将查询到的数据集合转换为json格式，写入json格式的文件.<a class="headerlink" href="#将查询到的数据集合转换为json格式，写入json格式的文件." title="永久链接至标题">¶</a></h2>
 <p>（_ 该格式可由Spark直接载入: SQLContext.read.json()_ ）。</p>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -435,7 +432,7 @@ def node2jsonfile(fname,nodeset):
 </div>
 </div>
 <div class="section" id="执行json文件保存操作。">
-<h2>执行json文件保存操作。<a class="headerlink" href="#执行json文件保存操作。" title="永久链接至标题">¶</a></h2>
+<h3>执行json文件保存操作。<a class="headerlink" href="#执行json文件保存操作。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [7]:
@@ -456,7 +453,7 @@ Nodes: 2267 , Write to:  overpass.osm_node.json
 </div>
 </div>
 <div class="section" id="查看一下文件。">
-<h2>查看一下文件。<a class="headerlink" href="#查看一下文件。" title="永久链接至标题">¶</a></h2>
+<h3>查看一下文件。<a class="headerlink" href="#查看一下文件。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [8]:
@@ -492,6 +489,7 @@ Nodes: 2267 , Write to:  overpass.osm_node.json
 <div class="highlight-ipython3"><div class="highlight"><pre>
 <span></span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>

@@ -98,16 +98,21 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#几何对象与地图绘制">5.2. 几何对象与地图绘制</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#Matplotlib绘制地图">5.2.1. Matplotlib绘制地图</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#GeoPandas内存数据集">5.2.2. GeoPandas内存数据集</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#GeoPandas内存数据集">5.2.2. GeoPandas内存数据集</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#安装Pandas">5.2.2.1. 安装Pandas</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#Pandas使用示例">5.2.2.2. Pandas使用示例</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#Shapely几何对象运算">5.2.3. Shapely几何对象运算</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#Fiona几何对象操作">5.2.4. Fiona几何对象操作</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#GDAL库安装与使用">5.3. GDAL库安装与使用</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#GIScript安装与使用">5.4. GIScript安装与使用</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#OSM开源地图数据处理">5.5. OSM开源地图数据处理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#SRTM地形高程数据处理">5.6. SRTM地形高程数据处理</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#影像数据处理与挖掘">5.7. 影像数据处理与挖掘</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#PyProj地图投影">5.3. PyProj地图投影</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#GDAL库安装与使用">5.4. GDAL库安装与使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#GIScript安装与使用">5.5. GIScript安装与使用</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#OSM开源地图数据处理">5.6. OSM开源地图数据处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#SRTM地形高程数据处理">5.7. SRTM地形高程数据处理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#影像数据处理与挖掘">5.8. 影像数据处理与挖掘</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="gispark_mapping.html">6. 地理制图与空间可视化</a></li>
@@ -298,68 +303,188 @@ div.nboutput  > :nth-child(2).stderr {
 </style>
 <div class="section" id="地理空间信息数据处理">
 <h1>5. 地理空间信息数据处理<a class="headerlink" href="#地理空间信息数据处理" title="永久链接至标题">¶</a></h1>
-<p>本章介绍地理空间数据的GeoJSON格式规范和使用方法，Python中进行地理几何数据处理的GeoPandas、Shapely、GDAL库，以及专业GIS的脚本引擎-GIScript。最后，介绍通过使用这些技术进行OpenStreetMap、SRTM和TM等开放的免费数据的处理过程和方法。</p>
+<p>地理空间信息数据分为矢量、栅格和影像三种主要类型。矢量数据包括店、线、面及其复合类型，以及圆、椭圆等参数化对象。栅格是以矩阵方式保存的数据类型，每一个矩阵的元素代表相应的地理位置的特征值。影像分为RGB表示的普通图像和以多个栅格值表达的多波段图像。本章将介绍一些常用的空间数据格式、几何对象模型、算法库和使用Python的处理方法，以及通过使用这些技术进行OpenStreetMap、SRTM和TM等开放的免费数据的处理过程和方法。</p>
 <div class="section" id="地理空间数据格式">
 <h2>5.1. 地理空间数据格式<a class="headerlink" href="#地理空间数据格式" title="永久链接至标题">¶</a></h2>
+<p>在专业GIS应用中，空间数据往往保存在大型的商用级数据库中（参考<a class="reference external" href="http://www.supermap.com.cn">SuperMap</a>）。但在大数据研究和分析中，为了使用方便，经常使用完全开放的格式，如GML(基于XML的几何对象格式)、<a class="reference internal" href="geospatial/geojson/geowkt.html"><span class="doc">WKT(well
+known
+text)</span></a>和WKB(二进制格式的WKT)、<a class="reference internal" href="geospatial/geojson/geojson.html"><span class="doc">GeoJSON</span></a>格式。在Python中进行地理几何数据处理的支持库有GeoPandas、Shapely、GDAL库，以及专业GIS的脚本引擎-GIScript等，下面介绍其使用和用于数据处理的方法。</p>
 <div class="section" id="GeoJSON-规范">
 <h3>5.1.1. GeoJSON 规范<a class="headerlink" href="#GeoJSON-规范" title="永久链接至标题">¶</a></h3>
 <p><a class="reference internal" href="geospatial/geojson/geojson.html"><span class="doc">GeoJSON</span></a>是一种对各种地理数据结构进行编码的格式。GeoJSON对象可以表示几何、特征或者特征集合。GeoJSON支持下面几何类型：点、线、面、多点、多线、多面和几何集合。GeoJSON里的特征包含一个几何对象和其他属性，特征集合表示一系列特征。</p>
 </div>
 <div class="section" id="GeoJSON-编程">
 <h3>5.1.2. GeoJSON 编程<a class="headerlink" href="#GeoJSON-编程" title="永久链接至标题">¶</a></h3>
-<p>Python的词典和列表、元组等数据结构可以直接与JSON映射。GeoJSON完全遵循JSON规范，因此GeoJSON很容易<a class="reference internal" href="geospatial/geojson/pygeojson.html"><span class="doc">通过Python编程操作</span></a>，并且与Shapeply、Fiona、GeoPandas组合使用，完成地理空间对象和文件的I/O操作。GDAL和很多商业GIS软件也都支持GeoJSON，可以非常方便地进行数据交换，尤其是在网络服务中，有逐渐取代其它格式的趋势。</p>
+<p>Python的词典和列表、元组等数据结构可以直接与JSON映射。GeoJSON完全遵循JSON规范，因此GeoJSON很容易<a class="reference internal" href="geospatial/geojson/pygeojson.html"><span class="doc">通过Python编程操作</span></a>，并且与Shapeply、Fiona、GeoPandas组合使用，完成地理空间对象和文件的I/O操作。GDAL和很多商业GIS软件也都支持GeoJSON，可以非常方便地进行数据交换，尤其是在网络服务中，通过JavaScript也能方便地处理并在HTML5中绘制出来，有逐渐取代其它格式的趋势。</p>
 </div>
 <div class="section" id="GeoCSV-格式">
 <h3>5.1.3. GeoCSV 格式<a class="headerlink" href="#GeoCSV-格式" title="永久链接至标题">¶</a></h3>
-<p>Hadoop和Spark为了便于分布式处理中数据切分，都主要按照分行处理方式设计。因此，空间数据经常保存为<a class="reference external" href="geospatial/geojson/geocsv.ipynb">空间数据CSV格式</a>，方便在分布式环境下使用。CSV格式数据域一般以<code class="docutils literal"><span class="pre">&quot;</span></code>分隔和表格符<code class="docutils literal"><span class="pre">\t</span></code>两种常见格式，而几何对象一般采用<a class="reference internal" href="geospatial/geojson/geowkt.html"><span class="doc">WKT(well
+<p>Hadoop和Spark为了便于分布式处理中数据切分，都主要按照分行处理方式设计。因此，空间数据经常保存为<a class="reference internal" href="geospatial/geojson/geocsv.html"><span class="doc">空间数据CSV格式</span></a>，方便在分布式环境下使用。CSV格式数据域一般以<code class="docutils literal"><span class="pre">&quot;</span></code>分隔和表格符<code class="docutils literal"><span class="pre">\t</span></code>两种常见格式，而几何对象一般采用<a class="reference internal" href="geospatial/geojson/geowkt.html"><span class="doc">WKT(well
 known
-text)</span></a>、WKB(WKT的二进制编码)或GeoJSON格式存储，每行以回车结束。</p>
+text)</span></a>、WKB(WKT的二进制编码)或GeoJSON格式存储，每行以回车(或回车换行)结束。</p>
 </div>
 </div>
 <div class="section" id="几何对象与地图绘制">
 <h2>5.2. 几何对象与地图绘制<a class="headerlink" href="#几何对象与地图绘制" title="永久链接至标题">¶</a></h2>
+<p>商业GIS平台软件都提供了专业级的几何对象计算和地图绘制、快速制图等功能（参考<a class="reference external" href="http://www.supermap.com.cn">SuperMap</a>）。使用开源的Python库也可以绘制出适合空间可视化表达的图表(如Matplotlib/Bokeh/plotly/QTGraph等)，常用的几何对象操作和空间运算也可以使用GeoPandas/Shaply/Fiona等Python库来完成。</p>
 <div class="section" id="Matplotlib绘制地图">
 <h3>5.2.1. Matplotlib绘制地图<a class="headerlink" href="#Matplotlib绘制地图" title="永久链接至标题">¶</a></h3>
-<p>Matplotlib是Python上广泛使用的绘图库，支持在Jupyter
-Notebook中绘图，安装basemap包后，可以直接<a class="reference internal" href="geospatial/matplotlib/mpl_basemap.html"><span class="doc">使用Matplotlib绘制地图</span></a>。</p>
+<p>Matplotlib是Python上广泛使用的绘图库，支持在Jupyter Notebook中绘图。</p>
+<p>安装：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">basemap</span>
+</pre></div>
+</div>
+<p>详情参考：<a class="reference external" href="http://matplotlib.org/basemap/users/geography.html">http://matplotlib.org/basemap/users/geography.html</a>
+。安装basemap包后，可以直接<a class="reference internal" href="geospatial/matplotlib/mpl_basemap.html"><span class="doc">使用Matplotlib绘制地图</span></a>。</p>
 </div>
 <div class="section" id="GeoPandas内存数据集">
 <h3>5.2.2. GeoPandas内存数据集<a class="headerlink" href="#GeoPandas内存数据集" title="永久链接至标题">¶</a></h3>
 <p><a class="reference internal" href="geospatial/geopandas/geopandas.html"><span class="doc">GeoPandas内存数据集</span></a>派生于Pandas数据类，增加GeoSeries对象，可以存储Geometry地理空间几何对象。GeoPandas的Geometry对象采用GeoJSON格式存储，非常便于在Python中操作，详细请参考<a class="reference external" href="http://www.GeoPandas.org">GeoPandas.org</a>。</p>
+<p>GeoPandas的目的是在Python下更容易处理地理数据。它结合了pandas和shaply的功能，提供在pandas下的空间操作和shapel下高层次的处理多几何构型的接口。GeoPandas允许你很容易的用Python进行操作，不然的话，你将不得不用一个空间数据库去处理，如PostGIS。</p>
+<div class="section" id="安装Pandas">
+<h4>5.2.2.1. 安装Pandas<a class="headerlink" href="#安装Pandas" title="永久链接至标题">¶</a></h4>
+<p>使用pip或easy_install：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">geopandas</span>
+</pre></div>
+</div>
+<p>你也可以通过克隆GitHub上的仓库去安装最新的开发版本，命令脚本如下：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">geopandas</span><span class="o">/</span><span class="n">geopandas</span><span class="o">.</span><span class="n">git</span>
+<span class="n">cd</span> <span class="n">geopandas</span>
+<span class="n">python</span> <span class="n">setup</span><span class="o">.</span><span class="n">py</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>同样也可以在PyPI上安装最新的可用开发版本，使用pip，加上&#8211;pre安装1.4或者更高的版本，或者直接使用pip从GitHub仓库中安装：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">git</span><span class="o">+</span><span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">geopandas</span><span class="o">/</span><span class="n">geopandas</span><span class="o">.</span><span class="n">git</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="Pandas使用示例">
+<h4>5.2.2.2. Pandas使用示例<a class="headerlink" href="#Pandas使用示例" title="永久链接至标题">¶</a></h4>
+<p>注意，里面用到了下一步介绍的Shapely库。</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">geopandas</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">p1</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">p2</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+<span class="n">p3</span> <span class="o">=</span> <span class="n">Polygon</span><span class="p">([(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">)])</span>
+
+<span class="n">g</span> <span class="o">=</span> <span class="n">GeoSeries</span><span class="p">([</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">p3</span><span class="p">])</span>
+<span class="n">g</span>
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="Shapely几何对象运算">
 <h3>5.2.3. Shapely几何对象运算<a class="headerlink" href="#Shapely几何对象运算" title="永久链接至标题">¶</a></h3>
-<p><a class="reference external" href="geospatial/shapely.ipynb">Shapely</a>提供地理几何对象数据结构、编解码及对象之间的几何代数运算。<a class="reference external" href="https://github.com/Toblerity/Shapely.git">Shapely工程源代码</a>可以直接下载、编译、安装，文档参见：<a class="reference external" href="http://toblerity.org/shapely/project.html">http://toblerity.org/shapely/project.html</a>。</p>
+<p><a class="reference internal" href="geospatial/shapely.html"><span class="doc">Shapely</span></a>提供地理几何对象数据结构、编解码及对象之间的几何代数运算，支持WKT和JSON的几何对象编解码，为GeoPandas提供几何对象相关的操作。<a class="reference external" href="https://github.com/Toblerity/Shapely.git">Shapely工程源代码</a>可以直接下载、编译、安装，详细文档<a class="reference external" href="http://toblerity.org/shapely/project.html">参见这里</a>。</p>
+<p>Shapely用法示例：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">shapely.geometry</span> <span class="kn">import</span> <span class="n">Point</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">patch</span> <span class="o">=</span> <span class="n">Point</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">)</span><span class="o">.</span><span class="n">buffer</span><span class="p">(</span><span class="mf">10.0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">patch</span>
+<span class="go">&lt;shapely.geometry.polygon.Polygon object at 0x...&gt;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">patch</span><span class="o">.</span><span class="n">area</span>
+<span class="go">313.65484905459385</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="Fiona几何对象操作">
 <h3>5.2.4. Fiona几何对象操作<a class="headerlink" href="#Fiona几何对象操作" title="永久链接至标题">¶</a></h3>
-<p><a class="reference external" href="geospatial/fiona.ipynb">Fiona库</a>提供几何对象操作和Shape文件的读写功能，基于OGR实现的简洁的Python
+<p><a class="reference internal" href="geospatial/fiona.html"><span class="doc">Fiona库</span></a>提供几何对象的文件读写功能，基于OGR实现的简洁的Python
 API对象接口，详情可以查看<a class="reference external" href="http://toblerity.org/fiona/README.html#usage">文档</a>和<a class="reference external" href="https://github.com/Toblerity/Fiona">源代码</a>。</p>
+<p>使用Fiona的范式：</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">drivers</span><span class="p">():</span>
+
+    <span class="k">for</span> <span class="n">layername</span> <span class="ow">in</span> <span class="n">fiona</span><span class="o">.</span><span class="n">listlayers</span><span class="p">(</span><span class="s1">&#39;docs/data&#39;</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">fiona</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;docs/data&#39;</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="n">layername</span><span class="p">)</span> <span class="k">as</span> <span class="n">c</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="n">layername</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+
+<span class="c1"># Output:</span>
+<span class="c1"># test_uk 48</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="PyProj地图投影">
+<h2>5.3. PyProj地图投影<a class="headerlink" href="#PyProj地图投影" title="永久链接至标题">¶</a></h2>
+<p>投影是地理空间数据处理中的空间坐标参照方法，经常需要在不同的坐标体系下进行转换。PyProj是PROJ4投影支持库的Python
+API，提供各种地图投影参数的管理、操作和坐标变换。详细参考<a class="reference external" href="https://pypi.python.org/pypi/pyproj/">安装PyProj</a>、<a class="reference external" href="https://jswhit.github.io/pyproj/">PyProj文档</a>、<a class="reference external" href="https://github.com/jswhit/pyproj">PyProj代码</a>。</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># projection 1: UTM zone 15, grs80 ellipse, NAD83 datum</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># (defined by epsg code 26915)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;epsg:26915&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># projection 2: UTM zone 15, clrk66 ellipse, NAD27 datum</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">init</span><span class="o">=</span><span class="s1">&#39;epsg:26715&#39;</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># find x,y of Jefferson City, MO.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">p1</span><span class="p">(</span><span class="o">-</span><span class="mf">92.199881</span><span class="p">,</span><span class="mf">38.56694</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># transform this point to projection 2 coordinates.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;</span><span class="si">%9.3f</span><span class="s1"> </span><span class="si">%11.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">)</span>
+<span class="go">&#39;569704.566 4269024.671&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;</span><span class="si">%9.3f</span><span class="s1"> </span><span class="si">%11.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">)</span>
+<span class="go">&#39;569722.342 4268814.027&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;</span><span class="si">%8.3f</span><span class="s1"> </span><span class="si">%5.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">p2</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">inverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="go">&#39; -92.200 38.567&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># process 3 points at a time in a tuple</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lats</span> <span class="o">=</span> <span class="p">(</span><span class="mf">38.83</span><span class="p">,</span><span class="mf">39.32</span><span class="p">,</span><span class="mf">38.75</span><span class="p">)</span> <span class="c1"># Columbia, KC and StL Missouri</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lons</span> <span class="o">=</span> <span class="p">(</span><span class="o">-</span><span class="mf">92.22</span><span class="p">,</span><span class="o">-</span><span class="mf">94.72</span><span class="p">,</span><span class="o">-</span><span class="mf">90.37</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span> <span class="o">=</span> <span class="n">p1</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span><span class="n">lats</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="n">p2</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">y1</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xy</span> <span class="o">=</span> <span class="n">x1</span><span class="o">+</span><span class="n">y1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;</span><span class="si">%9.3f</span><span class="s1"> </span><span class="si">%9.3f</span><span class="s1"> </span><span class="si">%9.3f</span><span class="s1"> </span><span class="si">%11.3f</span><span class="s1"> </span><span class="si">%11.3f</span><span class="s1"> </span><span class="si">%11.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">xy</span>
+<span class="go">&#39;567703.344 351730.944 728553.093 4298200.739 4353698.725 4292319.005&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xy</span> <span class="o">=</span> <span class="n">x2</span><span class="o">+</span><span class="n">y2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;</span><span class="si">%9.3f</span><span class="s1"> </span><span class="si">%9.3f</span><span class="s1"> </span><span class="si">%9.3f</span><span class="s1"> </span><span class="si">%11.3f</span><span class="s1"> </span><span class="si">%11.3f</span><span class="s1"> </span><span class="si">%11.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">xy</span>
+<span class="go">&#39;567721.149 351747.558 728569.133 4297989.112 4353489.644 4292106.305&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lons</span><span class="p">,</span> <span class="n">lats</span> <span class="o">=</span> <span class="n">p2</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span><span class="n">y2</span><span class="p">,</span><span class="n">inverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="n">xy</span> <span class="o">=</span> <span class="n">lons</span><span class="o">+</span><span class="n">lats</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">&#39;</span><span class="si">%8.3f</span><span class="s1"> </span><span class="si">%8.3f</span><span class="s1"> </span><span class="si">%8.3f</span><span class="s1"> </span><span class="si">%5.3f</span><span class="s1"> </span><span class="si">%5.3f</span><span class="s1"> </span><span class="si">%5.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">xy</span>
+<span class="go">&#39; -92.220  -94.720  -90.370 38.830 39.320 38.750&#39;</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># test datum shifting, installation of extra datum grid files.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p1</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">proj</span><span class="o">=</span><span class="s1">&#39;latlong&#39;</span><span class="p">,</span><span class="n">datum</span><span class="o">=</span><span class="s1">&#39;WGS84&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span> <span class="o">=</span> <span class="o">-</span><span class="mf">111.5</span><span class="p">;</span> <span class="n">y1</span> <span class="o">=</span> <span class="mf">45.25919444444</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">p2</span> <span class="o">=</span> <span class="n">Proj</span><span class="p">(</span><span class="n">proj</span><span class="o">=</span><span class="s2">&quot;utm&quot;</span><span class="p">,</span><span class="n">zone</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span><span class="n">datum</span><span class="o">=</span><span class="s1">&#39;NAD27&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">transform</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span> <span class="n">p2</span><span class="p">,</span> <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">)</span>
+
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;</span><span class="si">%s</span><span class="s2">  </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">x2</span><span class="p">)[:</span><span class="mi">9</span><span class="p">],</span><span class="nb">str</span><span class="p">(</span><span class="n">y2</span><span class="p">)[:</span><span class="mi">9</span><span class="p">])</span>
+<span class="go">&#39;1402285.9  5076292.4&#39;</span>
+</pre></div>
 </div>
 </div>
 <div class="section" id="GDAL库安装与使用">
-<h2>5.3. GDAL库安装与使用<a class="headerlink" href="#GDAL库安装与使用" title="永久链接至标题">¶</a></h2>
-<p><a class="reference external" href="http://www.gdal.org">GDAL</a>是一个广泛使用的地理空间数据对象和文件读写的支持库，其本身完全开源而且被整合到了很多开源软件和商业GIS软件中，详情查看<a class="reference internal" href="geospatial/gdal/gdal-geometry.html"><span class="doc">GDAL库安装与使用</span></a>，可以查看和下载<a class="reference external" href="http://nbviewer.jupyter.org/github/supergis/git_notebook/blob/master/gdal/gdal-geometry.ipynb">GDAL的Geometry使用</a>教程进行研究和练习。</p>
+<h2>5.4. GDAL库安装与使用<a class="headerlink" href="#GDAL库安装与使用" title="永久链接至标题">¶</a></h2>
+<p><a class="reference external" href="http://www.gdal.org">GDAL</a>是一个广泛使用的地理空间数据对象和文件读写的支持库，其本身完全开源，已经被整合到了很多开源软件和商业GIS软件中，上面介绍的Fiona也使用了GDAL中的OGR矢量几何对象支持库。详情查看<a class="reference internal" href="geospatial/gdal/gdal-geometry.html"><span class="doc">GDAL库安装与使用</span></a>。GDAL本身采用C++编写，但可以支持<a href="#id7"><span class="problematic" id="id8">`多种API接口 &lt;&gt;`__</span></a>，<a class="reference external" href="https://trac.osgeo.org/gdal/wiki/GdalOgrInPython">Python</a>也可以直接访问。</p>
 </div>
 <div class="section" id="GIScript安装与使用">
-<h2>5.4. GIScript安装与使用<a class="headerlink" href="#GIScript安装与使用" title="永久链接至标题">¶</a></h2>
+<h2>5.5. GIScript安装与使用<a class="headerlink" href="#GIScript安装与使用" title="永久链接至标题">¶</a></h2>
 <p>GIScript是专业GIS脚本引擎，提供数据交换、数据管理、制图和分析等丰富的功能，支持在Jupyter
 notebook和Spark环境下使用，支持Linux和Windows操作系统，请参考<a class="reference internal" href="geospatial/giscript/giscript_quickstart.html"><span class="doc">GIScript安装与使用</span></a>。</p>
 </div>
 <div class="section" id="OSM开源地图数据处理">
-<h2>5.5. OSM开源地图数据处理<a class="headerlink" href="#OSM开源地图数据处理" title="永久链接至标题">¶</a></h2>
+<h2>5.6. OSM开源地图数据处理<a class="headerlink" href="#OSM开源地图数据处理" title="永久链接至标题">¶</a></h2>
 <p>OSM是<a class="reference external" href="http://www.openstreetmap.org">OpenStreetMap</a>的众包开放地图，原始数据采用xml格式进行存储。这里提供的教程包括：<a class="reference internal" href="geospatial/openstreetmap/osm-discovery.html"><span class="doc">OSM数据下载与结构分析</span></a>、<a class="reference internal" href="geospatial/openstreetmap/osm-overpass-node.html"><span class="doc">Overpass在线API使用</span></a>、<a class="reference internal" href="geospatial/openstreetmap/osm-extract2json.html"><span class="doc">OSM流式转为行存储JSON</span></a>,所生成的行式存储数据可以在PySpark中数据查询<a class="reference internal" href="geospatial/openstreetmap/osm-spark.html"><span class="doc">构建Geometry</span></a>和进行更高级的组合分析。</p>
 </div>
 <div class="section" id="SRTM地形高程数据处理">
-<h2>5.6. SRTM地形高程数据处理<a class="headerlink" href="#SRTM地形高程数据处理" title="永久链接至标题">¶</a></h2>
+<h2>5.7. SRTM地形高程数据处理<a class="headerlink" href="#SRTM地形高程数据处理" title="永久链接至标题">¶</a></h2>
 <p>这里介绍<a class="reference internal" href="geospatial/srtm/srtm_usgs.html"><span class="doc">SRTM地形高程数据处理</span></a>方法，将实现数据的下载、转为GeoTif、设置投影等基本操作，以及进行渲染立体图、解译等高线等高级功能。</p>
 </div>
 <div class="section" id="影像数据处理与挖掘">
-<h2>5.7. 影像数据处理与挖掘<a class="headerlink" href="#影像数据处理与挖掘" title="永久链接至标题">¶</a></h2>
-<div class="line-block">
-<div class="line">Python中有丰富的影像处理模块，这里以TM影像处理为例，进行影像处理方法的介绍。影像的高级处理、土地分类、对象识别、机器学习等将在后续的专题中另行介绍。</div>
-<div class="line"><a class="reference external" href="https://github.com/mapbox/rasterio.git">Rasterio</a>是读写地理空间信息栅格数据集的工具。Rasterio采用GDAL进行文件I/O和栅格文件格式的操作。典型功能是接受和返回Numpy的ndarray数据对象。Rasterio设计为提高地理空间栅格文件处理的生产率，让其处理变得更有趣。</div>
-</div>
+<h2>5.8. 影像数据处理与挖掘<a class="headerlink" href="#影像数据处理与挖掘" title="永久链接至标题">¶</a></h2>
+<p>Python中有丰富的影像处理模块，这里以TM影像处理为例，进行影像处理方法的介绍。影像的高级处理、土地分类、对象识别、机器学习等将在后续的专题中另行介绍。</p>
+<p><a class="reference external" href="https://github.com/mapbox/rasterio.git">Rasterio</a>是读写地理空间信息栅格数据集的工具。Rasterio采用GDAL进行文件I/O和栅格文件格式的操作。典型功能是接受和返回Numpy的ndarray数据对象。Rasterio设计为提高地理空间栅格文件处理的生产率，让其处理变得更有趣。</p>
 </div>
 </div>
 

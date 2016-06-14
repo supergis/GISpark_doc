@@ -1,6 +1,22 @@
 {
  "cells": [
   {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# OGR-Geometry and Projection\n",
+    "\n",
+    "几何对象与地图投影的使用。\n",
+    "* OGR矢量库：简单的矢量数据读写，是GDAL的一部分。\n",
+    "* 相关模块:\n",
+    "    Numeric：高速的数组处理，对栅格数据尤其重要\n",
+    "    NumPy：下一代的Numeric\n",
+    "    更强大的gis库 http://www.gispython.org/\n",
+    "\n",
+    "### 导入库"
+   ]
+  },
+  {
    "cell_type": "code",
    "execution_count": 2,
    "metadata": {
@@ -10,22 +26,6 @@
    "source": [
     "#!/usr/bin/python\n",
     "#coding=GB2312"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "# OGR-Geometry and Projection\n",
-    "### 几何对象与地图投影的使用。\n",
-    "by [openthings@163.com](http://my.oschina.net/u/2306127/blog?catalog=3420733), 2016-04-25.  \n",
-    "#### OGR矢量库：简单的矢量数据读写，是GDAL的一部分。\n",
-    "#### 相关模块:\n",
-    "    Numeric：高速的数组处理，对栅格数据尤其重要\n",
-    "    NumPy：下一代的Numeric\n",
-    "    更强大的gis库 http://www.gispython.org/\n",
-    "\n",
-    "### 导入库"
    ]
   },
   {

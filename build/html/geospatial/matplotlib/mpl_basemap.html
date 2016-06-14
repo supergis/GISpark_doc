@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Matplotlib的Basemap包使用教程。 &mdash; GISpark 0.1 文档</title>
+  <title>Matplotlib的Basemap包使用教程 &mdash; GISpark 0.1 文档</title>
   
 
   
@@ -128,7 +128,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="../../index.html">Docs</a> &raquo;</li>
       
-    <li>Matplotlib的Basemap包使用教程。</li>
+    <li>Matplotlib的Basemap包使用教程</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -274,13 +274,9 @@ div.nboutput  > :nth-child(2).stderr {
 
 .ansi-bold { font-weight: bold; }
 </style>
-<div class="section" id="Matplotlib的Basemap包使用教程。">
-<h1>Matplotlib的Basemap包使用教程。<a class="headerlink" href="#Matplotlib的Basemap包使用教程。" title="永久链接至标题">¶</a></h1>
-<div class="section" id="openthings&#64;163.com">
-<h2><a class="reference external" href="http://my.oschina.net/u/2306127/blog?catalog=2527511">openthings&#64;163.com</a><a class="headerlink" href="#openthings@163.com" title="永久链接至标题">¶</a></h2>
-<blockquote>
-<div>安装：conda install basemap</div></blockquote>
-<p>参考：<a class="reference external" href="http://matplotlib.org/basemap/users/geography.html">http://matplotlib.org/basemap/users/geography.html</a></p>
+<div class="section" id="Matplotlib的Basemap包使用教程">
+<h1>Matplotlib的Basemap包使用教程<a class="headerlink" href="#Matplotlib的Basemap包使用教程" title="永久链接至标题">¶</a></h1>
+<p>BaseMap是基于Matplotlib的一个地图绘制扩展包。</p>
 <p>Basemap 包含GSSH 海岸数据集, 像GMT中的河流, 州和国家边界一样。方法包括:</p>
 <ul class="simple">
 <li>drawcoastlines(): 绘制海岸线。</li>
@@ -311,10 +307,17 @@ must be global, covering the world in lat/lon coordinates from the
 international dateline eastward and the South Pole northward.</li>
 </ul>
 <p>Here are examples of the various ways to draw a map background.</p>
+<div class="section" id="安装">
+<h2>安装<a class="headerlink" href="#安装" title="永久链接至标题">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">basemap</span>
+</pre></div>
+</div>
+<p>参考：<a class="reference external" href="http://matplotlib.org/basemap/users/geography.html">http://matplotlib.org/basemap/users/geography.html</a></p>
+<p>** 配置环境 **</p>
 <p>下面这个指令指示将绘图结果放到当前页面上，否则会在源服务器上显示窗口，导致页面挂起，而且没有任何显示。</p>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
-<span></span>In [2]:
+<span></span>In [1]:
 </pre></div>
 </div>
 <div class="highlight-ipython3"><div class="highlight"><pre>
@@ -322,10 +325,15 @@ international dateline eastward and the South Pole northward.</li>
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="使用">
+<h2>使用<a class="headerlink" href="#使用" title="永久链接至标题">¶</a></h2>
+<div class="section" id="绘制海岸线">
+<h3>绘制海岸线<a class="headerlink" href="#绘制海岸线" title="永久链接至标题">¶</a></h3>
 <p>Draw coastlines, filling ocean and land areas.</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
-<span></span>In [4]:
+<span></span>In [2]:
 </pre></div>
 </div>
 <div class="highlight-ipython3"><div class="highlight"><pre>
@@ -335,9 +343,10 @@ import matplotlib.pyplot as plt
 # setup Lambert Conformal basemap.
 m = Basemap(width=12000000,height=9000000,projection=&#39;lcc&#39;,
             resolution=&#39;c&#39;,lat_1=45.,lat_2=55,lat_0=50,lon_0=-107.)
-# draw coastlines.
 
+# draw coastlines.
 m.drawcoastlines()
+
 # draw a boundary around the map, fill the background.
 # this background will end up being the ocean color, since
 # the continents will be drawn on top.
@@ -353,22 +362,27 @@ plt.show()
 <div class="container">
 </div>
 <div class="container">
-<img alt="../../_images/geospatial_matplotlib_mpl_basemap_5_0.png" src="../../_images/geospatial_matplotlib_mpl_basemap_5_0.png" />
+<img alt="../../_images/geospatial_matplotlib_mpl_basemap_6_0.png" src="../../_images/geospatial_matplotlib_mpl_basemap_6_0.png" />
 </div>
 </div>
+</div>
+<div class="section" id="绘制陆地">
+<h3>绘制陆地<a class="headerlink" href="#绘制陆地" title="永久链接至标题">¶</a></h3>
 <p>Draw a land-sea mask as an image.</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
-<span></span>In [5]:
+<span></span>In [3]:
 </pre></div>
 </div>
 <div class="highlight-ipython3"><div class="highlight"><pre>
 <span></span>from mpl_toolkits.basemap import Basemap
 import matplotlib.pyplot as plt
+
 # setup Lambert Conformal basemap.
 # set resolution=None to skip processing of boundary datasets.
 m = Basemap(width=12000000,height=9000000,projection=&#39;lcc&#39;,
             resolution=None,lat_1=45.,lat_2=55,lat_0=50,lon_0=-107.)
+
 # draw a land-sea mask for a map background.
 # lakes=True means plot inland lakes with ocean color.
 m.drawlsmask(land_color=&#39;coral&#39;,ocean_color=&#39;aqua&#39;,lakes=True)
@@ -380,9 +394,12 @@ plt.show()
 <div class="container">
 </div>
 <div class="container">
-<img alt="../../_images/geospatial_matplotlib_mpl_basemap_7_0.png" src="../../_images/geospatial_matplotlib_mpl_basemap_7_0.png" />
+<img alt="../../_images/geospatial_matplotlib_mpl_basemap_8_0.png" src="../../_images/geospatial_matplotlib_mpl_basemap_8_0.png" />
 </div>
 </div>
+</div>
+<div class="section" id="绘制全球影像图">
+<h3>绘制全球影像图<a class="headerlink" href="#绘制全球影像图" title="永久链接至标题">¶</a></h3>
 <p>Draw the NASA ‘Blue Marble’ image.</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -392,10 +409,12 @@ plt.show()
 <div class="highlight-ipython3"><div class="highlight"><pre>
 <span></span>from mpl_toolkits.basemap import Basemap
 import matplotlib.pyplot as plt
+
 # setup Lambert Conformal basemap.
 # set resolution=None to skip processing of boundary datasets.
 m = Basemap(width=12000000,height=9000000,projection=&#39;lcc&#39;,
             resolution=None,lat_1=45.,lat_2=55,lat_0=50,lon_0=-107.)
+
 m.bluemarble()
 plt.show()
 </pre></div>
@@ -405,9 +424,12 @@ plt.show()
 <div class="container">
 </div>
 <div class="container">
-<img alt="../../_images/geospatial_matplotlib_mpl_basemap_9_0.png" src="../../_images/geospatial_matplotlib_mpl_basemap_9_0.png" />
+<img alt="../../_images/geospatial_matplotlib_mpl_basemap_10_0.png" src="../../_images/geospatial_matplotlib_mpl_basemap_10_0.png" />
 </div>
 </div>
+</div>
+<div class="section" id="绘制地形立体渲染图">
+<h3>绘制地形立体渲染图<a class="headerlink" href="#绘制地形立体渲染图" title="永久链接至标题">¶</a></h3>
 <p>Draw a shaded relief image.</p>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -417,15 +439,20 @@ plt.show()
 <div class="highlight-ipython3"><div class="highlight"><pre>
 <span></span>from mpl_toolkits.basemap import Basemap
 import matplotlib.pyplot as plt
+
 # setup Lambert Conformal basemap.
 # set resolution=None to skip processing of boundary datasets.
 m = Basemap(width=12000000,height=9000000,projection=&#39;lcc&#39;,
             resolution=None,lat_1=45.,lat_2=55,lat_0=50,lon_0=-107.)
+
 m.shadedrelief()
 plt.show()
 </pre></div>
 </div>
 </div>
+</div>
+<div class="section" id="绘制etopo地形图">
+<h3>绘制etopo地形图<a class="headerlink" href="#绘制etopo地形图" title="永久链接至标题">¶</a></h3>
 <p>Draw an etopo relief image.</p>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
@@ -435,6 +462,7 @@ plt.show()
 <div class="highlight-ipython3"><div class="highlight"><pre>
 <span></span>from mpl_toolkits.basemap import Basemap
 import matplotlib.pyplot as plt
+
 # setup Lambert Conformal basemap.
 # set resolution=None to skip processing of boundary datasets.
 m = Basemap(width=12000000,height=9000000,projection=&#39;lcc&#39;,
@@ -451,7 +479,7 @@ plt.show()
 <div class="container">
 </div>
 <div class="container">
-<img alt="../../_images/geospatial_matplotlib_mpl_basemap_13_0.png" src="../../_images/geospatial_matplotlib_mpl_basemap_13_0.png" />
+<img alt="../../_images/geospatial_matplotlib_mpl_basemap_14_0.png" src="../../_images/geospatial_matplotlib_mpl_basemap_14_0.png" />
 </div>
 </div>
 <div class="nbinput nblast container">
@@ -462,6 +490,7 @@ plt.show()
 <div class="highlight-ipython3"><div class="highlight"><pre>
 <span></span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>

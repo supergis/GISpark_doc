@@ -276,22 +276,16 @@ div.nboutput  > :nth-child(2).stderr {
 </style>
 <div class="section" id="GIScript－开放地理空间信息处理与分析Python库">
 <h1>GIScript－开放地理空间信息处理与分析Python库<a class="headerlink" href="#GIScript－开放地理空间信息处理与分析Python库" title="永久链接至标题">¶</a></h1>
-<div class="line-block">
-<div class="line"><strong>GIScript</strong>是一个开放的地理空间心处理与分析Python框架，GIS内核采用SuperMap
-UGC封装，集成多种开源软件，也可以使用其它的商业软件引擎。</div>
-<div class="line">_ by <a class="reference external" href="mailto:wangerqi&#37;&#52;&#48;supermap&#46;com">wangerqi<span>&#64;</span>supermap<span>&#46;</span>com</a>, 2016-05-03。_</div>
-</div>
-<div class="section" id="本文档介绍GIScript的安装和配置，并进行简单的运行测试，以确认安装的软件正常运行。">
-<h2>本文档介绍GIScript的安装和配置，并进行简单的运行测试，以确认安装的软件正常运行。<a class="headerlink" href="#本文档介绍GIScript的安装和配置，并进行简单的运行测试，以确认安装的软件正常运行。" title="永久链接至标题">¶</a></h2>
-<ul class="simple">
-<li>本教程基于Anaconda3+python3.5.1科学计算环境，请参考：<a class="reference external" href="http://www.anaconda.org">http://www.anaconda.org</a>
-。</li>
-<li>本Notebook在Ubuntu
-14.04/15.10/16.04运行通过，在本地服务器和阿里云服务器都可以运行。</li>
-<li>可以在<a class="reference external" href="http://nbviewer.jupyter.org/github/supergis/git_notebook/blob/master/geospatial/giscript/giscript_quickstart.ipynb">NBViewer上直接访问和下载本文档</a>。</li>
-</ul>
+<p><code class="docutils literal"><span class="pre">GIScript</span></code>是一个开放的地理空间心处理与分析Python框架，GIS内核采用SuperMap
+UGC封装，集成多种开源软件，也可以使用其它的商业软件引擎。</p>
+<p>本文档介绍GIScript的安装和配置，并进行简单的运行测试，以确认安装的软件正常运行。
+*
+本教程基于Anaconda3+python3.5.1科学计算环境，请参考：<a class="reference external" href="http://www.anaconda.org">http://www.anaconda.org</a>
+。 * 本Notebook在Ubuntu
+14.04/15.10/16.04运行通过，在本地服务器和阿里云服务器都可以运行。 *
+可以在<a class="reference external" href="http://nbviewer.jupyter.org/github/supergis/git_notebook/blob/master/geospatial/giscript/giscript_quickstart.ipynb">NBViewer上直接访问和下载本文档</a>。</p>
 <div class="section" id="（一）安装与配置">
-<h3>（一）安装与配置<a class="headerlink" href="#（一）安装与配置" title="永久链接至标题">¶</a></h3>
+<h2>（一）安装与配置<a class="headerlink" href="#（一）安装与配置" title="永久链接至标题">¶</a></h2>
 <p>GIScript的安装包括<strong>系统库的设置</strong>、<strong>UGC
 Runtime设置</strong>和<strong>Python库</strong>的设置，通过编写一个启动脚本，可以在给定环境下载入相应的运行库的路径。
 #### 1、下载GIScript支持库：</p>
@@ -299,10 +293,8 @@ Runtime设置</strong>和<strong>Python库</strong>的设置，通过编写一�
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">supergis</span><span class="o">/</span><span class="n">GIScriptLib</span><span class="o">.</span><span class="n">git</span>
 </pre></div>
 </div>
-</div>
-</div>
 <div class="section" id="2、UGC系统库的版本适配。">
-<h2>2、UGC系统库的版本适配。<a class="headerlink" href="#2、UGC系统库的版本适配。" title="永久链接至标题">¶</a></h2>
+<h3>2、UGC系统库的版本适配。<a class="headerlink" href="#2、UGC系统库的版本适配。" title="永久链接至标题">¶</a></h3>
 <p>由于GIScript的几个编译库版本较新，在默认使用系统老版本库时部分函数找不到会引起调用失败，因此需要将这几个的系统调用指向到GIScript编译使用的的新版本。在Ubuntu上，具体操作包括：</p>
 <div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">~/</span><span class="n">anaconda3</span><span class="o">/</span><span class="n">envs</span><span class="o">/</span><span class="n">GISpark</span><span class="o">/</span><span class="n">lib</span>
 <span class="n">mv</span> <span class="n">libstdc</span><span class="o">++.</span><span class="n">so</span> <span class="n">libstdc</span><span class="o">++.</span><span class="n">so</span><span class="o">.</span><span class="n">x</span>
@@ -321,7 +313,7 @@ Runtime设置</strong>和<strong>Python库</strong>的设置，通过编写一�
 </ul>
 </div>
 <div class="section" id="3、安装Python的支持库。">
-<h2>3、安装Python的支持库。<a class="headerlink" href="#3、安装Python的支持库。" title="永久链接至标题">¶</a></h2>
+<h3>3、安装Python的支持库。<a class="headerlink" href="#3、安装Python的支持库。" title="永久链接至标题">¶</a></h3>
 <div class="line-block">
 <div class="line">GIScript的Python封装库，默认存放在系统目录：/usr/lib/python3/dist-packages/PyUGC</div>
 <div class="line">使用Anaconda时，存在相应的env的目录下，如：[/home/supermap/Anaconda3]/envs/GISpark/lib/python3.5/site-packages</div>
@@ -341,7 +333,7 @@ Runtime设置</strong>和<strong>Python库</strong>的设置，通过编写一�
 </ul>
 </div>
 <div class="section" id="4、Jupyter启动之前，设置GIScript运行时-library-载入的路径:">
-<h2>4、Jupyter启动之前，设置GIScript运行时 library 载入的路径:<a class="headerlink" href="#4、Jupyter启动之前，设置GIScript运行时-library-载入的路径:" title="永久链接至标题">¶</a></h2>
+<h3>4、Jupyter启动之前，设置GIScript运行时 library 载入的路径:<a class="headerlink" href="#4、Jupyter启动之前，设置GIScript运行时-library-载入的路径:" title="永久链接至标题">¶</a></h3>
 <ul class="simple">
 <li><strong>编写脚本，启动前设置GIScript的运行时动态库路径，内容如下：</strong></li>
 </ul>
@@ -385,12 +377,12 @@ Notebook并调用GIScript的库了。</div>
 <div class="line">如果通过服务器使用，需要使用｀jupyter notebook
 &#8211;generate-config｀创建配置文件，然后进去修改参数，这里不再详述。</div>
 </div>
+</div>
+</div>
 <div class="section" id="（二）运行测试，导入一些数据。">
-<h3>（二）运行测试，导入一些数据。<a class="headerlink" href="#（二）运行测试，导入一些数据。" title="永久链接至标题">¶</a></h3>
-</div>
-</div>
+<h2>（二）运行测试，导入一些数据。<a class="headerlink" href="#（二）运行测试，导入一些数据。" title="永久链接至标题">¶</a></h2>
 <div class="section" id="1、导入GIScript的Python库。">
-<h2>1、导入GIScript的Python库。<a class="headerlink" href="#1、导入GIScript的Python库。" title="永久链接至标题">¶</a></h2>
+<h3>1、导入GIScript的Python库。<a class="headerlink" href="#1、导入GIScript的Python库。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [1]:
@@ -408,6 +400,8 @@ import datasource
 </pre></div>
 </div>
 </div>
+<div class="section" id="2、使用Python的help(...)查看库的元数据信息获得帮助。">
+<h4>2、使用Python的help(...)查看库的元数据信息获得帮助。<a class="headerlink" href="#2、使用Python的help(...)查看库的元数据信息获得帮助。" title="永久链接至标题">¶</a></h4>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [9]:
@@ -421,8 +415,9 @@ import datasource
 </div>
 </div>
 </div>
+</div>
 <div class="section" id="3、设置测试数据目录。">
-<h2>3、设置测试数据目录。<a class="headerlink" href="#3、设置测试数据目录。" title="永久链接至标题">¶</a></h2>
+<h3>3、设置测试数据目录。<a class="headerlink" href="#3、设置测试数据目录。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [2]:
@@ -462,7 +457,7 @@ Output UDB:  /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/GIS
 </div>
 </div>
 <div class="section" id="4、导入数据的测试函数。">
-<h2>4、导入数据的测试函数。<a class="headerlink" href="#4、导入数据的测试函数。" title="永久链接至标题">¶</a></h2>
+<h3>4、导入数据的测试函数。<a class="headerlink" href="#4、导入数据的测试函数。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [3]:
@@ -483,7 +478,7 @@ Output UDB:  /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/GIS
 </div>
 </div>
 <div class="section" id="5、运行这个测试。">
-<h2>5、运行这个测试。<a class="headerlink" href="#5、运行这个测试。" title="永久链接至标题">¶</a></h2>
+<h3>5、运行这个测试。<a class="headerlink" href="#5、运行这个测试。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [4]:
@@ -513,10 +508,10 @@ Import Grid:  /home/supermap/GISpark/git_notebook/geospatial/giscript/../data/Gr
 Finished.
 </pre></div></div>
 </div>
+</div>
+</div>
 <div class="section" id="（三）查看生成的数据源文件UDB。">
-<h3>（三）查看生成的数据源文件UDB。<a class="headerlink" href="#（三）查看生成的数据源文件UDB。" title="永久链接至标题">¶</a></h3>
-<div class="section" id="下面使用了IPython的Magic操作符-!，可以直接运行操作系统的Shell命令行。">
-<h4>下面使用了IPython的Magic操作符 !，可以直接运行操作系统的Shell命令行。<a class="headerlink" href="#下面使用了IPython的Magic操作符-!，可以直接运行操作系统的Shell命令行。" title="永久链接至标题">¶</a></h4>
+<h2>（三）查看生成的数据源文件UDB。<a class="headerlink" href="#（三）查看生成的数据源文件UDB。" title="永久链接至标题">¶</a></h2>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [49]:
@@ -536,9 +531,6 @@ Finished.
 -rw-r--r-- 1 supermap supermap  74K 5月   4 09:46 ../data/GIScript_Test.udd
 </pre></div></div>
 </div>
-</div>
-<div class="section" id="删除生成的测试文件。注意，不要误删其它文件！">
-<h4>删除生成的测试文件。注意，不要误删其它文件！<a class="headerlink" href="#删除生成的测试文件。注意，不要误删其它文件！" title="永久链接至标题">¶</a></h4>
 <div class="line-block">
 <div class="line">如果重复运行上面的Import_Test()将会发现GIScript_Test.udb和GIScript_Test.udd文件会不断增大。</div>
 <div class="line">但是打开UDB文件却只有一份数据，为什么呢？ *
@@ -554,11 +546,8 @@ Finished.
 </pre></div>
 </div>
 </div>
-</div>
-</div>
-</div>
 <div class="section" id="再次查看目录，文件是否存在。">
-<h2>再次查看目录，文件是否存在。<a class="headerlink" href="#再次查看目录，文件是否存在。" title="永久链接至标题">¶</a></h2>
+<h3>再次查看目录，文件是否存在。<a class="headerlink" href="#再次查看目录，文件是否存在。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [41]:
@@ -586,6 +575,7 @@ Finished.
 <div class="highlight-ipython3"><div class="highlight"><pre>
 <span></span>
 </pre></div>
+</div>
 </div>
 </div>
 </div>

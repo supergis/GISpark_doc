@@ -276,13 +276,11 @@ div.nboutput  > :nth-child(2).stderr {
 </style>
 <div class="section" id="GeoJSON的python支持库。">
 <h1>GeoJSON的python支持库。<a class="headerlink" href="#GeoJSON的python支持库。" title="永久链接至标题">¶</a></h1>
-<div class="line-block">
-<div class="line"><a class="reference external" href="http://my.oschina.net/u/2306127/blog?catalog=3420733">openthings&#64;163.com</a>,
-2016-04.</div>
-<div class="line">* IETF标准项目：<a class="reference external" href="https://github.com/geojson">https://github.com/geojson</a></div>
-<div class="line">* PyPi支持库: <a class="reference external" href="https://pypi.python.org/pypi/geojson">https://pypi.python.org/pypi/geojson</a></div>
-<div class="line">* 其它的支持库包括：GeoPandas, Shaply, GDAL, GIScript</div>
-</div>
+<ul class="simple">
+<li>IETF标准项目：<a class="reference external" href="https://github.com/geojson">https://github.com/geojson</a></li>
+<li>PyPi支持库: <a class="reference external" href="https://pypi.python.org/pypi/geojson">https://pypi.python.org/pypi/geojson</a></li>
+<li>其它支持库包括：GeoPandas, Shaply, GDAL, GIScript</li>
+</ul>
 <div class="nbinput nblast container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [9]:
@@ -341,8 +339,11 @@ The GeoJSON Format Specification. ## MultiPoint</p>
 <div class="highlight-ipython3"><div class="highlight"><pre>
 <span></span>from geojson import MultiPoint
 
-MultiPoint([(-155.52, 19.61), (-156.22, 20.74), (-157.97, 21.46)])  # doctest: +ELLIPSIS
-#{&quot;coordinates&quot;: [[-155.5..., 19.6...], [-156.2..., 20.7...], [-157.9..., 21.4...]], &quot;type&quot;: &quot;MultiPoint&quot;}
+# doctest: +ELLIPSIS
+MultiPoint([(-155.52, 19.61), (-156.22, 20.74), (-157.97, 21.46)])
+
+#{&quot;coordinates&quot;: [[-155.5..., 19.6...], [-156.2..., 20.7...],
+#[-157.9..., 21.4...]], &quot;type&quot;: &quot;MultiPoint&quot;}
 </pre></div>
 </div>
 </div>
@@ -367,8 +368,10 @@ MultiPoint within The GeoJSON Format Specification. ## LineString</p>
 <div class="highlight-ipython3"><div class="highlight"><pre>
 <span></span>from geojson import LineString
 
-lstring = LineString([(8.919, 44.4074), (8.923, 44.4075)])  # doctest: +ELLIPSIS
-#{&quot;coordinates&quot;: [[8.91..., 44.407...], [8.92..., 44.407...]], &quot;type&quot;: &quot;LineString&quot;}
+# doctest: +ELLIPSIS
+lstring = LineString([(8.919, 44.4074), (8.923, 44.4075)])
+#{&quot;coordinates&quot;: [[8.91..., 44.407...], [8.92..., 44.407...]],
+#&quot;type&quot;: &quot;LineString&quot;}
 
 pprint(lstring)
 </pre></div>

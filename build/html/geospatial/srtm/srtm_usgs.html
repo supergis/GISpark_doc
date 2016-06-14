@@ -276,16 +276,12 @@ div.nboutput  > :nth-child(2).stderr {
 </style>
 <div class="section" id="SRTM高程数据处理">
 <h1>SRTM高程数据处理<a class="headerlink" href="#SRTM高程数据处理" title="永久链接至标题">¶</a></h1>
-<div class="section" id="下载文件、解压，转换为GeoTif,-添加投影信息，渲染三维立体效果图像，生成高程等值线矢量图。">
-<h2>下载文件、解压，转换为GeoTif, 添加投影信息，渲染三维立体效果图像，生成高程等值线矢量图。<a class="headerlink" href="#下载文件、解压，转换为GeoTif,-添加投影信息，渲染三维立体效果图像，生成高程等值线矢量图。" title="永久链接至标题">¶</a></h2>
-<p>**_ by <a class="reference external" href="http://my.oschina.net/u/2306127/blog">openthings&#64;163.com</a>
-_**</p>
-<div class="section" id="（一）获取数据。">
-<h3>（一）获取数据。<a class="headerlink" href="#（一）获取数据。" title="永久链接至标题">¶</a></h3>
-</div>
-</div>
+<p>下载文件、解压，转换为GeoTif,
+添加投影信息，渲染三维立体效果图像，生成高程等值线矢量图。</p>
+<div class="section" id="获取数据。">
+<h2>获取数据。<a class="headerlink" href="#获取数据。" title="永久链接至标题">¶</a></h2>
 <div class="section" id="从USGS下载数据。">
-<h2>从<a class="reference external" href="http://dds.cr.usgs.gov/srtm/version2_1/SRTM3">USGS</a>下载数据。<a class="headerlink" href="#从USGS下载数据。" title="永久链接至标题">¶</a></h2>
+<h3>从<a class="reference external" href="http://dds.cr.usgs.gov/srtm/version2_1/SRTM3">USGS</a>下载数据。<a class="headerlink" href="#从USGS下载数据。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [1]:
@@ -316,7 +312,7 @@ N00E018.hgt.zip     100%[===================&gt;] 875.45K  16.2KB/s    in 98s
 </div>
 </div>
 <div class="section" id="解压缩得到-*.hgt-文件。">
-<h2>解压缩得到 *.hgt 文件。<a class="headerlink" href="#解压缩得到-*.hgt-文件。" title="永久链接至标题">¶</a></h2>
+<h3>解压缩得到 *.hgt 文件。<a class="headerlink" href="#解压缩得到-*.hgt-文件。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [2]:
@@ -336,12 +332,12 @@ Archive:  N00E018.hgt.zip
   inflating: N00E018.hgt
 </pre></div></div>
 </div>
-<div class="section" id="（二）数据格式和投影转换。">
-<h3>（二）数据格式和投影转换。<a class="headerlink" href="#（二）数据格式和投影转换。" title="永久链接至标题">¶</a></h3>
 </div>
 </div>
+<div class="section" id="数据格式和投影转换。">
+<h2>数据格式和投影转换。<a class="headerlink" href="#数据格式和投影转换。" title="永久链接至标题">¶</a></h2>
 <div class="section" id="将-*.hgt-转为-GeoTiff。-使用GDAL(http://www.gdal.org)-进行转换。">
-<h2>将 *.hgt 转为 GeoTiff。 使用GDAL(<a class="reference external" href="http://www.gdal.org">http://www.gdal.org</a>) 进行转换。<a class="headerlink" href="#将-*.hgt-转为-GeoTiff。-使用GDAL(http://www.gdal.org)-进行转换。" title="永久链接至标题">¶</a></h2>
+<h3>将 *.hgt 转为 GeoTiff。 使用GDAL(<a class="reference external" href="http://www.gdal.org">http://www.gdal.org</a>) 进行转换。<a class="headerlink" href="#将-*.hgt-转为-GeoTiff。-使用GDAL(http://www.gdal.org)-进行转换。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [3]:
@@ -363,7 +359,7 @@ Input file size is 1201, 1201
 </div>
 </div>
 <div class="section" id="地理投影转换。">
-<h2>地理投影转换。<a class="headerlink" href="#地理投影转换。" title="永久链接至标题">¶</a></h2>
+<h3>地理投影转换。<a class="headerlink" href="#地理投影转换。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [4]:
@@ -386,12 +382,12 @@ Copying nodata values from source N00E018_adapted.tif to destination N00E018_war
 0...10...20...30...40...50...60...70...80...90...100 - done.
 </pre></div></div>
 </div>
-<div class="section" id="（三）立体效果渲染。">
-<h3>（三）立体效果渲染。<a class="headerlink" href="#（三）立体效果渲染。" title="永久链接至标题">¶</a></h3>
 </div>
 </div>
+<div class="section" id="立体效果渲染。">
+<h2>立体效果渲染。<a class="headerlink" href="#立体效果渲染。" title="永久链接至标题">¶</a></h2>
 <div class="section" id="从DEM生成Hillshade。">
-<h2>从DEM生成Hillshade。<a class="headerlink" href="#从DEM生成Hillshade。" title="永久链接至标题">¶</a></h2>
+<h3>从DEM生成Hillshade。<a class="headerlink" href="#从DEM生成Hillshade。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [5]:
@@ -410,12 +406,12 @@ Copying nodata values from source N00E018_adapted.tif to destination N00E018_war
 0...10...20...30...40...50...60...70...80...90...100 - done.
 </pre></div></div>
 </div>
-<div class="section" id="（四）生成等高线。">
-<h3>（四）生成等高线。<a class="headerlink" href="#（四）生成等高线。" title="永久链接至标题">¶</a></h3>
 </div>
 </div>
+<div class="section" id="生成等高线。">
+<h2>生成等高线。<a class="headerlink" href="#生成等高线。" title="永久链接至标题">¶</a></h2>
 <div class="section" id="使用GDAL生成25米等高距的等高线，输出shp格式。">
-<h2>使用GDAL生成25米等高距的等高线，输出shp格式。<a class="headerlink" href="#使用GDAL生成25米等高距的等高线，输出shp格式。" title="永久链接至标题">¶</a></h2>
+<h3>使用GDAL生成25米等高距的等高线，输出shp格式。<a class="headerlink" href="#使用GDAL生成25米等高距的等高线，输出shp格式。" title="永久链接至标题">¶</a></h3>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [7]:
@@ -434,8 +430,10 @@ Copying nodata values from source N00E018_adapted.tif to destination N00E018_war
 0...10...20...30...40...50...60...70...80...90...100 - done.
 </pre></div></div>
 </div>
+</div>
+</div>
 <div class="section" id="查看生成的文件目录。">
-<h3>查看生成的文件目录。<a class="headerlink" href="#查看生成的文件目录。" title="永久链接至标题">¶</a></h3>
+<h2>查看生成的文件目录。<a class="headerlink" href="#查看生成的文件目录。" title="永久链接至标题">¶</a></h2>
 <div class="nbinput container">
 <div class="highlight-none"><div class="highlight"><pre>
 <span></span>In [1]:
@@ -469,17 +467,6 @@ drwxrwxr-x 2 supermap supermap 4.0K 5月   4 16:04 osm
 drwxrwxr-x 2 supermap supermap 4.0K 8月  11  2015 Raster
 drwxrwxr-x 2 supermap supermap 4.0K 7月  31  2015 Shape
 </pre></div></div>
-</div>
-<div class="nbinput nblast container">
-<div class="highlight-none"><div class="highlight"><pre>
-<span></span>In [ ]:
-</pre></div>
-</div>
-<div class="highlight-ipython3"><div class="highlight"><pre>
-<span></span>
-</pre></div>
-</div>
-</div>
 </div>
 </div>
 </div>

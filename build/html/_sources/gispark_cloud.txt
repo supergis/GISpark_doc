@@ -152,7 +152,7 @@
     "    \n",
     "*    [ceph-zabbix](https://github.com/thelan/ceph-zabbix) 是一个 Zabbix 插件，用来监控 Ceph 集群文件系统。\n",
     "\n",
-    "#### FastFS 分布式文件系统\n",
+    "#### FastDFS 分布式文件系统\n",
     "\n",
     "[FastDFS](https://github.com/happyfish100/fastdfs)是一个开源的分布式文件系统([中文社区](http://bbs.chinaunix.net/forum-240-1.html))，它对文件进行管理，包括文件存储、文件同步、文件访问(文件上传、文件下载)等，解决了大容量存储和负载均衡的问题。特别适合以文件为载体的在线服务，如相册网站、视频网站等等。\n",
     "\n",

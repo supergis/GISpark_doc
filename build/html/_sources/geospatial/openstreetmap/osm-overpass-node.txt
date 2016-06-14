@@ -1,6 +1,23 @@
 {
  "cells": [
   {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# OSM-overpass服务接口使用\n",
+    "\n",
+    "通过Overpass接口，可以在线查询[OpenStreetMap](http:www.openstreetmap.org)开放空间数据库。\n",
+    "\n",
+    "overpy-使用overpass api接口的python library，这里将返回结果集保存为JSON格式。  \n",
+    "\n",
+    "* 安装：$ pip install overpy\n",
+    "* 文档：http://python-overpy.readthedocs.org/en/latest/example.html#basic-example  \n",
+    "* 接口：http://wiki.openstreetmap.org/wiki/Overpass_API  \n",
+    "\n",
+    "本工具例程基于上述文档例程进行编写。 "
+   ]
+  },
+  {
    "cell_type": "code",
    "execution_count": 1,
    "metadata": {
@@ -10,19 +27,6 @@
    "source": [
     "#!/usr/bin/python\n",
     "#coding=utf-8"
-   ]
-  },
-  {
-   "cell_type": "markdown",
-   "metadata": {},
-   "source": [
-    "### OSM-overpass服务接口使用，在线查询[OpenStreetMap](http:www.openstreetmap.org)开放空间数据库。\n",
-    "**_ by [openthings@163.com](http://my.oschina.net/u/2306127/blog), 2016-04-23. _**  \n",
-    ">#### overpy-使用overpass api接口的python library，这里将返回结果集保存为JSON格式。  \n",
-    "* 安装：$ pip install overpy\n",
-    "* 文档：http://python-overpy.readthedocs.org/en/latest/example.html#basic-example  \n",
-    "* 接口：http://wiki.openstreetmap.org/wiki/Overpass_API  \n",
-    "本工具例程基于上述文档例程进行编写。 "
    ]
   },
   {
